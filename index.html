@@ -890,6 +890,16 @@
       function toggleProjector() { const enabled = document.body.classList.toggle('projector'); $('#projectorButton').innerHTML = enabled ? '<span>▣</span> 離開投影模式' : '<span>▣</span> 投影模式'; showToast(enabled ? '已切換為投影模式。' : '已回復同工操作模式。'); }
       $('#projectorButton').addEventListener('click', toggleProjector); $('#projectorTop').addEventListener('click', toggleProjector);
       $('#fullscreenButton').addEventListener('click', async () => { try { if (document.fullscreenElement) await document.exitFullscreen(); else await document.documentElement.requestFullscreen(); } catch (_) { showToast('請使用瀏覽器的全螢幕功能。'); } });
+
+      // The teacher portal may append senType and stageLevel to open an
+      // individual student's most relevant pathway. Only allow known values.
+      const quickStartPathways = { SpLD: '1', ID: '2', ASD: '3', ADHD: '4', EBD: 'E', SLI: '8', MI: '9', Giftedness: 'G', HI: 'H' };
+      const quickStartStages = { 'P1–P3': 'lower', 'P4–P6': 'upper', 'S1–S3': 'junior', 'S4–S6': 'senior' };
+      const quickStartParams = new URLSearchParams(window.location.search);
+      const requestedPathway = quickStartPathways[quickStartParams.get('senType')];
+      const requestedStage = quickStartStages[quickStartParams.get('stageLevel')];
+      if (requestedStage) selectStage(requestedStage);
+      if (requestedPathway) selectPathway(requestedPathway);
     })();
   </script>
 </body>
