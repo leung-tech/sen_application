@@ -86,7 +86,7 @@
     .small-progress { height: 8px; margin-top: 14px; overflow: hidden; border-radius: 99px; background: #edf1f6; }.small-progress span { display: block; width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #3fc2a3, #4eaaec); transition: width .35s; }
 
     .section-head { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin: 29px 0 16px; }.section-head h2 { margin: 6px 0 0; color: var(--navy); font-size: 22px; letter-spacing: -.025em; }.section-head p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }.section-head .small-label { color: var(--muted); }
-    .filter-row { display: flex; flex-wrap: wrap; gap: 7px; justify-content: flex-end; }.filter-button { min-height: 33px; padding: 0 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 99px; background: #fff; font-size: 12px; font-weight: 800; }.filter-button.active, .filter-button:hover { color: #554abe; border-color: #d8d1ff; background: var(--purple-soft); }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 7px; justify-content: flex-end; }.filter-button { min-height: 33px; padding: 0 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 99px; background: #fff; font-size: 12px; font-weight: 800; }.filter-button.active, .filter-button:hover { color: #554abe; border-color: #d8d1ff; background: var(--purple-soft); }.level-row { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 13px; }.level-intro { color: #53627e; font-size: 11px; font-weight: 850; }.level-button { min-height: 35px; padding: 0 11px; color: #53627e; border: 1px solid #dce3ef; border-radius: 11px; background: #fff; font-size: 11px; font-weight: 850; }.level-button small { margin-left: 3px; color: #8b98af; font-size: 9px; }.level-button:hover, .level-button.active { color: #fff; border-color: #6458ca; background: linear-gradient(135deg, #7568df, #5a4cc3); box-shadow: 0 6px 13px rgba(88,76,190,.16); }.level-button.active small { color: #ebe9ff; }.stage-level { margin-bottom: 7px; color: #6575a4; font-size: 12px; font-weight: 850; }
     .game-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 15px; }
     .game-card { min-height: 210px; padding: 17px; display: flex; flex-direction: column; position: relative; overflow: hidden; color: var(--ink); border: 1px solid var(--line); border-radius: 21px; background: #fff; box-shadow: 0 8px 21px rgba(41,60,100,.045); text-align: left; transition: transform .22s, box-shadow .22s, border .22s; }.game-card:hover { transform: translateY(-4px); border-color: #cbd8f1; box-shadow: 0 16px 27px rgba(41,60,100,.11); }.game-card:active { transform: scale(.98); }
     .game-card .game-visual { width: 61px; height: 61px; display: grid; place-items: center; margin-bottom: 17px; border-radius: 20px; font-size: 32px; }.game-card[data-tone="pink"] .game-visual { background: var(--pink-soft); }.game-card[data-tone="blue"] .game-visual { background: var(--blue-soft); }.game-card[data-tone="yellow"] .game-visual { background: var(--yellow-soft); }.game-card[data-tone="teal"] .game-visual { background: var(--teal-soft); }.game-card[data-tone="orange"] .game-visual { background: var(--orange-soft); }.game-card[data-tone="purple"] .game-visual { background: var(--purple-soft); }
@@ -159,7 +159,7 @@
           <article class="daily-card"><div class="small-label">今日進度</div><h2>完成小任務，亮起星星</h2><p>不計分、不比較；每一次嘗試都值得被看見。</p><div class="today-progress"><div class="progress-ring" id="progressRing"><strong id="gamesComplete">0</strong></div><div class="progress-copy"><strong>已完成 <span id="gamesCompleteText">0</span> 個遊戲</strong><span>完成一款遊戲，代幣板會多一顆星。</span></div></div><div class="small-progress"><span id="completionBar"></span></div></article>
         </section>
 
-        <div class="section-head" id="gamesAnchor"><div><div class="small-label">十個小遊戲</div><h2>選一個，現在開始</h2><p>可按學習範疇或支援標記篩選；標記提示遊戲的介面設計特性，並非診斷或限制。</p><div class="support-key"><span class="support-badge" data-code="1">1 SpLD</span><span class="support-badge" data-code="2">2 ID</span><span class="support-badge" data-code="3">3 ASD</span><span class="support-badge" data-code="4">4 ADHD</span><span class="support-badge" data-code="8">8 SLI</span><span class="support-badge" data-code="9">9 MI</span></div></div><div class="filter-row" role="group" aria-label="小遊戲分類與支援標記"><button class="filter-button active" type="button" data-filter="all">全部</button><button class="filter-button" type="button" data-filter="emotion">情緒社交</button><button class="filter-button" type="button" data-filter="cognition">認知學習</button><button class="filter-button" type="button" data-filter="life">生活技能</button><button class="filter-button" type="button" data-filter="support-1">1 SpLD</button><button class="filter-button" type="button" data-filter="support-2">2 ID</button><button class="filter-button" type="button" data-filter="support-3">3 ASD</button><button class="filter-button" type="button" data-filter="support-4">4 ADHD</button><button class="filter-button" type="button" data-filter="support-8">8 SLI</button><button class="filter-button" type="button" data-filter="support-9">9 MI</button></div></div>
+        <div class="section-head" id="gamesAnchor"><div><div class="small-label">十個小遊戲</div><h2>選一個，現在開始</h2><p id="stageGuide">目前是初小任務：以具體圖片、單一步驟與直接日常詞彙開始。</p><div class="level-row" role="group" aria-label="選擇學習階段"><span class="level-intro">學習階段</span><button class="level-button active" type="button" data-stage="lower">初小 <small>P1–P3</small></button><button class="level-button" type="button" data-stage="upper">高小 <small>P4–P6</small></button><button class="level-button" type="button" data-stage="junior">初中 <small>S1–S3</small></button><button class="level-button" type="button" data-stage="senior">高中 <small>S4–S6</small></button></div><div class="support-key"><span class="support-badge" data-code="1">1 SpLD</span><span class="support-badge" data-code="2">2 ID</span><span class="support-badge" data-code="3">3 ASD</span><span class="support-badge" data-code="4">4 ADHD</span><span class="support-badge" data-code="8">8 SLI</span><span class="support-badge" data-code="9">9 MI</span></div></div><div class="filter-row" role="group" aria-label="小遊戲分類與支援標記"><button class="filter-button active" type="button" data-filter="all">全部</button><button class="filter-button" type="button" data-filter="emotion">情緒社交</button><button class="filter-button" type="button" data-filter="cognition">認知學習</button><button class="filter-button" type="button" data-filter="life">生活技能</button><button class="filter-button" type="button" data-filter="support-1">1 SpLD</button><button class="filter-button" type="button" data-filter="support-2">2 ID</button><button class="filter-button" type="button" data-filter="support-3">3 ASD</button><button class="filter-button" type="button" data-filter="support-4">4 ADHD</button><button class="filter-button" type="button" data-filter="support-8">8 SLI</button><button class="filter-button" type="button" data-filter="support-9">9 MI</button></div></div>
         <section class="game-grid" id="gameGrid" aria-label="十個訓練小遊戲"></section>
 
         <div class="section-head" id="supportAnchor"><div><div class="small-label">即時輔導工具</div><h2>準備好了才開始</h2><p>用少量、清晰和可預期的提示，陪學生穩定進入訓練。</p></div></div>
@@ -172,7 +172,7 @@
 
       <section id="gameView" class="game-stage hidden" aria-live="polite">
         <header class="stage-topbar"><button class="back-button" id="backToDashboard" type="button">← 回到訓練大廳</button><div class="stage-utilities"><button class="utility-button" id="stageReadable" type="button">Aa 高辨識文字</button><button class="utility-button" id="stageSound" type="button">🔊 指令聲音：開</button><button class="utility-button" id="stageHaptic" type="button">⌁ 觸覺提示：關</button></div></header>
-        <section class="stage-hero"><div class="stage-intro"><div><div class="stage-breadcrumb" id="stageCategory">情緒社交</div><h2 id="stageTitle">心情在哪裡？</h2><p id="stageDescription">看一看，找出一樣的表情。</p><div class="support-badge-row" id="stageSupport"></div></div><div class="round-counter">小任務<strong id="roundNumber">1 / 3</strong></div></div><div class="round-dots" id="roundDots" role="img" aria-label="小遊戲進度"></div></section>
+        <section class="stage-hero"><div class="stage-intro"><div><div class="stage-breadcrumb" id="stageCategory">情緒社交</div><div class="stage-level" id="stageLevel">初小 · P1–P3</div><h2 id="stageTitle">心情在哪裡？</h2><p id="stageDescription">看一看，找出一樣的表情。</p><div class="support-badge-row" id="stageSupport"></div></div><div class="round-counter">小任務<strong id="roundNumber">1 / 3</strong></div></div><div class="round-dots" id="roundDots" role="img" aria-label="小遊戲進度"></div></section>
         <section class="activity-card" id="activityCard"></section>
       </section>
     </main>
@@ -223,7 +223,54 @@
           { route: ['直走', '右轉', '直走'] }, { route: ['右轉', '直走', '左轉'] }, { route: ['直走', '左轉', '直走'] }
         ] }
       ];
+      const stageProfiles = {
+        lower: { label: '初小 · P1–P3', guide: '目前是初小任務：以具體圖片、單一步驟與直接日常詞彙開始。' },
+        upper: { label: '高小 · P4–P6', guide: '目前是高小任務：加入兩個線索、校園情境及先後次序判斷。' },
+        junior: { label: '初中 · S1–S3', guide: '目前是初中任務：練習同儕互動、校園規範、時間管理與社區安全。' },
+        senior: { label: '高中 · S4–S6', guide: '目前是高中任務：以獨立生活、職場準備、社區使用與安全決策為情境。' }
+      };
+      const stageTasks = {
+        upper: {
+          emotion: { description: '由表情與情境找出合適感受', rounds: [{ target: '🙂', word: '有點緊張', choices: [['🙂', '有點緊張'], ['😴', '很疲倦'], ['😡', '很生氣']], answer: '有點緊張' }, { target: '😔', word: '失望', choices: [['😔', '失望'], ['😊', '自豪'], ['😳', '尷尬']], answer: '失望' }, { target: '😌', word: '放鬆', choices: [['😌', '放鬆'], ['😟', '擔心'], ['😡', '生氣']], answer: '放鬆' }] },
+          colour: { description: '按色標整理校園用品', rounds: [{ item: '📘', name: '藍色數學簿', color: 'blue', label: '藍色' }, { item: '🖍️', name: '紅色美術盒', color: 'red', label: '紅色' }, { item: '🧽', name: '黃色清潔布', color: 'yellow', label: '黃色' }] },
+          routine: { description: '排好校園任務的先後次序', rounds: [{ title: '準備專題研習', cards: [['📋', '看清任務'], ['🔎', '準備資料'], ['📁', '放入文件夾']] }, { title: '交功課前', cards: [['📝', '檢查答案'], ['🏷️', '寫上名字'], ['📥', '放入交功課箱']] }, { title: '小組活動', cards: [['👂', '聽清規則'], ['🤝', '分配工作'], ['✅', '一起檢查']] }] },
+          listen: { description: '聽兩個線索，找出關鍵用品', rounds: [{ word: '圖書證', listenText: '去圖書館，請帶圖書證。', choices: [['💳', '圖書證'], ['⚽', '足球'], ['🍴', '餐具']] }, { word: '水樽', listenText: '戶外活動前，請帶水樽。', choices: [['🧴', '水樽'], ['🎲', '骰子'], ['🧣', '頸巾']] }, { word: '功課冊', listenText: '交功課前，請拿出功課冊。', choices: [['📒', '功課冊'], ['🎧', '耳機'], ['🪥', '牙刷']] }] },
+          fruit: { description: '核對清單並數出所需物品', rounds: [{ count: 5, itemEmoji: '🍎', itemLabel: '蘋果' }, { count: 7, itemEmoji: '🍎', itemLabel: '蘋果' }, { count: 10, itemEmoji: '🍎', itemLabel: '蘋果' }] },
+          signal: { description: '判斷校園與過路安全規則', rounds: [{ light: 'red', prompt: '走廊有人正在跑，自己要先？', answer: '停一停' }, { light: 'green', prompt: '綠燈亮了，確認安全後？', answer: '可以走' }, { light: 'red', prompt: '看見校園維修告示，先？', answer: '停一停' }] },
+          turn: { description: '按小組規則練習輪候發言', rounds: [{ person: '小明', people: [['🧒', '小明'], ['👧', '小美'], ['🧑', '我']] }, { person: '我', people: [['🧒', '小明'], ['👧', '小美'], ['🧑', '我']] }, { person: '小美', people: [['🧒', '小明'], ['👧', '小美'], ['🧑', '我']] }] },
+          memory: { description: '配對校園用品與時間提示', rounds: [{ cards: ['📚', '📚', '⏰', '⏰'] }, { cards: ['🚌', '🚌', '💳', '💳'] }, { cards: ['📒', '📒', '🖊️', '🖊️'] }] },
+          weather: { description: '按天氣與活動選合適用品', rounds: [{ weather: '🌦️', label: '郊遊日', answer: '水樽', choices: [['🧴', '水樽'], ['🧣', '頸巾'], ['🩴', '拖鞋']] }, { weather: '☀️', label: '戶外運動', answer: '太陽帽', choices: [['🧢', '太陽帽'], ['☂️', '雨傘'], ['🧤', '手套']] }, { weather: '🌧️', label: '下雨天上學', answer: '雨傘', choices: [['☂️', '雨傘'], ['🕶️', '太陽眼鏡'], ['🩳', '短褲']] }] },
+          path: { description: '按校園地圖走到指定位置', rounds: [{ route: ['直走', '右轉', '直走'], prompt: '跟著校園地圖到圖書館。', goalEmoji: '📚' }, { route: ['右轉', '直走', '左轉'], prompt: '跟著校園地圖到集合點。', goalEmoji: '📍' }, { route: ['直走', '左轉', '直走'], prompt: '跟著校園地圖到洗手間。', goalEmoji: '🚻' }] }
+        },
+        junior: {
+          emotion: { description: '由同儕情境選擇調節策略', rounds: [{ target: '😳', word: '尷尬', choices: [['😳', '尷尬'], ['😊', '自豪'], ['😴', '疲倦']], answer: '尷尬' }, { target: '😔', word: '失望', choices: [['😔', '失望'], ['😌', '放鬆'], ['😡', '生氣']], answer: '失望' }, { target: '😵', word: '壓力很大', choices: [['😵', '壓力很大'], ['😊', '開心'], ['😌', '平靜']], answer: '壓力很大' }] },
+          colour: { description: '按限期色標整理功課與活動', rounds: [{ item: '📄', name: '明天交的功課', color: 'red', label: '紅色' }, { item: '📘', name: '本週閱讀記錄', color: 'blue', label: '藍色' }, { item: '📝', name: '下週測驗溫習單', color: 'yellow', label: '黃色' }] },
+          routine: { description: '排好初中校園及小組任務', rounds: [{ title: '小組簡報', cards: [['👥', '確認分工'], ['🖥️', '準備投影片'], ['🗣️', '一起排練']] }, { title: '借圖書', cards: [['🔎', '找書籍'], ['💳', '出示圖書證'], ['📅', '記下歸還日']] }, { title: '課後活動', cards: [['📅', '看時間表'], ['🎒', '帶所需用品'], ['📍', '到集合地點']] }] },
+          listen: { description: '聽校園或社區指示，找出重點', rounds: [{ word: '八達通', listenText: '乘車前，請準備八達通。', choices: [['💳', '八達通'], ['🧃', '果汁'], ['🧤', '手套']] }, { word: '集合點', listenText: '活動結束後，請到集合點等候。', choices: [['📍', '集合點'], ['🍜', '餐廳'], ['⚽', '球場']] }, { word: '身份證', listenText: '辦理服務時，請帶身份證明文件。', choices: [['🪪', '身份證'], ['🎮', '遊戲機'], ['📚', '故事書']] }] },
+          fruit: { description: '依購物清單核對數量', rounds: [{ count: 4, itemEmoji: '🥤', itemLabel: '飲品' }, { count: 6, itemEmoji: '🥤', itemLabel: '飲品' }, { count: 8, itemEmoji: '🥤', itemLabel: '飲品' }] },
+          signal: { description: '判斷校園、社區與網上安全選擇', rounds: [{ light: 'red', prompt: '收到不認識的人傳來的連結，先？', answer: '停一停' }, { light: 'green', prompt: '過路前確認兩邊沒有車後？', answer: '可以走' }, { light: 'red', prompt: '朋友叫你傳別人的私人照片，先？', answer: '停一停' }] },
+          turn: { description: '在討論中辨認適當的發言回合', rounds: [{ person: '組長', people: [['🧑‍🏫', '組長'], ['🧑‍💻', '紀錄員'], ['🧑', '我']] }, { person: '我', people: [['🧑‍🏫', '組長'], ['🧑‍💻', '紀錄員'], ['🧑', '我']] }, { person: '紀錄員', people: [['🧑‍🏫', '組長'], ['🧑‍💻', '紀錄員'], ['🧑', '我']] }] },
+          memory: { description: '配對日程、地點與所需用品', rounds: [{ cards: ['🚌', '🚌', '📍', '📍'] }, { cards: ['⏰', '⏰', '🪪', '🪪'] }, { cards: ['📚', '📚', '🎒', '🎒'] }] },
+          weather: { description: '按活動與環境作日常決策', rounds: [{ weather: '🥾', label: '遠足日', answer: '行山鞋', choices: [['🥾', '行山鞋'], ['🩴', '拖鞋'], ['🧣', '頸巾']] }, { weather: '🏃', label: '體育課', answer: '運動鞋', choices: [['👟', '運動鞋'], ['🥿', '皮鞋'], ['☂️', '雨傘']] }, { weather: '🌧️', label: '社區外出', answer: '雨傘', choices: [['☂️', '雨傘'], ['🕶️', '太陽眼鏡'], ['🧢', '太陽帽']] }] },
+          path: { description: '規劃前往社區設施的安全路線', rounds: [{ route: ['直走', '右轉', '直走'], prompt: '跟著社區地圖到服務中心。', goalEmoji: '🏢' }, { route: ['右轉', '直走', '左轉'], prompt: '跟著社區地圖到巴士站。', goalEmoji: '🚌' }, { route: ['直走', '左轉', '直走'], prompt: '跟著社區地圖到求助點。', goalEmoji: '🛟' }] }
+        },
+        senior: {
+          emotion: { description: '辨認壓力訊號並選擇支援策略', rounds: [{ target: '😰', word: '焦慮', choices: [['😰', '焦慮'], ['😌', '放鬆'], ['😄', '興奮']], answer: '焦慮' }, { target: '😮‍💨', word: '很疲累', choices: [['😮‍💨', '很疲累'], ['😠', '生氣'], ['😊', '滿足']], answer: '很疲累' }, { target: '😞', word: '受挫', choices: [['😞', '受挫'], ['😎', '有信心'], ['😴', '想睡覺']], answer: '受挫' }] },
+          colour: { description: '按優先次序整理工作與出門用品', rounds: [{ item: '📁', name: '紅色緊急文件夾', color: 'red', label: '紅色' }, { item: '💼', name: '藍色工作文件夾', color: 'blue', label: '藍色' }, { item: '🧾', name: '黃色待辦清單', color: 'yellow', label: '黃色' }] },
+          routine: { description: '排好職場及獨立生活準備流程', rounds: [{ title: '上班前準備', cards: [['⏰', '看出門時間'], ['🎒', '帶齊用品'], ['🚌', '預留交通時間']] }, { title: '面試前', cards: [['👔', '準備衣著'], ['📄', '帶個人資料'], ['📍', '確認地點']] }, { title: '社區服務', cards: [['📋', '看工作安排'], ['🤝', '向同事問好'], ['✅', '完成後核對']] }] },
+          listen: { description: '聽職場或社區服務指示，找出下一步', rounds: [{ word: '準時', listenText: '約見時間是九時，請準時到達。', choices: [['⏰', '準時'], ['🍱', '午餐'], ['🎧', '耳機']] }, { word: '身份證', listenText: '辦理登記時，請出示身份證。', choices: [['🪪', '身份證'], ['🎮', '遊戲機'], ['🍎', '水果']] }, { word: '工作證', listenText: '到服務地點後，請佩戴工作證。', choices: [['🪪', '工作證'], ['🧣', '頸巾'], ['📚', '故事書']] }] },
+          fruit: { description: '依需要與數量完成簡單購物決定', rounds: [{ count: 3, itemEmoji: '🍎', itemLabel: '水果' }, { count: 5, itemEmoji: '🥛', itemLabel: '飲品' }, { count: 6, itemEmoji: '🥪', itemLabel: '三文治' }] },
+          signal: { description: '判斷公共交通、網上與職場安全決策', rounds: [{ light: 'red', prompt: '收到要求立即付款的陌生訊息，先？', answer: '停一停' }, { light: 'green', prompt: '過馬路時綠燈亮且車已停下後？', answer: '可以走' }, { light: 'red', prompt: '工作時看見不熟悉的機器，先？', answer: '停一停' }] },
+          turn: { description: '在會議或服務場合辨認合適回合', rounds: [{ person: '主管', people: [['🧑‍💼', '主管'], ['🧑‍🔧', '同事'], ['🧑', '我']] }, { person: '我', people: [['🧑‍💼', '主管'], ['🧑‍🔧', '同事'], ['🧑', '我']] }, { person: '同事', people: [['🧑‍💼', '主管'], ['🧑‍🔧', '同事'], ['🧑', '我']] }] },
+          memory: { description: '配對職場任務、工具與安全步驟', rounds: [{ cards: ['💼', '💼', '🪪', '🪪'] }, { cards: ['🧤', '🧤', '🧹', '🧹'] }, { cards: ['🚌', '🚌', '⏰', '⏰'] }] },
+          weather: { description: '按場合選擇合適服飾與物品', rounds: [{ weather: '💼', label: '面試日', answer: '整潔衣著', choices: [['👔', '整潔衣著'], ['🩴', '拖鞋'], ['🥽', '泳鏡']] }, { weather: '🏢', label: '實習上班', answer: '工作證', choices: [['🪪', '工作證'], ['🧸', '玩具'], ['🩳', '短褲']] }, { weather: '🌧️', label: '社區服務日', answer: '雨傘', choices: [['☂️', '雨傘'], ['🕶️', '太陽眼鏡'], ['🩴', '拖鞋']] }] },
+          path: { description: '規劃到實習地點或轉乘站的路線', rounds: [{ route: ['直走', '右轉', '直走'], prompt: '跟著地圖到實習地點。', goalEmoji: '💼' }, { route: ['右轉', '直走', '左轉'], prompt: '跟著地圖到轉乘站。', goalEmoji: '🚏' }, { route: ['直走', '左轉', '直走'], prompt: '跟著地圖到社區服務中心。', goalEmoji: '🏢' }] }
+        }
+      };
       const gameMap = Object.fromEntries(gameLibrary.map(game => [game.id, game]));
+      let activeStage = 'lower';
+      let activeFilter = 'all';
+      function getStageGame(game) { return { ...game, ...(stageTasks[activeStage]?.[game.id] || {}) }; }
       let activeGame = null;
       let roundIndex = 0;
       let completedGames = new Set();
@@ -264,8 +311,9 @@
       function renderSupportBadges(codes) {
         return codes.map(code => `<span class="support-badge" data-code="${code}" title="支援標記：${code} ${supportLabels[code]}">${code} ${supportLabels[code]}</span>`).join('');
       }
-      function renderGameLibrary(filter = 'all') {
-        const games = filter === 'all' ? gameLibrary : filter.startsWith('support-') ? gameLibrary.filter(game => game.supports.includes(filter.replace('support-', ''))) : gameLibrary.filter(game => game.category === filter);
+      function renderGameLibrary(filter = activeFilter) {
+        const source = filter === 'all' ? gameLibrary : filter.startsWith('support-') ? gameLibrary.filter(game => game.supports.includes(filter.replace('support-', ''))) : gameLibrary.filter(game => game.category === filter);
+        const games = source.map(getStageGame);
         $('#gameGrid').innerHTML = games.map(game => `<button class="game-card" type="button" data-game-id="${game.id}" data-tone="${game.tone}"><div class="game-visual" aria-hidden="true">${game.icon}</div><h3>${game.title}</h3><p>${game.description}</p><div class="support-badge-row" aria-label="本遊戲支援標記">${renderSupportBadges(game.supports)}</div><span class="tag">${game.tag}</span></button>`).join('');
         $$('.game-card').forEach(card => card.addEventListener('click', () => startGame(card.dataset.gameId)));
       }
@@ -297,7 +345,7 @@
       function startGame(id) {
         triggerHaptic('tap');
         clearTimeout(autoAdvanceTimer);
-        activeGame = gameMap[id];
+        activeGame = getStageGame(gameMap[id]);
         roundIndex = 0;
         $('#dashboardView').classList.add('hidden');
         $('#gameView').classList.remove('hidden');
@@ -311,6 +359,7 @@
         const round = currentRound();
         gameState = { locked: false, selectedSequence: [], fruitCount: 0, pathStep: 0, memoryOpen: [], memoryMatched: [] };
         $('#stageCategory').textContent = activeGame.categoryName;
+        $('#stageLevel').textContent = stageProfiles[activeStage].label;
         $('#stageTitle').textContent = activeGame.title;
         $('#stageDescription').textContent = activeGame.description;
         $('#stageSupport').innerHTML = renderSupportBadges(activeGame.supports);
@@ -335,10 +384,11 @@
           return stageFrame(`把「${round.title}」的三個步驟放進小火車。`, `<div class="sequence-board"><div class="sequence-slots" id="sequenceSlots">${[1, 2, 3].map(index => `<div class="sequence-slot"><span class="slot-number">${index}</span><span>第 ${index} 步</span></div>`).join('')}</div><div class="sequence-options" id="sequenceOptions">${shuffle(round.cards).map(([emoji, label], index) => `<button class="sequence-card" type="button" data-index="${index}" data-emoji="${emoji}" data-label="${label}"><span>${emoji}</span>${label}</button>`).join('')}</div></div>`);
         }
         if (id === 'listen') {
-          return stageFrame('按喇叭聽一聽，再點選正確圖片。', `<button class="listen-orb" id="listenButton" type="button" aria-label="播放詞語">🔊</button><div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
+          return stageFrame(round.listenText || '按喇叭聽一聽，再點選正確圖片。', `<button class="listen-orb" id="listenButton" type="button" aria-label="播放詞語">🔊</button><div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
         }
         if (id === 'fruit') {
-          return stageFrame(`請買 <strong>${round.count}</strong> 個蘋果。每次拿一個，慢慢數。`, `<div class="counter-layout"><button class="fruit-button" id="fruitButton" type="button" aria-label="加入一個蘋果">🍎</button><div class="bag-panel"><div class="bag" id="fruitBag"></div><div class="count-number" id="fruitCount">0 個蘋果</div><div class="count-actions"><button class="minus-button" id="minusFruit" type="button">− 拿走一個</button><button class="done-button" id="checkFruit" type="button">剛剛好</button></div></div></div>`);
+          const itemEmoji = round.itemEmoji || '🍎'; const itemLabel = round.itemLabel || '蘋果';
+          return stageFrame(`購物清單：請拿 <strong>${round.count}</strong> 個${itemLabel}。每次拿一個，慢慢數。`, `<div class="counter-layout"><button class="fruit-button" id="fruitButton" type="button" aria-label="加入一個${itemLabel}">${itemEmoji}</button><div class="bag-panel"><div class="bag" id="fruitBag"></div><div class="count-number" id="fruitCount">0 個${itemLabel}</div><div class="count-actions"><button class="minus-button" id="minusFruit" type="button">− 拿走一個</button><button class="done-button" id="checkFruit" type="button">剛剛好</button></div></div></div>`);
         }
         if (id === 'signal') {
           const active = round.light;
@@ -356,13 +406,13 @@
           return stageFrame(`今天是「${round.label}」，帶甚麼最合適？`, `<div class="weather-display" aria-label="${round.label}">${round.weather}</div><div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
         }
         if (id === 'path') {
-          return stageFrame('跟著小路選方向，帶小朋友平安回家。', `<div class="path-board" id="pathBoard"></div><div class="path-buttons"><button class="path-button" type="button" data-direction="左轉"><span>←</span>左轉</button><button class="path-button" type="button" data-direction="直走"><span>↑</span>直走</button><button class="path-button" type="button" data-direction="右轉"><span>→</span>右轉</button></div>`);
+          return stageFrame(round.prompt || '跟著小路選方向，帶小朋友平安回家。', `<div class="path-board" id="pathBoard"></div><div class="path-buttons"><button class="path-button" type="button" data-direction="左轉"><span>←</span>左轉</button><button class="path-button" type="button" data-direction="直走"><span>↑</span>直走</button><button class="path-button" type="button" data-direction="右轉"><span>→</span>右轉</button></div>`);
         }
         return '';
       }
       function getInstruction(id, round) {
         const texts = {
-          emotion: `請找出和這張一樣的心情：${round.word}。`, colour: `把${round.name}放進${round.label}盒。`, routine: `請把${round.title}的三個步驟放進小火車。`, listen: `請聽一聽，找出${round.word}。`, fruit: `請買${round.count}個蘋果。每次拿一個，慢慢數。`, signal: round.prompt, turn: `玩具正傳給誰？請找出${round.person}。`, memory: '翻開兩張一樣的寶盒卡。', weather: `今天是${round.label}，帶甚麼最合適？`, path: '跟著小路選方向，帶小朋友平安回家。'
+          emotion: `請找出和這張一樣的心情：${round.word}。`, colour: `把${round.name}放進${round.label}盒。`, routine: `請把${round.title}的三個步驟放進小火車。`, listen: round.listenText || `請聽一聽，找出${round.word}。`, fruit: `請拿${round.count}個${round.itemLabel || '蘋果'}。每次拿一個，慢慢數。`, signal: round.prompt, turn: `現在輪到誰？請找出${round.person}。`, memory: '翻開兩張一樣的寶盒卡。', weather: `今天是${round.label}，帶甚麼最合適？`, path: round.prompt || '跟著小路選方向，帶小朋友平安回家。'
         };
         return texts[id] || '';
       }
@@ -400,7 +450,7 @@
         if (id === 'path') { $$('.path-button').forEach(button => button.addEventListener('click', () => handlePath(button.dataset.direction, round))); renderPath(round); }
       }
       function renderSequenceSlots() { $$('.sequence-slot').forEach((slot, index) => { const entry = gameState.selectedSequence[index]; if (entry) { slot.classList.add('filled'); slot.innerHTML = `<span class="slot-number">${index + 1}</span><span style="font-size:31px">${entry[0]}</span><span>${entry[1]}</span>`; } }); }
-      function renderFruit() { const round = currentRound(); $('#fruitBag').innerHTML = Array.from({ length: gameState.fruitCount }, () => '<span>🍎</span>').join(''); $('#fruitCount').textContent = `${gameState.fruitCount} 個蘋果（目標 ${round.count} 個）`; }
+      function renderFruit() { const round = currentRound(); const itemEmoji = round.itemEmoji || '🍎'; const itemLabel = round.itemLabel || '蘋果'; $('#fruitBag').innerHTML = Array.from({ length: gameState.fruitCount }, () => `<span>${itemEmoji}</span>`).join(''); $('#fruitCount').textContent = `${gameState.fruitCount} 個${itemLabel}（目標 ${round.count} 個）`; }
       function handleMemory(index) {
         if (gameState.locked || gameState.memoryOpen.includes(index) || gameState.memoryMatched.includes(index) || gameState.memoryOpen.length === 2) return;
         gameState.memoryOpen.push(index); revealMemory(index);
@@ -421,7 +471,7 @@
           const isPath = (row === 0) || (col === 2 && row <= 1);
           const isCharacter = pos[0] === row && pos[1] === col;
           const isGoal = row === 1 && col === 2;
-          cells += `<div class="path-cell ${isPath ? 'road' : ''} ${isCharacter ? 'character' : ''} ${isGoal ? 'goal' : ''}">${isCharacter ? '🧒' : isGoal ? '🏠' : isPath ? '' : '🌿'}</div>`;
+          cells += `<div class="path-cell ${isPath ? 'road' : ''} ${isCharacter ? 'character' : ''} ${isGoal ? 'goal' : ''}">${isCharacter ? '🧒' :           isGoal ? (round.goalEmoji || '🏠') : isPath ? '' : '🌿'}</div>`;
         }
         $('#pathBoard').innerHTML = cells;
         $('#gameFeedback').textContent = `第 ${gameState.pathStep + 1} 步：請選擇「${round.route[gameState.pathStep]}」。`;
@@ -445,7 +495,7 @@
       }
       function failure(message, retryAction) { if (gameState.locked) return; $('#gameFeedback').className = 'feedback try'; $('#gameFeedback').textContent = `↗ ${message}`; triggerHaptic('retry'); makeTone(340, .13, .018); if (retryAction) setTimeout(retryAction, 1050); }
       function showHint(id, round) {
-        const hints = { emotion: `看看眼睛和嘴巴，這張臉是「${round.word}」。`, colour: `蘋果、草莓常常是紅色；香蕉常常是黃色；藍莓是藍色。`, routine: `先想一想：每件事在生活中先後發生的次序。`, listen: `先按喇叭，再慢慢聽一次：「${round.word}」。`, fruit: `每按一次蘋果，就一起數一個。目標是 ${round.count} 個。`, signal: `紅色代表先停；綠色代表可以在安全時走。`, turn: `看看哪一位角色上面有「輪到你」的箭頭。`, memory: '先翻一張，記住它的位置和圖案，再找同一樣的圖案。', weather: `想一想「${round.label}」時，身體需要甚麼幫忙。`, path: `這一步的提示是「${round.route[gameState.pathStep]}」。` };
+        const hints = { emotion: `看看眼睛和嘴巴，這張臉是「${round.word}」。`, colour: `先看物品的名稱和色標，找相同顏色的盒。`, routine: `先想一想：每件事在生活中先後發生的次序。`, listen: `先按喇叭，再慢慢聽一次：「${round.listenText || round.word}」。`, fruit: `每按一次${round.itemLabel || '蘋果'}，就一起數一個。目標是 ${round.count} 個。`, signal: `先停一停看清情況；確認安全才繼續。`, turn: `看看哪一位角色上面有「輪到你」的箭頭。`, memory: '先翻一張，記住它的位置和圖案，再找同一樣的圖案。', weather: `想一想「${round.label}」時，身體需要甚麼幫忙。`, path: `這一步的提示是「${round.route[gameState.pathStep]}」。` };
         $('#gameFeedback').className = 'feedback'; $('#gameFeedback').textContent = `💡 ${hints[id]}`; speak(hints[id]);
       }
       function completeGame() {
@@ -461,10 +511,12 @@
       }
 
       // Dashboard interactions
+      function selectStage(stage) { activeStage = stage; activeFilter = 'all'; $('#stageGuide').textContent = stageProfiles[stage].guide; $$('.level-button').forEach(button => button.classList.toggle('active', button.dataset.stage === stage)); $$('.filter-button').forEach(button => button.classList.toggle('active', button.dataset.filter === 'all')); renderGameLibrary(); showToast(`已切換至${stageProfiles[stage].label}任務。`); }
       renderGameLibrary(); updateTokenBoard(); updateDashboardProgress();
       $('#startSuggested').addEventListener('click', () => startGame('emotion'));
       $('#backToDashboard').addEventListener('click', showDashboard);
-      $$('.filter-button').forEach(button => button.addEventListener('click', () => { $$('.filter-button').forEach(item => item.classList.toggle('active', item === button)); renderGameLibrary(button.dataset.filter); }));
+      $$('.filter-button').forEach(button => button.addEventListener('click', () => { activeFilter = button.dataset.filter; $$('.filter-button').forEach(item => item.classList.toggle('active', item === button)); renderGameLibrary(); }));
+      $$('.level-button').forEach(button => button.addEventListener('click', () => selectStage(button.dataset.stage)));
       $$('.side-link').forEach(link => link.addEventListener('click', () => { const nav = link.dataset.nav; if (nav === 'dashboard') { showDashboard(); } else { if ($('#dashboardView').classList.contains('hidden')) showDashboard(); setTimeout(() => $(nav === 'games' ? '#gamesAnchor' : '#supportAnchor')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120); $$('.side-link').forEach(item => item.classList.toggle('active', item === link)); } }));
       $$('.meter-button').forEach(button => button.addEventListener('click', () => { $$('.meter-button').forEach(item => item.classList.toggle('active', item === button)); $('#emotionNote').textContent = `✓ ${button.dataset.emotion}`; if (button.textContent.includes('很生氣') || button.textContent.includes('不舒服')) showToast('可以先使用「一起慢慢呼吸」。'); }));
       $('#addToken').addEventListener('click', () => addToken(1)); $('#resetTokens').addEventListener('click', () => { tokenCount = 0; updateTokenBoard(); showToast('星星已重設。'); });
