@@ -90,7 +90,7 @@
     .game-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 15px; }
     .game-card { min-height: 210px; padding: 17px; display: flex; flex-direction: column; position: relative; overflow: hidden; color: var(--ink); border: 1px solid var(--line); border-radius: 21px; background: #fff; box-shadow: 0 8px 21px rgba(41,60,100,.045); text-align: left; transition: transform .22s, box-shadow .22s, border .22s; }.game-card:hover { transform: translateY(-4px); border-color: #cbd8f1; box-shadow: 0 16px 27px rgba(41,60,100,.11); }.game-card:active { transform: scale(.98); }
     .game-card .game-visual { width: 61px; height: 61px; display: grid; place-items: center; margin-bottom: 17px; border-radius: 20px; font-size: 32px; }.game-card[data-tone="pink"] .game-visual { background: var(--pink-soft); }.game-card[data-tone="blue"] .game-visual { background: var(--blue-soft); }.game-card[data-tone="yellow"] .game-visual { background: var(--yellow-soft); }.game-card[data-tone="teal"] .game-visual { background: var(--teal-soft); }.game-card[data-tone="orange"] .game-visual { background: var(--orange-soft); }.game-card[data-tone="purple"] .game-visual { background: var(--purple-soft); }
-    .game-card h3 { margin: 0; color: var(--navy); font-size: 16px; letter-spacing: -.015em; }.game-card p { margin: 6px 0 13px; color: var(--muted); font-size: 12px; line-height: 1.45; }.tag { display: inline-block; width: max-content; margin-top: auto; padding: 5px 8px; color: #64718d; border-radius: 99px; background: #f5f7fb; font-size: 10px; font-weight: 800; }
+    .game-card h3 { margin: 0; color: var(--navy); font-size: 16px; letter-spacing: -.015em; }.game-card p { margin: 6px 0 11px; color: var(--muted); font-size: 12px; line-height: 1.45; }.tag { display: inline-block; width: max-content; margin-top: auto; padding: 5px 8px; color: #64718d; border-radius: 99px; background: #f5f7fb; font-size: 10px; font-weight: 800; }.support-badge-row { display: flex; flex-wrap: wrap; gap: 5px; margin: 0 0 10px; }.support-badge { min-height: 20px; display: inline-flex; align-items: center; padding: 3px 6px; color: #485977; border: 1px solid #e2e8f2; border-radius: 7px; background: #f7f9fc; font-size: 9px; font-weight: 850; letter-spacing: .015em; }.support-badge[data-code="1"] { color: #76549b; border-color: #e3d2f3; background: #faf3ff; }.support-badge[data-code="2"] { color: #426b9a; border-color: #cce1f7; background: #eff8ff; }.support-badge[data-code="3"] { color: #367b74; border-color: #c6ece2; background: #effbf7; }.support-badge[data-code="4"] { color: #a66d17; border-color: #f5dfae; background: #fff9e9; }.support-badge[data-code="8"] { color: #9a5569; border-color: #f1d1da; background: #fff3f6; }.support-badge[data-code="9"] { color: #5d57a3; border-color: #d8d5fa; background: #f4f3ff; }.support-key { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 11px; }.support-key .support-badge { font-size: 10px; }
 
     .support-layout { display: grid; grid-template-columns: 1.06fr 1fr .86fr; gap: 17px; }
     .support-card { min-height: 246px; padding: 21px; border: 1px solid var(--line); border-radius: 22px; background: #fff; box-shadow: 0 8px 21px rgba(41,60,100,.045); }.support-card h3 { margin: 6px 0 0; color: var(--navy); font-size: 18px; }.support-card .small-label { color: var(--muted); }
@@ -100,7 +100,7 @@
 
     /* Game stage */
     .game-stage { max-width: 1300px; margin: 0 auto; }
-    .stage-topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }.stage-topbar h1 { font-size: clamp(22px, 2.6vw, 32px); }.back-button { min-height: 41px; padding: 0 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 12px; background: #fff; font-size: 13px; font-weight: 800; }.back-button:hover { color: var(--purple); border-color: #d8d2ff; background: var(--purple-soft); }.stage-utilities { display: flex; gap: 8px; }.utility-button { min-height: 41px; padding: 0 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 12px; background: #fff; font-size: 12px; font-weight: 800; }.utility-button.active, .utility-button:hover { color: #5d50c8; border-color: #d8d2ff; background: var(--purple-soft); }
+    .stage-topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }.stage-topbar h1 { font-size: clamp(22px, 2.6vw, 32px); }.back-button { min-height: 41px; padding: 0 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 12px; background: #fff; font-size: 13px; font-weight: 800; }.back-button:hover { color: var(--purple); border-color: #d8d2ff; background: var(--purple-soft); }.stage-utilities { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }.utility-button { min-height: 41px; padding: 0 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 12px; background: #fff; font-size: 12px; font-weight: 800; }.utility-button.active, .utility-button:hover { color: #5d50c8; border-color: #d8d2ff; background: var(--purple-soft); }.utility-button.haptic-active { color: #177d67; border-color: #a6dfcf; background: var(--teal-soft); }
     .stage-hero { padding: clamp(20px, 3vw, 32px); position: relative; overflow: hidden; border-radius: 27px; background: linear-gradient(130deg, #f8f7ff, #eff6ff); border: 1px solid #e5e8fa; }.stage-hero::after { content: ""; position: absolute; width: 310px; height: 310px; right: -120px; top: -150px; border: 32px solid #e0dcff; border-radius: 50%; opacity: .58; }.stage-hero > * { position: relative; z-index: 1; }
     .stage-intro { display: flex; justify-content: space-between; align-items: start; gap: 18px; }.stage-breadcrumb { color: var(--purple); font-size: 11px; font-weight: 850; letter-spacing: .1em; }.stage-intro h2 { margin: 8px 0 5px; color: var(--navy); font-size: clamp(23px, 2.7vw, 33px); letter-spacing: -.04em; }.stage-intro p { max-width: 620px; margin-bottom: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }.round-counter { min-width: 92px; padding: 11px; color: #5c51c3; border: 1px solid #dcd7ff; border-radius: 15px; background: #fff; text-align: center; font-size: 12px; font-weight: 850; }.round-counter strong { display: block; margin-top: 2px; color: var(--navy); font-size: 18px; }
     .round-dots { display: flex; gap: 7px; margin-top: 19px; }.round-dot { width: 30px; height: 7px; border-radius: 99px; background: #dce4f4; }.round-dot.done { background: var(--teal); }.round-dot.current { background: var(--purple); }
@@ -159,7 +159,7 @@
           <article class="daily-card"><div class="small-label">今日進度</div><h2>完成小任務，亮起星星</h2><p>不計分、不比較；每一次嘗試都值得被看見。</p><div class="today-progress"><div class="progress-ring" id="progressRing"><strong id="gamesComplete">0</strong></div><div class="progress-copy"><strong>已完成 <span id="gamesCompleteText">0</span> 個遊戲</strong><span>完成一款遊戲，代幣板會多一顆星。</span></div></div><div class="small-progress"><span id="completionBar"></span></div></article>
         </section>
 
-        <div class="section-head" id="gamesAnchor"><div><div class="small-label">十個小遊戲</div><h2>選一個，現在開始</h2><p>所有活動均可用點按完成，並附有可重聽指令與提示。</p></div><div class="filter-row" role="group" aria-label="小遊戲分類"><button class="filter-button active" type="button" data-filter="all">全部</button><button class="filter-button" type="button" data-filter="emotion">情緒社交</button><button class="filter-button" type="button" data-filter="cognition">認知學習</button><button class="filter-button" type="button" data-filter="life">生活技能</button></div></div>
+        <div class="section-head" id="gamesAnchor"><div><div class="small-label">十個小遊戲</div><h2>選一個，現在開始</h2><p>可按學習範疇或支援標記篩選；標記提示遊戲的介面設計特性，並非診斷或限制。</p><div class="support-key"><span class="support-badge" data-code="1">1 SpLD</span><span class="support-badge" data-code="2">2 ID</span><span class="support-badge" data-code="3">3 ASD</span><span class="support-badge" data-code="4">4 ADHD</span><span class="support-badge" data-code="8">8 SLI</span><span class="support-badge" data-code="9">9 MI</span></div></div><div class="filter-row" role="group" aria-label="小遊戲分類與支援標記"><button class="filter-button active" type="button" data-filter="all">全部</button><button class="filter-button" type="button" data-filter="emotion">情緒社交</button><button class="filter-button" type="button" data-filter="cognition">認知學習</button><button class="filter-button" type="button" data-filter="life">生活技能</button><button class="filter-button" type="button" data-filter="support-1">1 SpLD</button><button class="filter-button" type="button" data-filter="support-2">2 ID</button><button class="filter-button" type="button" data-filter="support-3">3 ASD</button><button class="filter-button" type="button" data-filter="support-4">4 ADHD</button><button class="filter-button" type="button" data-filter="support-8">8 SLI</button><button class="filter-button" type="button" data-filter="support-9">9 MI</button></div></div>
         <section class="game-grid" id="gameGrid" aria-label="十個訓練小遊戲"></section>
 
         <div class="section-head" id="supportAnchor"><div><div class="small-label">即時輔導工具</div><h2>準備好了才開始</h2><p>用少量、清晰和可預期的提示，陪學生穩定進入訓練。</p></div></div>
@@ -171,8 +171,8 @@
       </section>
 
       <section id="gameView" class="game-stage hidden" aria-live="polite">
-        <header class="stage-topbar"><button class="back-button" id="backToDashboard" type="button">← 回到訓練大廳</button><div class="stage-utilities"><button class="utility-button" id="stageReadable" type="button">Aa 高辨識文字</button><button class="utility-button" id="stageSound" type="button">🔊 指令聲音：開</button></div></header>
-        <section class="stage-hero"><div class="stage-intro"><div><div class="stage-breadcrumb" id="stageCategory">情緒社交</div><h2 id="stageTitle">心情在哪裡？</h2><p id="stageDescription">看一看，找出一樣的表情。</p></div><div class="round-counter">小任務<strong id="roundNumber">1 / 3</strong></div></div><div class="round-dots" id="roundDots" role="img" aria-label="小遊戲進度"></div></section>
+        <header class="stage-topbar"><button class="back-button" id="backToDashboard" type="button">← 回到訓練大廳</button><div class="stage-utilities"><button class="utility-button" id="stageReadable" type="button">Aa 高辨識文字</button><button class="utility-button" id="stageSound" type="button">🔊 指令聲音：開</button><button class="utility-button" id="stageHaptic" type="button">⌁ 觸覺提示：關</button></div></header>
+        <section class="stage-hero"><div class="stage-intro"><div><div class="stage-breadcrumb" id="stageCategory">情緒社交</div><h2 id="stageTitle">心情在哪裡？</h2><p id="stageDescription">看一看，找出一樣的表情。</p><div class="support-badge-row" id="stageSupport"></div></div><div class="round-counter">小任務<strong id="roundNumber">1 / 3</strong></div></div><div class="round-dots" id="roundDots" role="img" aria-label="小遊戲進度"></div></section>
         <section class="activity-card" id="activityCard"></section>
       </section>
     </main>
@@ -190,36 +190,36 @@
       $('#dateText').textContent = dateFormatter.format(new Date());
 
       const gameLibrary = [
-        { id: 'emotion', category: 'emotion', categoryName: '情緒社交', tone: 'pink', icon: '😊', title: '心情在哪裡？', description: '找出一樣的表情', tag: '情緒辨識', rounds: [
+        { id: 'emotion', category: 'emotion', categoryName: '情緒社交', tone: 'pink', icon: '😊', title: '心情在哪裡？', description: '找出一樣的表情', tag: '情緒辨識', supports: ['2', '3', '8', '9'], rounds: [
           { target: '😊', word: '開心', choices: [['😊', '開心'], ['😟', '擔心'], ['😡', '生氣']], answer: '開心' },
           { target: '😟', word: '擔心', choices: [['😟', '擔心'], ['😊', '開心'], ['😣', '不舒服']], answer: '擔心' },
           { target: '😡', word: '生氣', choices: [['😣', '不舒服'], ['😡', '生氣'], ['🙂', '還可以']], answer: '生氣' }
         ] },
-        { id: 'colour', category: 'cognition', categoryName: '認知學習', tone: 'blue', icon: '🎨', title: '顏色小幫手', description: '把物件放進同色盒', tag: '顏色分類', rounds: [
+        { id: 'colour', category: 'cognition', categoryName: '認知學習', tone: 'blue', icon: '🎨', title: '顏色小幫手', description: '把物件放進同色盒', tag: '顏色分類', supports: ['2', '4', '8', '9'], rounds: [
           { item: '🍎', name: '蘋果', color: 'red', label: '紅色' }, { item: '🍌', name: '香蕉', color: 'yellow', label: '黃色' }, { item: '🫐', name: '藍莓', color: 'blue', label: '藍色' }
         ] },
-        { id: 'routine', category: 'life', categoryName: '生活技能', tone: 'yellow', icon: '🚂', title: '早晨步驟小火車', description: '把生活步驟排好', tag: '程序排序', rounds: [
+        { id: 'routine', category: 'life', categoryName: '生活技能', tone: 'yellow', icon: '🚂', title: '早晨步驟小火車', description: '把生活步驟排好', tag: '程序排序', supports: ['2', '3', '4', '8', '9'], rounds: [
           { title: '準備上學', cards: [['🧼', '洗臉'], ['👕', '穿校服'], ['🎒', '背書包']] },
           { title: '洗手步驟', cards: [['💧', '弄濕雙手'], ['🫧', '搓洗雙手'], ['🧻', '抹乾雙手']] },
           { title: '吃點心', cards: [['🪑', '坐好'], ['🍎', '慢慢吃'], ['🧹', '收拾桌子']] }
         ] },
-        { id: 'listen', category: 'cognition', categoryName: '認知學習', tone: 'purple', icon: '🔊', title: '聽一聽，指一指', description: '聽到詞語，找出圖片', tag: '聽覺理解', rounds: [
+        { id: 'listen', category: 'cognition', categoryName: '認知學習', tone: 'purple', icon: '🔊', title: '聽一聽，指一指', description: '聽到詞語，找出圖片', tag: '聽覺理解', supports: ['1', '2', '8', '9'], rounds: [
           { word: '杯', choices: [['🥤', '杯'], ['👟', '鞋'], ['🚌', '巴士']] }, { word: '鞋', choices: [['🍽️', '碗'], ['👟', '鞋'], ['🐶', '小狗']] }, { word: '巴士', choices: [['🚌', '巴士'], ['🛏️', '床'], ['🍌', '香蕉']] }
         ] },
-        { id: 'fruit', category: 'cognition', categoryName: '認知學習', tone: 'orange', icon: '🍎', title: '水果小店', description: '慢慢數，剛剛好', tag: '數量概念', rounds: [{ count: 2 }, { count: 3 }, { count: 4 }] },
-        { id: 'signal', category: 'life', categoryName: '生活技能', tone: 'red', icon: '🚦', title: '紅綠燈好選擇', description: '看看訊號，再作選擇', tag: '安全規則', rounds: [
+        { id: 'fruit', category: 'cognition', categoryName: '認知學習', tone: 'orange', icon: '🍎', title: '水果小店', description: '慢慢數，剛剛好', tag: '數量概念', supports: ['2', '3', '4', '9'], rounds: [{ count: 2 }, { count: 3 }, { count: 4 }] },
+        { id: 'signal', category: 'life', categoryName: '生活技能', tone: 'red', icon: '🚦', title: '紅綠燈好選擇', description: '看看訊號，再作選擇', tag: '安全規則', supports: ['2', '3', '4', '8', '9'], rounds: [
           { light: 'red', prompt: '紅燈亮了，我們要怎樣做？', answer: '停一停' }, { light: 'green', prompt: '綠燈亮了，先看看路面安全後？', answer: '可以走' }, { light: 'red', prompt: '過馬路時看見紅燈？', answer: '停一停' }
         ] },
-        { id: 'turn', category: 'emotion', categoryName: '情緒社交', tone: 'teal', icon: '🔄', title: '輪到誰？', description: '看看箭頭，練習輪候', tag: '回合概念', rounds: [
+        { id: 'turn', category: 'emotion', categoryName: '情緒社交', tone: 'teal', icon: '🔄', title: '輪到誰？', description: '看看箭頭，練習輪候', tag: '回合概念', supports: ['2', '3', '4', '8', '9'], rounds: [
           { person: '小明', people: [['🧒', '小明'], ['👧', '小美'], ['🧑', '我']] }, { person: '小美', people: [['🧒', '小明'], ['👧', '小美'], ['🧑', '我']] }, { person: '我', people: [['🧒', '小明'], ['👧', '小美'], ['🧑', '我']] }
         ] },
-        { id: 'memory', category: 'cognition', categoryName: '認知學習', tone: 'purple', icon: '🧠', title: '寶盒記憶卡', description: '翻開兩張一樣的卡', tag: '視覺專注', rounds: [
+        { id: 'memory', category: 'cognition', categoryName: '認知學習', tone: 'purple', icon: '🧠', title: '寶盒記憶卡', description: '翻開兩張一樣的卡', tag: '視覺專注', supports: ['2', '4', '9'], rounds: [
           { cards: ['🍎', '🍎', '🐶', '🐶'] }, { cards: ['🌞', '🌞', '🚗', '🚗'] }, { cards: ['👟', '👟', '🍌', '🍌'] }
         ] },
-        { id: 'weather', category: 'life', categoryName: '生活技能', tone: 'blue', icon: '🌦️', title: '今天穿甚麼？', description: '看看天氣，選合適用品', tag: '日常決策', rounds: [
+        { id: 'weather', category: 'life', categoryName: '生活技能', tone: 'blue', icon: '🌦️', title: '今天穿甚麼？', description: '看看天氣，選合適用品', tag: '日常決策', supports: ['2', '3', '8', '9'], rounds: [
           { weather: '🌧️', label: '下雨天', answer: '雨傘', choices: [['☂️', '雨傘'], ['🕶️', '太陽眼鏡'], ['🩴', '拖鞋']] }, { weather: '☀️', label: '大太陽', answer: '太陽帽', choices: [['🧣', '頸巾'], ['🧢', '太陽帽'], ['☂️', '雨傘']] }, { weather: '❄️', label: '很冷', answer: '外套', choices: [['🧥', '外套'], ['🩳', '短褲'], ['🍦', '雪糕']] }
         ] },
-        { id: 'path', category: 'life', categoryName: '生活技能', tone: 'yellow', icon: '🏠', title: '安全回家小路', description: '跟著小路，平安回家', tag: '方向選擇', rounds: [
+        { id: 'path', category: 'life', categoryName: '生活技能', tone: 'yellow', icon: '🏠', title: '安全回家小路', description: '跟著小路，平安回家', tag: '方向選擇', supports: ['2', '3', '4', '9'], rounds: [
           { route: ['直走', '右轉', '直走'] }, { route: ['右轉', '直走', '左轉'] }, { route: ['直走', '左轉', '直走'] }
         ] }
       ];
@@ -229,6 +229,7 @@
       let completedGames = new Set();
       let tokenCount = 0;
       let soundEnabled = true;
+      let hapticEnabled = false;
       let gameState = {};
       let autoAdvanceTimer;
 
@@ -244,6 +245,11 @@
           oscillator.connect(gain); gain.connect(context.destination); oscillator.start(); oscillator.stop(context.currentTime + duration); oscillator.onended = () => context.close();
         } catch (_) { /* The visual feedback remains available if audio is blocked. */ }
       }
+      function triggerHaptic(kind = 'tap') {
+        if (!hapticEnabled || !('vibrate' in navigator)) return;
+        const patterns = { tap: 12, correct: [14, 35, 20], retry: [8, 42, 8], complete: [20, 55, 20, 55, 32] };
+        navigator.vibrate(patterns[kind] || patterns.tap);
+      }
       function speak(text) {
         if (!soundEnabled || !('speechSynthesis' in window)) return;
         window.speechSynthesis.cancel();
@@ -254,9 +260,13 @@
       function shuffle(items) { const copy = [...items]; for (let i = copy.length - 1; i > 0; i -= 1) { const j = Math.floor(Math.random() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; } return copy; }
       function escapeHTML(value) { return String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#039;', '"': '&quot;' }[char])); }
 
+      const supportLabels = { '1': 'SpLD', '2': 'ID', '3': 'ASD', '4': 'ADHD', '8': 'SLI', '9': 'MI' };
+      function renderSupportBadges(codes) {
+        return codes.map(code => `<span class="support-badge" data-code="${code}" title="支援標記：${code} ${supportLabels[code]}">${code} ${supportLabels[code]}</span>`).join('');
+      }
       function renderGameLibrary(filter = 'all') {
-        const games = filter === 'all' ? gameLibrary : gameLibrary.filter(game => game.category === filter);
-        $('#gameGrid').innerHTML = games.map(game => `<button class="game-card" type="button" data-game-id="${game.id}" data-tone="${game.tone}"><div class="game-visual" aria-hidden="true">${game.icon}</div><h3>${game.title}</h3><p>${game.description}</p><span class="tag">${game.tag}</span></button>`).join('');
+        const games = filter === 'all' ? gameLibrary : filter.startsWith('support-') ? gameLibrary.filter(game => game.supports.includes(filter.replace('support-', ''))) : gameLibrary.filter(game => game.category === filter);
+        $('#gameGrid').innerHTML = games.map(game => `<button class="game-card" type="button" data-game-id="${game.id}" data-tone="${game.tone}"><div class="game-visual" aria-hidden="true">${game.icon}</div><h3>${game.title}</h3><p>${game.description}</p><div class="support-badge-row" aria-label="本遊戲支援標記">${renderSupportBadges(game.supports)}</div><span class="tag">${game.tag}</span></button>`).join('');
         $$('.game-card').forEach(card => card.addEventListener('click', () => startGame(card.dataset.gameId)));
       }
       function updateTokenBoard() {
@@ -285,6 +295,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
       function startGame(id) {
+        triggerHaptic('tap');
         clearTimeout(autoAdvanceTimer);
         activeGame = gameMap[id];
         roundIndex = 0;
@@ -302,6 +313,7 @@
         $('#stageCategory').textContent = activeGame.categoryName;
         $('#stageTitle').textContent = activeGame.title;
         $('#stageDescription').textContent = activeGame.description;
+        $('#stageSupport').innerHTML = renderSupportBadges(activeGame.supports);
         $('#roundNumber').textContent = `${roundIndex + 1} / ${activeGame.rounds.length}`;
         $('#roundDots').innerHTML = activeGame.rounds.map((_, index) => `<span class="round-dot ${index < roundIndex ? 'done' : index === roundIndex ? 'current' : ''}"></span>`).join('');
         const activity = $('#activityCard');
@@ -427,10 +439,11 @@
         if (gameState.locked) return;
         gameState.locked = true;
         $('#gameFeedback').className = 'feedback success'; $('#gameFeedback').textContent = `✓ ${message}`;
+        triggerHaptic('correct');
         makeTone(740, .16, .04); setTimeout(() => makeTone(920, .23, .035), 140);
         autoAdvanceTimer = setTimeout(() => { if (roundIndex < activeGame.rounds.length - 1) { roundIndex += 1; renderStage(); } else completeGame(); }, 1350);
       }
-      function failure(message, retryAction) { if (gameState.locked) return; $('#gameFeedback').className = 'feedback try'; $('#gameFeedback').textContent = `↗ ${message}`; makeTone(340, .13, .018); if (retryAction) setTimeout(retryAction, 1050); }
+      function failure(message, retryAction) { if (gameState.locked) return; $('#gameFeedback').className = 'feedback try'; $('#gameFeedback').textContent = `↗ ${message}`; triggerHaptic('retry'); makeTone(340, .13, .018); if (retryAction) setTimeout(retryAction, 1050); }
       function showHint(id, round) {
         const hints = { emotion: `看看眼睛和嘴巴，這張臉是「${round.word}」。`, colour: `蘋果、草莓常常是紅色；香蕉常常是黃色；藍莓是藍色。`, routine: `先想一想：每件事在生活中先後發生的次序。`, listen: `先按喇叭，再慢慢聽一次：「${round.word}」。`, fruit: `每按一次蘋果，就一起數一個。目標是 ${round.count} 個。`, signal: `紅色代表先停；綠色代表可以在安全時走。`, turn: `看看哪一位角色上面有「輪到你」的箭頭。`, memory: '先翻一張，記住它的位置和圖案，再找同一樣的圖案。', weather: `想一想「${round.label}」時，身體需要甚麼幫忙。`, path: `這一步的提示是「${round.route[gameState.pathStep]}」。` };
         $('#gameFeedback').className = 'feedback'; $('#gameFeedback').textContent = `💡 ${hints[id]}`; speak(hints[id]);
@@ -440,6 +453,7 @@
         completedGames.add(activeGame.id);
         updateDashboardProgress();
         addToken(1, false);
+        triggerHaptic('complete');
         makeTone(784, .2, .05); setTimeout(() => makeTone(988, .3, .045), 170);
         $('#activityCard').innerHTML = `<div class="completion"><div class="completion-star">★</div><h2>完成了！做得很好。</h2><p>你已完成「${activeGame.title}」的三個小任務，並得到一顆努力星星。可以再玩一次，或選另一款小遊戲。</p><div class="stage-footer"><button class="hint-button" id="playAgain" type="button">↺ 再玩一次</button><button class="primary-button" id="chooseNext" type="button">選另一個小遊戲</button></div></div>`;
         $('#playAgain').addEventListener('click', () => startGame(activeGame.id));
@@ -461,6 +475,7 @@
       function toggleReadable() { const active = document.body.classList.toggle('readable'); $('#readableButton').classList.toggle('active', active); $('#stageReadable').classList.toggle('active', active); showToast(active ? '已開啟高辨識文字模式。' : '已回復一般文字模式。'); }
       $('#readableButton').addEventListener('click', toggleReadable); $('#stageReadable').addEventListener('click', toggleReadable);
       $('#stageSound').addEventListener('click', function () { soundEnabled = !soundEnabled; this.textContent = soundEnabled ? '🔊 指令聲音：開' : '🔇 指令聲音：關'; this.classList.toggle('active', !soundEnabled); showToast(soundEnabled ? '已開啟指令聲音。' : '已關閉指令聲音。'); });
+      $('#stageHaptic').addEventListener('click', function () { hapticEnabled = !hapticEnabled; this.textContent = hapticEnabled ? '⌁ 觸覺提示：開' : '⌁ 觸覺提示：關'; this.classList.toggle('haptic-active', hapticEnabled); if (hapticEnabled && !('vibrate' in navigator)) showToast('此裝置未提供震動功能，會保留視覺回饋。'); else { triggerHaptic('tap'); showToast(hapticEnabled ? '已開啟可選觸覺提示。' : '已關閉觸覺提示。'); } });
       function toggleProjector() { const enabled = document.body.classList.toggle('projector'); $('#projectorButton').innerHTML = enabled ? '<span>▣</span> 離開投影模式' : '<span>▣</span> 投影模式'; showToast(enabled ? '已切換為投影模式。' : '已回復同工操作模式。'); }
       $('#projectorButton').addEventListener('click', toggleProjector); $('#projectorTop').addEventListener('click', toggleProjector);
       $('#fullscreenButton').addEventListener('click', async () => { try { if (document.fullscreenElement) await document.exitFullscreen(); else await document.documentElement.requestFullscreen(); } catch (_) { showToast('請使用瀏覽器的全螢幕功能。'); } });
