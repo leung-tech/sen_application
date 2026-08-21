@@ -21,3 +21,5 @@
 | MI | `modules/mi/index.html` | `modules/mi/mi-stage-data.js` |
 
 現有快速開始、直接選關、課堂模式及投影功能仍由共用 `assets/js/sen-app.js` 維持，避免因拆分資料檔而改變既有使用流程。
+
+公開回歸測試亦已確認 `senType=SLI&stageLevel=P4–P6` 會由 `modules/sli/sli-stage-data.js` 載入「關鍵詞小耳朵」高小題庫，並可打開首關「交功課前，先寫姓名」。公開 `modules/mi/index.html` 入口會正確帶入 MI 範疇並顯示「我的選擇卡」，確認兩個後補的獨立題庫和 HTML 入口均可用。
