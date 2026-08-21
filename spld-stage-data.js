@@ -1,9 +1,9 @@
 window.SPLD_STAGE_TASKS = {
   upper: {
     categoryName: '高小 · SpLD 讀寫訓練',
-    title: '高小讀寫闖關',
-    description: '12 關字詞、句子、公告與資料理解訓練',
-    tag: 'P4–P6 · 12 關',
+    title: '高小讀寫基礎練習',
+    description: '12 關字詞、句子、公告與資料理解暖身練習',
+    tag: 'P4–P6 · 基礎 12 關',
     rounds: [
       { id: 'P4-SPLD-01', band: 'P4 · 部件辨識', prompt: '「校」字的左邊是哪個部件？', context: '目標字：<strong>校</strong>', choices: ['木', '女', '日'], answer: '木', instruction: '請看校字，找出它左邊的部件。', clue: '把「校」字分開看，左邊是木字旁。', success: '答對了！你用部件找到了校字。' },
       { id: 'P4-SPLD-02', band: 'P4 · 詞義理解', prompt: '「準時」最接近哪個意思？', context: '老師說：明天請<strong>準時</strong>到禮堂集合。', choices: ['依約定時間到達', '隨時都可以到', '不用出席'], answer: '依約定時間到達', instruction: '請由句子找出準時的意思。', clue: '想一想集合有指定時間，準時就是不早太多，也不遲到。', success: '很好！你理解了準時的意思。' },
