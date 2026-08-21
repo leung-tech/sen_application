@@ -16,7 +16,19 @@
         { core: '學', category: '正在讀書的人', prompt: '以「學」延伸詞語。哪一個最適合放入「正在讀書的人」？', choices: ['學生', '學校', '學期'], answer: '學生', hint: '學生是在學校裡學習的人。', meaning: '學 → 學生、學校、學期' },
         { core: '校', category: '管理學校的人', prompt: '以「校」延伸詞語。哪一個最適合放入「管理學校的人」？', choices: ['校長', '校服', '校園'], answer: '校長', hint: '校長負責帶領和管理學校。', meaning: '校 → 校長、校服、校園' },
         { core: '天', category: '反映冷熱或下雨狀況', prompt: '以「天」延伸詞語。哪一個最適合放入「反映冷熱或下雨狀況」？', choices: ['天氣', '天空', '天文'], answer: '天氣', hint: '晴、雨、冷、熱都是天氣的情況。', meaning: '天 → 天氣、天空、天文' },
-        { core: '日', category: '用來安排日期的工具', prompt: '以「日」延伸詞語。哪一個最適合放入「用來安排日期的工具」？', choices: ['日曆', '日常', '日落'], answer: '日曆', hint: '日曆會列出每天的日期，方便安排事情。', meaning: '日 → 日曆、日常、日落' }
+        { core: '日', category: '用來安排日期的工具', prompt: '以「日」延伸詞語。哪一個最適合放入「用來安排日期的工具」？', choices: ['日曆', '日常', '日落'], answer: '日曆', hint: '日曆會列出每天的日期，方便安排事情。', meaning: '日 → 日曆、日常、日落' },
+        { level: 'advanced', core: '觀', category: '看事情的角度或想法', prompt: '以「觀」延伸詞語。哪一個最適合放入「看事情的角度或想法」？', choices: ['觀點', '觀察', '觀眾'], answer: '觀點', hint: '討論事情時，每個人可以有不同的「觀點」。', meaning: '觀 → 觀點、觀察、觀眾' },
+        { level: 'advanced', core: '證', category: '支持說法的材料', prompt: '以「證」延伸詞語。哪一個最適合放入「支持說法的材料」？', choices: ['證據', '證書', '證人'], answer: '證據', hint: '提出意見時，可以找資料作為「證據」。', meaning: '證 → 證據、證書、證人' },
+        { level: 'advanced', core: '解', category: '把內容說清楚的行動', prompt: '以「解」延伸詞語。哪一個最適合放入「把內容說清楚的行動」？', choices: ['解釋', '解決', '了解'], answer: '解釋', hint: '如果別人不明白，可以用例子「解釋」意思。', meaning: '解 → 解釋、解決、了解' },
+        { level: 'advanced', core: '資', category: '可供使用的材料、人手或條件', prompt: '以「資」延伸詞語。哪一個最適合放入「可供使用的材料、人手或條件」？', choices: ['資源', '資料', '資本'], answer: '資源', hint: '圖書、時間和人手都可以是可運用的「資源」。', meaning: '資 → 資源、資料、資本' },
+        { level: 'advanced', core: '重', category: '事情最值得關注的部分', prompt: '以「重」延伸詞語。哪一個最適合放入「事情最值得關注的部分」？', choices: ['重點', '重量', '重複'], answer: '重點', hint: '閱讀時先圈出重要的字句，就是找「重點」。', meaning: '重 → 重點、重量、重複' },
+        { level: 'advanced', core: '調', category: '為配合需要而作出的改變', prompt: '以「調」延伸詞語。哪一個最適合放入「為配合需要而作出的改變」？', choices: ['調整', '調查', '強調'], answer: '調整', hint: '如果方法不合適，可以作出「調整」。', meaning: '調 → 調整、調查、強調' },
+        { level: 'advanced', core: '發', category: '把消息或作品正式傳送出去', prompt: '以「發」延伸詞語。哪一個最適合放入「把消息或作品正式傳送出去」？', choices: ['發布', '發展', '發明'], answer: '發布', hint: '學校可以在網站「發布」活動消息。', meaning: '發 → 發布、發展、發明' },
+        { level: 'advanced', core: '效', category: '做事後實際產生的結果', prompt: '以「效」延伸詞語。哪一個最適合放入「做事後實際產生的結果」？', choices: ['效果', '效率', '效力'], answer: '效果', hint: '試用一個方法後，可以看看它有沒有好的「效果」。', meaning: '效 → 效果、效率、效力' },
+        { level: 'advanced', core: '聯', category: '把資料或想法互相接合', prompt: '以「聯」延伸詞語。哪一個最適合放入「把資料或想法互相接合」？', choices: ['聯繫', '聯想', '聯合'], answer: '聯繫', hint: '閱讀時把前後段的意思連起來，就是建立「聯繫」。', meaning: '聯 → 聯繫、聯想、聯合' },
+        { level: 'advanced', core: '評', category: '對事物作出判斷和看法', prompt: '以「評」延伸詞語。哪一個最適合放入「對事物作出判斷和看法」？', choices: ['評價', '評語', '評分'], answer: '評價', hint: '比較兩個方法的好處時，可以作出「評價」。', meaning: '評 → 評價、評語、評分' },
+        { level: 'advanced', core: '行', category: '為完成事情而採取的具體做法', prompt: '以「行」延伸詞語。哪一個最適合放入「為完成事情而採取的具體做法」？', choices: ['行動', '行程', '行人'], answer: '行動', hint: '有了計畫後，下一步就是採取「行動」。', meaning: '行 → 行動、行程、行人' },
+        { level: 'advanced', core: '論', category: '提出並支持看法的文字或說話', prompt: '以「論」延伸詞語。哪一個最適合放入「提出並支持看法的文字或說話」？', choices: ['論述', '論文', '討論'], answer: '論述', hint: '寫作時用理由支持一個看法，就是作出「論述」。', meaning: '論 → 論述、論文、討論' }
       ]
     },
     sentence: {
@@ -35,7 +47,19 @@
         { subject: '我們', verb: '討論', object: '小組分工', hint: '「我們」是做事的人；討論的是小組分工。' },
         { subject: '圖書館', verb: '提供', object: '安靜的閱讀空間', hint: '圖書館是句子的主語；它提供的是一個安靜的閱讀空間。' },
         { subject: '校工', verb: '清潔', object: '課室', hint: '先找「誰」：校工；再找動作「清潔」；最後找地方「課室」。' },
-        { subject: '家人', verb: '準備', object: '晚餐', hint: '家人做的是準備；準備的內容是晚餐。' }
+        { subject: '家人', verb: '準備', object: '晚餐', hint: '家人做的是準備；準備的內容是晚餐。' },
+        { level: 'advanced', subject: '學生', verb: '運用', object: '上下文線索推斷詞義', hint: '誰做運用？學生；運用甚麼？上下文線索；目的是推斷詞義。' },
+        { level: 'advanced', subject: '圖書館', verb: '提供', object: '多元化的學習資源', hint: '圖書館是提供者；提供的是多元化的學習資源。' },
+        { level: 'advanced', subject: '校長', verb: '鼓勵', object: '學生積極參與服務', hint: '先找人物「校長」；再找動作「鼓勵」；最後是鼓勵的內容。' },
+        { level: 'advanced', subject: '研究報告', verb: '說明', object: '調查所得的結果', hint: '研究報告是主語；它說明的是調查所得的結果。' },
+        { level: 'advanced', subject: '小組成員', verb: '整理', object: '訪問記錄和重點', hint: '誰做整理？小組成員；整理的是訪問記錄和重點。' },
+        { level: 'advanced', subject: '班會', verb: '討論', object: '改善課室環境的方法', hint: '班會是討論發生的主體；討論的是改善課室環境的方法。' },
+        { level: 'advanced', subject: '新聞報道', verb: '呈現', object: '事件的不同觀點', hint: '新聞報道是主語；它呈現的是事件的不同觀點。' },
+        { level: 'advanced', subject: '義工', verb: '協助', object: '長者使用電子服務', hint: '義工做協助；協助的對象和內容是長者使用電子服務。' },
+        { level: 'advanced', subject: '我們', verb: '訂立', object: '本學期的閱讀目標', hint: '「我們」是做事的人；訂立的是本學期的閱讀目標。' },
+        { level: 'advanced', subject: '導師', verb: '安排', object: '小組討論的時間', hint: '導師是安排的人；安排的是小組討論的時間。' },
+        { level: 'advanced', subject: '家長', verb: '支持', object: '子女培養閱讀習慣', hint: '家長作出支持；支持的是子女培養閱讀習慣。' },
+        { level: 'advanced', subject: '學校', verb: '推行', object: '環保回收計畫', hint: '學校是推行者；推行的是環保回收計畫。' }
       ]
     },
     collocation: {
@@ -125,9 +149,16 @@
   let memoryCards = [];
   let result = { correct: 0, retries: 0, hints: 0 };
   let completed = false;
+  let selectedDifficulty = 'basic';
+  const difficultySettings = {
+    basic: { label: '初階', description: '常見詞義與三格句型', note: '適合先建立成功經驗。' },
+    advanced: { label: '進階', description: '抽象詞義與較長句子', note: '適合熟悉基本規則後再嘗試。' }
+  };
 
   const currentActivity = () => activities[activeKey];
-  const currentRound = () => currentActivity().rounds[roundIndex];
+  const isGradedActivity = () => activeKey === 'morpheme' || activeKey === 'sentence';
+  const currentRounds = () => isGradedActivity() ? currentActivity().rounds.filter((round) => (round.level || 'basic') === selectedDifficulty) : currentActivity().rounds;
+  const currentRound = () => currentRounds()[roundIndex];
   const wait = (callback, duration = 1050) => window.setTimeout(callback, duration);
 
   function speak(text) {
@@ -158,8 +189,8 @@
   }
 
   function progressMarkup() {
-    const activity = currentActivity();
-    return `<div class="spld-p4-progress"><span>第 ${roundIndex + 1} / ${activity.rounds.length} 關</span><div><i style="width:${((roundIndex + 1) / activity.rounds.length) * 100}%"></i></div></div>`;
+    const rounds = currentRounds();
+    return `<div class="spld-p4-progress"><span>第 ${roundIndex + 1} / ${rounds.length} 關</span><div><i style="width:${((roundIndex + 1) / rounds.length) * 100}%"></i></div></div>`;
   }
 
   function toolsMarkup() {
@@ -182,6 +213,12 @@
     if (!panel) return;
     panel.className = `spld-p4-feedback ${state}`;
     panel.textContent = message;
+  }
+
+  function difficultyMarkup() {
+    if (!isGradedActivity()) return '';
+    const setting = difficultySettings[selectedDifficulty];
+    return `<section class="spld-p4-difficulty" aria-label="難度選擇"><div><span>本節難度</span><strong>${setting.label}</strong><small>${setting.description}</small></div><div class="spld-p4-difficulty-buttons" role="group" aria-label="選擇練習難度">${Object.entries(difficultySettings).map(([key, item]) => `<button type="button" class="${selectedDifficulty === key ? 'active' : ''}" data-p4-difficulty="${key}" aria-pressed="${selectedDifficulty === key}">${item.label}<small>${key === 'basic' ? '常見詞／短句' : '抽象詞／長句'}</small></button>`).join('')}</div><p>${setting.note}</p></section>`;
   }
 
   function morphemeMarkup(round) {
@@ -231,7 +268,7 @@
     const playArea = activeKey === 'morpheme' ? morphemeMarkup(round) : activeKey === 'sentence' ? sentenceMarkup(round) : activeKey === 'collocation' ? collocationMarkup(round) : activeKey === 'context' ? contextMarkup(round) : activeKey === 'memory' ? memoryMarkup(round) : classifierMarkup(round);
     const heading = `<div class="spld-p4-heading compact"><span class="spld-p4-kicker">${activity.focus}</span><h2>${activity.icon} ${activity.title}</h2><p>${activity.description}</p></div>`;
     const dialog = document.querySelector('.spld-p4-lab');
-    dialog.innerHTML = `<button class="spld-p4-close" type="button" aria-label="關閉高小讀寫實驗室">×</button>${heading}${progressMarkup()}<div class="spld-p4-play-area">${playArea}</div><div class="spld-p4-feedback" id="spldP4Feedback">慢慢看一看；不知道時可以按提示。</div>${toolsMarkup()}`;
+    dialog.innerHTML = `<button class="spld-p4-close" type="button" aria-label="關閉高小讀寫實驗室">×</button>${heading}${difficultyMarkup()}${progressMarkup()}<div class="spld-p4-play-area">${playArea}</div><div class="spld-p4-feedback" id="spldP4Feedback">慢慢看一看；不知道時可以按提示。</div>${toolsMarkup()}`;
     bindRound(round);
   }
 
@@ -247,6 +284,19 @@
       speak(round.hint);
     });
     document.querySelector('#spldP4Back')?.addEventListener('click', openMenu);
+    document.querySelectorAll('[data-p4-difficulty]').forEach((button) => button.addEventListener('click', () => {
+      const nextDifficulty = button.dataset.p4Difficulty;
+      if (!difficultySettings[nextDifficulty] || nextDifficulty === selectedDifficulty) return;
+      selectedDifficulty = nextDifficulty;
+      roundIndex = 0;
+      selectedBlocks = [];
+      result = { correct: 0, retries: 0, hints: 0 };
+      completed = false;
+      prepareRoundState();
+      renderRound();
+      feedback(`已切換至${difficultySettings[nextDifficulty].label}：${difficultySettings[nextDifficulty].note}`, 'hint');
+      speak(`已切換至${difficultySettings[nextDifficulty].label}練習。`);
+    }));
     if (activeKey === 'morpheme') {
       document.querySelectorAll('.spld-p4-choice').forEach((button) => button.addEventListener('click', () => chooseMorpheme(button, round)));
     } else if (activeKey === 'sentence') {
@@ -351,7 +401,7 @@
   }
 
   function nextRound() {
-    if (roundIndex < currentActivity().rounds.length - 1) {
+    if (roundIndex < currentRounds().length - 1) {
       roundIndex += 1;
       prepareRoundState();
       renderRound();
@@ -364,9 +414,11 @@
     if (completed) return;
     completed = true;
     const activity = currentActivity();
-    document.dispatchEvent(new CustomEvent('spld-p4-lab-complete', { detail: { ...result, activity: activity.title } }));
+    const rounds = currentRounds();
+    const activityLabel = isGradedActivity() ? `${activity.title} · ${difficultySettings[selectedDifficulty].label}` : activity.title;
+    document.dispatchEvent(new CustomEvent('spld-p4-lab-complete', { detail: { ...result, activity: activityLabel } }));
     const dialog = document.querySelector('.spld-p4-lab');
-    dialog.innerHTML = `<button class="spld-p4-close" type="button" aria-label="關閉高小讀寫實驗室">×</button><div class="spld-p4-result"><span class="spld-p4-kicker">本次讀寫回顧</span><h2>完成 ${activity.title}</h2><p>你已完成 ${activity.rounds.length} 個小回合。可以休息、選另一項練習，或回到高小 SpLD 關卡。</p><div class="spld-p4-result-grid"><div><strong>${result.correct} / ${activity.rounds.length}</strong><span>完成回合</span></div><div><strong>${result.retries}</strong><span>溫和重試</span></div><div><strong>${result.hints}</strong><span>使用提示</span></div></div><aside>這些數字只協助教師安排下一步，不作比較或評分。</aside><div class="spld-p4-result-actions"><button type="button" id="spldP4TryAgain">↺ 選另一項練習</button><button type="button" id="spldP4Exit">回到高小 SpLD 關卡</button></div></div>`;
+    dialog.innerHTML = `<button class="spld-p4-close" type="button" aria-label="關閉高小讀寫實驗室">×</button><div class="spld-p4-result"><span class="spld-p4-kicker">本次讀寫回顧</span><h2>完成 ${activityLabel}</h2><p>你已完成 ${rounds.length} 個小回合。可以休息、選另一項練習，或回到高小 SpLD 關卡。</p><div class="spld-p4-result-grid"><div><strong>${result.correct} / ${rounds.length}</strong><span>完成回合</span></div><div><strong>${result.retries}</strong><span>溫和重試</span></div><div><strong>${result.hints}</strong><span>使用提示</span></div></div><aside>這些數字只協助教師安排下一步，不作比較或評分。</aside><div class="spld-p4-result-actions"><button type="button" id="spldP4TryAgain">↺ 選另一項練習</button><button type="button" id="spldP4Exit">回到高小 SpLD 關卡</button></div></div>`;
     dialog.querySelector('.spld-p4-close')?.addEventListener('click', closeLab);
     dialog.querySelector('#spldP4TryAgain')?.addEventListener('click', openMenu);
     dialog.querySelector('#spldP4Exit')?.addEventListener('click', closeLab);
@@ -375,6 +427,7 @@
   function startActivity(key) {
     if (!activities[key]) return;
     activeKey = key;
+    selectedDifficulty = 'basic';
     roundIndex = 0;
     prepareRoundState();
     result = { correct: 0, retries: 0, hints: 0 };
@@ -403,6 +456,9 @@
     const activityStyle = document.createElement('style');
     activityStyle.textContent = `.spld-p4-collocation-scene,.spld-p4-classifier-scene{display:flex;align-items:center;justify-content:center;gap:12px;padding:17px;border-radius:17px;background:#fff;color:#3a4e67}.spld-p4-collocation-scene span{padding:6px 9px;border-radius:99px;background:#fff1da;color:#9c6413;font-size:12px;font-weight:850}.spld-p4-collocation-scene strong{color:#b26c15;font-size:35px}.spld-p4-collocation-scene em{color:#e1a64b;font-size:28px;font-style:normal;font-weight:900}.spld-p4-collocation-scene b{font-size:35px}.spld-p4-context-scene{padding:18px;border-radius:17px;background:#fff;color:#2e4a69}.spld-p4-context-scene>span{display:block;font-size:44px;text-align:center}.spld-p4-context-scene p{margin:9px 0 0;font-size:20px;font-weight:850;line-height:1.65;text-align:center}.spld-p4-context-scene p strong{color:#bb7417;border-bottom:3px solid #e5b45c}.spld-p4-classifier-scene>span{font-size:45px}.spld-p4-classifier-scene strong{color:#9e7113;font-size:30px}.spld-p4-memory-guide{display:flex;align-items:center;justify-content:center;gap:12px;padding:13px 15px;border-radius:15px;background:#fff}.spld-p4-memory-guide span{color:#a44f78;font-size:12px;font-weight:850}.spld-p4-memory-guide strong{color:#9a4170;font-size:23px}.spld-p4-memory-guide small{color:#68788c}.spld-p4-memory-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.spld-p4-memory-card{min-height:94px;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:2px solid #e9bfd5;border-radius:16px;background:linear-gradient(145deg,#fff8fb,#f9e8f0);color:#a0527a;cursor:pointer}.spld-p4-memory-card span{font-size:25px;font-weight:900}.spld-p4-memory-card small{font-size:11px;font-weight:800}.spld-p4-memory-card.revealed{border-color:#c96996;background:#fff;color:#82385f}.spld-p4-memory-card.matched{border-color:#51a675;background:#effaf2;color:#28724b}@media(max-width:620px){.spld-p4-collocation-scene{gap:8px}.spld-p4-collocation-scene strong,.spld-p4-collocation-scene b{font-size:28px}.spld-p4-context-scene p{font-size:18px}.spld-p4-classifier-scene strong{font-size:25px}.spld-p4-memory-guide{align-items:flex-start;flex-direction:column;gap:4px}.spld-p4-memory-card{min-height:82px}.spld-p4-memory-card span{font-size:21px}}`;
     document.head.appendChild(activityStyle);
+    const readabilityStyle = document.createElement('style');
+    readabilityStyle.textContent = `.spld-p4-difficulty{margin:15px 0 12px;padding:14px 15px;border:1px solid #c9e5df;border-radius:16px;background:#f6fffd}.spld-p4-difficulty>div:first-child{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}.spld-p4-difficulty>div:first-child span{color:#39776e;font-size:14px;font-weight:900}.spld-p4-difficulty>div:first-child strong{color:#23796d;font-size:20px}.spld-p4-difficulty>div:first-child small{color:#5b6f80;font-size:15px}.spld-p4-difficulty-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:11px}.spld-p4-difficulty-buttons button{min-height:54px;padding:8px 10px;border:2px solid #b8dcd5;border-radius:13px;background:#fff;color:#2f746a;font-size:17px;font-weight:900;cursor:pointer}.spld-p4-difficulty-buttons button small{display:block;margin-top:2px;color:#607284;font-size:12px;font-weight:750}.spld-p4-difficulty-buttons button.active{border-color:#258f80;background:#def5ee;color:#176f63}.spld-p4-difficulty-buttons button.active small{color:#236e65}.spld-p4-difficulty>p{margin:10px 0 0;color:#496d69;font-size:15px;font-weight:750;line-height:1.62}.spld-p4-heading p{font-size:17px;line-height:1.72}.spld-p4-meaning{font-size:16px;line-height:1.68}.spld-p4-feedback{font-size:17px;line-height:1.68}.spld-p4-tools button,.spld-p4-result-actions button{min-height:50px;font-size:16px;line-height:1.35}.spld-p4-close{min-width:44px;min-height:44px}.spld-p4-choice:focus-visible,.spld-p4-block:focus-visible,.spld-p4-memory-card:focus-visible,.spld-p4-difficulty-buttons button:focus-visible{outline:4px solid #245ba7;outline-offset:3px}@media(max-width:620px){.spld-p4-lab{padding:26px 16px}.spld-p4-heading h2,.spld-p4-result h2{font-size:27px;line-height:1.32}.spld-p4-heading p{font-size:16px;line-height:1.72}.spld-p4-kicker{font-size:14px}.spld-p4-prompt{font-size:20px;line-height:1.6}.spld-p4-meaning,.spld-p4-feedback{font-size:16px;line-height:1.7}.spld-p4-choice{min-height:98px}.spld-p4-choice strong{font-size:24px}.spld-p4-slot{min-height:100px}.spld-p4-slot span{font-size:12px;line-height:1.45}.spld-p4-slot strong{font-size:17px}.spld-p4-sentence-preview{font-size:16px;line-height:1.58}.spld-p4-block{min-height:60px;padding:10px 15px;font-size:18px}.spld-p4-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}.spld-p4-tools button{min-height:54px;font-size:16px}.spld-p4-tools button:last-child{grid-column:span 2}.spld-p4-difficulty{padding:13px}.spld-p4-difficulty>div:first-child small{font-size:14px}.spld-p4-difficulty>p{font-size:15px}.spld-p4-memory-card{min-height:92px}.spld-p4-memory-card span{font-size:23px}}@media(min-width:621px) and (max-width:820px){.spld-p4-lab{width:min(720px,calc(100% - 28px));padding:30px}.spld-p4-heading p{font-size:17px}.spld-p4-prompt{font-size:21px}.spld-p4-choice{min-height:108px}.spld-p4-tools button{min-height:52px}}`;
+    document.head.appendChild(readabilityStyle);
   }
 
   window.SPLD_P4_LAB = {
