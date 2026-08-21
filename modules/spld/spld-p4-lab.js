@@ -28,7 +28,19 @@
         { level: 'advanced', core: '聯', category: '把資料或想法互相接合', prompt: '以「聯」延伸詞語。哪一個最適合放入「把資料或想法互相接合」？', choices: ['聯繫', '聯想', '聯合'], answer: '聯繫', hint: '閱讀時把前後段的意思連起來，就是建立「聯繫」。', meaning: '聯 → 聯繫、聯想、聯合' },
         { level: 'advanced', core: '評', category: '對事物作出判斷和看法', prompt: '以「評」延伸詞語。哪一個最適合放入「對事物作出判斷和看法」？', choices: ['評價', '評語', '評分'], answer: '評價', hint: '比較兩個方法的好處時，可以作出「評價」。', meaning: '評 → 評價、評語、評分' },
         { level: 'advanced', core: '行', category: '為完成事情而採取的具體做法', prompt: '以「行」延伸詞語。哪一個最適合放入「為完成事情而採取的具體做法」？', choices: ['行動', '行程', '行人'], answer: '行動', hint: '有了計畫後，下一步就是採取「行動」。', meaning: '行 → 行動、行程、行人' },
-        { level: 'advanced', core: '論', category: '提出並支持看法的文字或說話', prompt: '以「論」延伸詞語。哪一個最適合放入「提出並支持看法的文字或說話」？', choices: ['論述', '論文', '討論'], answer: '論述', hint: '寫作時用理由支持一個看法，就是作出「論述」。', meaning: '論 → 論述、論文、討論' }
+        { level: 'advanced', core: '論', category: '提出並支持看法的文字或說話', prompt: '以「論」延伸詞語。哪一個最適合放入「提出並支持看法的文字或說話」？', choices: ['論述', '論文', '討論'], answer: '論述', hint: '寫作時用理由支持一個看法，就是作出「論述」。', meaning: '論 → 論述、論文、討論' },
+        { level: 'challenge', core: '論', category: '文章希望讀者接受的核心主張', prompt: '以「論」延伸詞語。哪一個最適合放入「文章希望讀者接受的核心主張」？', choices: ['論點', '論據', '論證'], answer: '論點', hint: '論點是作者最想成立的看法；論據是支持它的材料。', meaning: '論 → 論點、論據、論證' },
+        { level: 'challenge', core: '據', category: '用來支持說法的事實、例子或資料', prompt: '以「據」延伸詞語。哪一個最適合放入「用來支持說法的事實、例子或資料」？', choices: ['根據', '根本', '根源'], answer: '根據', hint: '有資料作「根據」，說法才不只是猜想。', meaning: '據 → 根據、根本、根源' },
+        { level: 'challenge', core: '概', category: '概括事情主要內容的簡短說明', prompt: '以「概」延伸詞語。哪一個最適合放入「概括事情主要內容的簡短說明」？', choices: ['概述', '概念', '概況'], answer: '概述', hint: '先抽出最重要的內容，再用幾句話作「概述」。', meaning: '概 → 概述、概念、概況' },
+        { level: 'challenge', core: '推', category: '根據資料一步步得出的結論', prompt: '以「推」延伸詞語。哪一個最適合放入「根據資料一步步得出的結論」？', choices: ['推論', '推測', '推薦'], answer: '推論', hint: '推論要由已知資料和理由出發，不只是隨意猜測。', meaning: '推 → 推論、推測、推薦' },
+        { level: 'challenge', core: '因', category: '使事情發生的主要理由', prompt: '以「因」延伸詞語。哪一個最適合放入「使事情發生的主要理由」？', choices: ['原因', '因而', '因素'], answer: '原因', hint: '問「為甚麼會這樣」時，答案通常是在找事情的「原因」。', meaning: '因 → 原因、因而、因素' },
+        { level: 'challenge', core: '結', category: '綜合資料後得出的最後判斷', prompt: '以「結」延伸詞語。哪一個最適合放入「綜合資料後得出的最後判斷」？', choices: ['結論', '結構', '結果'], answer: '結論', hint: '分析完資料後，用一句話說出最後判斷，就是「結論」。', meaning: '結 → 結論、結構、結果' },
+        { level: 'challenge', core: '比', category: '把兩項或多項事物放在一起看異同', prompt: '以「比」延伸詞語。哪一個最適合放入「把兩項或多項事物放在一起看異同」？', choices: ['比較', '比率', '比賽'], answer: '比較', hint: '找出相同和不同之處，是在做「比較」。', meaning: '比 → 比較、比率、比賽' },
+        { level: 'challenge', core: '策', category: '為解決問題而規劃的方法', prompt: '以「策」延伸詞語。哪一個最適合放入「為解決問題而規劃的方法」？', choices: ['策略', '策劃', '策展'], answer: '策略', hint: '面對問題時，先想可行的方法和步驟，就是訂出「策略」。', meaning: '策 → 策略、策劃、策展' },
+        { level: 'challenge', core: '態', category: '對事情所持的看法或傾向', prompt: '以「態」延伸詞語。哪一個最適合放入「對事情所持的看法或傾向」？', choices: ['態度', '狀態', '形態'], answer: '態度', hint: '願意認真聆聽和回應，是一種學習「態度」。', meaning: '態 → 態度、狀態、形態' },
+        { level: 'challenge', core: '釋', category: '說明字詞、概念或現象意思的文字', prompt: '以「釋」延伸詞語。哪一個最適合放入「說明字詞、概念或現象意思的文字」？', choices: ['釋義', '釋放', '釋然'], answer: '釋義', hint: '字典中的解釋就是為字詞提供「釋義」。', meaning: '釋 → 釋義、釋放、釋然' },
+        { level: 'challenge', core: '範', category: '可供仿效或依循的例子', prompt: '以「範」延伸詞語。哪一個最適合放入「可供仿效或依循的例子」？', choices: ['示範', '範圍', '規範'], answer: '示範', hint: '老師先做一次給大家看，是一種「示範」。', meaning: '範 → 示範、範圍、規範' },
+        { level: 'challenge', core: '架', category: '用來組織觀點或內容的整體結構', prompt: '以「架」延伸詞語。哪一個最適合放入「用來組織觀點或內容的整體結構」？', choices: ['架構', '架勢', '書架'], answer: '架構', hint: '先安排文章各部分怎樣連接，就是建立寫作「架構」。', meaning: '架 → 架構、架勢、書架' }
       ]
     },
     sentence: {
@@ -151,8 +163,9 @@
   let completed = false;
   let selectedDifficulty = 'basic';
   const difficultySettings = {
-    basic: { label: '初階', description: '常見詞義與三格句型', note: '適合先建立成功經驗。' },
-    advanced: { label: '進階', description: '抽象詞義與較長句子', note: '適合熟悉基本規則後再嘗試。' }
+    basic: { label: '初階', shortLabel: '常見詞／短句', description: '常見詞義與三格句型', note: '適合先建立成功經驗。' },
+    advanced: { label: '進階', shortLabel: '抽象詞／長句', description: '抽象詞義與較長句子', note: '適合熟悉基本規則後再嘗試。' },
+    challenge: { label: '挑戰', shortLabel: '論證詞／精準分類', description: '論證詞彙與精準語義分類', note: '可先慢讀類別，再找最符合定義的詞語。' }
   };
 
   const currentActivity = () => activities[activeKey];
@@ -218,7 +231,7 @@
   function difficultyMarkup() {
     if (!isGradedActivity()) return '';
     const setting = difficultySettings[selectedDifficulty];
-    return `<section class="spld-p4-difficulty" aria-label="難度選擇"><div><span>本節難度</span><strong>${setting.label}</strong><small>${setting.description}</small></div><div class="spld-p4-difficulty-buttons" role="group" aria-label="選擇練習難度">${Object.entries(difficultySettings).map(([key, item]) => `<button type="button" class="${selectedDifficulty === key ? 'active' : ''}" data-p4-difficulty="${key}" aria-pressed="${selectedDifficulty === key}">${item.label}<small>${key === 'basic' ? '常見詞／短句' : '抽象詞／長句'}</small></button>`).join('')}</div><p>${setting.note}</p></section>`;
+    return `<section class="spld-p4-difficulty" aria-label="難度選擇"><div><span>本節難度</span><strong>${setting.label}</strong><small>${setting.description}</small></div><div class="spld-p4-difficulty-buttons" role="group" aria-label="選擇練習難度">${Object.entries(difficultySettings).map(([key, item]) => `<button type="button" class="${selectedDifficulty === key ? 'active' : ''}" data-p4-difficulty="${key}" aria-pressed="${selectedDifficulty === key}">${item.label}<small>${item.shortLabel}</small></button>`).join('')}</div><p>${setting.note}</p></section>`;
   }
 
   function morphemeMarkup(round) {
