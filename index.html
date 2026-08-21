@@ -215,6 +215,7 @@
 
   <script src="spld-stage-data.js"></script>
   <script src="adhd-stage-data.js"></script>
+  <script src="adhd-focus-lab.js"></script>
   <script src="asd-stage-data.js"></script>
   <script src="ebd-stage-data.js"></script>
   <script src="id-stage-data.js"></script>
@@ -463,6 +464,23 @@
       function startAdhdRound() { if (isAdhdGame() && adhdSession) getAdhdMetric(); }
       function resetAdhdSession() { clearAdhdTimer(); adhdSession = { duration: 0, startedAt: null, elapsed: 0, paused: false, firstCorrect: 0, retries: 0, completed: 0, currentStreak: 0, longestStreak: 0, roundMetrics: {}, timerFinished: false, modeLabel: '自選節奏' }; }
       function getAdhdAccuracy() { if (!adhdSession) return 0; const totalAttempts = Object.values(adhdSession.roundMetrics).reduce((total, metric) => total + metric.attempts, 0); return totalAttempts ? Math.round((adhdSession.completed / totalAttempts) * 100) : 0; }
+      function renderAdhdLabSummary() {
+        const runs = adhdSession?.labRuns || [];
+        if (!runs.length) return '<section class="adhd-lab-summary"><strong>專注實驗室</strong><span>可開啟短、中或長時段挑戰；紀錄只保留本次訓練。</span></section>';
+        const latest = runs[runs.length - 1];
+        const average = latest.averageMs ? ` · 平均反應 ${latest.averageMs} 毫秒` : '';
+        return `<section class="adhd-lab-summary"><strong>最近實驗室：${latest.label}</strong><span>${latest.correct} / ${latest.total} 正確${average} · 本節共完成 ${runs.length} 次專注挑戰</span></section>`;
+      }
+      function recordAdhdLabResult(result) {
+        if (!adhdSession || !result) return;
+        adhdSession.labRuns = [...(adhdSession.labRuns || []), result].slice(-5);
+        if (lessonSession.mode) {
+          if (result.correct) changeLessonCount('correctAttempts', result.correct);
+          if (result.incorrect) changeLessonCount('retries', result.incorrect);
+        }
+        renderAdhdDashboard();
+        showToast(`已完成${result.label}：${result.correct} / ${result.total} 正確。`);
+      }
       function renderAdhdRoundChart() {
         const metrics = activeGame.rounds.map((_, index) => adhdSession.roundMetrics[index]);
         const finished = metrics.filter(metric => metric?.correct && metric.seconds !== null);
@@ -478,8 +496,13 @@
         const modeButtons = adhdTimerModes.map(mode => `<button class="timer-choice ${activeDuration === mode.seconds ? 'active' : ''}" type="button" data-seconds="${mode.seconds}" data-label="${mode.label}">${mode.label}</button>`).join('');
         dashboard.hidden = false;
         dashboard.innerHTML = `<div class="adhd-dashboard-head"><div><h3>專注紀錄與節奏看板</h3><p>計時為可選工具；可以暫停、轉換模式，並按自己的節奏繼續。</p></div></div><div class="timer-choice-row">${modeButtons}</div><div class="timer-control-row">${activeDuration ? `<button class="timer-control" id="adhdPauseTimer" type="button">${adhdSession.paused ? '▶ 繼續計時' : 'Ⅱ 暫停計時'}</button><span>目前：${adhdSession.modeLabel} · ${timeText}</span>` : '<span>目前使用自選節奏；不會顯示倒數。</span>'}</div><div class="adhd-stat-grid adhd-stat-grid-rich"><div class="adhd-stat"><span>完成關卡</span><strong>${adhdSession.completed} / ${activeGame.rounds.length}</strong></div><div class="adhd-stat"><span>已用專注時間</span><strong>${timeText}</strong></div><div class="adhd-stat"><span>首次正確</span><strong>${adhdSession.firstCorrect}</strong></div><div class="adhd-stat"><span>溫和重試</span><strong>${adhdSession.retries}</strong></div><div class="adhd-stat"><span>本次正確率</span><strong>${getAdhdAccuracy()}%</strong></div><div class="adhd-stat"><span>最長連續完成</span><strong>${adhdSession.longestStreak}</strong></div></div>${renderAdhdRoundChart()}<div class="timer-gentle-note">${adhdSession.timerFinished ? '計時段已完成；你可以不急不忙地繼續。' : '所有數據只記錄本次訓練流程，不作比較、不扣分。'}</div>`;
+        dashboard.insertAdjacentHTML('beforeend', `${renderAdhdLabSummary()}<div class="adhd-lab-entry"><div><strong>🎯 分級專注實驗室</strong><span>色字干擾、反應抑制與持續注意；可按學生狀態選短、中或長挑戰。</span></div><button class="timer-control" id="adhdFocusLabLaunch" type="button">開啟專注挑戰</button></div>`);
         $$('.timer-choice', dashboard).forEach(button => button.addEventListener('click', () => startAdhdTimer(Number(button.dataset.seconds), button.dataset.label)));
         $('#adhdPauseTimer')?.addEventListener('click', toggleAdhdTimer);
+        $('#adhdFocusLabLaunch')?.addEventListener('click', () => {
+          if (!window.ADHD_FOCUS_LAB) { showToast('專注實驗室正在準備中，請稍後再試。'); return; }
+          window.ADHD_FOCUS_LAB.open({ stage: activeStage, onComplete: recordAdhdLabResult });
+        });
       }
       function tickAdhdTimer() { const elapsed = getAdhdElapsed(); adhdSession.elapsed = elapsed; if (elapsed >= adhdSession.duration && !adhdSession.timerFinished) { adhdSession.timerFinished = true; clearAdhdTimer(); showToast('計時段已完成；你可以按自己的節奏繼續。'); } renderAdhdDashboard(); }
       function startAdhdTimer(seconds, label = '自選節奏') { clearAdhdTimer(); adhdSession.duration = seconds; adhdSession.elapsed = 0; adhdSession.startedAt = seconds ? Date.now() : null; adhdSession.paused = false; adhdSession.timerFinished = false; adhdSession.modeLabel = label; if (seconds) adhdTimerId = setInterval(tickAdhdTimer, 500); renderAdhdDashboard(); }
