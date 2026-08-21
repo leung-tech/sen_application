@@ -1,0 +1,15 @@
+{
+  "name": "心晴同行 SEN 訓練網站模組清單",
+  "entryUi": "../../index.html",
+  "modules": [
+    { "id": "SpLD", "entry": "spld/index.html", "data": ["spld/spld-stage-data.js", "spld/spld-p1-lab.js", "spld/spld-p4-lab.js"] },
+    { "id": "ID", "entry": "id/index.html", "data": ["id/id-stage-data.js"] },
+    { "id": "ASD", "entry": "asd/index.html", "data": ["asd/asd-stage-data.js"] },
+    { "id": "ADHD", "entry": "adhd/index.html", "data": ["adhd/adhd-stage-data.js", "adhd/adhd-focus-lab.js"] },
+    { "id": "EBD", "entry": "ebd/index.html", "data": ["ebd/ebd-stage-data.js"] },
+    { "id": "Giftedness", "entry": "gifted/index.html", "data": ["gifted-hi/gifted-hi-stage-data.js"] },
+    { "id": "HI", "entry": "hi/index.html", "data": ["gifted-hi/gifted-hi-stage-data.js"] },
+    { "id": "SLI", "entry": "sli/index.html", "data": ["sli/sli-stage-data.js"] },
+    { "id": "MI", "entry": "mi/index.html", "data": ["mi/mi-stage-data.js"] }
+  ]
+}
