@@ -267,6 +267,27 @@
   }
 
   window.SPLD_P1_LAB = {
+    activityCards() {
+      return Object.entries(activities).map(([key, activity]) => ({
+        id: `spld-p1-${key}`,
+        activityKey: key,
+        category: 'cognition',
+        categoryName: '初小 · SpLD 多感官讀寫',
+        tone: ({ assembly: 'purple', spotting: 'orange', rhyme: 'teal', stroke: 'blue', triple: 'pink', radical: 'yellow' })[key] || 'purple',
+        icon: activity.icon,
+        title: activity.title,
+        description: activity.description,
+        tag: `P1–P3 · ${activity.focus}`,
+        supports: ['1'],
+        rounds: activity.rounds
+      }));
+    },
+    openActivity(key) {
+      if (!activities[key]) return;
+      closeLab();
+      document.body.insertAdjacentHTML('beforeend', labShell(''));
+      startActivity(key);
+    },
     launcherMarkup() {
       return '<section class="spld-primary-lab-launch" aria-label="初小讀寫實驗室"><div><strong>🧩 初小讀寫實驗室</strong><small>部件拼盤與形近字捉迷藏：每項只需約 2–3 分鐘，可慢讀、看提示或隨時休息。</small></div><button type="button" class="spld-p1-lab-open">開啟初小練習</button></section>';
     },
