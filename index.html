@@ -214,6 +214,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="spld-stage-data.js"></script>
+  <script src="spld-p1-lab.js"></script>
   <script src="adhd-stage-data.js"></script>
   <script src="adhd-focus-lab.js"></script>
   <script src="asd-stage-data.js"></script>
@@ -671,7 +672,8 @@
           const controls = `<div class="spld-read-controls" aria-label="SpLD 朗讀控制"><button class="spld-read-button" id="spldReadPrompt" type="button">🔊 朗讀題目</button><button class="spld-read-button" id="spldReadHint" type="button">🐢 慢讀提示</button><button class="spld-read-button" id="spldReadChoices" type="button">🔉 朗讀選項</button></div>`;
           const visual = getSpldVisualCue(round);
           const hint = `<aside class="spld-hint" aria-label="解題小提示"><span class="spld-hint-label">解題小提示</span><strong>${round.clue}</strong><small>提示已經顯示在這裏；需要時可按「慢讀提示」再聽一次。</small></aside>`;
-          return stageFrame(`<span class="spld-band">${round.band}</span><br>${round.prompt}`, `${reading}<div class="spld-focus">讀寫焦點：${round.band}</div>${controls}${visual}${hint}<div class="spld-choice-grid">${round.choices.map(choice => `<button class="spld-answer" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div>`, true, '先看紫色視覺步驟，再慢讀關鍵詞和選項。');
+          const primaryLab = activeStage === 'lower' && window.SPLD_P1_LAB ? window.SPLD_P1_LAB.launcherMarkup() : '';
+          return stageFrame(`<span class="spld-band">${round.band}</span><br>${round.prompt}`, `${reading}<div class="spld-focus">讀寫焦點：${round.band}</div>${controls}${visual}${hint}${primaryLab}<div class="spld-choice-grid">${round.choices.map(choice => `<button class="spld-answer" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div>`, true, '先看紫色視覺步驟，再慢讀關鍵詞和選項。');
         }
         if (id === 'emotion') {
           return stageFrame(`找出和這張一樣的心情：<span class="sr-only">${round.word}</span>`, `<div class="match-target" aria-label="目標表情 ${round.word}">${round.target}</div><div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
@@ -727,6 +729,7 @@
           $('#spldReadPrompt')?.addEventListener('click', () => speak(getSpldReadText(round), .72));
           $('#spldReadHint')?.addEventListener('click', () => readSpldHint(round));
           $('#spldReadChoices')?.addEventListener('click', () => speak(`選項。${round.choices.map((choice, index) => `第 ${index + 1} 項：${stripMarkup(choice)}`).join('。')}`, .68));
+          window.SPLD_P1_LAB?.bindLauncher();
           $$('.spld-answer').forEach(button => button.addEventListener('click', () => {
             if (gameState.locked) return;
             $$('.spld-answer').forEach(card => card.classList.remove('selected'));
@@ -932,6 +935,19 @@
       $('#projectorButton').addEventListener('click', toggleProjector); $('#projectorTop').addEventListener('click', toggleProjector);
       $('#fullscreenButton').addEventListener('click', async () => { try { if (document.fullscreenElement) await document.exitFullscreen(); else await document.documentElement.requestFullscreen(); } catch (_) { showToast('請使用瀏覽器的全螢幕功能。'); } });
       $('#lessonModeToggle').addEventListener('click', toggleLessonMode); $('#lessonPauseToggle').addEventListener('click', toggleLessonPause); $('#lessonPauseStage').addEventListener('click', toggleLessonPause); $('#lessonAddHint').addEventListener('click', () => { changeLessonCount('hintsUsed'); showToast('已記下 1 次提示。'); }); $('#lessonHintStage').addEventListener('click', () => { changeLessonCount('hintsUsed'); showToast('已記下 1 次提示。'); }); $('#lessonAddRetry').addEventListener('click', () => { changeLessonCount('retries'); showToast('已記下 1 次重試。'); }); $('#lessonRetryStage').addEventListener('click', () => { changeLessonCount('retries'); showToast('已記下 1 次重試。'); }); $('#lessonReset').addEventListener('click', resetLessonSession);
+      document.addEventListener('spld-p1-lab-complete', (event) => {
+        const summary = event.detail || {};
+        if (lessonSession.mode) {
+          for (let i = 0; i < (summary.correct || 0); i += 1) changeLessonCount('correctAttempts');
+          for (let i = 0; i < (summary.retries || 0); i += 1) changeLessonCount('retries');
+          for (let i = 0; i < (summary.hints || 0); i += 1) changeLessonCount('hintsUsed');
+          lessonSession.completedGames += 1;
+          lessonSession.updatedAt = Date.now();
+          saveLessonSession();
+          renderLessonSession();
+        }
+        showToast(`已完成初小讀寫實驗室：${summary.activity || '練習'}。`);
+      });
       renderLessonSession();
 
       // A prepared lesson link may append senType and stageLevel to open the
