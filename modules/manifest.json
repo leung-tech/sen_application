@@ -2,7 +2,7 @@
   "name": "心晴同行 SEN 訓練網站模組清單",
   "entryUi": "../../index.html",
   "modules": [
-    { "id": "SpLD", "entry": "spld/index.html", "data": ["spld/spld-stage-data.js", "spld/spld-p1-lab.js", "spld/spld-p4-lab.js"] },
+    { "id": "SpLD", "entry": "spld/index.html", "stages": { "P1–P3": "spld/p1-p3.html", "P4–P6": "spld/p4-p6.html", "S1–S3": "spld/s1-s3.html" }, "data": ["spld/spld-stage-data.js", "spld/spld-p1-lab.js", "spld/spld-p4-lab.js", "spld/spld-s1-lab.js"] },
     { "id": "ID", "entry": "id/index.html", "data": ["id/id-stage-data.js"] },
     { "id": "ASD", "entry": "asd/index.html", "data": ["asd/asd-stage-data.js"] },
     { "id": "ADHD", "entry": "adhd/index.html", "data": ["adhd/adhd-stage-data.js", "adhd/adhd-focus-lab.js"] },
