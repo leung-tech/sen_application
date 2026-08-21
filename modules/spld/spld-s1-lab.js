@@ -1,0 +1,364 @@
+(function () {
+  const activities = {
+    connector: {
+      icon: '🔄', title: '關聯詞轉盤', description: '由前後句的關係，選出最合適的轉折、遞進或因果關聯詞。', focus: '篇章邏輯與銜接', accent: 'teal',
+      rounds: [
+        { category: '轉折', before: '天氣預報說下午有雨，', after: '校內接力賽仍會照常進行。', answer: '然而', choices: ['然而', '所以', '因此'], hint: '前句預計下雨，後句卻說活動照常，是兩個不同方向的意思。' },
+        { category: '因果', before: '圖書館今天提早關門，', after: '我們改到課室完成小組討論。', answer: '所以', choices: ['所以', '但是', '同時'], hint: '前句說明原因，後句是因此作出的安排。' },
+        { category: '遞進', before: '他先整理訪問記錄，', after: '把重點製成簡報。', answer: '再', choices: ['再', '可是', '因為'], hint: '兩個行動按先後次序發生，第二步可用「再」。' },
+        { category: '因果', before: '小組已核對日期和附件，', after: '可以安心提交報告。', answer: '因此', choices: ['因此', '不過', '而且'], hint: '核對完成是原因；安心提交是結果。' },
+        { category: '轉折', before: '這篇文章的字詞較難，', after: '加上提示後，我仍能找出主旨。', answer: '不過', choices: ['不過', '於是', '首先'], hint: '前句有困難，後句卻做到，是轉折關係。' },
+        { category: '遞進', before: '這個計畫能減少紙張浪費，', after: '培養同學回收的習慣。', answer: '也能', choices: ['也能', '可是', '因而'], hint: '後句是在補充另一個好處，意思比前句再推進一步。' },
+        { category: '條件／結果', before: '如果大家預先分配工作，', after: '小組會較容易按時完成。', answer: '那麼', choices: ['那麼', '但是', '例如'], hint: '前句提出條件，後句說明在這個條件下的結果。' },
+        { category: '舉例', before: '閱讀時可以用不同方法找重點，', after: '圈起關鍵詞和寫下段落小標題。', answer: '例如', choices: ['例如', '可是', '所以'], hint: '後句列出具體做法，是為前句提供例子。' },
+        { category: '轉折', before: '同學已讀過活動守則，', after: '老師仍會在出發前再提醒一次。', answer: '可是', choices: ['可是', '因此', '接著'], hint: '已讀守則後本來似乎不需要再說，後句卻仍要提醒，是轉折。' },
+        { category: '總結', before: '先看標題，再找關鍵句，最後刪去細節，', after: '這些步驟有助提煉主旨。', answer: '總之', choices: ['總之', '但是', '例如'], hint: '前句列舉方法，後句把前面的內容作一個總結。' }
+      ]
+    },
+    paragraph: {
+      icon: '🃏', title: '段落結構大洗牌', description: '把打亂的句子按起承轉合、時間或說明次序重新排好。', focus: '段落結構與篇章順序', accent: 'violet',
+      rounds: [
+        { structure: '時間順序', order: ['早上，班長宣布回收舊書活動。', '午飯後，同學把帶來的書分類。', '放學前，大家把已分類的書交到圖書館。'], hint: '找表示時間的詞：早上、午飯後、放學前。' },
+        { structure: '起承轉合', order: ['校園角落常有被忽略的紙張。', '環保小組於是設置了回收箱。', '起初有同學忘記分類，箱內很凌亂。', '經過提醒後，回收行動漸漸順利。'], hint: '先交代現象，再說做法；之後遇到情況，最後是結果。' },
+        { structure: '說明步驟', order: ['先細讀題目，圈出要求。', '再把資料分成幾個重點。', '最後用自己的句子回答問題。'], hint: '留意「先、再、最後」三個次序詞。' },
+        { structure: '原因到結果', order: ['近日天氣持續炎熱。', '學校於是在操場加設飲水站。', '同學下課後能更方便補充水分。'], hint: '先發生的情況是炎熱；中間是學校的行動；最後是帶來的結果。' },
+        { structure: '空間順序', order: ['走進圖書館，入口旁放著借還書機。', '再向內走，是一排排書架。', '最裡面則是安靜閱讀區。'], hint: '從入口開始，慢慢走到最裡面。' },
+        { structure: '問題與解決', order: ['小組發現報告資料太多，難以閱讀。', '他們決定刪去重複內容，並加上小標題。', '完成後，報告的重點更清楚。'], hint: '先找問題，接著是解決方法，最後看結果。' },
+        { structure: '觀察與推論', order: ['操場上的樹葉不停向一邊飄。', '天空也逐漸變暗。', '我們推論很快會有大雨。'], hint: '先放觀察到的線索，最後才放由線索得出的推論。' },
+        { structure: '活動報告', order: ['上星期五，我們到社區中心探訪長者。', '同學先準備表演和問候卡。', '活動結束後，大家分享最難忘的一刻。'], hint: '先交代活動時間和地點，再寫準備，最後寫結束後的回顧。' },
+        { structure: '觀點段落', order: ['我認為課室應設一個安靜閱讀角。', '這裡可讓同學在小息時短暫閱讀。', '因此，閱讀角能增加接觸書本的機會。'], hint: '先是觀點，中間補充原因，最後才下結論。' },
+        { structure: '事件發展', order: ['小明發現自己的水樽不見了。', '他先回到剛才上課的課室查看。', '最後，他在課室門旁找回水樽。'], hint: '先出現問題，之後採取行動，最後解決問題。' }
+      ]
+    },
+    redundancy: {
+      icon: '✂️', title: '文章冗詞除錯', description: '找出句子中重複、贅餘的字詞，令表達更精準。', focus: '語句精煉與自我監控', accent: 'orange',
+      rounds: [
+        { sentence: '我親眼目睹看見那場比賽。', answer: '看見', choices: ['看見', '親眼', '比賽'], hint: '「目睹」本身已經有親眼看見的意思。' },
+        { sentence: '同學們互相彼此幫助，完成任務。', answer: '彼此', choices: ['彼此', '幫助', '任務'], hint: '「互相」和「彼此」的意思相近，留下一個便足夠。' },
+        { sentence: '我們一起共同完成這份報告。', answer: '共同', choices: ['共同', '完成', '報告'], hint: '「一起」已經表達大家共同合作的意思。' },
+        { sentence: '這項新安排帶來完全徹底的改變。', answer: '徹底', choices: ['徹底', '安排', '改變'], hint: '「完全」和「徹底」都在加強程度，選一個便可。' },
+        { sentence: '請先預先報名，才可以參加活動。', answer: '預先', choices: ['預先', '報名', '活動'], hint: '「先」已經表示在活動前做，毋須再加「預先」。' },
+        { sentence: '凌晨半夜，我還在溫習。', answer: '半夜', choices: ['半夜', '溫習', '凌晨'], hint: '「凌晨」已說明深夜到清晨的時間，另一個時間詞重複了。' },
+        { sentence: '他最後終於完成了閱讀報告。', answer: '最後', choices: ['最後', '閱讀', '完成'], hint: '「終於」已表示經過一段時間才完成，毋須再用「最後」。' },
+        { sentence: '學校免費送贈禮物給參加者。', answer: '贈', choices: ['贈', '學校', '參加者'], hint: '「送」和「贈」都表示把東西給別人，留下其中一個就清楚。' },
+        { sentence: '目前現在，圖書館正在整理新書。', answer: '現在', choices: ['現在', '圖書館', '整理'], hint: '「目前」就是現在這段時間，不用同時使用兩個時間詞。' },
+        { sentence: '老師再次重新講解這個步驟。', answer: '重新', choices: ['重新', '講解', '步驟'], hint: '「再次」和「重新」都表示又做一次，刪走其中一個。' }
+      ]
+    },
+    rhetoric: {
+      icon: '🏷️', title: '修辭手法分類卡', description: '把句子分類到比喻、擬人或排比，讀出文字的表意方式。', focus: '修辭辨識與文本分析', accent: 'pink',
+      rounds: [
+        { sentence: '月亮像一盞銀燈，照亮安靜的校園。', answer: '比喻', choices: ['比喻', '擬人', '排比'], hint: '句子用「像」把月亮比作銀燈。' },
+        { sentence: '春風輕輕拍著窗戶，提醒我們季節轉換了。', answer: '擬人', choices: ['擬人', '排比', '比喻'], hint: '風不會真的拍窗或提醒人，這是把人的動作給了風。' },
+        { sentence: '我們要準時交功課、準備好用品、尊重每一位同學。', answer: '排比', choices: ['排比', '比喻', '擬人'], hint: '三個結構相近的行動連續排列，形成有節奏的表達。' },
+        { sentence: '書本是通往不同世界的窗口。', answer: '比喻', choices: ['比喻', '排比', '擬人'], hint: '書本不是實際的窗口，句子把它比作能看見世界的窗口。' },
+        { sentence: '小草從泥土裡探出頭來，好奇地望著天空。', answer: '擬人', choices: ['擬人', '比喻', '排比'], hint: '小草沒有眼睛，卻被寫成會探頭、望天空，這是人的行為。' },
+        { sentence: '健康來自均衡飲食、適量運動和充足睡眠。', answer: '排比', choices: ['排比', '擬人', '比喻'], hint: '三項名詞短語並列，清楚列出健康的三個部分。' },
+        { sentence: '雨點像跳動的音符，在地面奏出節拍。', answer: '比喻', choices: ['比喻', '擬人', '排比'], hint: '雨點被比作音符，關鍵線索是「像」。' },
+        { sentence: '太陽慢慢爬上山頭，向每個人送上早晨的問候。', answer: '擬人', choices: ['擬人', '排比', '比喻'], hint: '太陽被寫成會爬山、問候人，是把人的動作賦予它。' },
+        { sentence: '閱讀讓我們認識知識、理解別人、想像未來。', answer: '排比', choices: ['排比', '比喻', '擬人'], hint: '三個「閱讀讓我們……」的效果並列，形成整齊的節奏。' },
+        { sentence: '記憶像一個收藏箱，保存著成長中的片段。', answer: '比喻', choices: ['比喻', '排比', '擬人'], hint: '記憶不是實物箱子，這裡用收藏箱說明它保存片段的作用。' }
+      ]
+    },
+    idiom: {
+      icon: '🖼️', title: '成語圖解猜謎', description: '根據意象猜出成語，再找出正確寫法來修正諧音錯字。', focus: '成語意象與正字法', accent: 'blue',
+      rounds: [
+        { visual: '🐍➕🦶', riddle: '畫好蛇後，卻為牠多畫幾隻腳。', wrong: '畫蛇填足', answer: '畫蛇添足', choices: ['畫蛇添足', '杯弓蛇影', '對牛彈琴'], hint: '做事已完成又加上不需要的部分，反而弄巧成拙。' },
+        { visual: '🌳🐇', riddle: '有人只坐在樹樁旁，等兔子再次撞過來。', wrong: '守株代兔', answer: '守株待兔', choices: ['守株待兔', '亡羊補牢', '狐假虎威'], hint: '故事中的人守著樹樁，等候兔子出現。' },
+        { visual: '🕳️🐸', riddle: '青蛙住在很深的井裡，只看見一小片天空。', wrong: '井底之娃', answer: '井底之蛙', choices: ['井底之蛙', '盲人摸象', '自相矛盾'], hint: '住在井底、視野狹窄的動物是青蛙。' },
+        { visual: '🐮🎻', riddle: '有人對著不懂音樂的牛演奏琴聲。', wrong: '對牛談琴', answer: '對牛彈琴', choices: ['對牛彈琴', '畫蛇添足', '掩耳盜鈴'], hint: '樂器的動作是「彈琴」，不是談話的「談」。' },
+        { visual: '🛡️⚔️', riddle: '賣兵器的人同時說自己的矛最鋒利、盾最堅固。', wrong: '自相毛盾', answer: '自相矛盾', choices: ['自相矛盾', '守株待兔', '杯弓蛇影'], hint: '矛和盾的說法互相衝突，形成前後不一致。' },
+        { visual: '👂🔔', riddle: '小偷掩住自己的耳朵，以為別人聽不到鈴聲。', wrong: '掩耳盜零', answer: '掩耳盜鈴', choices: ['掩耳盜鈴', '亡羊補牢', '盲人摸象'], hint: '圖片中會發出聲音的物品是鈴，不是數量的「零」。' },
+        { visual: '🦊🐯', riddle: '狐狸借著老虎的威風，令其他動物害怕。', wrong: '狐假虎危', answer: '狐假虎威', choices: ['狐假虎威', '畫蛇添足', '對牛彈琴'], hint: '老虎令人害怕的是「威風」，所以用「威」。' },
+        { visual: '🐑🏠🔧', riddle: '羊走失後，人立刻把羊圈修好。', wrong: '亡羊補勞', answer: '亡羊補牢', choices: ['亡羊補牢', '守株待兔', '自相矛盾'], hint: '關羊的地方叫羊「牢」，不是工作的「勞」。' },
+        { visual: '🍵🏹🐍', riddle: '杯中弓的倒影，看起來像一條蛇。', wrong: '杯弓蛇映', answer: '杯弓蛇影', choices: ['杯弓蛇影', '井底之蛙', '掩耳盜鈴'], hint: '杯裡看見的是弓的「影」，不是照相的映像。' },
+        { visual: '🙈🐘', riddle: '幾個看不見的大人各摸到大象的一部分，便以為自己知道全貌。', wrong: '忙人摸象', answer: '盲人摸象', choices: ['盲人摸象', '狐假虎威', '亡羊補牢'], hint: '故事人物是視覺受限制的「盲人」，不是忙碌的人。' }
+      ]
+    },
+    mainIdea: {
+      icon: '🔍', title: '主旨提煉篩選器', description: '閱讀短文後，篩走太廣泛或太細節的選項，選出核心主旨。', focus: '摘要策略與訊息篩選', accent: 'yellow',
+      rounds: [
+        { passage: '學校在操場旁設置飲水機，並提醒同學自備水樽。這樣不但方便補充水分，也可減少使用即棄膠樽。', answer: '學校以飲水機和自備水樽兼顧健康及環保。', choices: ['學校以飲水機和自備水樽兼顧健康及環保。', '操場旁有一部飲水機。', '所有膠樽都不應使用。'], hint: '找能同時包括飲水和減少膠樽的句子，而不是只抽出一個細節。' },
+        { passage: '閱讀小組每星期選一本短書分享。成員會先寫下問題，再在討論時引用書中的內容回應。大家慢慢學會用證據表達意見。', answer: '閱讀小組透過討論和引用內容培養有根據的表達。', choices: ['閱讀小組透過討論和引用內容培養有根據的表達。', '小組每星期只讀一本短書。', '所有討論都比閱讀重要。'], hint: '重點在於小組怎樣幫助大家表達，不只是星期或書的數量。' },
+        { passage: '有同學做報告時一次打開太多網頁，結果找不到重點。老師建議先列問題，只保留相關頁面，再把資料寫成三個要點。', answer: '分步整理資料可減少分心並找出報告重點。', choices: ['分步整理資料可減少分心並找出報告重點。', '網頁的數量永遠不可以超過三個。', '老師喜歡列問題。'], hint: '看清楚老師建議的目的：減少分心、整理重點。' },
+        { passage: '社區服務前，義工先學習向長者問候和聆聽。活動時，他們不急著給建議，而是先問對方需要甚麼。', answer: '服務別人前要先學習尊重地聆聽和了解需要。', choices: ['服務別人前要先學習尊重地聆聽和了解需要。', '長者不需要任何建議。', '義工只要會問候便足夠。'], hint: '主旨應包括服務時的態度和先了解需要，不要只抓一個動作。' },
+        { passage: '班會討論課室噪音問題。大家提出把聊天時間安排在小息、上課時把電話調靜音，以及設置安靜閱讀角。', answer: '班會以多項具體安排改善課室的學習環境。', choices: ['班會以多項具體安排改善課室的學習環境。', '電話一定要永遠關掉。', '安靜閱讀角是唯一的解決方法。'], hint: '三個做法都指向同一件事：改善學習時的環境。' },
+        { passage: '小明溫習時先看目標，再設定十五分鐘計時器。時間到後他喝水休息，然後回到下一小題。這讓他較容易開始和持續。', answer: '短時段目標與休息交替有助維持溫習專注。', choices: ['短時段目標與休息交替有助維持溫習專注。', '小明只喜歡喝水。', '溫習一定要用十五分鐘。'], hint: '看方法帶來的整體效果，而不是只記住十五分鐘或喝水。' },
+        { passage: '圖書館新增簡易標誌：藍色代表借書、綠色代表還書、黃色代表查詢。剛到圖書館的同學能較快找到需要的服務。', answer: '清楚的視覺標誌能幫助使用者快速找到服務。', choices: ['清楚的視覺標誌能幫助使用者快速找到服務。', '藍色是最好的顏色。', '每個圖書館都有黃色標誌。'], hint: '顏色只是例子；重點是視覺標誌如何協助找服務。' },
+        { passage: '校園種植計畫由同學輪流澆水、記錄植物高度，並在每月分享觀察。即使有植物生長較慢，大家仍會比較不同的照顧方法。', answer: '種植計畫讓同學透過持續觀察學習照顧與比較。', choices: ['種植計畫讓同學透過持續觀察學習照顧與比較。', '所有植物都會長得很快。', '同學每月只做一次記錄。'], hint: '主旨涵蓋輪流照顧、記錄和比較，不是單一的成長速度。' },
+        { passage: '準備旅行時，班長把集合時間、地點、聯絡方法寫在同一張清單。出發前，同學再逐項核對，減少遲到和遺漏。', answer: '以清單集中並核對重要資料可減少出發前的遺漏。', choices: ['以清單集中並核對重要資料可減少出發前的遺漏。', '旅行只需要知道集合地點。', '班長要負責所有人的物品。'], hint: '找包含清單、核對和減少遺漏三個核心意思的選項。' },
+        { passage: '有同學讀到不明白的長句時，先找出誰做甚麼，再圈起連接詞，最後把句子分成兩部分理解。難句因而變得較容易處理。', answer: '運用句法和關聯詞支架可幫助理解長難句。', choices: ['運用句法和關聯詞支架可幫助理解長難句。', '每一個長句都只有兩部分。', '只要圈起一個詞便能明白文章。'], hint: '主旨要包括多個理解步驟和它們共同的作用。' }
+      ]
+    }
+  };
+
+  let activeKey = '';
+  let roundIndex = 0;
+  let orderedSegments = [];
+  let segmentOptions = [];
+  let result = { correct: 0, retries: 0, hints: 0 };
+  let completed = false;
+
+  const currentActivity = () => activities[activeKey];
+  const currentRound = () => currentActivity().rounds[roundIndex];
+  const wait = (callback, duration = 1000) => window.setTimeout(callback, duration);
+  const shuffle = (items) => {
+    const output = [...items];
+    for (let index = output.length - 1; index > 0; index -= 1) {
+      const swapIndex = Math.floor(Math.random() * (index + 1));
+      [output[index], output[swapIndex]] = [output[swapIndex], output[index]];
+    }
+    return output;
+  };
+
+  function speak(text) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(String(text).replace(/[「」]/g, ''));
+    utterance.lang = 'zh-HK';
+    utterance.rate = 0.72;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function closeLab() {
+    window.speechSynthesis?.cancel();
+    document.querySelector('.spld-s1-lab-backdrop')?.remove();
+  }
+
+  function shell(content) {
+    return `<div class="spld-s1-lab-backdrop" role="presentation"><section class="spld-s1-lab" role="dialog" aria-modal="true" aria-label="初中讀寫實驗室"><button class="spld-s1-close" type="button" aria-label="關閉初中讀寫實驗室">×</button>${content}</section></div>`;
+  }
+
+  function menuMarkup() {
+    return shell(`<div class="spld-s1-heading"><span class="spld-s1-kicker">初中 S.1–S.3 · SpLD</span><h2>初中讀寫實驗室</h2><p>按今天要練的篇章、修辭或主旨技能直接開始。可以慢慢讀、看提示、換練習或隨時離開。</p></div><div class="spld-s1-menu">${Object.entries(activities).map(([key, activity]) => `<button type="button" class="spld-s1-menu-card ${activity.accent}" data-s1-activity="${key}"><span>${activity.icon}</span><strong>${activity.title}</strong><small>${activity.description}</small><em>10 個短回合</em></button>`).join('')}</div><aside class="spld-s1-low-pressure"><strong>低壓參與：</strong><span>👀 慢慢看句子</span><span>🔊 朗讀題目</span><span>💡 使用提示</span><span>↔ 隨時換練習</span></aside>`);
+  }
+
+  function progressMarkup() {
+    const total = currentActivity().rounds.length;
+    return `<div class="spld-s1-progress"><span>第 ${roundIndex + 1} / ${total} 關</span><div><i style="width:${((roundIndex + 1) / total) * 100}%"></i></div></div>`;
+  }
+
+  function toolsMarkup() {
+    return `<div class="spld-s1-tools"><button type="button" id="spldS1Read">🔊 朗讀題目</button><button type="button" id="spldS1Hint">💡 看提示</button><button type="button" id="spldS1Back">← 換一項練習</button></div>`;
+  }
+
+  function choiceGridMarkup(choices) {
+    return `<div class="spld-s1-choice-grid">${choices.map((choice, index) => `<button type="button" class="spld-s1-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
+  }
+
+  function connectorMarkup(round) {
+    return `<div class="spld-s1-connector-scene"><span>關係類別</span><strong>${round.category}</strong></div><p class="spld-s1-sentence"><span>${round.before}</span><b>＿＿</b><span>${round.after}</span></p><p class="spld-s1-prompt">轉一轉關聯詞，哪一個最能連接前後句？</p>${choiceGridMarkup(round.choices)}`;
+  }
+
+  function paragraphMarkup(round) {
+    return `<div class="spld-s1-structure"><span>排列方式</span><strong>${round.structure}</strong><small>已排好 ${orderedSegments.length} / ${round.order.length} 句</small></div><p class="spld-s1-prompt">逐句選出最合適的先後次序。已選的句子會依次放到上方。</p><div class="spld-s1-order-slots">${round.order.map((_, index) => `<div class="spld-s1-order-slot ${orderedSegments[index] ? 'filled' : ''}"><span>${index + 1}</span><strong>${orderedSegments[index] || '？'}</strong></div>`).join('')}</div><div class="spld-s1-segment-bank">${segmentOptions.map((segment) => `<button type="button" class="spld-s1-segment ${orderedSegments.includes(segment) ? 'used' : ''}" data-s1-segment="${segment}" ${orderedSegments.includes(segment) ? 'disabled' : ''}>${segment}</button>`).join('')}</div>`;
+  }
+
+  function redundancyMarkup(round) {
+    return `<div class="spld-s1-proof-scene"><span>原句</span><p>${round.sentence}</p></div><p class="spld-s1-prompt">哪一個字詞重複了意思，可以刪走令句子更精準？</p>${choiceGridMarkup(round.choices)}`;
+  }
+
+  function rhetoricMarkup(round) {
+    return `<div class="spld-s1-rhetoric-scene"><span>句子卡</span><p>「${round.sentence}」</p></div><p class="spld-s1-prompt">這一句最主要使用哪一種修辭手法？</p>${choiceGridMarkup(round.choices)}`;
+  }
+
+  function idiomMarkup(round) {
+    return `<div class="spld-s1-idiom-scene"><span>${round.visual}</span><p>${round.riddle}</p></div><div class="spld-s1-misspelling">常見錯寫：<strong>${round.wrong}</strong></div><p class="spld-s1-prompt">看圖猜成語，再選出正確的寫法。</p>${choiceGridMarkup(round.choices)}`;
+  }
+
+  function mainIdeaMarkup(round) {
+    return `<article class="spld-s1-passage"><span>短文</span><p>${round.passage}</p></article><p class="spld-s1-prompt">篩走太細節或太絕對的選項，哪一句最能概括主旨？</p>${choiceGridMarkup(round.choices)}`;
+  }
+
+  function playAreaMarkup(round) {
+    if (activeKey === 'connector') return connectorMarkup(round);
+    if (activeKey === 'paragraph') return paragraphMarkup(round);
+    if (activeKey === 'redundancy') return redundancyMarkup(round);
+    if (activeKey === 'rhetoric') return rhetoricMarkup(round);
+    if (activeKey === 'idiom') return idiomMarkup(round);
+    return mainIdeaMarkup(round);
+  }
+
+  function feedback(message, state = '') {
+    const panel = document.querySelector('#spldS1Feedback');
+    if (!panel) return;
+    panel.className = `spld-s1-feedback ${state}`;
+    panel.textContent = message;
+  }
+
+  function renderRound() {
+    const activity = currentActivity();
+    const round = currentRound();
+    const dialog = document.querySelector('.spld-s1-lab');
+    if (!dialog) return;
+    dialog.innerHTML = `<button class="spld-s1-close" type="button" aria-label="關閉初中讀寫實驗室">×</button><div class="spld-s1-heading compact"><span class="spld-s1-kicker">${activity.focus}</span><h2>${activity.icon} ${activity.title}</h2><p>${activity.description}</p></div>${progressMarkup()}<div class="spld-s1-play-area">${playAreaMarkup(round)}</div><div class="spld-s1-feedback" id="spldS1Feedback">慢慢看一看；不知道時可以按提示。</div>${toolsMarkup()}`;
+    bindRound(round);
+  }
+
+  function readRound(round) {
+    if (activeKey === 'connector') return `關聯詞轉盤。${round.before}，空格，${round.after}。請選出最合適的${round.category}關聯詞。`;
+    if (activeKey === 'paragraph') return `段落結構大洗牌。請把句子按${round.structure}排列。${round.order.join('。')}`;
+    if (activeKey === 'redundancy') return `文章冗詞除錯。${round.sentence}。請找出可以刪走的重複字詞。`;
+    if (activeKey === 'rhetoric') return `修辭手法分類卡。${round.sentence}。請選擇比喻、擬人或排比。`;
+    if (activeKey === 'idiom') return `成語圖解猜謎。${round.riddle}。常見錯寫是${round.wrong}。請選出正確成語。`;
+    return `主旨提煉篩選器。${round.passage}。請選出最能概括主旨的句子。`;
+  }
+
+  function bindRound(round) {
+    document.querySelector('.spld-s1-close')?.addEventListener('click', closeLab);
+    document.querySelector('#spldS1Read')?.addEventListener('click', () => speak(readRound(round)));
+    document.querySelector('#spldS1Hint')?.addEventListener('click', () => {
+      result.hints += 1;
+      feedback(`💡 ${round.hint}`, 'hint');
+      speak(round.hint);
+    });
+    document.querySelector('#spldS1Back')?.addEventListener('click', openMenu);
+    if (activeKey === 'paragraph') {
+      document.querySelectorAll('[data-s1-segment]').forEach((button) => button.addEventListener('click', () => chooseSegment(button.dataset.s1Segment, round)));
+      return;
+    }
+    document.querySelectorAll('.spld-s1-choice').forEach((button) => button.addEventListener('click', () => chooseChoice(button, round)));
+  }
+
+  function successText(round, choice) {
+    if (activeKey === 'connector') return `「${choice}」把前後句的${round.category}關係連起來了。`;
+    if (activeKey === 'redundancy') return `移除「${choice}」後，句子的意思已經足夠清楚。`;
+    if (activeKey === 'rhetoric') return `這句是${choice}：留意文字如何產生畫面、動作或節奏。`;
+    if (activeKey === 'idiom') return `「${choice}」的字形和意思都正確。`;
+    return `這一句能包括短文最重要的內容，不只是一個細節。`;
+  }
+
+  function retryText() {
+    if (activeKey === 'connector') return '先看兩句是相反、原因結果，還是補充更多意思，再試一次。';
+    if (activeKey === 'redundancy') return '慢慢比較：哪兩個字詞其實在說同一件事？';
+    if (activeKey === 'rhetoric') return '看看句中有沒有「像」、人的動作，或三個結構相近的部分。';
+    if (activeKey === 'idiom') return '再看一看圖中的關鍵物件，也留意同音字是否寫對。';
+    return '找能同時包括多個重點的句子，避免只選一個細節。';
+  }
+
+  function chooseChoice(button, round) {
+    if (button.disabled) return;
+    const choice = button.dataset.choice;
+    if (choice === round.answer) {
+      result.correct += 1;
+      button.classList.add('correct');
+      const message = successText(round, choice);
+      feedback(`✓ ${message}`, 'success');
+      speak(`答對了。${message}`);
+      wait(nextRound);
+      return;
+    }
+    result.retries += 1;
+    button.classList.add('wrong');
+    const message = retryText();
+    feedback(message, 'try');
+    speak(message);
+    wait(() => button.classList.remove('wrong'), 760);
+  }
+
+  function chooseSegment(segment, round) {
+    if (orderedSegments.includes(segment)) return;
+    orderedSegments.push(segment);
+    if (orderedSegments.length < round.order.length) {
+      renderRound();
+      feedback(`已放到第 ${orderedSegments.length} 格。慢慢看下一句。`, 'success');
+      return;
+    }
+    const correct = orderedSegments.every((item, index) => item === round.order[index]);
+    if (correct) {
+      result.correct += 1;
+      renderRound();
+      feedback(`✓ 你已按「${round.structure}」排好整段內容。`, 'success');
+      speak(`答對了。你已按${round.structure}排好整段內容。`);
+      wait(nextRound);
+      return;
+    }
+    result.retries += 1;
+    renderRound();
+    feedback('這個次序還可以再想一想。先找時間詞、問題或主要觀點，再試一次。', 'try');
+    speak('這個次序還可以再想一想。慢慢重新排列也可以。');
+    wait(() => { orderedSegments = []; renderRound(); }, 900);
+  }
+
+  function prepareRoundState() {
+    orderedSegments = [];
+    segmentOptions = activeKey === 'paragraph' ? shuffle(currentRound().order) : [];
+  }
+
+  function nextRound() {
+    if (roundIndex < currentActivity().rounds.length - 1) {
+      roundIndex += 1;
+      prepareRoundState();
+      renderRound();
+      return;
+    }
+    finish();
+  }
+
+  function finish() {
+    if (completed) return;
+    completed = true;
+    const activity = currentActivity();
+    const total = activity.rounds.length;
+    document.dispatchEvent(new CustomEvent('spld-s1-lab-complete', { detail: { ...result, activity: activity.title } }));
+    const dialog = document.querySelector('.spld-s1-lab');
+    if (!dialog) return;
+    dialog.innerHTML = `<button class="spld-s1-close" type="button" aria-label="關閉初中讀寫實驗室">×</button><div class="spld-s1-result"><span class="spld-s1-kicker">本次讀寫回顧</span><h2>完成 ${activity.title}</h2><p>你已完成 ${total} 個小回合。可以休息、選另一項練習，或回到初中 SpLD 關卡。</p><div class="spld-s1-result-grid"><div><strong>${result.correct} / ${total}</strong><span>完成回合</span></div><div><strong>${result.retries}</strong><span>溫和重試</span></div><div><strong>${result.hints}</strong><span>使用提示</span></div></div><aside>這些數字只協助教師安排下一步，不作比較或評分。</aside><div class="spld-s1-result-actions"><button type="button" id="spldS1TryAgain">↺ 選另一項練習</button><button type="button" id="spldS1Exit">回到初中 SpLD 關卡</button></div></div>`;
+    dialog.querySelector('.spld-s1-close')?.addEventListener('click', closeLab);
+    dialog.querySelector('#spldS1TryAgain')?.addEventListener('click', openMenu);
+    dialog.querySelector('#spldS1Exit')?.addEventListener('click', closeLab);
+  }
+
+  function startActivity(key) {
+    if (!activities[key]) return;
+    activeKey = key;
+    roundIndex = 0;
+    result = { correct: 0, retries: 0, hints: 0 };
+    completed = false;
+    prepareRoundState();
+    renderRound();
+  }
+
+  function openMenu() {
+    closeLab();
+    document.body.insertAdjacentHTML('beforeend', menuMarkup());
+    document.querySelector('.spld-s1-close')?.addEventListener('click', closeLab);
+    document.querySelectorAll('[data-s1-activity]').forEach((button) => button.addEventListener('click', () => startActivity(button.dataset.s1Activity)));
+  }
+
+  function openActivity(key) {
+    if (!activities[key]) return;
+    closeLab();
+    document.body.insertAdjacentHTML('beforeend', shell(''));
+    startActivity(key);
+  }
+
+  function injectStyles() {
+    const style = document.createElement('style');
+    style.textContent = `.spld-s1-lab-backdrop{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto;background:rgba(20,29,53,.7)}.spld-s1-lab{position:relative;width:min(800px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:32px;border-radius:27px;background:#fff;color:#26344b;box-shadow:0 28px 72px rgba(14,21,42,.35)}.spld-s1-close{position:absolute;top:14px;right:16px;min-width:44px;min-height:44px;border:0;border-radius:50%;color:#5c6579;background:#f0f3f8;font-size:28px;line-height:1;cursor:pointer}.spld-s1-heading{padding-right:48px}.spld-s1-heading h2{margin:5px 0 6px;color:#233a60;font-size:29px}.spld-s1-heading p{margin:0;color:#66738a;font-size:17px;line-height:1.68}.spld-s1-kicker{display:block;color:#278a7e;font-size:14px;font-weight:900;letter-spacing:.06em}.spld-s1-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:22px 0}.spld-s1-menu-card{min-height:198px;padding:19px;display:flex;flex-direction:column;gap:7px;border:2px solid #cfe8e1;border-radius:21px;background:#f8fffd;color:#243852;text-align:left;cursor:pointer;transition:transform .16s,box-shadow .16s}.spld-s1-menu-card:hover{transform:translateY(-3px);box-shadow:0 13px 26px rgba(30,112,97,.13)}.spld-s1-menu-card.violet{border-color:#ddd5fb;background:#fbfaff}.spld-s1-menu-card.orange{border-color:#f3d7a9;background:#fffaf2}.spld-s1-menu-card.pink{border-color:#ebc5d9;background:#fff8fb}.spld-s1-menu-card.blue{border-color:#c6d9f3;background:#f7faff}.spld-s1-menu-card.yellow{border-color:#ead99d;background:#fffdf3}.spld-s1-menu-card>span{font-size:37px}.spld-s1-menu-card strong{font-size:21px}.spld-s1-menu-card small{color:#617086;line-height:1.55}.spld-s1-menu-card em{margin-top:auto;color:#2b887d;font-style:normal;font-weight:850}.spld-s1-low-pressure{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:13px 15px;border-radius:15px;background:#eff8f7;color:#35655e;font-size:14px}.spld-s1-low-pressure span{padding:5px 8px;border-radius:99px;background:#fff}.spld-s1-progress{display:flex;align-items:center;gap:12px;margin:21px 0 14px;color:#3b766e;font-size:15px;font-weight:850}.spld-s1-progress>div{height:8px;flex:1;overflow:hidden;border-radius:99px;background:#dcece9}.spld-s1-progress i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#249b8c,#63c9ae)}.spld-s1-play-area{padding:21px;border:1px solid #d7ebe6;border-radius:21px;background:linear-gradient(145deg,#fbfffe,#eff9f7)}.spld-s1-connector-scene,.spld-s1-structure,.spld-s1-proof-scene,.spld-s1-rhetoric-scene,.spld-s1-idiom-scene,.spld-s1-passage{padding:16px;border-radius:17px;background:#fff;color:#2e4a69}.spld-s1-connector-scene,.spld-s1-structure{display:flex;align-items:center;justify-content:center;gap:12px}.spld-s1-connector-scene span,.spld-s1-structure span,.spld-s1-proof-scene>span,.spld-s1-rhetoric-scene>span,.spld-s1-passage>span{color:#39776e;font-size:12px;font-weight:900}.spld-s1-connector-scene strong,.spld-s1-structure strong{color:#23796d;font-size:24px}.spld-s1-structure small{color:#617286;font-weight:750}.spld-s1-sentence{margin:20px 0 6px;color:#203752;font-size:21px;font-weight:850;line-height:1.65;text-align:center}.spld-s1-sentence b{display:inline-block;min-width:62px;color:#23796d;border-bottom:3px solid #68b8ac;text-align:center}.spld-s1-prompt{margin:18px 0 14px;color:#203752;font-size:20px;font-weight:850;line-height:1.58}.spld-s1-choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.spld-s1-choice{min-height:104px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:2px solid #a7d9cf;border-radius:16px;background:#fff;color:#276a62;cursor:pointer}.spld-s1-choice span{font-size:12px;font-weight:850}.spld-s1-choice strong{padding:0 8px;font-size:21px;line-height:1.38;text-align:center}.spld-s1-choice.correct{border-color:#44a873;background:#ebf9ef;color:#246d48}.spld-s1-choice.wrong{border-color:#d47d7d;background:#fff0f0;color:#9b4d4d}.spld-s1-order-slots{display:grid;gap:9px;margin:0 0 14px}.spld-s1-order-slot{min-height:58px;display:flex;align-items:center;gap:12px;padding:11px 13px;border:2px dashed #bfb5e8;border-radius:14px;background:#fff;color:#6a6385}.spld-s1-order-slot.filled{border-style:solid;border-color:#8f7cdc;background:#f5f2ff;color:#47398d}.spld-s1-order-slot span{display:grid;place-items:center;min-width:28px;height:28px;border-radius:50%;background:#edeaff;color:#51458f;font-size:13px;font-weight:900}.spld-s1-order-slot strong{font-size:16px;line-height:1.5}.spld-s1-segment-bank{display:grid;gap:9px}.spld-s1-segment{min-height:54px;padding:11px 13px;border:2px solid #b9afe7;border-radius:13px;background:#fff;color:#4d3e9b;font-size:16px;font-weight:800;line-height:1.48;text-align:left;cursor:pointer}.spld-s1-segment.used{opacity:.42}.spld-s1-proof-scene p,.spld-s1-rhetoric-scene p,.spld-s1-idiom-scene p,.spld-s1-passage p{margin:8px 0 0;font-size:20px;font-weight:850;line-height:1.65}.spld-s1-misspelling{margin-top:12px;padding:11px 13px;border-radius:13px;background:#fff4e9;color:#8e5715;font-size:16px}.spld-s1-misspelling strong{margin-left:4px;font-size:19px}.spld-s1-idiom-scene{text-align:center}.spld-s1-idiom-scene>span{display:block;font-size:50px;letter-spacing:4px}.spld-s1-passage{border-left:5px solid #5b9d93}.spld-s1-feedback{min-height:27px;margin:14px 0;color:#5e6f82;font-size:17px;line-height:1.68}.spld-s1-feedback.success{color:#25714f;font-weight:850}.spld-s1-feedback.try{color:#9b4d4d;font-weight:850}.spld-s1-feedback.hint{color:#896313;font-weight:850}.spld-s1-tools,.spld-s1-result-actions{display:flex;flex-wrap:wrap;gap:9px}.spld-s1-tools button,.spld-s1-result-actions button{min-height:50px;padding:10px 13px;border:1px solid #c9ded9;border-radius:11px;background:#fff;color:#26776d;font-size:16px;font-weight:850;cursor:pointer}.spld-s1-tools button:first-child,.spld-s1-result-actions button:first-child{border-color:#248e81;background:#248e81;color:#fff}.spld-s1-result{padding-top:14px;text-align:center}.spld-s1-result h2{margin:6px 0;color:#233a60;font-size:29px}.spld-s1-result>p{color:#617286;font-size:17px;line-height:1.6}.spld-s1-result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:22px 0}.spld-s1-result-grid div{padding:14px;border-radius:16px;background:#eef9f7}.spld-s1-result-grid strong{display:block;color:#277c70;font-size:25px}.spld-s1-result-grid span{color:#5a6d7b;font-size:13px}.spld-s1-result aside{padding:12px;border-radius:13px;background:#eef5ff;color:#405d7c;font-size:14px;line-height:1.5}.spld-s1-choice:focus-visible,.spld-s1-segment:focus-visible,.spld-s1-menu-card:focus-visible{outline:4px solid #245ba7;outline-offset:3px}@media(max-width:620px){.spld-s1-lab{padding:26px 16px;border-radius:22px}.spld-s1-menu{grid-template-columns:1fr}.spld-s1-menu-card{min-height:156px}.spld-s1-heading h2,.spld-s1-result h2{font-size:27px;line-height:1.32}.spld-s1-heading p{font-size:16px}.spld-s1-prompt{font-size:20px}.spld-s1-sentence,.spld-s1-proof-scene p,.spld-s1-rhetoric-scene p,.spld-s1-idiom-scene p,.spld-s1-passage p{font-size:19px}.spld-s1-choice-grid{gap:8px}.spld-s1-choice{min-height:100px}.spld-s1-choice strong{font-size:19px}.spld-s1-order-slot strong{font-size:15px}.spld-s1-segment{font-size:16px}.spld-s1-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}.spld-s1-tools button:last-child{grid-column:span 2}.spld-s1-result-grid{gap:7px}.spld-s1-result-grid strong{font-size:21px}}@media(min-width:621px) and (max-width:820px){.spld-s1-lab{width:min(760px,calc(100% - 28px));padding:30px}.spld-s1-choice{min-height:110px}.spld-s1-prompt{font-size:21px}}`;
+    document.head.appendChild(style);
+  }
+
+  window.SPLD_S1_LAB = {
+    activityCards() {
+      return Object.entries(activities).map(([key, activity]) => ({
+        id: `spld-s1-${key}`,
+        s1ActivityKey: key,
+        lab: 's1',
+        category: 'cognition',
+        categoryName: '初中 · SpLD 篇章與表意',
+        tone: ({ connector: 'teal', paragraph: 'purple', redundancy: 'orange', rhetoric: 'pink', idiom: 'blue', mainIdea: 'yellow' })[key] || 'purple',
+        icon: activity.icon,
+        title: activity.title,
+        description: activity.description,
+        tag: `S1–S3 · ${activity.focus}`,
+        supports: ['1'],
+        rounds: activity.rounds
+      }));
+    },
+    openActivity,
+    openMenu
+  };
+
+  injectStyles();
+})();
