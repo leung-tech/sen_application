@@ -1,0 +1,486 @@
+(function () {
+  const activities = {
+    morpheme: {
+      icon: '🔗',
+      title: '語素接龍',
+      description: '從核心語素延伸詞語，再按意思放到正確類別。',
+      focus: '語素意識與詞彙網絡',
+      accent: 'teal',
+      rounds: [
+        { core: '車', category: '交通工具', prompt: '以「車」延伸詞語。哪一個最適合放入「交通工具」？', choices: ['火車', '車票', '車廂'], answer: '火車', hint: '火車本身可以載人或載貨，是一種交通工具。', meaning: '車 → 火車、車票、車廂' },
+        { core: '書', category: '可背著裝書的物品', prompt: '以「書」延伸詞語。哪一個最適合放入「可背著裝書的物品」？', choices: ['書包', '書店', '書架'], answer: '書包', hint: '書包可以背著，也可以把課本放進去。', meaning: '書 → 書包、書店、書架' },
+        { core: '場', category: '進行運動的地方', prompt: '以「場」延伸詞語。哪一個最適合放入「進行運動的地方」？', choices: ['球場', '場地', '市場'], answer: '球場', hint: '踢球、打球常會在球場進行。', meaning: '場 → 球場、市場、場地' },
+        { core: '手', category: '保護雙手的物品', prompt: '以「手」延伸詞語。哪一個最適合放入「保護雙手的物品」？', choices: ['手套', '手冊', '手工'], answer: '手套', hint: '天冷或做家務時，手套可以保護雙手。', meaning: '手 → 手套、手冊、手工' },
+        { core: '電', category: '提供光線的用品', prompt: '以「電」延伸詞語。哪一個最適合放入「提供光線的用品」？', choices: ['電燈', '電車', '電池'], answer: '電燈', hint: '房間變暗時，開電燈可以照明。', meaning: '電 → 電燈、電車、電池' },
+        { core: '口', category: '進入建築物的通道', prompt: '以「口」延伸詞語。哪一個最適合放入「進入建築物的通道」？', choices: ['入口', '出口', '口罩'], answer: '入口', hint: '要走進一個地方，就找「入口」。', meaning: '口 → 入口、出口、口罩' },
+        { core: '學', category: '正在讀書的人', prompt: '以「學」延伸詞語。哪一個最適合放入「正在讀書的人」？', choices: ['學生', '學校', '學期'], answer: '學生', hint: '學生是在學校裡學習的人。', meaning: '學 → 學生、學校、學期' },
+        { core: '校', category: '管理學校的人', prompt: '以「校」延伸詞語。哪一個最適合放入「管理學校的人」？', choices: ['校長', '校服', '校園'], answer: '校長', hint: '校長負責帶領和管理學校。', meaning: '校 → 校長、校服、校園' },
+        { core: '天', category: '反映冷熱或下雨狀況', prompt: '以「天」延伸詞語。哪一個最適合放入「反映冷熱或下雨狀況」？', choices: ['天氣', '天空', '天文'], answer: '天氣', hint: '晴、雨、冷、熱都是天氣的情況。', meaning: '天 → 天氣、天空、天文' },
+        { core: '日', category: '用來安排日期的工具', prompt: '以「日」延伸詞語。哪一個最適合放入「用來安排日期的工具」？', choices: ['日曆', '日常', '日落'], answer: '日曆', hint: '日曆會列出每天的日期，方便安排事情。', meaning: '日 → 日曆、日常、日落' },
+        { level: 'advanced', core: '觀', category: '看事情的角度或想法', prompt: '以「觀」延伸詞語。哪一個最適合放入「看事情的角度或想法」？', choices: ['觀點', '觀察', '觀眾'], answer: '觀點', hint: '討論事情時，每個人可以有不同的「觀點」。', meaning: '觀 → 觀點、觀察、觀眾' },
+        { level: 'advanced', core: '證', category: '支持說法的材料', prompt: '以「證」延伸詞語。哪一個最適合放入「支持說法的材料」？', choices: ['證據', '證書', '證人'], answer: '證據', hint: '提出意見時，可以找資料作為「證據」。', meaning: '證 → 證據、證書、證人' },
+        { level: 'advanced', core: '解', category: '把內容說清楚的行動', prompt: '以「解」延伸詞語。哪一個最適合放入「把內容說清楚的行動」？', choices: ['解釋', '解決', '了解'], answer: '解釋', hint: '如果別人不明白，可以用例子「解釋」意思。', meaning: '解 → 解釋、解決、了解' },
+        { level: 'advanced', core: '資', category: '可供使用的材料、人手或條件', prompt: '以「資」延伸詞語。哪一個最適合放入「可供使用的材料、人手或條件」？', choices: ['資源', '資料', '資本'], answer: '資源', hint: '圖書、時間和人手都可以是可運用的「資源」。', meaning: '資 → 資源、資料、資本' },
+        { level: 'advanced', core: '重', category: '事情最值得關注的部分', prompt: '以「重」延伸詞語。哪一個最適合放入「事情最值得關注的部分」？', choices: ['重點', '重量', '重複'], answer: '重點', hint: '閱讀時先圈出重要的字句，就是找「重點」。', meaning: '重 → 重點、重量、重複' },
+        { level: 'advanced', core: '調', category: '為配合需要而作出的改變', prompt: '以「調」延伸詞語。哪一個最適合放入「為配合需要而作出的改變」？', choices: ['調整', '調查', '強調'], answer: '調整', hint: '如果方法不合適，可以作出「調整」。', meaning: '調 → 調整、調查、強調' },
+        { level: 'advanced', core: '發', category: '把消息或作品正式傳送出去', prompt: '以「發」延伸詞語。哪一個最適合放入「把消息或作品正式傳送出去」？', choices: ['發布', '發展', '發明'], answer: '發布', hint: '學校可以在網站「發布」活動消息。', meaning: '發 → 發布、發展、發明' },
+        { level: 'advanced', core: '效', category: '做事後實際產生的結果', prompt: '以「效」延伸詞語。哪一個最適合放入「做事後實際產生的結果」？', choices: ['效果', '效率', '效力'], answer: '效果', hint: '試用一個方法後，可以看看它有沒有好的「效果」。', meaning: '效 → 效果、效率、效力' },
+        { level: 'advanced', core: '聯', category: '把資料或想法互相接合', prompt: '以「聯」延伸詞語。哪一個最適合放入「把資料或想法互相接合」？', choices: ['聯繫', '聯想', '聯合'], answer: '聯繫', hint: '閱讀時把前後段的意思連起來，就是建立「聯繫」。', meaning: '聯 → 聯繫、聯想、聯合' },
+        { level: 'advanced', core: '評', category: '對事物作出判斷和看法', prompt: '以「評」延伸詞語。哪一個最適合放入「對事物作出判斷和看法」？', choices: ['評價', '評語', '評分'], answer: '評價', hint: '比較兩個方法的好處時，可以作出「評價」。', meaning: '評 → 評價、評語、評分' },
+        { level: 'advanced', core: '行', category: '為完成事情而採取的具體做法', prompt: '以「行」延伸詞語。哪一個最適合放入「為完成事情而採取的具體做法」？', choices: ['行動', '行程', '行人'], answer: '行動', hint: '有了計畫後，下一步就是採取「行動」。', meaning: '行 → 行動、行程、行人' },
+        { level: 'advanced', core: '論', category: '提出並支持看法的文字或說話', prompt: '以「論」延伸詞語。哪一個最適合放入「提出並支持看法的文字或說話」？', choices: ['論述', '論文', '討論'], answer: '論述', hint: '寫作時用理由支持一個看法，就是作出「論述」。', meaning: '論 → 論述、論文、討論' }
+      ]
+    },
+    sentence: {
+      icon: '🧱',
+      title: '句型重組積木',
+      description: '把主語、謂語和賓語積木排好，砌出完整句子。',
+      focus: '主謂賓句法拆解',
+      accent: 'violet',
+      rounds: [
+        { subject: '小明', verb: '閱讀', object: '圖書', hint: '先找「誰」：小明；再找「做甚麼」：閱讀；最後找「甚麼」：圖書。' },
+        { subject: '同學', verb: '完成', object: '專題報告', hint: '先找「誰」：同學；再找動作「完成」；最後找完成了甚麼。' },
+        { subject: '姐姐', verb: '整理', object: '書包', hint: '想一想：姐姐是誰；她正在做整理這個動作；整理的是書包。' },
+        { subject: '老師', verb: '提醒', object: '大家準時交回條', hint: '句子的開頭是做提醒的人；後面是老師提醒大家的內容。' },
+        { subject: '學生', verb: '照顧', object: '植物', hint: '先找人物，再找動作，最後找被照顧的東西。' },
+        { subject: '爸爸', verb: '修理', object: '單車', hint: '誰做修理？爸爸；修理甚麼？單車。' },
+        { subject: '我們', verb: '討論', object: '小組分工', hint: '「我們」是做事的人；討論的是小組分工。' },
+        { subject: '圖書館', verb: '提供', object: '安靜的閱讀空間', hint: '圖書館是句子的主語；它提供的是一個安靜的閱讀空間。' },
+        { subject: '校工', verb: '清潔', object: '課室', hint: '先找「誰」：校工；再找動作「清潔」；最後找地方「課室」。' },
+        { subject: '家人', verb: '準備', object: '晚餐', hint: '家人做的是準備；準備的內容是晚餐。' },
+        { level: 'advanced', subject: '學生', verb: '運用', object: '上下文線索推斷詞義', hint: '誰做運用？學生；運用甚麼？上下文線索；目的是推斷詞義。' },
+        { level: 'advanced', subject: '圖書館', verb: '提供', object: '多元化的學習資源', hint: '圖書館是提供者；提供的是多元化的學習資源。' },
+        { level: 'advanced', subject: '校長', verb: '鼓勵', object: '學生積極參與服務', hint: '先找人物「校長」；再找動作「鼓勵」；最後是鼓勵的內容。' },
+        { level: 'advanced', subject: '研究報告', verb: '說明', object: '調查所得的結果', hint: '研究報告是主語；它說明的是調查所得的結果。' },
+        { level: 'advanced', subject: '小組成員', verb: '整理', object: '訪問記錄和重點', hint: '誰做整理？小組成員；整理的是訪問記錄和重點。' },
+        { level: 'advanced', subject: '班會', verb: '討論', object: '改善課室環境的方法', hint: '班會是討論發生的主體；討論的是改善課室環境的方法。' },
+        { level: 'advanced', subject: '新聞報道', verb: '呈現', object: '事件的不同觀點', hint: '新聞報道是主語；它呈現的是事件的不同觀點。' },
+        { level: 'advanced', subject: '義工', verb: '協助', object: '長者使用電子服務', hint: '義工做協助；協助的對象和內容是長者使用電子服務。' },
+        { level: 'advanced', subject: '我們', verb: '訂立', object: '本學期的閱讀目標', hint: '「我們」是做事的人；訂立的是本學期的閱讀目標。' },
+        { level: 'advanced', subject: '導師', verb: '安排', object: '小組討論的時間', hint: '導師是安排的人；安排的是小組討論的時間。' },
+        { level: 'advanced', subject: '家長', verb: '支持', object: '子女培養閱讀習慣', hint: '家長作出支持；支持的是子女培養閱讀習慣。' },
+        { level: 'advanced', subject: '學校', verb: '推行', object: '環保回收計畫', hint: '學校是推行者；推行的是環保回收計畫。' }
+      ]
+    },
+    collocation: {
+      icon: '🤝',
+      title: '詞語配對連連看',
+      description: '把合適的動詞和名詞配成自然、完整的詞語搭配。',
+      focus: '詞彙搭配與語感',
+      accent: 'orange',
+      rounds: [
+        { verb: '發揮', target: '潛能', choices: ['潛能', '雨傘', '課室'], hint: '「潛能」是人的能力；可以說「發揮潛能」。' },
+        { verb: '培養', target: '習慣', choices: ['習慣', '日期', '馬路'], hint: '每天重複做一件事，可以慢慢「培養習慣」。' },
+        { verb: '遵守', target: '規則', choices: ['規則', '書包', '笑聲'], hint: '校園或比賽都有需要大家「遵守規則」的地方。' },
+        { verb: '提供', target: '機會', choices: ['機會', '帽子', '窗戶'], hint: '學校可以「提供機會」讓同學參加不同活動。' },
+        { verb: '參加', target: '活動', choices: ['活動', '水果', '答案'], hint: '運動日、興趣班都是可以「參加活動」的例子。' },
+        { verb: '完成', target: '任務', choices: ['任務', '天氣', '聲音'], hint: '做完老師交代的工作，就是「完成任務」。' },
+        { verb: '解決', target: '困難', choices: ['困難', '圖書', '校服'], hint: '遇到問題時，我們可以一起想方法「解決困難」。' },
+        { verb: '整理', target: '資料', choices: ['資料', '鼻子', '燈光'], hint: '把筆記、圖片和重點放好，是「整理資料」。' },
+        { verb: '表達', target: '意見', choices: ['意見', '雨水', '座位'], hint: '在小組討論中，可以清楚「表達意見」。' },
+        { verb: '訂立', target: '目標', choices: ['目標', '顏色', '走廊'], hint: '想知道自己要完成甚麼，可以先「訂立目標」。' }
+      ]
+    },
+    context: {
+      icon: '🕵️',
+      title: '上下文偵探',
+      description: '看前後句和情境圖像，推斷被遮蔽的關鍵詞。',
+      focus: '上下文線索與閱讀監控',
+      accent: 'blue',
+      rounds: [
+        { picture: '📚', sentence: '這本圖書很有趣，我想＿＿它借回家。', target: '把', choices: ['把', '向', '比'], hint: '看看「它借回家」：前面需要一個把物件放在動作前的字。' },
+        { picture: '🌧️', sentence: '天色開始變暗，外出時要＿＿雨傘。', target: '帶', choices: ['帶', '畫', '洗'], hint: '下雨時，要把雨傘拿在身邊，所以選「帶」。' },
+        { picture: '📅', sentence: '活動通知寫著星期五交回條，大家要＿＿時間。', target: '留意', choices: ['留意', '忘記', '跳過'], hint: '通知有截止日期，要先看清和記住時間。' },
+        { picture: '🥤', sentence: '阿明忘了帶水樽，天氣很熱，他需要＿＿水分。', target: '補充', choices: ['補充', '減少', '隱藏'], hint: '天氣很熱時，身體需要喝水來補回水分。' },
+        { picture: '👥', sentence: '小組報告明天進行，大家今天要＿＿分工。', target: '確認', choices: ['確認', '丟掉', '取消'], hint: '報告前要知道每個人負責甚麼，所以先看清分工。' },
+        { picture: '🤫', sentence: '圖書館內要保持安靜，說話時應＿＿聲量。', target: '放低', choices: ['放低', '提高', '忘記'], hint: '保持安靜表示聲音要小一點。' },
+        { picture: '⏰', sentence: '借書後要看清歸還日，避免＿＿還書。', target: '遲', choices: ['遲', '早', '常'], hint: '如果錯過歸還日，就是太遲才還書。' },
+        { picture: '📝', sentence: '老師展示步驟後，先＿＿第一步再開始。', target: '閱讀', choices: ['閱讀', '刪除', '跳走'], hint: '要按步驟做，先仔細看清第一步的內容。' },
+        { picture: '🧥', sentence: '天氣轉冷，出門前應＿＿外套。', target: '穿上', choices: ['穿上', '放下', '借走'], hint: '冷的時候，要把外套穿在身上保暖。' },
+        { picture: '✅', sentence: '交功課前要＿＿姓名和日期有沒有寫好。', target: '檢查', choices: ['檢查', '遮住', '猜想'], hint: '交出前再看一次，是為了確保沒有遺漏。' }
+      ]
+    },
+    memory: {
+      icon: '🃏',
+      title: '同反義詞翻牌',
+      description: '翻開詞語卡，找出意思相同或相反的兩張卡。',
+      focus: '同反義詞與語義網絡',
+      accent: 'pink',
+      rounds: [
+        { relation: '同義詞', pairs: [['快樂', '開心'], ['安靜', '寧靜']], hint: '同義詞的意思相近；想一想兩個詞讀起來會不會表達相同感受。' },
+        { relation: '反義詞', pairs: [['開始', '結束'], ['困難', '容易']], hint: '反義詞的意思相反；一個詞出現時，另一個詞常表示相反情況。' },
+        { relation: '同義詞', pairs: [['幫助', '協助'], ['快速', '迅速']], hint: '「幫助」和「協助」的意思很接近；「快速」和「迅速」也是。' },
+        { relation: '反義詞', pairs: [['增加', '減少'], ['安全', '危險']], hint: '數量變多和變少相反；安全與危險的情況也相反。' },
+        { relation: '同義詞', pairs: [['選擇', '挑選'], ['參加', '加入']], hint: '看看兩個詞在句子中是否可以互相替換，意思仍然接近。' },
+        { relation: '反義詞', pairs: [['成功', '失敗'], ['接受', '拒絕']], hint: '完成得好是成功；沒有做到是失敗。接受和拒絕亦是相反意思。' },
+        { relation: '同義詞', pairs: [['整理', '收拾'], ['欣賞', '喜愛']], hint: '整理和收拾都表示把東西放好；欣賞和喜愛都帶有喜歡的意思。' },
+        { relation: '反義詞', pairs: [['上升', '下降'], ['豐富', '貧乏']], hint: '向上和向下相反；多和少也可以表達相反的意思。' },
+        { relation: '同義詞', pairs: [['安排', '規劃'], ['建議', '提議']], hint: '安排和規劃都與事前準備有關；建議和提議都是提出想法。' },
+        { relation: '反義詞', pairs: [['進步', '退步'], ['清楚', '模糊']], hint: '能力變好是進步，變差是退步；看得清楚和模糊亦相反。' }
+      ]
+    },
+    classifier: {
+      icon: '🧮',
+      title: '量詞填空大闖關',
+      description: '為不同名詞選擇精確量詞，完成完整詞組。',
+      focus: '量詞規則與語法準確性',
+      accent: 'yellow',
+      rounds: [
+        { noun: '帽子', target: '頂', choices: ['頂', '本', '條'], picture: '🧢', hint: '帽子戴在頭上，常說「一頂帽子」。' },
+        { noun: '圖書', target: '本', choices: ['本', '把', '枝'], picture: '📘', hint: '書本一頁一頁組成，所以常說「一本圖書」。' },
+        { noun: '鉛筆', target: '枝', choices: ['枝', '輛', '所'], picture: '✏️', hint: '細長的筆可以用「枝」來數。' },
+        { noun: '雨傘', target: '把', choices: ['把', '張', '杯'], picture: '☂️', hint: '有手把可以拿著的雨傘，常說「一把雨傘」。' },
+        { noun: '工作紙', target: '張', choices: ['張', '件', '頂'], picture: '📄', hint: '薄薄一頁紙，常用「張」來數。' },
+        { noun: '外套', target: '件', choices: ['件', '本', '輛'], picture: '🧥', hint: '衣服通常用「件」來數。' },
+        { noun: '單車', target: '輛', choices: ['輛', '枝', '條'], picture: '🚲', hint: '單車是車輛的一種，可以說「一輛單車」。' },
+        { noun: '果汁', target: '杯', choices: ['杯', '所', '把'], picture: '🥤', hint: '倒進杯子裡的飲品，常說「一杯果汁」。' },
+        { noun: '毛巾', target: '條', choices: ['條', '張', '件'], picture: '🧻', hint: '長長的毛巾，可以說「一條毛巾」。' },
+        { noun: '學校', target: '所', choices: ['所', '輛', '枝'], picture: '🏫', hint: '學校、醫院等地方，常用「所」來數。' }
+      ]
+    }
+  };
+
+  let activeKey = '';
+  let roundIndex = 0;
+  let selectedBlocks = [];
+  let blockOptions = [];
+  let flippedCards = [];
+  let matchedPairs = [];
+  let memoryCards = [];
+  let result = { correct: 0, retries: 0, hints: 0 };
+  let completed = false;
+  let selectedDifficulty = 'basic';
+  const difficultySettings = {
+    basic: { label: '初階', description: '常見詞義與三格句型', note: '適合先建立成功經驗。' },
+    advanced: { label: '進階', description: '抽象詞義與較長句子', note: '適合熟悉基本規則後再嘗試。' }
+  };
+
+  const currentActivity = () => activities[activeKey];
+  const isGradedActivity = () => activeKey === 'morpheme' || activeKey === 'sentence';
+  const currentRounds = () => isGradedActivity() ? currentActivity().rounds.filter((round) => (round.level || 'basic') === selectedDifficulty) : currentActivity().rounds;
+  const currentRound = () => currentRounds()[roundIndex];
+  const wait = (callback, duration = 1050) => window.setTimeout(callback, duration);
+
+  function speak(text) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(String(text).replace(/[「」]/g, ''));
+    utterance.lang = 'zh-HK';
+    utterance.rate = 0.72;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function shuffle(items) {
+    const output = [...items];
+    for (let index = output.length - 1; index > 0; index -= 1) {
+      const swapIndex = Math.floor(Math.random() * (index + 1));
+      [output[index], output[swapIndex]] = [output[swapIndex], output[index]];
+    }
+    return output;
+  }
+
+  function closeLab() {
+    window.speechSynthesis?.cancel();
+    document.querySelector('.spld-p4-lab-backdrop')?.remove();
+  }
+
+  function shell(content) {
+    return `<div class="spld-p4-lab-backdrop" role="presentation"><section class="spld-p4-lab" role="dialog" aria-modal="true" aria-label="高小讀寫實驗室"><button class="spld-p4-close" type="button" aria-label="關閉高小讀寫實驗室">×</button>${content}</section></div>`;
+  }
+
+  function progressMarkup() {
+    const rounds = currentRounds();
+    return `<div class="spld-p4-progress"><span>第 ${roundIndex + 1} / ${rounds.length} 關</span><div><i style="width:${((roundIndex + 1) / rounds.length) * 100}%"></i></div></div>`;
+  }
+
+  function toolsMarkup() {
+    return `<div class="spld-p4-tools"><button type="button" id="spldP4Read">🔊 朗讀規則</button><button type="button" id="spldP4Hint">💡 看提示</button><button type="button" id="spldP4Back">← 換一項練習</button></div>`;
+  }
+
+  function menuMarkup() {
+    return shell(`<div class="spld-p4-heading"><span class="spld-p4-kicker">高小 P.4–P.6 · SpLD</span><h2>高小讀寫實驗室</h2><p>按今天要練的技能直接開始。可以慢慢讀、看提示、換練習或隨時離開。</p></div><div class="spld-p4-menu">${Object.entries(activities).map(([key, activity]) => `<button type="button" class="spld-p4-menu-card ${activity.accent}" data-p4-activity="${key}"><span>${activity.icon}</span><strong>${activity.title}</strong><small>${activity.description}</small><em>約 4–6 分鐘</em></button>`).join('')}</div><aside class="spld-p4-low-pressure"><strong>低壓參與：</strong><span>👀 先看結構</span><span>🔊 重聽規則</span><span>💡 使用提示</span><span>↔ 隨時換練習</span></aside>`);
+  }
+
+  function openMenu() {
+    closeLab();
+    document.body.insertAdjacentHTML('beforeend', menuMarkup());
+    document.querySelector('.spld-p4-close')?.addEventListener('click', closeLab);
+    document.querySelectorAll('[data-p4-activity]').forEach((button) => button.addEventListener('click', () => startActivity(button.dataset.p4Activity)));
+  }
+
+  function feedback(message, state = '') {
+    const panel = document.querySelector('#spldP4Feedback');
+    if (!panel) return;
+    panel.className = `spld-p4-feedback ${state}`;
+    panel.textContent = message;
+  }
+
+  function difficultyMarkup() {
+    if (!isGradedActivity()) return '';
+    const setting = difficultySettings[selectedDifficulty];
+    return `<section class="spld-p4-difficulty" aria-label="難度選擇"><div><span>本節難度</span><strong>${setting.label}</strong><small>${setting.description}</small></div><div class="spld-p4-difficulty-buttons" role="group" aria-label="選擇練習難度">${Object.entries(difficultySettings).map(([key, item]) => `<button type="button" class="${selectedDifficulty === key ? 'active' : ''}" data-p4-difficulty="${key}" aria-pressed="${selectedDifficulty === key}">${item.label}<small>${key === 'basic' ? '常見詞／短句' : '抽象詞／長句'}</small></button>`).join('')}</div><p>${setting.note}</p></section>`;
+  }
+
+  function morphemeMarkup(round) {
+    return `<div class="spld-p4-chain"><div class="spld-p4-core"><span>核心語素</span><strong>${round.core}</strong></div><span class="spld-p4-arrow">→</span><div class="spld-p4-category"><span>意思類別</span><strong>${round.category}</strong></div></div><p class="spld-p4-prompt">${round.prompt}</p><p class="spld-p4-meaning">詞彙網絡：${round.meaning}</p><div class="spld-p4-choice-grid">${round.choices.map((choice, index) => `<button type="button" class="spld-p4-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
+  }
+
+  function sentenceMarkup(round) {
+    const labels = ['主語（誰）', '謂語（做甚麼）', '賓語（甚麼）'];
+    return `<div class="spld-p4-sentence-guide"><span>句法積木</span><strong>先找誰 → 做甚麼 → 甚麼</strong></div><p class="spld-p4-prompt">把三塊積木按「主語、謂語、賓語」順序排好。</p><div class="spld-p4-slots">${labels.map((label, index) => `<div class="spld-p4-slot ${selectedBlocks[index] ? 'filled' : ''}"><span>${label}</span><strong>${selectedBlocks[index] || '？'}</strong></div>`).join('')}</div><p class="spld-p4-sentence-preview">${selectedBlocks.length ? selectedBlocks.join(' ') : '完成後，這裡會出現完整句子。'}</p><div class="spld-p4-block-bank">${blockOptions.map((block) => `<button type="button" class="spld-p4-block ${selectedBlocks.includes(block) ? 'used' : ''}" data-block="${block}" ${selectedBlocks.includes(block) ? 'disabled' : ''}>${block}</button>`).join('')}</div>`;
+  }
+
+  function collocationMarkup(round) {
+    return `<div class="spld-p4-collocation-scene"><span>動詞</span><strong>${round.verb}</strong><em>＋</em><b>？</b></div><p class="spld-p4-prompt">「${round.verb}」最適合配哪一個詞語？</p><p class="spld-p4-meaning">把常一起出現的詞語配好，讀起來會更自然。</p>${choiceGridMarkup(round.choices)}`;
+  }
+
+  function contextMarkup(round) {
+    return `<div class="spld-p4-context-scene"><span>${round.picture}</span><p>${round.sentence.replace('＿＿', '<strong>＿＿</strong>')}</p></div><p class="spld-p4-prompt">根據前後句和圖像，選出最合適的關鍵詞。</p>${choiceGridMarkup(round.choices)}`;
+  }
+
+  function classifierMarkup(round) {
+    return `<div class="spld-p4-classifier-scene"><span>${round.picture}</span><strong>一＿＿${round.noun}</strong></div><p class="spld-p4-prompt">「${round.noun}」應該用哪一個精確量詞？</p><p class="spld-p4-meaning">慢慢把量詞和名詞一起讀一遍。</p>${choiceGridMarkup(round.choices)}`;
+  }
+
+  function choiceGridMarkup(choices) {
+    return `<div class="spld-p4-choice-grid">${choices.map((choice, index) => `<button type="button" class="spld-p4-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
+  }
+
+  function prepareMemoryCards(round) {
+    memoryCards = shuffle(round.pairs.flatMap((pair, pairIndex) => [
+      { id: `pair-${roundIndex}-${pairIndex}-a`, pairId: pairIndex, word: pair[0] },
+      { id: `pair-${roundIndex}-${pairIndex}-b`, pairId: pairIndex, word: pair[1] }
+    ]));
+    flippedCards = [];
+    matchedPairs = [];
+  }
+
+  function memoryMarkup(round) {
+    return `<div class="spld-p4-memory-guide"><span>配對類別</span><strong>${round.relation}</strong><small>找出兩組意思${round.relation === '同義詞' ? '相近' : '相反'}的詞語</small></div><p class="spld-p4-prompt">每次翻兩張卡；找到一組後，再找下一組。</p><div class="spld-p4-memory-board">${memoryCards.map((card) => {
+      const revealed = flippedCards.includes(card.id) || matchedPairs.includes(card.pairId);
+      return `<button type="button" class="spld-p4-memory-card ${revealed ? 'revealed' : ''} ${matchedPairs.includes(card.pairId) ? 'matched' : ''}" data-memory-card="${card.id}" ${matchedPairs.includes(card.pairId) ? 'disabled' : ''}><span>${revealed ? card.word : '？'}</span><small>${revealed ? round.relation : '點選翻開'}</small></button>`;
+    }).join('')}</div>`;
+  }
+
+  function renderRound() {
+    const activity = currentActivity();
+    const round = currentRound();
+    const playArea = activeKey === 'morpheme' ? morphemeMarkup(round) : activeKey === 'sentence' ? sentenceMarkup(round) : activeKey === 'collocation' ? collocationMarkup(round) : activeKey === 'context' ? contextMarkup(round) : activeKey === 'memory' ? memoryMarkup(round) : classifierMarkup(round);
+    const heading = `<div class="spld-p4-heading compact"><span class="spld-p4-kicker">${activity.focus}</span><h2>${activity.icon} ${activity.title}</h2><p>${activity.description}</p></div>`;
+    const dialog = document.querySelector('.spld-p4-lab');
+    dialog.innerHTML = `<button class="spld-p4-close" type="button" aria-label="關閉高小讀寫實驗室">×</button>${heading}${difficultyMarkup()}${progressMarkup()}<div class="spld-p4-play-area">${playArea}</div><div class="spld-p4-feedback" id="spldP4Feedback">慢慢看一看；不知道時可以按提示。</div>${toolsMarkup()}`;
+    bindRound(round);
+  }
+
+  function bindRound(round) {
+    document.querySelector('.spld-p4-close')?.addEventListener('click', closeLab);
+    document.querySelector('#spldP4Read')?.addEventListener('click', () => {
+      const readText = activeKey === 'morpheme' ? `${round.prompt}。核心語素是${round.core}，意思類別是${round.category}。` : activeKey === 'sentence' ? '句型重組積木。請把主語、謂語和賓語按正確次序排好。' : activeKey === 'collocation' ? `詞語配對連連看。請為「${round.verb}」選出最合適的詞語。` : activeKey === 'context' ? `上下文偵探。${round.sentence}` : activeKey === 'memory' ? `同反義詞翻牌。請找出兩組意思${round.relation === '同義詞' ? '相近' : '相反'}的詞語。` : `量詞填空大闖關。一＿＿${round.noun}，請選出最合適的量詞。`;
+      speak(readText);
+    });
+    document.querySelector('#spldP4Hint')?.addEventListener('click', () => {
+      result.hints += 1;
+      feedback(`💡 ${round.hint}`, 'hint');
+      speak(round.hint);
+    });
+    document.querySelector('#spldP4Back')?.addEventListener('click', openMenu);
+    document.querySelectorAll('[data-p4-difficulty]').forEach((button) => button.addEventListener('click', () => {
+      const nextDifficulty = button.dataset.p4Difficulty;
+      if (!difficultySettings[nextDifficulty] || nextDifficulty === selectedDifficulty) return;
+      selectedDifficulty = nextDifficulty;
+      roundIndex = 0;
+      selectedBlocks = [];
+      result = { correct: 0, retries: 0, hints: 0 };
+      completed = false;
+      prepareRoundState();
+      renderRound();
+      feedback(`已切換至${difficultySettings[nextDifficulty].label}：${difficultySettings[nextDifficulty].note}`, 'hint');
+      speak(`已切換至${difficultySettings[nextDifficulty].label}練習。`);
+    }));
+    if (activeKey === 'morpheme') {
+      document.querySelectorAll('.spld-p4-choice').forEach((button) => button.addEventListener('click', () => chooseMorpheme(button, round)));
+    } else if (activeKey === 'sentence') {
+      document.querySelectorAll('.spld-p4-block').forEach((button) => button.addEventListener('click', () => chooseSentenceBlock(button.dataset.block, round)));
+    } else if (activeKey === 'memory') {
+      document.querySelectorAll('[data-memory-card]').forEach((button) => button.addEventListener('click', () => chooseMemoryCard(button.dataset.memoryCard, round)));
+    } else {
+      document.querySelectorAll('.spld-p4-choice').forEach((button) => button.addEventListener('click', () => chooseSimpleChoice(button, round)));
+    }
+  }
+
+  function chooseMorpheme(button, round) {
+    if (button.disabled) return;
+    const choice = button.dataset.choice;
+    if (choice === round.answer) {
+      result.correct += 1;
+      button.classList.add('correct');
+      feedback(`✓ ${choice}最符合「${round.category}」。${round.meaning}`, 'success');
+      speak(`答對了。${choice}最符合${round.category}。`);
+      wait(nextRound);
+      return;
+    }
+    result.retries += 1;
+    button.classList.add('wrong');
+    feedback('先看清意思類別，再比較每個由核心語素延伸出的詞。', 'try');
+    speak('先看清意思類別，再慢慢比較每個詞。');
+    wait(() => button.classList.remove('wrong'), 720);
+  }
+
+  function chooseSentenceBlock(block, round) {
+    const answer = [round.subject, round.verb, round.object];
+    const expected = answer[selectedBlocks.length];
+    if (block !== expected) {
+      result.retries += 1;
+      feedback(`先看這一格是「${['主語', '謂語', '賓語'][selectedBlocks.length]}」。慢慢重新排列也可以。`, 'try');
+      speak('先看這一格的句法提示，再慢慢重新排列。');
+      wait(() => { selectedBlocks = []; renderRound(); }, 760);
+      return;
+    }
+    selectedBlocks.push(block);
+    if (selectedBlocks.length < answer.length) {
+      feedback(`✓ 放好了「${block}」。接著看下一格。`, 'success');
+      renderRound();
+      return;
+    }
+    result.correct += 1;
+    feedback(`✓ 句子完成：「${answer.join('')}」。`, 'success');
+    speak(`答對了。${answer.join('')}。`);
+    wait(nextRound);
+  }
+
+  function chooseSimpleChoice(button, round) {
+    const choice = button.dataset.choice;
+    if (choice === round.target) {
+      result.correct += 1;
+      button.classList.add('correct');
+      const successText = activeKey === 'collocation' ? `「${round.verb}${round.target}」是合適的詞語搭配。` : activeKey === 'context' ? `「${round.target}」放進句子後，前後意思就連起來了。` : `「一${round.target}${round.noun}」讀起來正確。`;
+      feedback(`✓ ${successText}`, 'success');
+      speak(`答對了。${successText}`);
+      wait(nextRound);
+      return;
+    }
+    result.retries += 1;
+    button.classList.add('wrong');
+    const retryText = activeKey === 'collocation' ? '先把動詞和每個選項慢慢讀一遍，找最自然的搭配。' : activeKey === 'context' ? '先看圖像和前後句的關鍵詞，再試一次。' : '先把量詞和名詞一起慢慢讀一遍，再試一次。';
+    feedback(retryText, 'try');
+    speak(retryText);
+    wait(() => button.classList.remove('wrong'), 720);
+  }
+
+  function chooseMemoryCard(cardId, round) {
+    if (flippedCards.includes(cardId) || flippedCards.length >= 2) return;
+    flippedCards.push(cardId);
+    renderRound();
+    if (flippedCards.length < 2) return;
+    wait(() => {
+      const [firstId, secondId] = flippedCards;
+      const first = memoryCards.find((card) => card.id === firstId);
+      const second = memoryCards.find((card) => card.id === secondId);
+      if (first?.pairId === second?.pairId) {
+        matchedPairs.push(first.pairId);
+        flippedCards = [];
+        if (matchedPairs.length === round.pairs.length) {
+          result.correct += 1;
+          renderRound();
+          feedback(`✓ 你找到了兩組${round.relation}。`, 'success');
+          speak(`答對了。你找到了兩組${round.relation}。`);
+          wait(nextRound);
+        } else {
+          renderRound();
+          feedback(`✓ 找到一組${round.relation}，再找下一組。`, 'success');
+          speak(`找到一組${round.relation}，再找下一組。`);
+        }
+        return;
+      }
+      result.retries += 1;
+      flippedCards = [];
+      renderRound();
+      feedback(`這兩張不是${round.relation}；慢慢再找一組。`, 'try');
+      speak(`這兩張不是${round.relation}，慢慢再找一組。`);
+    }, 650);
+  }
+
+  function nextRound() {
+    if (roundIndex < currentRounds().length - 1) {
+      roundIndex += 1;
+      prepareRoundState();
+      renderRound();
+      return;
+    }
+    finish();
+  }
+
+  function finish() {
+    if (completed) return;
+    completed = true;
+    const activity = currentActivity();
+    const rounds = currentRounds();
+    const activityLabel = isGradedActivity() ? `${activity.title} · ${difficultySettings[selectedDifficulty].label}` : activity.title;
+    document.dispatchEvent(new CustomEvent('spld-p4-lab-complete', { detail: { ...result, activity: activityLabel } }));
+    const dialog = document.querySelector('.spld-p4-lab');
+    dialog.innerHTML = `<button class="spld-p4-close" type="button" aria-label="關閉高小讀寫實驗室">×</button><div class="spld-p4-result"><span class="spld-p4-kicker">本次讀寫回顧</span><h2>完成 ${activityLabel}</h2><p>你已完成 ${rounds.length} 個小回合。可以休息、選另一項練習，或回到高小 SpLD 關卡。</p><div class="spld-p4-result-grid"><div><strong>${result.correct} / ${rounds.length}</strong><span>完成回合</span></div><div><strong>${result.retries}</strong><span>溫和重試</span></div><div><strong>${result.hints}</strong><span>使用提示</span></div></div><aside>這些數字只協助教師安排下一步，不作比較或評分。</aside><div class="spld-p4-result-actions"><button type="button" id="spldP4TryAgain">↺ 選另一項練習</button><button type="button" id="spldP4Exit">回到高小 SpLD 關卡</button></div></div>`;
+    dialog.querySelector('.spld-p4-close')?.addEventListener('click', closeLab);
+    dialog.querySelector('#spldP4TryAgain')?.addEventListener('click', openMenu);
+    dialog.querySelector('#spldP4Exit')?.addEventListener('click', closeLab);
+  }
+
+  function startActivity(key) {
+    if (!activities[key]) return;
+    activeKey = key;
+    selectedDifficulty = 'basic';
+    roundIndex = 0;
+    prepareRoundState();
+    result = { correct: 0, retries: 0, hints: 0 };
+    completed = false;
+    renderRound();
+  }
+
+  function prepareRoundState() {
+    selectedBlocks = [];
+    blockOptions = activeKey === 'sentence' ? shuffle([currentRound().subject, currentRound().verb, currentRound().object]) : [];
+    if (activeKey === 'memory') prepareMemoryCards(currentRound());
+    else { flippedCards = []; matchedPairs = []; memoryCards = []; }
+  }
+
+  function openActivity(key) {
+    if (!activities[key]) return;
+    closeLab();
+    document.body.insertAdjacentHTML('beforeend', shell(''));
+    startActivity(key);
+  }
+
+  function injectStyles() {
+    const style = document.createElement('style');
+    style.textContent = `.spld-p4-lab-backdrop{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto;background:rgba(20,29,53,.68)}.spld-p4-lab{position:relative;width:min(760px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:32px;border-radius:27px;background:#fff;color:#26344b;box-shadow:0 28px 72px rgba(14,21,42,.35)}.spld-p4-close{position:absolute;top:14px;right:16px;width:38px;height:38px;border:0;border-radius:50%;color:#5c6579;background:#f0f3f8;font-size:28px;line-height:1;cursor:pointer}.spld-p4-heading{padding-right:42px}.spld-p4-heading h2{margin:5px 0 6px;color:#233a60;font-size:29px}.spld-p4-heading p{margin:0;color:#66738a;line-height:1.58}.spld-p4-kicker{display:block;color:#278a7e;font-size:13px;font-weight:900;letter-spacing:.06em}.spld-p4-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:22px 0}.spld-p4-menu-card{min-height:200px;padding:19px;display:flex;flex-direction:column;gap:7px;border:2px solid #cfe8e1;border-radius:21px;background:#f8fffd;color:#243852;text-align:left;cursor:pointer;transition:transform .16s,box-shadow .16s}.spld-p4-menu-card:hover{transform:translateY(-3px);box-shadow:0 13px 26px rgba(30,112,97,.13)}.spld-p4-menu-card.violet{border-color:#ddd5fb;background:#fbfaff}.spld-p4-menu-card>span{font-size:37px}.spld-p4-menu-card strong{font-size:21px}.spld-p4-menu-card small{color:#617086;line-height:1.5}.spld-p4-menu-card em{margin-top:auto;color:#2b887d;font-style:normal;font-weight:800}.spld-p4-low-pressure{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:13px 15px;border-radius:15px;background:#eff8f7;color:#35655e;font-size:14px}.spld-p4-low-pressure span{padding:5px 8px;border-radius:99px;background:#fff}.spld-p4-progress{display:flex;align-items:center;gap:12px;margin:21px 0 14px;color:#3b766e;font-size:14px;font-weight:850}.spld-p4-progress>div{height:8px;flex:1;overflow:hidden;border-radius:99px;background:#dcece9}.spld-p4-progress i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#249b8c,#63c9ae)}.spld-p4-play-area{padding:21px;border:1px solid #d7ebe6;border-radius:21px;background:linear-gradient(145deg,#fbfffe,#eff9f7)}.spld-p4-chain{display:flex;align-items:center;justify-content:center;gap:11px;padding:14px;border-radius:16px;background:#fff;box-shadow:0 5px 14px rgba(34,116,101,.08)}.spld-p4-core,.spld-p4-category{display:flex;flex-direction:column;gap:3px}.spld-p4-core span,.spld-p4-category span{color:#6c7b8d;font-size:12px;font-weight:800}.spld-p4-core strong{color:#238275;font-size:44px}.spld-p4-category strong{color:#2a496a;font-size:19px}.spld-p4-arrow{color:#4bb09f;font-size:31px;font-weight:900}.spld-p4-prompt{margin:20px 0 6px;color:#203752;font-size:20px;font-weight:850;line-height:1.48}.spld-p4-meaning{margin:0 0 16px;color:#617286;font-size:14px}.spld-p4-choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.spld-p4-choice{min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:2px solid #a7d9cf;border-radius:16px;background:#fff;color:#276a62;cursor:pointer}.spld-p4-choice span{font-size:12px;font-weight:850}.spld-p4-choice strong{font-size:25px}.spld-p4-choice.correct{border-color:#44a873;background:#ebf9ef;color:#246d48}.spld-p4-choice.wrong{border-color:#d47d7d;background:#fff0f0;color:#9b4d4d}.spld-p4-sentence-guide{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px;border-radius:15px;background:#fff}.spld-p4-sentence-guide span{color:#6555af;font-size:12px;font-weight:850}.spld-p4-sentence-guide strong{color:#443781;font-size:16px}.spld-p4-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:17px 0 10px}.spld-p4-slot{min-height:103px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:2px dashed #bfb5e8;border-radius:16px;background:#fff;color:#6a6385;text-align:center}.spld-p4-slot.filled{border-style:solid;border-color:#8f7cdc;background:#f5f2ff;color:#47398d}.spld-p4-slot span{font-size:11px;font-weight:850}.spld-p4-slot strong{font-size:20px}.spld-p4-sentence-preview{min-height:45px;margin:0 0 14px;padding:11px 13px;border-radius:12px;background:#edeaff;color:#4a3e8b;font-size:15px;font-weight:800;text-align:center}.spld-p4-block-bank{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}.spld-p4-block{min-height:58px;padding:9px 15px;border:2px solid #b9afe7;border-radius:13px;background:#fff;color:#4d3e9b;font-size:17px;font-weight:850;cursor:pointer}.spld-p4-block.used{opacity:.45}.spld-p4-feedback{min-height:25px;margin:14px 0;color:#5e6f82;line-height:1.48}.spld-p4-feedback.success{color:#25714f;font-weight:850}.spld-p4-feedback.try{color:#9b4d4d;font-weight:850}.spld-p4-feedback.hint{color:#896313;font-weight:850}.spld-p4-tools,.spld-p4-result-actions{display:flex;flex-wrap:wrap;gap:9px}.spld-p4-tools button,.spld-p4-result-actions button{padding:10px 12px;border:1px solid #c9ded9;border-radius:11px;background:#fff;color:#26776d;font-weight:850;cursor:pointer}.spld-p4-tools button:first-child,.spld-p4-result-actions button:first-child{border-color:#248e81;background:#248e81;color:#fff}.spld-p4-result{padding-top:14px;text-align:center}.spld-p4-result h2{margin:6px 0;color:#233a60;font-size:29px}.spld-p4-result>p{color:#617286;line-height:1.55}.spld-p4-result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:22px 0}.spld-p4-result-grid div{padding:14px;border-radius:16px;background:#eef9f7}.spld-p4-result-grid strong{display:block;color:#277c70;font-size:25px}.spld-p4-result-grid span{color:#5a6d7b;font-size:13px}.spld-p4-result aside{padding:12px;border-radius:13px;background:#eef5ff;color:#405d7c;font-size:14px;line-height:1.5}@media(max-width:620px){.spld-p4-lab{padding:25px 16px;border-radius:22px}.spld-p4-menu{grid-template-columns:1fr}.spld-p4-menu-card{min-height:156px}.spld-p4-heading h2,.spld-p4-result h2{font-size:25px}.spld-p4-prompt{font-size:18px}.spld-p4-choice-grid{gap:8px}.spld-p4-choice{min-height:86px}.spld-p4-choice strong{font-size:21px}.spld-p4-slots{gap:7px}.spld-p4-slot{min-height:91px;padding:7px}.spld-p4-slot strong{font-size:16px}.spld-p4-sentence-guide{align-items:flex-start;flex-direction:column}.spld-p4-block{min-height:52px;font-size:15px}.spld-p4-result-grid{gap:7px}.spld-p4-result-grid strong{font-size:21px}.spld-p4-tools button{flex:1}}`;
+    document.head.appendChild(style);
+    const activityStyle = document.createElement('style');
+    activityStyle.textContent = `.spld-p4-collocation-scene,.spld-p4-classifier-scene{display:flex;align-items:center;justify-content:center;gap:12px;padding:17px;border-radius:17px;background:#fff;color:#3a4e67}.spld-p4-collocation-scene span{padding:6px 9px;border-radius:99px;background:#fff1da;color:#9c6413;font-size:12px;font-weight:850}.spld-p4-collocation-scene strong{color:#b26c15;font-size:35px}.spld-p4-collocation-scene em{color:#e1a64b;font-size:28px;font-style:normal;font-weight:900}.spld-p4-collocation-scene b{font-size:35px}.spld-p4-context-scene{padding:18px;border-radius:17px;background:#fff;color:#2e4a69}.spld-p4-context-scene>span{display:block;font-size:44px;text-align:center}.spld-p4-context-scene p{margin:9px 0 0;font-size:20px;font-weight:850;line-height:1.65;text-align:center}.spld-p4-context-scene p strong{color:#bb7417;border-bottom:3px solid #e5b45c}.spld-p4-classifier-scene>span{font-size:45px}.spld-p4-classifier-scene strong{color:#9e7113;font-size:30px}.spld-p4-memory-guide{display:flex;align-items:center;justify-content:center;gap:12px;padding:13px 15px;border-radius:15px;background:#fff}.spld-p4-memory-guide span{color:#a44f78;font-size:12px;font-weight:850}.spld-p4-memory-guide strong{color:#9a4170;font-size:23px}.spld-p4-memory-guide small{color:#68788c}.spld-p4-memory-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.spld-p4-memory-card{min-height:94px;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:2px solid #e9bfd5;border-radius:16px;background:linear-gradient(145deg,#fff8fb,#f9e8f0);color:#a0527a;cursor:pointer}.spld-p4-memory-card span{font-size:25px;font-weight:900}.spld-p4-memory-card small{font-size:11px;font-weight:800}.spld-p4-memory-card.revealed{border-color:#c96996;background:#fff;color:#82385f}.spld-p4-memory-card.matched{border-color:#51a675;background:#effaf2;color:#28724b}@media(max-width:620px){.spld-p4-collocation-scene{gap:8px}.spld-p4-collocation-scene strong,.spld-p4-collocation-scene b{font-size:28px}.spld-p4-context-scene p{font-size:18px}.spld-p4-classifier-scene strong{font-size:25px}.spld-p4-memory-guide{align-items:flex-start;flex-direction:column;gap:4px}.spld-p4-memory-card{min-height:82px}.spld-p4-memory-card span{font-size:21px}}`;
+    document.head.appendChild(activityStyle);
+    const readabilityStyle = document.createElement('style');
+    readabilityStyle.textContent = `.spld-p4-difficulty{margin:15px 0 12px;padding:14px 15px;border:1px solid #c9e5df;border-radius:16px;background:#f6fffd}.spld-p4-difficulty>div:first-child{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}.spld-p4-difficulty>div:first-child span{color:#39776e;font-size:14px;font-weight:900}.spld-p4-difficulty>div:first-child strong{color:#23796d;font-size:20px}.spld-p4-difficulty>div:first-child small{color:#5b6f80;font-size:15px}.spld-p4-difficulty-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:11px}.spld-p4-difficulty-buttons button{min-height:54px;padding:8px 10px;border:2px solid #b8dcd5;border-radius:13px;background:#fff;color:#2f746a;font-size:17px;font-weight:900;cursor:pointer}.spld-p4-difficulty-buttons button small{display:block;margin-top:2px;color:#607284;font-size:12px;font-weight:750}.spld-p4-difficulty-buttons button.active{border-color:#258f80;background:#def5ee;color:#176f63}.spld-p4-difficulty-buttons button.active small{color:#236e65}.spld-p4-difficulty>p{margin:10px 0 0;color:#496d69;font-size:15px;font-weight:750;line-height:1.62}.spld-p4-heading p{font-size:17px;line-height:1.72}.spld-p4-meaning{font-size:16px;line-height:1.68}.spld-p4-feedback{font-size:17px;line-height:1.68}.spld-p4-tools button,.spld-p4-result-actions button{min-height:50px;font-size:16px;line-height:1.35}.spld-p4-close{min-width:44px;min-height:44px}.spld-p4-choice:focus-visible,.spld-p4-block:focus-visible,.spld-p4-memory-card:focus-visible,.spld-p4-difficulty-buttons button:focus-visible{outline:4px solid #245ba7;outline-offset:3px}@media(max-width:620px){.spld-p4-lab{padding:26px 16px}.spld-p4-heading h2,.spld-p4-result h2{font-size:27px;line-height:1.32}.spld-p4-heading p{font-size:16px;line-height:1.72}.spld-p4-kicker{font-size:14px}.spld-p4-prompt{font-size:20px;line-height:1.6}.spld-p4-meaning,.spld-p4-feedback{font-size:16px;line-height:1.7}.spld-p4-choice{min-height:98px}.spld-p4-choice strong{font-size:24px}.spld-p4-slot{min-height:100px}.spld-p4-slot span{font-size:12px;line-height:1.45}.spld-p4-slot strong{font-size:17px}.spld-p4-sentence-preview{font-size:16px;line-height:1.58}.spld-p4-block{min-height:60px;padding:10px 15px;font-size:18px}.spld-p4-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}.spld-p4-tools button{min-height:54px;font-size:16px}.spld-p4-tools button:last-child{grid-column:span 2}.spld-p4-difficulty{padding:13px}.spld-p4-difficulty>div:first-child small{font-size:14px}.spld-p4-difficulty>p{font-size:15px}.spld-p4-memory-card{min-height:92px}.spld-p4-memory-card span{font-size:23px}}@media(min-width:621px) and (max-width:820px){.spld-p4-lab{width:min(720px,calc(100% - 28px));padding:30px}.spld-p4-heading p{font-size:17px}.spld-p4-prompt{font-size:21px}.spld-p4-choice{min-height:108px}.spld-p4-tools button{min-height:52px}}`;
+    document.head.appendChild(readabilityStyle);
+  }
+
+  window.SPLD_P4_LAB = {
+    activityCards() {
+      return Object.entries(activities).map(([key, activity]) => ({
+        id: `spld-p4-${key}`,
+        p4ActivityKey: key,
+        lab: 'p4',
+        category: 'cognition',
+        categoryName: '高小 · SpLD 多感官讀寫',
+        tone: ({ morpheme: 'teal', sentence: 'purple', collocation: 'orange', context: 'blue', memory: 'pink', classifier: 'yellow' })[key] || 'purple',
+        icon: activity.icon,
+        title: activity.title,
+        description: activity.description,
+        tag: `P4–P6 · ${activity.focus}`,
+        supports: ['1'],
+        rounds: activity.rounds
+      }));
+    },
+    openActivity,
+    openMenu
+  };
+
+  injectStyles();
+})();
