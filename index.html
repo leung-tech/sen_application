@@ -98,7 +98,7 @@
     .pathway-card[data-type="2"] .pathway-code { background: #4d88c9; }.pathway-card[data-type="3"] .pathway-code { background: #2a9a83; }.pathway-card[data-type="4"] .pathway-code { background: #d08d25; }.pathway-card[data-type="G"] .pathway-code { background: #7855c6; }.pathway-card[data-type="H"] .pathway-code { background: #258ba3; }.pathway-card[data-type="8"] .pathway-code { background: #c26582; }.pathway-card[data-type="9"] .pathway-code { background: #695cc4; }
     .pathway-card strong { color: var(--navy); font-size: 14px; }.pathway-card span:last-child { color: var(--muted); font-size: 11px; font-weight: 700; line-height: 1.45; }
     .scenario-context { width: min(100%, 790px); margin: 0 auto 16px; padding: 15px 18px; color: #3d4962; border: 1px solid #dce6f4; border-radius: 15px; background: #f8fbff; font-size: clamp(16px, 2vw, 20px); font-weight: 750; line-height: 1.75; text-align: left; }.scenario-context strong { color: #5c4fc5; }
-    .game-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 15px; }
+    .game-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 15px; }.game-grid.spld-primary-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .game-card { min-height: 210px; padding: 17px; display: flex; flex-direction: column; position: relative; overflow: hidden; color: var(--ink); border: 1px solid var(--line); border-radius: 21px; background: #fff; box-shadow: 0 8px 21px rgba(41,60,100,.045); text-align: left; transition: transform .22s, box-shadow .22s, border .22s; }.game-card:hover { transform: translateY(-4px); border-color: #cbd8f1; box-shadow: 0 16px 27px rgba(41,60,100,.11); }.game-card:active { transform: scale(.98); }
     .game-card .game-visual { width: 61px; height: 61px; display: grid; place-items: center; margin-bottom: 17px; border-radius: 20px; font-size: 32px; }.game-card[data-tone="pink"] .game-visual { background: var(--pink-soft); }.game-card[data-tone="blue"] .game-visual { background: var(--blue-soft); }.game-card[data-tone="yellow"] .game-visual { background: var(--yellow-soft); }.game-card[data-tone="teal"] .game-visual { background: var(--teal-soft); }.game-card[data-tone="orange"] .game-visual { background: var(--orange-soft); }.game-card[data-tone="purple"] .game-visual { background: var(--purple-soft); }
     .game-card h3 { margin: 0; color: var(--navy); font-size: 16px; letter-spacing: -.015em; }.game-card p { margin: 6px 0 11px; color: var(--muted); font-size: 12px; line-height: 1.45; }.tag { display: inline-block; width: max-content; margin-top: auto; padding: 5px 8px; color: #64718d; border-radius: 99px; background: #f5f7fb; font-size: 10px; font-weight: 800; }.support-badge-row { display: flex; flex-wrap: wrap; gap: 5px; margin: 0 0 10px; }.support-badge { min-height: 20px; display: inline-flex; align-items: center; padding: 3px 6px; color: #485977; border: 1px solid #e2e8f2; border-radius: 7px; background: #f7f9fc; font-size: 9px; font-weight: 850; letter-spacing: .015em; }.support-badge[data-code="1"] { color: #76549b; border-color: #e3d2f3; background: #faf3ff; }.support-badge[data-code="2"] { color: #426b9a; border-color: #cce1f7; background: #eff8ff; }.support-badge[data-code="3"] { color: #367b74; border-color: #c6ece2; background: #effbf7; }.support-badge[data-code="4"] { color: #a66d17; border-color: #f5dfae; background: #fff9e9; }.support-badge[data-code="8"] { color: #9a5569; border-color: #f1d1da; background: #fff3f6; }.support-badge[data-code="9"] { color: #5d57a3; border-color: #d8d5fa; background: #f4f3ff; }.support-key { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 11px; }.support-key .support-badge { font-size: 10px; }
@@ -309,7 +309,7 @@
           path: { description: '規劃到實習地點或轉乘站的路線', rounds: [{ route: ['直走', '右轉', '直走'], prompt: '跟著地圖到實習地點。', goalEmoji: '💼' }, { route: ['右轉', '直走', '左轉'], prompt: '跟著地圖到轉乘站。', goalEmoji: '🚏' }, { route: ['直走', '左轉', '直走'], prompt: '跟著地圖到社區服務中心。', goalEmoji: '🏢' }] }
         }
       };
-      const spldTraining = { id: 'spld', category: 'cognition', categoryName: '初小 · SpLD 讀寫訓練', tone: 'purple', icon: '字', title: '初小讀寫闖關', description: '12 關語音、字形、詞語與短文理解訓練', tag: 'P1–P3 · 12 關', supports: ['1'], rounds: [
+      const spldTraining = { id: 'spld', category: 'cognition', categoryName: '初小 · SpLD 讀寫訓練', tone: 'purple', icon: '字', title: '初小讀寫基礎練習', description: '12 關語音、字形、詞語與短文理解基礎練習', tag: 'P1–P3 · 基礎 12 關', supports: ['1'], rounds: [
         { id: 'P1-SPLD-01', band: 'P1 · 語音覺識', prompt: '哪個字和「花」的第一個聲音一樣？', choices: ['火', '馬', '書'], answer: '火', instruction: '請聽一聽「花」，找出開頭聲音一樣的字。', clue: '慢慢讀：「花」是 faa；「火」是 fo。兩個字開頭都有 f 聲。', success: '答對了！你聽到相同的開頭聲音。' },
         { id: 'P1-SPLD-02', band: 'P1 · 部件辨識', prompt: '「晴」字的左邊是哪個部件？', context: '目標字：<strong>晴</strong>', choices: ['日', '月', '目'], answer: '日', instruction: '請看「晴」字，找出它左邊的部件。', clue: '把「晴」分開看：左邊像太陽，是「日」字旁。', success: '做得好！你找到「晴」的日字旁。' },
         { id: 'P1-SPLD-03', band: 'P1 · 易混字辨別', prompt: '「週＿＿」應該選哪個字？', context: '句子：星期六和星期日是<strong>週末</strong>。', choices: ['未', '末', '朱'], answer: '末', instruction: '請在「週＿＿」中選出正確的字。', clue: '比較「未」和「末」：末字的上面一橫較短，下面一橫較長。', success: '答對了！「週末」的末字寫得正確。' },
@@ -396,8 +396,9 @@
           'pathway-mi': { description: '用功能性選擇卡表達職場、社區與調節需要', rounds: [{ prompt: '到實習地點後，選哪張卡向主管報到？', context: '讓主管知道你已安全到達。', choices: [['📍', '我已到達'], ['🥤', '我想喝水'], ['🚻', '我想去洗手間']], answer: '我已到達', instruction: '請選出報到時可以使用的選擇卡。', clue: '找和位置圖示有關的短句。', success: '答對了！你清楚報告了自己已到達。' }, { prompt: '覺得聲音太大，需要短暫休息，可以選哪張卡？', context: '先讓主管知道你的調節需要。', choices: [['🌿', '我需要安靜休息'], ['🎮', '我需要玩遊戲'], ['🏃', '我需要快跑']], answer: '我需要安靜休息', instruction: '請選出感官不舒服時的需要卡。', clue: '找有休息意思的卡。', success: '很好！你清楚說出了調節需要。' }, { prompt: '要請同事再示範一次，可以怎樣說？', context: '你第一次學習新的工作步驟。', choices: [['🤝', '請你再示範一次'], ['📣', '我不要學了'], ['🚪', '我現在離開']], answer: '請你再示範一次', instruction: '請選出請人協助學習的短句。', clue: '可以直接請對方再做一次給你看。', success: '做得好！你主動請求了合適支援。' }] }
         }
       };
+      const spldP1StandaloneGames = window.SPLD_P1_LAB?.activityCards?.() || [];
       const pathwayGameMap = Object.fromEntries(pathwayTraining.map(game => [game.id, game]));
-      const gameMap = Object.fromEntries([...gameLibrary, spldTraining, ...pathwayTraining].map(game => [game.id, game]));
+      const gameMap = Object.fromEntries([...gameLibrary, spldTraining, ...spldP1StandaloneGames, ...pathwayTraining].map(game => [game.id, game]));
       let activeStage = 'lower';
       let activeFilter = 'all';
       let activePathway = null;
@@ -553,6 +554,13 @@
       }
       function updateGameLibraryHeading() {
         if (activePathway) {
+          if (activePathway === '1' && activeStage === 'lower') {
+            $('#supportKey').hidden = true;
+            $('#gamesKicker').textContent = '專屬訓練 · 直接選關';
+            $('#gamesTitle').textContent = 'SpLD 讀寫策略｜初小 P1–P3';
+            $('#stageGuide').textContent = '可直接選擇一項多感官讀寫遊戲；原有 12 關基礎練習亦會保留，不需要再先進入合併的讀寫實驗室。';
+            return;
+          }
           const primaryGame = getPrimaryPathwayGame();
           $('#supportKey').hidden = true;
           $('#gamesKicker').textContent = '專屬訓練模組';
@@ -568,18 +576,26 @@
       function renderGameLibrary(filter = activeFilter) {
         let source;
         if (activePathway) {
-          source = [getPrimaryPathwayGame()];
+          source = activePathway === '1' && activeStage === 'lower' ? [spldTraining, ...spldP1StandaloneGames] : [getPrimaryPathwayGame()];
         } else {
           source = filter === 'all' ? gameLibrary : filter.startsWith('support-') ? [] : gameLibrary.filter(game => game.category === filter);
         }
         const games = source.filter(Boolean).map(getStageGame);
         updateGameLibraryHeading();
+        $('#gameGrid').classList.toggle('spld-primary-grid', activePathway === '1' && activeStage === 'lower');
         $('#gameGrid').innerHTML = games.map(game => {
           const badges = activePathway ? renderSupportBadges(game.supports) : '<span class="support-badge">一般活動</span>';
           const label = activePathway ? '本專屬模組類別' : '一般活動類別';
-          return `<button class="game-card" type="button" data-game-id="${game.id}" data-tone="${game.tone}"><div class="game-visual" aria-hidden="true">${game.icon}</div><h3>${game.title}</h3><p>${game.description}</p><div class="support-badge-row" aria-label="${label}">${badges}</div><span class="tag">${game.tag}</span></button>`;
+          const directActivity = game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
+          return `<button class="game-card" type="button" data-game-id="${game.id}"${directActivity} data-tone="${game.tone}"><div class="game-visual" aria-hidden="true">${game.icon}</div><h3>${game.title}</h3><p>${game.description}</p><div class="support-badge-row" aria-label="${label}">${badges}</div><span class="tag">${game.tag}</span></button>`;
         }).join('');
-        $$('.game-card').forEach(card => card.addEventListener('click', () => startGame(card.dataset.gameId)));
+        $$('.game-card').forEach(card => card.addEventListener('click', () => {
+          if (card.dataset.spldActivity) {
+            window.SPLD_P1_LAB?.openActivity(card.dataset.spldActivity);
+            return;
+          }
+          startGame(card.dataset.gameId);
+        }));
       }
       function updateTokenBoard() {
         $$('.token').forEach((token, index) => token.classList.toggle('earned', index < tokenCount));
@@ -672,8 +688,7 @@
           const controls = `<div class="spld-read-controls" aria-label="SpLD 朗讀控制"><button class="spld-read-button" id="spldReadPrompt" type="button">🔊 朗讀題目</button><button class="spld-read-button" id="spldReadHint" type="button">🐢 慢讀提示</button><button class="spld-read-button" id="spldReadChoices" type="button">🔉 朗讀選項</button></div>`;
           const visual = getSpldVisualCue(round);
           const hint = `<aside class="spld-hint" aria-label="解題小提示"><span class="spld-hint-label">解題小提示</span><strong>${round.clue}</strong><small>提示已經顯示在這裏；需要時可按「慢讀提示」再聽一次。</small></aside>`;
-          const primaryLab = activeStage === 'lower' && window.SPLD_P1_LAB ? window.SPLD_P1_LAB.launcherMarkup() : '';
-          return stageFrame(`<span class="spld-band">${round.band}</span><br>${round.prompt}`, `${reading}<div class="spld-focus">讀寫焦點：${round.band}</div>${controls}${visual}${hint}${primaryLab}<div class="spld-choice-grid">${round.choices.map(choice => `<button class="spld-answer" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div>`, true, '先看紫色視覺步驟，再慢讀關鍵詞和選項。');
+          return stageFrame(`<span class="spld-band">${round.band}</span><br>${round.prompt}`, `${reading}<div class="spld-focus">讀寫焦點：${round.band}</div>${controls}${visual}${hint}<div class="spld-choice-grid">${round.choices.map(choice => `<button class="spld-answer" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div>`, true, '先看紫色視覺步驟，再慢讀關鍵詞和選項。');
         }
         if (id === 'emotion') {
           return stageFrame(`找出和這張一樣的心情：<span class="sr-only">${round.word}</span>`, `<div class="match-target" aria-label="目標表情 ${round.word}">${round.target}</div><div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
@@ -729,7 +744,6 @@
           $('#spldReadPrompt')?.addEventListener('click', () => speak(getSpldReadText(round), .72));
           $('#spldReadHint')?.addEventListener('click', () => readSpldHint(round));
           $('#spldReadChoices')?.addEventListener('click', () => speak(`選項。${round.choices.map((choice, index) => `第 ${index + 1} 項：${stripMarkup(choice)}`).join('。')}`, .68));
-          window.SPLD_P1_LAB?.bindLauncher();
           $$('.spld-answer').forEach(button => button.addEventListener('click', () => {
             if (gameState.locked) return;
             $$('.spld-answer').forEach(card => card.classList.remove('selected'));
@@ -873,6 +887,10 @@
       const pathwayLabels = { '1': 'SpLD 讀寫策略', '2': 'ID 生活選擇', '3': 'ASD 社交練習', '4': 'ADHD 專注策略', 'G': 'Giftedness 邏輯解難', 'H': 'HI 視覺化溝通', 'E': 'EBD 情緒調節', '8': 'SLI 理解與表達', '9': 'MI 溝通與選擇' };
       function updatePathwayStatus() {
         if (!activePathway) { $('#pathwayStatus').textContent = '尚未選擇路線。你可先按學生當日需要選擇一類，再按學段開始。'; return; }
+        if (activePathway === '1' && activeStage === 'lower') {
+          $('#pathwayStatus').textContent = `已選擇 ${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}。現正顯示 1 組基礎練習和 6 項可直接選擇的多感官讀寫關卡；本路線不會混入其他 SEN 類別或一般活動。`;
+          return;
+        }
         const primary = getPrimaryPathwayGame();
         $('#pathwayStatus').textContent = `已選擇 ${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}。現正顯示「${primary.title}」專屬模組；本路線不會混入其他 SEN 類別或一般活動。`;
       }
