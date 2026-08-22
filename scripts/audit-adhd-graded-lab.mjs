@@ -110,6 +110,13 @@ async function menuAudit(client, stage) {
 async function gameAudit(client, stage, game) {
   await openLab(client, stage);
   await evaluate(client, `document.querySelector(${JSON.stringify(`[data-graded-game="${game}"]`)})?.click();`);
+  await sleep(80);
+  const ready = await evaluate(client, `(() => {
+    const dialog = document.querySelector('.graded-lab-shell');
+    const start = document.querySelector('#gradedReadyStart');
+    return { dialog: Boolean(dialog), title: dialog?.querySelector('.graded-top h2')?.textContent.trim() || '', start: Boolean(start), startText: start?.textContent.trim() || '', ruleSteps: dialog?.querySelectorAll('.graded-ready-copy li').length || 0, feedback: document.querySelector('#gradedLabFeedback')?.textContent.trim() || '' };
+  })()`);
+  await evaluate(client, `document.querySelector('#gradedReadyStart')?.click();`);
   await sleep(game === 'corsi' ? 2600 : game === 'mot' ? 7800 : 100);
   const initial = await evaluate(client, `(() => {
     const dialog = document.querySelector('.graded-lab-shell');
@@ -132,7 +139,7 @@ async function gameAudit(client, stage, game) {
     return { exists: Boolean(control), feedback: document.querySelector('#gradedLabFeedback')?.textContent.trim() || '' };
   })()`);
   await sleep(35);
-  return { stage, game, initial, interaction };
+  return { stage, game, ready, initial, interaction };
 }
 
 async function keyboardAudit(client) {
@@ -184,6 +191,7 @@ try {
   });
   gameReports.forEach((report) => {
     const item = report.initial;
+    if (!report.ready.dialog || !report.ready.start || !report.ready.startText.includes('我準備好了') || report.ready.ruleSteps !== 3 || !report.ready.feedback.includes('準備時間')) failures.push(`${report.stage} ${report.game}：教師帶讀準備頁不完整。`);
     if (!item.dialog || item.feedbackRole !== 'status' || item.feedbackLive !== 'polite' || item.feedbackAtomic !== 'true' || item.progressRole !== 'progressbar' || !item.progressNow || !item.progressMin || !item.progressMax || item.unnamed || !item.motAlternative) failures.push(`${report.game}：遊戲語意或替代操作不完整。`);
     if (!report.interaction.exists || !report.interaction.feedback) failures.push(`${report.game}：找不到可操作控制或作答回饋。`);
   });
