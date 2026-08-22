@@ -109,7 +109,8 @@
         "progressMax": "4",
         "controls": 8,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": null,
       "interaction": {
@@ -138,7 +139,8 @@
         "progressMax": "4",
         "controls": 9,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": {
         "exists": true,
@@ -155,7 +157,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 接受別人想安靜的需要，能讓互動更舒服。 可以嘗試說：「稍後可以再用一句短問句邀請。」"
+        "feedback": "↗ 先想一想：接受別人想安靜的需要，能讓互動更舒服。"
       }
     },
     {
@@ -179,7 +181,14 @@
         "progressMax": "4",
         "controls": 9,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": {
+          "composite": false,
+          "clues": 0,
+          "targets": 4,
+          "distractor": false,
+          "ruleText": "機器人正在看向左邊。先看眼睛和手，再找同一方向的寶箱。"
+        }
       },
       "teacherDialogue": null,
       "interaction": {
@@ -208,7 +217,8 @@
         "progressMax": "4",
         "controls": 8,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": null,
       "interaction": {
@@ -237,7 +247,8 @@
         "progressMax": "4",
         "controls": 11,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": null,
       "interaction": {
@@ -266,7 +277,8 @@
         "progressMax": "5",
         "controls": 8,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": null,
       "interaction": {
@@ -295,7 +307,8 @@
         "progressMax": "5",
         "controls": 9,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": {
         "exists": true,
@@ -312,7 +325,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 表情和動作可能表示聲音或距離令他不舒服。 可以嘗試說：「可以問：「你想安靜一下嗎？」」"
+        "feedback": "↗ 先想一想：表情和動作可能表示聲音或距離令他不舒服。"
       }
     },
     {
@@ -336,12 +349,19 @@
         "progressMax": "5",
         "controls": 9,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": {
+          "composite": false,
+          "clues": 0,
+          "targets": 4,
+          "distractor": false,
+          "ruleText": "機器人正在看向上面。先看眼睛和手，再找同一方向的寶箱。"
+        }
       },
       "teacherDialogue": null,
       "interaction": {
         "exists": true,
-        "feedback": "↗ 再看看機器人的眼睛和手，慢慢找方向。"
+        "feedback": "✓ 你和機器人一起看向上面。"
       }
     },
     {
@@ -365,12 +385,13 @@
         "progressMax": "5",
         "controls": 8,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": null,
       "interaction": {
         "exists": true,
-        "feedback": "↗ 再慢慢找一次 △。"
+        "feedback": "✓ 對了，你找到了 △。"
       }
     },
     {
@@ -394,7 +415,8 @@
         "progressMax": "5",
         "controls": 12,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": null,
       "interaction": {
@@ -423,7 +445,8 @@
         "progressMax": "6",
         "controls": 8,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": null,
       "interaction": {
@@ -452,7 +475,8 @@
         "progressMax": "6",
         "controls": 9,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": {
         "exists": true,
@@ -469,7 +493,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 先想一想：文字少了語氣和表情線索，意思可能不止一個；中性確認可減少誤會。"
+        "feedback": "✓ 別人未即時回覆可能在上課、休息或還未看見；清楚而不催迫的跟進較容易得到回應。 可以嘗試說：「可以說：「大家方便在今晚八時前看一看第一部分嗎？」」"
       }
     },
     {
@@ -491,14 +515,21 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "6",
-        "controls": 9,
+        "controls": 13,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": {
+          "composite": true,
+          "clues": 3,
+          "targets": 8,
+          "distractor": false,
+          "ruleText": "逐步判讀：跟眼睛和手看向上面，再找環形寶箱。"
+        }
       },
       "teacherDialogue": null,
       "interaction": {
         "exists": true,
-        "feedback": "↗ 再看看機器人的眼睛和手，慢慢找方向。"
+        "feedback": "↗ 跟眼睛和手看向上面，再找環形寶箱。 不用急，先只找第一步「眼神」。"
       }
     },
     {
@@ -522,7 +553,8 @@
         "progressMax": "6",
         "controls": 8,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": null,
       "interaction": {
@@ -551,7 +583,8 @@
         "progressMax": "6",
         "controls": 13,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": null,
       "interaction": {
@@ -580,7 +613,8 @@
         "progressMax": "6",
         "controls": 8,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": null,
       "interaction": {
@@ -609,7 +643,8 @@
         "progressMax": "6",
         "controls": 9,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": {
         "exists": true,
@@ -626,7 +661,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 先想一想：文字少了語氣和表情線索，意思可能不止一個；中性確認可減少誤會。"
+        "feedback": "✓ 被更正可能令人尷尬，但先完成眼前一小步能保留選擇；課後仍可用較私人的方式問清楚。 可以嘗試說：「可以說：「我先記下來，課後可以問你哪裡要改嗎？」」"
       }
     },
     {
@@ -648,14 +683,21 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "6",
-        "controls": 9,
+        "controls": 17,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": {
+          "composite": true,
+          "clues": 3,
+          "targets": 12,
+          "distractor": true,
+          "ruleText": "逐步判讀：先跟眼睛看向上面；手勢正在指向下面，它是干擾線索。最後找環形寶箱。"
+        }
       },
       "teacherDialogue": null,
       "interaction": {
         "exists": true,
-        "feedback": "✓ 你和機器人一起看向上面。"
+        "feedback": "↗ 先跟眼睛看向上面；手勢正在指向下面，它是干擾線索。最後找環形寶箱。 不用急，先只找第一步「眼神」。"
       }
     },
     {
@@ -679,7 +721,8 @@
         "progressMax": "6",
         "controls": 8,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": null,
       "interaction": {
@@ -708,7 +751,8 @@
         "progressMax": "6",
         "controls": 13,
         "unnamed": 0,
-        "rule": true
+        "rule": true,
+        "joint": null
       },
       "teacherDialogue": null,
       "interaction": {
@@ -730,7 +774,7 @@
   "mobile": {
     "overflow": false,
     "dialogWidth": 343,
-    "controls": 9,
+    "controls": 17,
     "narrow": []
   },
   "ax": {
