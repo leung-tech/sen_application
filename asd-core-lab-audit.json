@@ -111,6 +111,7 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
         "feedback": "先留意機器人的臉部線索，再選一個感受。"
@@ -135,13 +136,26 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "4",
-        "controls": 8,
+        "controls": 9,
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": {
+        "exists": true,
+        "expanded": "false",
+        "level": "primary",
+        "opens": true,
+        "expandedAfter": "true",
+        "headings": [
+          "先問一問",
+          "學生可以怎樣回應",
+          "可示範的短句",
+          "最後收束"
+        ]
+      },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 先想一想：沒有先問就拿走別人的東西，對方可能覺得不被尊重。"
+        "feedback": "✓ 接受別人想安靜的需要，能讓互動更舒服。 可以嘗試說：「稍後可以再用一句短問句邀請。」"
       }
     },
     {
@@ -167,6 +181,7 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
         "feedback": "↗ 再看看機器人的眼睛和手，慢慢找方向。"
@@ -195,6 +210,7 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
         "feedback": "↗ 再慢慢找一次 △。"
@@ -223,6 +239,7 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
         "feedback": "↗ 可以再聽一次，或看提示：像細小雨點連續落下。"
@@ -251,6 +268,7 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
         "feedback": "先留意機器人的臉部線索，再選一個感受。"
@@ -275,13 +293,26 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "5",
-        "controls": 8,
+        "controls": 9,
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": {
+        "exists": true,
+        "expanded": "false",
+        "level": "primary",
+        "opens": true,
+        "expandedAfter": "true",
+        "headings": [
+          "先問一問",
+          "學生可以怎樣回應",
+          "可示範的短句",
+          "最後收束"
+        ]
+      },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 先想一想：沒有先問就拿走別人的東西，對方可能覺得不被尊重。"
+        "feedback": "✓ 表情和動作可能表示聲音或距離令他不舒服。 可以嘗試說：「可以問：「你想安靜一下嗎？」」"
       }
     },
     {
@@ -307,6 +338,7 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
         "feedback": "↗ 再看看機器人的眼睛和手，慢慢找方向。"
@@ -335,6 +367,7 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
         "feedback": "↗ 再慢慢找一次 △。"
@@ -363,6 +396,7 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
         "feedback": "↗ 可以再聽一次，或看提示：像細小雨點連續落下。"
@@ -391,6 +425,7 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
         "feedback": "先留意機器人的臉部線索，再選一個感受。"
@@ -415,13 +450,26 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "6",
-        "controls": 8,
+        "controls": 9,
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": {
+        "exists": true,
+        "expanded": "false",
+        "level": "higher",
+        "opens": true,
+        "expandedAfter": "true",
+        "headings": [
+          "先問一問",
+          "學生可以怎樣回應",
+          "可示範的短句",
+          "最後收束"
+        ]
+      },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 沒有先問就拿走別人的東西，對方可能覺得不被尊重。 可以嘗試說：「可以說：「我可以用這一塊嗎？」」"
+        "feedback": "↗ 先想一想：文字少了語氣和表情線索，意思可能不止一個；中性確認可減少誤會。"
       }
     },
     {
@@ -447,6 +495,7 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
         "feedback": "↗ 再看看機器人的眼睛和手，慢慢找方向。"
@@ -475,9 +524,10 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
-        "feedback": "✓ 對了，你找到了 △。"
+        "feedback": "↗ 再慢慢找一次 △。"
       }
     },
     {
@@ -503,9 +553,10 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
-        "feedback": "✓ 對了，這是下雨聲。像細小雨點連續落下。"
+        "feedback": "↗ 可以再聽一次，或看提示：像細小雨點連續落下。"
       }
     },
     {
@@ -531,6 +582,7 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
         "feedback": "先留意機器人的臉部線索，再選一個感受。"
@@ -555,13 +607,26 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "6",
-        "controls": 8,
+        "controls": 9,
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": {
+        "exists": true,
+        "expanded": "false",
+        "level": "higher",
+        "opens": true,
+        "expandedAfter": "true",
+        "headings": [
+          "先問一問",
+          "學生可以怎樣回應",
+          "可示範的短句",
+          "最後收束"
+        ]
+      },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 先想一想：沒有先問就拿走別人的東西，對方可能覺得不被尊重。"
+        "feedback": "↗ 先想一想：文字少了語氣和表情線索，意思可能不止一個；中性確認可減少誤會。"
       }
     },
     {
@@ -587,9 +652,10 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
-        "feedback": "↗ 再看看機器人的眼睛和手，慢慢找方向。"
+        "feedback": "✓ 你和機器人一起看向上面。"
       }
     },
     {
@@ -615,9 +681,10 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
-        "feedback": "✓ 對了，你找到了 △。"
+        "feedback": "↗ 再慢慢找一次 △。"
       }
     },
     {
@@ -643,9 +710,10 @@
         "unnamed": 0,
         "rule": true
       },
+      "teacherDialogue": null,
       "interaction": {
         "exists": true,
-        "feedback": "✓ 對了，這是下雨聲。像細小雨點連續落下。"
+        "feedback": "↗ 可以再聽一次，或看提示：像細小雨點連續落下。"
       }
     }
   ],
@@ -662,13 +730,13 @@
   "mobile": {
     "overflow": false,
     "dialogWidth": 343,
-    "controls": 10,
+    "controls": 9,
     "narrow": []
   },
   "ax": {
     "dialogs": 1,
-    "statuses": 2,
-    "progressbars": 0
+    "statuses": 3,
+    "progressbars": 1
   },
   "failureCount": 0,
   "failures": []
