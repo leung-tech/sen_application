@@ -32,6 +32,8 @@
   let returnFocus = null;
   let timers = [];
   let animationFrame = null;
+  let rewardPreferences = { sound: true, visual: true };
+  let audioContext = null;
 
   const sleep = (fn, delay) => {
     const id = window.setTimeout(() => {
@@ -77,6 +79,99 @@
     if (!feedback) return;
     feedback.className = `graded-feedback ${tone}`;
     feedback.textContent = text;
+    if (tone === 'ok') awardEffort('correct');
+    if (tone === 'try') showGentleSupport();
+  }
+
+  function supportTray() {
+    const stars = Math.min(5, state?.effortStars || 0);
+    return `<aside class="graded-support-tray" aria-label="低壓支持與回饋設定"><div class="graded-effort-meter" aria-label="本次努力星 ${stars} / 5"><span aria-hidden="true">${'★'.repeat(stars)}${'☆'.repeat(5 - stars)}</span><strong>努力星 <b id="gradedEffortCount">${stars}</b> / 5</strong></div><div class="graded-support-actions"><button class="graded-tool" id="gradedRuleHelp" type="button">👁 看規則</button><button class="graded-tool" id="gradedBreakHelp" type="button">☁ 先停一停</button><button class="graded-tool" id="gradedSoundToggle" type="button" aria-pressed="${rewardPreferences.sound}">${rewardPreferences.sound ? '🔊 回饋聲：開' : '🔇 回饋聲：關'}</button><button class="graded-tool" id="gradedVisualToggle" type="button" aria-pressed="${rewardPreferences.visual}">${rewardPreferences.visual ? '✨ 視覺獎勵：開' : '◌ 視覺獎勵：關'}</button></div><div class="graded-support-note" id="gradedSupportNote" role="status" aria-live="polite" aria-atomic="true" hidden></div></aside>`;
+  }
+
+  function bindSupportTray() {
+    host?.querySelector('#gradedRuleHelp')?.addEventListener('click', () => {
+      const rule = host.querySelector('.graded-rule');
+      if (rule) { rule.classList.add('graded-rule-highlight'); rule.scrollIntoView({ behavior: 'smooth', block: 'center' }); window.setTimeout(() => rule.classList.remove('graded-rule-highlight'), 900); }
+      showSupportNote(rule ? '規則卡已標示。只需完成眼前這一小步，不必追求速度。' : '可先選一項想嘗試的遊戲；每項開始後都會有一張規則卡。');
+    });
+    host?.querySelector('#gradedBreakHelp')?.addEventListener('click', () => {
+      clearTimers();
+      state?.keyHandler && (state.keyHandler = null);
+      showSupportNote('可以先停一停。這次不會扣分；可選擇重新開始本遊戲、換一項，或關閉後回到 ADHD 看板。', true);
+    });
+    host?.querySelector('#gradedSoundToggle')?.addEventListener('click', () => {
+      rewardPreferences.sound = !rewardPreferences.sound;
+      const button = host.querySelector('#gradedSoundToggle');
+      if (button) { button.setAttribute('aria-pressed', String(rewardPreferences.sound)); button.textContent = rewardPreferences.sound ? '🔊 回饋聲：開' : '🔇 回饋聲：關'; }
+      if (rewardPreferences.sound) playRewardSound('soft');
+      showSupportNote(rewardPreferences.sound ? '已開啟溫和回饋聲。' : '已關閉回饋聲；視覺回饋會繼續保留。');
+    });
+    host?.querySelector('#gradedVisualToggle')?.addEventListener('click', () => {
+      rewardPreferences.visual = !rewardPreferences.visual;
+      const button = host.querySelector('#gradedVisualToggle');
+      if (button) { button.setAttribute('aria-pressed', String(rewardPreferences.visual)); button.textContent = rewardPreferences.visual ? '✨ 視覺獎勵：開' : '◌ 視覺獎勵：關'; }
+      showSupportNote(rewardPreferences.visual ? '已開啟柔和視覺獎勵。' : '已關閉動態視覺獎勵；文字回饋會繼續保留。');
+    });
+  }
+
+  function showSupportNote(message, includeActions = false) {
+    const note = host?.querySelector('#gradedSupportNote');
+    if (!note) return;
+    note.hidden = false;
+    note.innerHTML = includeActions ? `${message}<span><button type="button" data-graded-restart>↺ 重新開始這項</button><button type="button" data-graded-menu>換一項</button></span>` : message;
+    note.querySelector('[data-graded-restart]')?.addEventListener('click', () => { if (state?.game) startGame(state.game); });
+    note.querySelector('[data-graded-menu]')?.addEventListener('click', renderMenu);
+  }
+
+  function awardEffort(kind) {
+    if (!state) return;
+    state.effortStars = Math.min(5, (state.effortStars || 0) + (kind === 'finish' ? 2 : 1));
+    const count = host?.querySelector('#gradedEffortCount');
+    const meter = host?.querySelector('.graded-effort-meter');
+    if (count) count.textContent = state.effortStars;
+    if (meter) { meter.setAttribute('aria-label', `本次努力星 ${state.effortStars} / 5`); meter.querySelector('span').textContent = `${'★'.repeat(state.effortStars)}${'☆'.repeat(5 - state.effortStars)}`; meter.classList.add('earned'); window.setTimeout(() => meter.classList.remove('earned'), 420); }
+    if (kind === 'finish') { rewardVisual('finish'); playRewardSound('finish'); } else { rewardVisual('correct'); playRewardSound('correct'); }
+  }
+
+  function showGentleSupport() {
+    if (!rewardPreferences.visual || !host) return;
+    const cue = document.createElement('div');
+    cue.className = 'graded-gentle-cue';
+    cue.setAttribute('aria-hidden', 'true');
+    cue.textContent = '🌱';
+    host.querySelector('.graded-lab')?.appendChild(cue);
+    window.setTimeout(() => cue.remove(), 700);
+  }
+
+  function rewardVisual(kind) {
+    if (!rewardPreferences.visual || !host) return;
+    const burst = document.createElement('div');
+    burst.className = `graded-reward-burst ${kind}`;
+    burst.setAttribute('aria-hidden', 'true');
+    burst.innerHTML = (kind === 'finish' ? ['🌟', '🎈', '✨', '⭐', '🌈'] : ['✨', '⭐', '💫']).map((icon, index) => `<span style="--delay:${index * 45}ms">${icon}</span>`).join('');
+    host.querySelector('.graded-lab')?.appendChild(burst);
+    window.setTimeout(() => burst.remove(), kind === 'finish' ? 1050 : 740);
+  }
+
+  function playRewardSound(kind) {
+    if (!rewardPreferences.sound) return;
+    try {
+      audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
+      if (audioContext.state === 'suspended') audioContext.resume();
+      const notes = kind === 'finish' ? [523, 659, 784] : kind === 'correct' ? [523, 659] : [440];
+      notes.forEach((frequency, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        oscillator.type = 'sine';
+        oscillator.frequency.value = frequency;
+        gain.gain.setValueAtTime(.0001, audioContext.currentTime + (index * .08));
+        gain.gain.exponentialRampToValueAtTime(kind === 'soft' ? .018 : .028, audioContext.currentTime + (index * .08) + .02);
+        gain.gain.exponentialRampToValueAtTime(.0001, audioContext.currentTime + (index * .08) + .16);
+        oscillator.connect(gain).connect(audioContext.destination);
+        oscillator.start(audioContext.currentTime + (index * .08));
+        oscillator.stop(audioContext.currentTime + (index * .08) + .18);
+      });
+    } catch {}
   }
 
   function progressMarkup() {
@@ -86,8 +181,9 @@
   }
 
   function shell(content) {
-    host.innerHTML = `<div class="graded-lab-shell" role="dialog" aria-modal="true" aria-label="ADHD 分級認知訓練室"><section class="graded-lab">${content}</section></div>`;
+    host.innerHTML = `<div class="graded-lab-shell" role="dialog" aria-modal="true" aria-label="ADHD 分級認知訓練室"><section class="graded-lab">${content}${supportTray()}</section></div>`;
     host.querySelectorAll('.graded-close').forEach((button) => button.addEventListener('click', close));
+    bindSupportTray();
   }
 
   function top(title, description, eyebrow = 'ADHD · 分級認知訓練') {
@@ -95,7 +191,7 @@
   }
 
   function createRun(game, total) {
-    state = { game, total, index: 0, correct: 0, incorrect: 0, reactionTimes: [], startedAt: Date.now(), locked: false, keyHandler: null };
+    state = { game, total, index: 0, correct: 0, incorrect: 0, reactionTimes: [], startedAt: Date.now(), locked: false, keyHandler: null, effortStars: 0 };
   }
 
   function finishGame() {
@@ -106,6 +202,7 @@
     const averageMs = state.reactionTimes.length ? Math.round(state.reactionTimes.reduce((sum, value) => sum + value, 0) / state.reactionTimes.length) : 0;
     options?.onComplete?.({ label: `${info.title} · ${grade().label}`, mode: state.game, total: state.total, correct: state.correct, incorrect: state.incorrect, averageMs, completedAt: new Date().toLocaleString('zh-HK') });
     shell(`${top('本次練習回顧', '這是本節練習的溫和回顧。可以休息、重玩較短內容，或選擇另一項活動。', '完成 · ${grade().label}')}<section class="graded-summary"><div><span>完成回合</span><strong>${answered} / ${state.total}</strong></div><div><span>正確回應</span><strong>${accuracy}%</strong></div><div><span>平均反應</span><strong>${averageMs ? `${averageMs}ms` : '—'}</strong></div></section><p class="graded-note">數字只供本節課堂回顧，不用與其他同學比較。答錯時可慢慢看看規則，再選較短或較慢的練習。</p><div class="graded-actions"><button class="graded-secondary" id="gradedRestart" type="button">↺ 再玩這一項</button><button class="graded-primary" id="gradedMenu" type="button">選另一個遊戲</button></div>`);
+    awardEffort('finish');
     host.querySelector('#gradedRestart')?.addEventListener('click', () => startGame(state.game));
     host.querySelector('#gradedMenu')?.addEventListener('click', renderMenu);
     focusSoon('#gradedMenu');
@@ -686,10 +783,11 @@
       .graded-history{display:flex;justify-content:center;gap:9px;min-height:54px;margin-top:16px}.graded-history span{display:grid;place-items:center;min-width:55px;padding:6px 10px;border-radius:14px;background:#eceafb;color:#5646aa;font-size:25px;font-weight:900}.graded-history small{display:block;color:#7568ae;font-size:9px}.graded-color-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:520px;margin:0 auto}.graded-color-choice{min-height:54px;border:2px solid var(--choice);border-radius:15px;background:#fff;color:#344963;font-size:15px;font-weight:900}.graded-color-choice span{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:7px;border-radius:50%;background:var(--choice);color:#fff;font-size:11px}
       .graded-flanker{display:grid;place-items:center;min-height:168px;margin:20px 0;border-radius:24px;background:#fff;box-shadow:0 15px 32px rgba(48,73,105,.12);color:#364a67}.graded-flanker span{font-size:clamp(48px,11vw,92px);font-weight:950;letter-spacing:.02em}.graded-flanker small{margin-top:8px;color:#76869c;font-size:12px}.graded-direction-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;max-width:500px;margin:0 auto}.graded-direction{min-height:58px;border:2px solid #b8c8df;border-radius:17px;background:#fff;color:#324860;font-size:16px;font-weight:900}.graded-direction span{display:block;margin-top:2px;color:#75869b;font-size:11px}.graded-card-target{display:grid;justify-items:center;gap:6px;margin-top:18px;color:#687b93;font-size:12px;font-weight:900}.graded-card-choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}.graded-rule-card{min-height:110px;padding:10px 6px;border:2px solid #dbe5ef;border-radius:18px;background:#fff;color:#40546e;transition:transform .15s,border-color .15s}.graded-rule-card:hover{border-color:#aa89cf;transform:translateY(-2px)}.graded-rule-card.target{width:132px;border-color:#d0b05b;background:#fffdf1}.card-shapes{display:block;color:#8a67bb;font-size:27px;letter-spacing:-.1em}.graded-rule-card small{display:block;margin-top:6px;font-size:11px;font-weight:900}.graded-corsi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:420px;margin:22px auto}.graded-corsi-cell{aspect-ratio:1;min-height:74px;border:2px solid #c8d7e7;border-radius:19px;background:#dfe9f4;color:#526880;font-size:0;transition:transform .16s,background .16s,border-color .16s}.graded-corsi-cell span{font-size:12px;font-weight:900}.graded-corsi-cell.flash{border-color:#7656bf;background:#8068d6;color:#fff;box-shadow:0 0 0 5px rgba(128,104,214,.18);transform:scale(1.06)}.graded-corsi-cell.selected{border-color:#299a79;background:#dff7ed;color:#176b56}
       .graded-schulte-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:19px}.graded-schulte-meta span{padding:7px 10px;border-radius:999px;background:#eaf1f8;color:#57708b;font-size:12px;font-weight:800}.graded-schulte-meta strong{color:#5946b1}.graded-schulte-grid{display:grid;gap:8px;max-width:520px;margin:19px auto}.graded-schulte-grid.size-3{grid-template-columns:repeat(3,1fr);max-width:360px}.graded-schulte-grid.size-4{grid-template-columns:repeat(4,1fr);max-width:430px}.graded-schulte-grid.size-5{grid-template-columns:repeat(5,1fr)}.graded-schulte-cell{aspect-ratio:1;min-height:48px;border:2px solid #c6d7e8;border-radius:13px;background:#fff;color:#334b68;font-size:clamp(16px,4vw,22px);font-weight:900}.graded-schulte-cell:hover:not(:disabled){border-color:#7b62bf;background:#f5f2ff}.graded-schulte-cell:disabled{border-color:#a6dcc8;background:#e5f7ee;color:#1b7960}.graded-mot-canvas{display:block;width:100%;max-width:600px;height:auto;margin:20px auto 0;border:3px solid #9cb7d5;border-radius:23px;background:#163866;touch-action:manipulation}.graded-mot-canvas:focus-visible{outline:4px solid #f1bf35;outline-offset:4px}.graded-mot-keyboard{max-width:600px;margin:10px auto 0;color:#60748e;text-align:center;font-size:12px;font-weight:750}
+      .graded-support-tray{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px;padding:12px 14px;border:1px solid #dce4ef;border-radius:18px;background:linear-gradient(110deg,#f8fbff,#fffbef)}.graded-effort-meter{display:flex;align-items:center;gap:8px;color:#705e1a;white-space:nowrap}.graded-effort-meter span{color:#d49d22;font-size:20px;letter-spacing:1px}.graded-effort-meter strong{font-size:11px}.graded-effort-meter b{color:#8052b3;font-size:14px}.graded-effort-meter.earned{animation:graded-star-pop .42s cubic-bezier(.23,1,.32,1)}.graded-support-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px}.graded-tool{min-height:38px;padding:0 10px;border:1px solid #cbd8e5;border-radius:11px;background:#fff;color:#4e617d;font-size:11px;font-weight:850}.graded-tool[aria-pressed="true"]{border-color:#ad8b35;background:#fff8df;color:#6c5207}.graded-support-note{position:absolute;right:12px;bottom:calc(100% + 8px);z-index:3;max-width:430px;padding:10px 12px;border:1px solid #d7c0f0;border-radius:13px;background:#fff;color:#554479;box-shadow:0 10px 24px rgba(48,73,105,.16);font-size:12px;font-weight:760;line-height:1.55}.graded-support-note span{display:flex;gap:6px;margin-top:8px}.graded-support-note button{min-height:34px;padding:0 9px;border:1px solid #bca9dd;border-radius:9px;background:#f8f4ff;color:#59457d;font-size:11px;font-weight:850}.graded-rule-highlight{outline:4px solid rgba(222,176,47,.52);outline-offset:4px;animation:graded-rule-pulse .9s ease-out}.graded-reward-burst{position:absolute;z-index:5;top:28%;left:50%;width:170px;height:120px;pointer-events:none;transform:translateX(-50%)}.graded-reward-burst span{position:absolute;top:42%;left:50%;font-size:25px;animation:graded-reward-float .72s var(--delay) ease-out both}.graded-reward-burst span:nth-child(1){--x:-60px;--y:-48px}.graded-reward-burst span:nth-child(2){--x:3px;--y:-72px}.graded-reward-burst span:nth-child(3){--x:56px;--y:-35px}.graded-reward-burst span:nth-child(4){--x:-44px;--y:26px}.graded-reward-burst span:nth-child(5){--x:45px;--y:22px}.graded-reward-burst.finish span{font-size:30px}.graded-gentle-cue{position:absolute;z-index:5;top:34%;right:12%;font-size:28px;pointer-events:none;animation:graded-gentle-float .7s ease-out both}@keyframes graded-star-pop{50%{transform:scale(1.16)}}@keyframes graded-rule-pulse{0%{outline-color:rgba(222,176,47,.68)}100%{outline-color:rgba(222,176,47,0)}}@keyframes graded-reward-float{0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}25%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.12)}}@keyframes graded-gentle-float{0%{opacity:0;transform:translateY(12px) scale(.8)}35%{opacity:1}100%{opacity:0;transform:translateY(-18px) scale(1.05)}}
       .graded-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:23px}.graded-summary div{padding:16px 10px;border-radius:17px;background:#fff;text-align:center;box-shadow:0 8px 18px rgba(48,73,105,.08)}.graded-summary span{display:block;color:#73849b;font-size:11px;font-weight:800}.graded-summary strong{display:block;margin-top:5px;color:#30445f;font-size:27px}.graded-actions{display:flex;justify-content:center;gap:10px;margin-top:20px}.graded-primary,.graded-secondary{min-height:48px;padding:0 18px;border-radius:14px;font-size:14px;font-weight:900}.graded-primary{border:0;background:#6758bf;color:#fff}.graded-secondary{border:1px solid #cbd7e5;background:#fff;color:#4e627e}
       .graded-lab button:focus-visible{outline:4px solid #0d5f9c;outline-offset:3px}.graded-lab button:disabled{cursor:not-allowed;opacity:.62}
-      @media (max-width:640px){.graded-lab{padding:19px}.graded-game-grid{grid-template-columns:1fr}.graded-game-card{min-height:145px}.graded-summary{grid-template-columns:1fr}.graded-stimulus{min-height:145px}.graded-actions{flex-direction:column}.graded-primary,.graded-secondary{width:100%}.graded-card-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.graded-rule-card{min-height:92px}.graded-corsi-grid{gap:9px}.graded-corsi-cell{min-height:62px}}
-      @media (prefers-reduced-motion:reduce){.graded-game-card,.graded-progress i{transition:none!important}}
+      @media (max-width:640px){.graded-lab{padding:19px}.graded-game-grid{grid-template-columns:1fr}.graded-game-card{min-height:145px}.graded-summary{grid-template-columns:1fr}.graded-stimulus{min-height:145px}.graded-actions{flex-direction:column}.graded-primary,.graded-secondary{width:100%}.graded-card-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.graded-rule-card{min-height:92px}.graded-corsi-grid{gap:9px}.graded-corsi-cell{min-height:62px}.graded-support-tray{align-items:flex-start;flex-direction:column}.graded-support-actions{justify-content:flex-start}.graded-support-note{right:8px;left:8px;max-width:none}.graded-tool{min-height:40px}}
+      @media (prefers-reduced-motion:reduce){.graded-game-card,.graded-progress i{transition:none!important}.graded-effort-meter.earned,.graded-rule-highlight,.graded-reward-burst span,.graded-gentle-cue{animation:none!important}}
     `;
     document.head.appendChild(style);
   }
