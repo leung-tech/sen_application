@@ -359,6 +359,11 @@
           const primaryGame = getPrimaryPathwayGame();
           $('#supportKey').hidden = true;
           $('#gamesKicker').textContent = '專屬訓練模組';
+          if (activePathway === '4') {
+            $('#gamesTitle').textContent = `${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}`;
+            $('#stageGuide').textContent = '可直接選擇九項分級認知遊戲，或進入十關專注策略練習；兩種方式均只保留 ADHD 專屬內容，並可隨時休息或離開。';
+            return;
+          }
           $('#gamesTitle').textContent = `${pathwayLabels[activePathway]}｜${primaryGame.title}`;
           $('#stageGuide').textContent = `目前是${stageProfiles[activeStage].label}。此區只保留本路線的 ${primaryGame.rounds.length} 關專屬訓練，不會顯示其他 SEN 類別或通用遊戲。`;
           return;
@@ -386,13 +391,19 @@
         document.body.classList.toggle('spld-s1-direct-select', isSpldS1DirectSelect);
         document.body.classList.toggle('spld-s4-direct-select', isSpldS4DirectSelect);
         $('#gameGrid').classList.toggle('spld-primary-grid', isSpldP1DirectSelect || isSpldP4DirectSelect || isSpldS1DirectSelect || isSpldS4DirectSelect);
-        $('#gameGrid').innerHTML = games.map(game => {
+        const adhdDirectCard = activePathway === '4' ? `<button class="game-card adhd-graded-direct-card" type="button" data-adhd-graded-direct="true" data-tone="purple"><div class="game-visual" aria-hidden="true">🧠</div><h3>九項分級認知遊戲</h3><p>CPT、步進記憶、中央箭頭、規則切換、空間記憶、視覺搜尋、星球追蹤與反應抑制，按目前學段自動調整。</p><div class="support-badge-row" aria-label="ADHD 分級訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">低壓短回合</span></div><span class="tag">${stageProfiles[activeStage].label} · 9 項遊戲</span></button>` : '';
+        $('#gameGrid').innerHTML = adhdDirectCard + games.map(game => {
           const badges = activePathway ? renderSupportBadges(game.supports) : '<span class="support-badge">一般活動</span>';
           const label = activePathway ? '本專屬模組類別' : '一般活動類別';
           const directActivity = game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
           return `<button class="game-card" type="button" data-game-id="${game.id}"${directActivity} data-tone="${game.tone}"><div class="game-visual" aria-hidden="true">${game.icon}</div><h3>${game.title}</h3><p>${game.description}</p><div class="support-badge-row" aria-label="${label}">${badges}</div><span class="tag">${game.tag}</span></button>`;
         }).join('');
         $$('.game-card').forEach(card => card.addEventListener('click', () => {
+          if (card.dataset.adhdGradedDirect) {
+            if (!window.ADHD_GRADED_LAB) { showToast('分級認知訓練室正在準備中，請稍後再試。'); return; }
+            window.ADHD_GRADED_LAB.open({ stage: activeStage, onComplete: recordAdhdLabResult });
+            return;
+          }
           if (card.dataset.spldActivity) {
             window.SPLD_P1_LAB?.openActivity(card.dataset.spldActivity);
             return;
