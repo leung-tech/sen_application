@@ -63,6 +63,36 @@ async function openLab(client, stage = 'lower') {
   await sleep(100);
 }
 
+async function directEntryAudit(client) {
+  await client.call('Page.navigate', { url: `${baseUrl}?adhdDirectEntryAudit=${Date.now()}` });
+  await sleep(1150);
+  return evaluate(client, `(() => {
+    document.querySelector('.pathway-card[data-type="4"]')?.click();
+    const directCard = document.querySelector('[data-adhd-graded-direct]');
+    const before = {
+      directCard: Boolean(directCard),
+      title: document.querySelector('#gamesTitle')?.textContent.trim() || '',
+      guide: document.querySelector('#stageGuide')?.textContent.trim() || '',
+      directText: directCard?.innerText.trim() || '',
+    };
+    directCard?.click();
+    const dialog = document.querySelector('.graded-lab-shell');
+    const sound = document.querySelector('#gradedSoundToggle');
+    const visual = document.querySelector('#gradedVisualToggle');
+    const tools = ['gradedRuleHelp', 'gradedBreakHelp', 'gradedSoundToggle', 'gradedVisualToggle'];
+    const after = {
+      dialog: Boolean(dialog), gameCards: document.querySelectorAll('[data-graded-game]').length,
+      effort: Boolean(document.querySelector('.graded-effort-meter')),
+      toolsPresent: tools.every((id) => Boolean(document.getElementById(id))),
+      soundPressed: sound?.getAttribute('aria-pressed') || '', visualPressed: visual?.getAttribute('aria-pressed') || '',
+    };
+    sound?.click(); visual?.click();
+    after.soundCanDisable = sound?.getAttribute('aria-pressed') === 'false';
+    after.visualCanDisable = visual?.getAttribute('aria-pressed') === 'false';
+    return { before, after };
+  })()`);
+}
+
 async function menuAudit(client, stage) {
   await openLab(client, stage);
   return evaluate(client, `(() => {
@@ -139,6 +169,7 @@ try {
   const client = await connect(await targetUrl());
   await client.call('Page.enable');
   await client.call('Accessibility.enable');
+  const directEntry = await directEntryAudit(client);
   const menus = [];
   for (const stage of stages) menus.push(await menuAudit(client, stage));
   const gameReports = [];
@@ -147,6 +178,7 @@ try {
   const mobile = await mobileAudit(client);
   const ax = await client.call('Accessibility.getFullAXTree');
   const failures = [];
+  if (!directEntry.before.directCard || !directEntry.before.title.includes('ADHD') || !directEntry.before.guide.includes('九項分級認知遊戲') || !directEntry.before.directText.includes('低壓短回合') || !directEntry.after.dialog || directEntry.after.gameCards !== games.length || !directEntry.after.effort || !directEntry.after.toolsPresent || directEntry.after.soundPressed !== 'true' || directEntry.after.visualPressed !== 'true' || !directEntry.after.soundCanDisable || !directEntry.after.visualCanDisable) failures.push('ADHD 首層直接選關或低壓聲光回饋控制不完整。');
   menus.forEach((menu) => {
     if (!menu.dialog || menu.role !== 'dialog' || menu.modal !== 'true' || !menu.name || !menu.focusInside || menu.unnamed || menu.gameKeys.length !== games.length || games.some((game) => !menu.gameKeys.includes(game))) failures.push(`${menu.stage}：分級選關對話框或九張遊戲卡不完整。`);
   });
@@ -157,7 +189,7 @@ try {
   });
   if (!keyboard.focusCycle.tabWraps || !keyboard.focusCycle.shiftTabWraps || !keyboard.close.closed || !keyboard.close.restored) failures.push('分級訓練室：Tab 焦點循環、Escape 關閉或焦點回復不完整。');
   if (mobile.overflow || mobile.narrowTargets.length) failures.push('分級訓練室：375px 行動版有橫向溢出或小於 40px 的控制。');
-  const output = { standard: 'ADHD graded-game keyboard, semantics and 375px mobile audit', menus, gameReports, keyboard, mobile, ax: { dialogs: ax.nodes.filter((node) => node.role?.value === 'dialog').length, statuses: ax.nodes.filter((node) => node.role?.value === 'status').length, progressbars: ax.nodes.filter((node) => node.role?.value === 'progressbar').length }, failureCount: failures.length, failures };
+  const output = { standard: 'ADHD graded-game keyboard, direct-entry rewards, semantics and 375px mobile audit', directEntry, menus, gameReports, keyboard, mobile, ax: { dialogs: ax.nodes.filter((node) => node.role?.value === 'dialog').length, statuses: ax.nodes.filter((node) => node.role?.value === 'status').length, progressbars: ax.nodes.filter((node) => node.role?.value === 'progressbar').length }, failureCount: failures.length, failures };
   await writeFile(reportPath, `${JSON.stringify(output, null, 2)}\n`);
   console.log(JSON.stringify({ stages: menus.length, games: gameReports.length, failureCount: failures.length, failures }, null, 2));
   client.close();
