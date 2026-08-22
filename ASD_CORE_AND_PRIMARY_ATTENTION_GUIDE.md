@@ -34,6 +34,10 @@
 
 教師可先用 30–60 秒帶讀準備頁，然後進行一個短回合，結束後只問一個可選問題，例如「剛才想用慢一點、快一點，還是維持一樣？」。如果學生選擇休息，可改為安心感官小空間或不計分的社交故事討論。以學生的自主選擇、理解規則與重新參與為優先，較符合低壓面對面訓練目的。
 
+## 公開版本驗證
+
+公開 GitHub Pages 版本已以 Chromium 與 Chrome DevTools Protocol 檢查四個學段的五項 ASD 核心遊戲，共 **20 個啟動與互動流程**。稽核覆蓋首層直接入口、五張選關卡、三步教師帶讀準備頁、動態狀態訊息、進度列、可關閉聲光回饋、Tab／Shift+Tab 焦點循環、Escape 關閉與焦點回復，以及 375px 行動版控制尺寸和橫向溢出。最終結果為 **`failureCount: 0`**；可重跑測試見 [`scripts/audit-asd-core-lab.mjs`](scripts/audit-asd-core-lab.mjs)。
+
 ## 參考資料
 
 [1] [Roebuck et al.，*Continuous Performance Tasks: Not Just About Sustaining Attention*](https://pmc.ncbi.nlm.nih.gov/articles/PMC5714265/)
