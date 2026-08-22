@@ -88,7 +88,7 @@ async function auditCommonGame(client, pathway, stage = 'lower') {
     const unnamed = buttons.filter((button) => !button.getAttribute('aria-label') && !button.textContent.trim()).length;
     return {
       activityExists: Boolean(activity),
-      activityFocused: document.activeElement === activity,
+      stageTitleFocused: document.activeElement?.id === 'stageTitle',
       feedbackRole: feedback?.getAttribute('role') || '',
       feedbackLive: feedback?.getAttribute('aria-live') || '',
       feedbackAtomic: feedback?.getAttribute('aria-atomic') || '',
@@ -201,7 +201,7 @@ try {
   const failures = [];
   [...common, ...asd].forEach((report) => {
     const { initial } = report;
-    if (!initial.activityFocused) failures.push(`${report.label}：開始活動後未把焦點帶到新內容。`);
+    if (!initial.stageTitleFocused) failures.push(`${report.label}：開始活動後未把焦點帶到新任務標題。`);
     if (initial.feedbackRole !== 'status' || initial.feedbackLive !== 'polite' || initial.feedbackAtomic !== 'true') failures.push(`${report.label}：共用回饋區缺少完整狀態訊息語意。`);
     if (!initial.hintExists || !report.feedback) failures.push(`${report.label}：提示控制或動態回饋未完成。`);
     if (initial.unnamed || !initial.nativeButtons || !initial.firstAnswerName) failures.push(`${report.label}：互動控制的可及名稱或原生按鈕語意不足。`);
