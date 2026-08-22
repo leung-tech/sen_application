@@ -374,6 +374,11 @@
             $('#stageGuide').textContent = '可直接選擇九項分級認知遊戲，或進入十關專注策略練習；兩種方式均只保留 ADHD 專屬內容，並可隨時休息或離開。';
             return;
           }
+          if (activePathway === '3') {
+            $('#gamesTitle').textContent = `${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}`;
+            $('#stageGuide').textContent = '可直接選擇五項 ASD 核心訓練，或進入十關社交情境練習；兩種方式均只保留 ASD 專屬內容，並可先帶讀規則、隨時休息或離開。';
+            return;
+          }
           $('#gamesTitle').textContent = `${pathwayLabels[activePathway]}｜${primaryGame.title}`;
           $('#stageGuide').textContent = `目前是${stageProfiles[activeStage].label}。此區只保留本路線的 ${primaryGame.rounds.length} 關專屬訓練，不會顯示其他 SEN 類別或通用遊戲。`;
           return;
