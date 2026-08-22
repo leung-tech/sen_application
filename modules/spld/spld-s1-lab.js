@@ -129,6 +129,7 @@
   let result = { correct: 0, retries: 0, hints: 0 };
   let completed = false;
   let returnFocus = null;
+  let speechActive = false;
 
   const currentActivity = () => activities[activeKey];
   const currentRound = () => currentActivity().rounds[roundIndex];
@@ -142,18 +143,35 @@
     return output;
   };
 
+  function updateReadButton() {
+    const button = document.querySelector('#spldS1Read');
+    if (!button) return;
+    button.textContent = speechActive ? '■ 停止朗讀' : '🔊 朗讀題目';
+    button.setAttribute('aria-label', speechActive ? '停止朗讀' : '朗讀本關題目');
+    button.setAttribute('aria-pressed', String(speechActive));
+  }
+
+  function stopReading() {
+    window.speechSynthesis?.cancel();
+    speechActive = false;
+    updateReadButton();
+  }
+
   function speak(text) {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
+    speechActive = true;
+    updateReadButton();
     const utterance = new SpeechSynthesisUtterance(String(text).replace(/[「」]/g, ''));
     utterance.lang = 'zh-HK';
     utterance.rate = 0.72;
+    utterance.onend = utterance.onerror = () => { speechActive = false; updateReadButton(); };
     window.speechSynthesis.speak(utterance);
   }
 
   function closeLab({ restoreFocus = true } = {}) {
     const focusTarget = returnFocus;
-    window.speechSynthesis?.cancel();
+    stopReading();
     document.querySelector('.spld-s1-lab-backdrop')?.remove();
     if (restoreFocus && focusTarget?.isConnected) window.setTimeout(() => focusTarget.focus(), 0);
     if (restoreFocus) returnFocus = null;
@@ -196,7 +214,7 @@
   }
 
   function toolsMarkup() {
-    return `<div class="spld-s1-tools" aria-label="低壓學習工具"><button type="button" id="spldS1Read" aria-label="朗讀本關題目">🔊 朗讀題目</button><button type="button" id="spldS1Hint" aria-label="顯示解題提示">💡 看提示</button><button type="button" id="spldS1Back" aria-label="返回初中 SpLD 練習選單">← 換一項練習</button></div>`;
+    return `<div class="spld-s1-tools" aria-label="低壓學習工具"><button type="button" id="spldS1Read" aria-label="朗讀本關題目" aria-pressed="false">🔊 朗讀題目</button><button type="button" id="spldS1Hint" aria-label="顯示解題提示">💡 看提示</button><button type="button" id="spldS1Back" aria-label="返回初中 SpLD 練習選單">← 換一項練習</button></div>`;
   }
 
   function choiceGridMarkup(choices) {
@@ -276,7 +294,7 @@
 
   function bindRound(round) {
     document.querySelector('.spld-s1-close')?.addEventListener('click', closeLab);
-    document.querySelector('#spldS1Read')?.addEventListener('click', () => speak(readRound(round)));
+    document.querySelector('#spldS1Read')?.addEventListener('click', () => { if (speechActive) stopReading(); else speak(readRound(round)); });
     document.querySelector('#spldS1Hint')?.addEventListener('click', () => {
       result.hints += 1;
       feedback(`💡 ${round.hint}`, 'hint');
