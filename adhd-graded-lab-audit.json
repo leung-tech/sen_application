@@ -112,6 +112,14 @@
     {
       "stage": "lower",
       "game": "cpt",
+      "ready": {
+        "dialog": true,
+        "title": "貓咪捉老鼠 CPT · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -133,6 +141,14 @@
     {
       "stage": "lower",
       "game": "nback",
+      "ready": {
+        "dialog": true,
+        "title": "步進記憶回溯 · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -154,6 +170,14 @@
     {
       "stage": "lower",
       "game": "flanker",
+      "ready": {
+        "dialog": true,
+        "title": "中央箭頭過濾 Flanker · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -169,12 +193,20 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 正確，中央箭頭是向左。"
+        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
       }
     },
     {
       "stage": "lower",
       "game": "switch",
+      "ready": {
+        "dialog": true,
+        "title": "規則偵探卡片 · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -196,6 +228,14 @@
     {
       "stage": "lower",
       "game": "mot",
+      "ready": {
+        "dialog": true,
+        "title": "目標星球追蹤 MOT · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -217,6 +257,14 @@
     {
       "stage": "lower",
       "game": "stroop",
+      "ready": {
+        "dialog": true,
+        "title": "色字煞車 Stroop · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -232,12 +280,20 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 這一張的顏色是藍色，下次慢慢看字體。"
+        "feedback": "↗ 這一張的顏色是綠色，下次慢慢看字體。"
       }
     },
     {
       "stage": "lower",
       "game": "nogo",
+      "ready": {
+        "dialog": true,
+        "title": "綠燈停手 Go／No-Go · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -259,6 +315,14 @@
     {
       "stage": "lower",
       "game": "corsi",
+      "ready": {
+        "dialog": true,
+        "title": "空間記憶磚 Corsi · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -274,12 +338,20 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 這一格正確，繼續想下一個位置。"
+        "feedback": "↗ 這次次序不同。下一回合會以 2 格慢慢再試。"
       }
     },
     {
       "stage": "lower",
       "game": "schulte",
+      "ready": {
+        "dialog": true,
+        "title": "尋數方格 Schulte · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -301,6 +373,14 @@
     {
       "stage": "upper",
       "game": "cpt",
+      "ready": {
+        "dialog": true,
+        "title": "貓咪捉老鼠 CPT · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -322,6 +402,14 @@
     {
       "stage": "upper",
       "game": "nback",
+      "ready": {
+        "dialog": true,
+        "title": "步進記憶回溯 · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -343,6 +431,14 @@
     {
       "stage": "upper",
       "game": "flanker",
+      "ready": {
+        "dialog": true,
+        "title": "中央箭頭過濾 Flanker · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -358,12 +454,20 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
+        "feedback": "✓ 正確，中央箭頭是向左。"
       }
     },
     {
       "stage": "upper",
       "game": "switch",
+      "ready": {
+        "dialog": true,
+        "title": "規則偵探卡片 · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -385,6 +489,14 @@
     {
       "stage": "upper",
       "game": "mot",
+      "ready": {
+        "dialog": true,
+        "title": "目標星球追蹤 MOT · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -406,6 +518,14 @@
     {
       "stage": "upper",
       "game": "stroop",
+      "ready": {
+        "dialog": true,
+        "title": "色字煞車 Stroop · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -427,6 +547,14 @@
     {
       "stage": "upper",
       "game": "nogo",
+      "ready": {
+        "dialog": true,
+        "title": "綠燈停手 Go／No-Go · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -448,6 +576,14 @@
     {
       "stage": "upper",
       "game": "corsi",
+      "ready": {
+        "dialog": true,
+        "title": "空間記憶磚 Corsi · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -469,6 +605,14 @@
     {
       "stage": "upper",
       "game": "schulte",
+      "ready": {
+        "dialog": true,
+        "title": "尋數方格 Schulte · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -490,6 +634,14 @@
     {
       "stage": "junior",
       "game": "cpt",
+      "ready": {
+        "dialog": true,
+        "title": "貓咪捉老鼠 CPT · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -511,6 +663,14 @@
     {
       "stage": "junior",
       "game": "nback",
+      "ready": {
+        "dialog": true,
+        "title": "步進記憶回溯 · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -532,6 +692,14 @@
     {
       "stage": "junior",
       "game": "flanker",
+      "ready": {
+        "dialog": true,
+        "title": "中央箭頭過濾 Flanker · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -547,12 +715,20 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
+        "feedback": "✓ 正確，中央箭頭是向左。"
       }
     },
     {
       "stage": "junior",
       "game": "switch",
+      "ready": {
+        "dialog": true,
+        "title": "規則偵探卡片 · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -574,6 +750,14 @@
     {
       "stage": "junior",
       "game": "mot",
+      "ready": {
+        "dialog": true,
+        "title": "目標星球追蹤 MOT · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -595,6 +779,14 @@
     {
       "stage": "junior",
       "game": "stroop",
+      "ready": {
+        "dialog": true,
+        "title": "色字煞車 Stroop · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -610,12 +802,20 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 這一張的顏色是黃色，下次慢慢看字體。"
+        "feedback": "✓ 正確，你看的是顏色。"
       }
     },
     {
       "stage": "junior",
       "game": "nogo",
+      "ready": {
+        "dialog": true,
+        "title": "綠燈停手 Go／No-Go · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -631,12 +831,20 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 紅色時先停一停；下一張再試。"
+        "feedback": "✓ 做得好，綠色時才按。"
       }
     },
     {
       "stage": "junior",
       "game": "corsi",
+      "ready": {
+        "dialog": true,
+        "title": "空間記憶磚 Corsi · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -658,6 +866,14 @@
     {
       "stage": "junior",
       "game": "schulte",
+      "ready": {
+        "dialog": true,
+        "title": "尋數方格 Schulte · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -679,6 +895,14 @@
     {
       "stage": "senior",
       "game": "cpt",
+      "ready": {
+        "dialog": true,
+        "title": "貓咪捉老鼠 CPT · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -700,6 +924,14 @@
     {
       "stage": "senior",
       "game": "nback",
+      "ready": {
+        "dialog": true,
+        "title": "步進記憶回溯 · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -721,6 +953,14 @@
     {
       "stage": "senior",
       "game": "flanker",
+      "ready": {
+        "dialog": true,
+        "title": "中央箭頭過濾 Flanker · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -742,6 +982,14 @@
     {
       "stage": "senior",
       "game": "switch",
+      "ready": {
+        "dialog": true,
+        "title": "規則偵探卡片 · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -763,6 +1011,14 @@
     {
       "stage": "senior",
       "game": "mot",
+      "ready": {
+        "dialog": true,
+        "title": "目標星球追蹤 MOT · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -784,6 +1040,14 @@
     {
       "stage": "senior",
       "game": "stroop",
+      "ready": {
+        "dialog": true,
+        "title": "色字煞車 Stroop · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -799,12 +1063,20 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 這一張的顏色是藍色，下次慢慢看字體。"
+        "feedback": "↗ 這一張的顏色是黃色，下次慢慢看字體。"
       }
     },
     {
       "stage": "senior",
       "game": "nogo",
+      "ready": {
+        "dialog": true,
+        "title": "綠燈停手 Go／No-Go · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -826,6 +1098,14 @@
     {
       "stage": "senior",
       "game": "corsi",
+      "ready": {
+        "dialog": true,
+        "title": "空間記憶磚 Corsi · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
@@ -847,6 +1127,14 @@
     {
       "stage": "senior",
       "game": "schulte",
+      "ready": {
+        "dialog": true,
+        "title": "尋數方格 Schulte · 準備頁",
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "ruleSteps": 3,
+        "feedback": "現在是準備時間，尚未開始計時或出題。"
+      },
       "initial": {
         "dialog": true,
         "feedbackRole": "status",
