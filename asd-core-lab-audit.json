@@ -1,0 +1,675 @@
+{
+  "standard": "ASD core games direct-entry, ready screen, keyboard, semantics and 375px mobile audit",
+  "directEntry": {
+    "before": {
+      "exists": true,
+      "title": "ASD 社交練習｜初小 · P1–P3",
+      "guide": "可直接選擇五項 ASD 核心訓練，或進入十關社交情境練習；兩種方式均只保留 ASD 專屬內容，並可先帶讀規則、隨時休息或離開。",
+      "text": "🤖\n五項 ASD 核心訓練\n\n情緒解碼、社交故事、一起看寶箱、細節與全圖轉換，以及安心感官小空間；按目前學段調整。\n\n直接選關\n教師帶讀\n低壓短回合\n初小 · P1–P3 · 5 項遊戲"
+    },
+    "after": {
+      "dialog": true,
+      "games": 5,
+      "tools": true,
+      "soundPressed": "true",
+      "visualPressed": "true",
+      "soundCanDisable": true,
+      "visualCanDisable": true
+    }
+  },
+  "menus": [
+    {
+      "stage": "lower",
+      "dialog": true,
+      "role": "dialog",
+      "modal": "true",
+      "name": "ASD 核心訓練室",
+      "focusInside": true,
+      "cardKeys": [
+        "emotion",
+        "story",
+        "joint",
+        "visual",
+        "sensory"
+      ],
+      "controls": 10,
+      "unnamed": 0
+    },
+    {
+      "stage": "upper",
+      "dialog": true,
+      "role": "dialog",
+      "modal": "true",
+      "name": "ASD 核心訓練室",
+      "focusInside": true,
+      "cardKeys": [
+        "emotion",
+        "story",
+        "joint",
+        "visual",
+        "sensory"
+      ],
+      "controls": 10,
+      "unnamed": 0
+    },
+    {
+      "stage": "junior",
+      "dialog": true,
+      "role": "dialog",
+      "modal": "true",
+      "name": "ASD 核心訓練室",
+      "focusInside": true,
+      "cardKeys": [
+        "emotion",
+        "story",
+        "joint",
+        "visual",
+        "sensory"
+      ],
+      "controls": 10,
+      "unnamed": 0
+    },
+    {
+      "stage": "senior",
+      "dialog": true,
+      "role": "dialog",
+      "modal": "true",
+      "name": "ASD 核心訓練室",
+      "focusInside": true,
+      "cardKeys": [
+        "emotion",
+        "story",
+        "joint",
+        "visual",
+        "sensory"
+      ],
+      "controls": 10,
+      "unnamed": 0
+    }
+  ],
+  "gameReports": [
+    {
+      "stage": "lower",
+      "game": "emotion",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "4",
+        "controls": 8,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "先留意機器人的臉部線索，再選一個感受。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "story",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "4",
+        "controls": 8,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 先想一想：沒有先問就拿走別人的東西，對方可能覺得不被尊重。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "joint",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "4",
+        "controls": 9,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 再看看機器人的眼睛和手，慢慢找方向。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "visual",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "4",
+        "controls": 8,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 再慢慢找一次 △。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "sensory",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "4",
+        "controls": 11,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 可以再聽一次，或看提示：像細小雨點連續落下。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "emotion",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "5",
+        "controls": 8,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "先留意機器人的臉部線索，再選一個感受。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "story",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "5",
+        "controls": 8,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 先想一想：沒有先問就拿走別人的東西，對方可能覺得不被尊重。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "joint",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "5",
+        "controls": 9,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 再看看機器人的眼睛和手，慢慢找方向。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "visual",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "5",
+        "controls": 8,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 再慢慢找一次 △。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "sensory",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "5",
+        "controls": 12,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 可以再聽一次，或看提示：像細小雨點連續落下。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "emotion",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "6",
+        "controls": 8,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "先留意機器人的臉部線索，再選一個感受。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "story",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "6",
+        "controls": 8,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "✓ 沒有先問就拿走別人的東西，對方可能覺得不被尊重。 可以嘗試說：「可以說：「我可以用這一塊嗎？」」"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "joint",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "6",
+        "controls": 9,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 再看看機器人的眼睛和手，慢慢找方向。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "visual",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "6",
+        "controls": 8,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "✓ 對了，你找到了 △。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "sensory",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "6",
+        "controls": 13,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "✓ 對了，這是下雨聲。像細小雨點連續落下。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "emotion",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "6",
+        "controls": 8,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "先留意機器人的臉部線索，再選一個感受。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "story",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "6",
+        "controls": 8,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 先想一想：沒有先問就拿走別人的東西，對方可能覺得不被尊重。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "joint",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "6",
+        "controls": 9,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 再看看機器人的眼睛和手，慢慢找方向。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "visual",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "6",
+        "controls": 8,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "✓ 對了，你找到了 △。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "sensory",
+      "ready": {
+        "dialog": true,
+        "start": true,
+        "startText": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "notice": "現在是準備時間，尚未開始出題或播放聲音。"
+      },
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "6",
+        "controls": 13,
+        "unnamed": 0,
+        "rule": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "✓ 對了，這是下雨聲。像細小雨點連續落下。"
+      }
+    }
+  ],
+  "keyboard": {
+    "cycle": {
+      "tabWraps": true,
+      "shiftTabWraps": true
+    },
+    "close": {
+      "closed": true,
+      "restored": true
+    }
+  },
+  "mobile": {
+    "overflow": false,
+    "dialogWidth": 343,
+    "controls": 10,
+    "narrow": []
+  },
+  "ax": {
+    "dialogs": 1,
+    "statuses": 2,
+    "progressbars": 0
+  },
+  "failureCount": 0,
+  "failures": []
+}
