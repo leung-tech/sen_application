@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#EEF4FF">
   <title>心晴同行｜SEN 訓練中心</title>
-  <link rel="stylesheet" href="assets/css/sen-ui.css?v=s4b7f8c9">
+  <link rel="stylesheet" href="assets/css/sen-ui.css?v=wcag-aa-20260822">
 </head>
 <body>
+  <a class="skip-link" href="#mainContent">跳至主要訓練內容</a>
   <div class="app-shell">
     <aside class="sidebar" aria-label="訓練中心導覽">
       <div class="brand"><div class="brand-mark" aria-hidden="true">✦</div><div><strong>心晴同行</strong><span>SEN TRAINING STUDIO</span></div></div>
@@ -21,11 +22,11 @@
       <div class="side-bottom"><button class="side-action" id="projectorButton" type="button"><span>▣</span> 投影模式</button></div>
     </aside>
 
-    <main class="main">
+    <main class="main" id="mainContent" tabindex="-1">
       <section id="dashboardView">
         <header class="topbar">
-          <div><p>一小步、一個成功經驗</p><h1>早晨好，<span>張姑娘</span></h1></div>
-          <div class="top-actions"><div class="date-text" id="dateText">星期四 · 8 月 20 日</div><button class="icon-button" id="readableButton" type="button" aria-label="切換高辨識文字模式">Aa</button><button class="icon-button" id="fullscreenButton" type="button" aria-label="進入全螢幕">⛶</button><button class="icon-button" id="projectorTop" type="button" aria-label="切換投影模式">▣</button></div>
+          <div><p>一小步、一個成功經驗</p><h1 id="dashboardTitle" tabindex="-1">早晨好，<span>張姑娘</span></h1></div>
+          <div class="top-actions"><div class="date-text" id="dateText">星期四 · 8 月 20 日</div><button class="icon-button" id="readableButton" type="button" aria-label="切換高辨識文字模式" aria-pressed="false">Aa</button><button class="icon-button" id="fullscreenButton" type="button" aria-label="進入全螢幕">⛶</button><button class="icon-button" id="projectorTop" type="button" aria-label="切換投影模式" aria-pressed="false">▣</button></div>
         </header>
         <section class="lesson-console" aria-labelledby="lessonConsoleTitle"><div class="lesson-copy"><p class="lesson-kicker">面對面課堂模式</p><h2 id="lessonConsoleTitle">本節帶領控制</h2><p id="lessonSummaryText">按「開始課堂模式」後，網站只在這部裝置記錄本節完成、正確、提示與重試，不會上傳學生資料。</p></div><div class="lesson-panel"><div class="lesson-stat-grid" aria-label="本節簡易記錄"><div class="lesson-stat"><strong id="lessonGames">0</strong><span>完成關卡</span></div><div class="lesson-stat"><strong id="lessonCorrect">0</strong><span>正確嘗試</span></div><div class="lesson-stat"><strong id="lessonHints">0</strong><span>提示</span></div><div class="lesson-stat"><strong id="lessonRetries">0</strong><span>重試</span></div></div><div class="lesson-actions"><button class="lesson-button" id="lessonModeToggle" type="button">▶ 開始課堂模式</button><button class="lesson-button" id="lessonPauseToggle" type="button">Ⅱ 暫停提示</button><button class="lesson-button" id="lessonAddHint" type="button">💡 記下提示</button><button class="lesson-button" id="lessonAddRetry" type="button">↺ 記下重試</button><button class="lesson-button reset" id="lessonReset" type="button">重設本節</button></div></div></section>
 
@@ -37,17 +38,17 @@
         <section class="pathway-section" aria-labelledby="pathwayTitle">
           <div class="section-head"><div><div class="small-label">先按需要選擇</div><h2 id="pathwayTitle">九類支援訓練路線</h2><p>每一條路線都是獨立訓練模組。選擇後只會顯示該類別、該學段的專屬關卡，不會混入其他 SEN 類別或重覆的通用遊戲。</p></div></div>
           <div class="pathway-grid" role="group" aria-label="選擇 SEN 支援訓練路線">
-            <button class="pathway-card" type="button" data-type="1"><span class="pathway-code">1</span><strong>SpLD</strong><span>讀寫策略與關鍵資料</span></button>
-            <button class="pathway-card" type="button" data-type="2"><span class="pathway-code">2</span><strong>ID</strong><span>日常流程與生活選擇</span></button>
-            <button class="pathway-card" type="button" data-type="3"><span class="pathway-code">3</span><strong>ASD</strong><span>社交語句與界線</span></button>
-            <button class="pathway-card" type="button" data-type="4"><span class="pathway-code">4</span><strong>ADHD</strong><span>啟動任務與回到焦點</span></button><button class="pathway-card" type="button" data-type="G"><span class="pathway-code">G</span><strong>Giftedness</strong><span>高階邏輯與解難</span></button><button class="pathway-card" type="button" data-type="H"><span class="pathway-code">H</span><strong>HI</strong><span>視覺化溝通與表情</span></button><button class="pathway-card" type="button" data-type="E"><span class="pathway-code">E</span><strong>EBD</strong><span>情緒識別與自我調節</span></button>
-            <button class="pathway-card" type="button" data-type="8"><span class="pathway-code">8</span><strong>SLI</strong><span>理解指令與關鍵詞</span></button>
-            <button class="pathway-card" type="button" data-type="9"><span class="pathway-code">9</span><strong>MI</strong><span>功能性溝通與選擇</span></button>
+            <button class="pathway-card" type="button" data-type="1" aria-pressed="false"><span class="pathway-code">1</span><strong>SpLD</strong><span>讀寫策略與關鍵資料</span></button>
+            <button class="pathway-card" type="button" data-type="2" aria-pressed="false"><span class="pathway-code">2</span><strong>ID</strong><span>日常流程與生活選擇</span></button>
+            <button class="pathway-card" type="button" data-type="3" aria-pressed="false"><span class="pathway-code">3</span><strong>ASD</strong><span>社交語句與界線</span></button>
+            <button class="pathway-card" type="button" data-type="4" aria-pressed="false"><span class="pathway-code">4</span><strong>ADHD</strong><span>啟動任務與回到焦點</span></button><button class="pathway-card" type="button" data-type="G" aria-pressed="false"><span class="pathway-code">G</span><strong>Giftedness</strong><span>高階邏輯與解難</span></button><button class="pathway-card" type="button" data-type="H" aria-pressed="false"><span class="pathway-code">H</span><strong>HI</strong><span>視覺化溝通與表情</span></button><button class="pathway-card" type="button" data-type="E" aria-pressed="false"><span class="pathway-code">E</span><strong>EBD</strong><span>情緒識別與自我調節</span></button>
+            <button class="pathway-card" type="button" data-type="8" aria-pressed="false"><span class="pathway-code">8</span><strong>SLI</strong><span>理解指令與關鍵詞</span></button>
+            <button class="pathway-card" type="button" data-type="9" aria-pressed="false"><span class="pathway-code">9</span><strong>MI</strong><span>功能性溝通與選擇</span></button>
           </div>
-          <div class="pathway-status" id="pathwayStatus">尚未選擇路線。你可先按學生當日需要選擇一類，再按學段開始。</div>
+          <div class="pathway-status" id="pathwayStatus" role="status" aria-live="polite" aria-atomic="true">尚未選擇路線。你可先按學生當日需要選擇一類，再按學段開始。</div>
         </section>
 
-        <div class="section-head" id="gamesAnchor"><div><div class="small-label" id="gamesKicker">一般活動</div><h2 id="gamesTitle">選一個，現在開始</h2><p id="stageGuide">目前是初小的一般活動：以具體圖片、單一步驟與直接日常詞彙開始。</p><div class="level-row" role="group" aria-label="選擇學習階段"><span class="level-intro">學習階段</span><button class="level-button active" type="button" data-stage="lower">初小 <small>P1–P3</small></button><button class="level-button" type="button" data-stage="upper">高小 <small>P4–P6</small></button><button class="level-button" type="button" data-stage="junior">初中 <small>S1–S3</small></button><button class="level-button" type="button" data-stage="senior">高中 <small>S4–S6</small></button></div><div class="support-key" id="supportKey"><span class="support-badge" data-code="1">1 SpLD</span><span class="support-badge" data-code="2">2 ID</span><span class="support-badge" data-code="3">3 ASD</span><span class="support-badge" data-code="4">4 ADHD</span><span class="support-badge" data-code="G">G Giftedness</span><span class="support-badge" data-code="H">H HI</span><span class="support-badge" data-code="E">E EBD</span><span class="support-badge" data-code="8">8 SLI</span><span class="support-badge" data-code="9">9 MI</span></div></div><div class="filter-row" role="group" aria-label="小遊戲分類與支援標記"><button class="filter-button active" type="button" data-filter="all">全部</button><button class="filter-button" type="button" data-filter="emotion">情緒社交</button><button class="filter-button" type="button" data-filter="cognition">認知學習</button><button class="filter-button" type="button" data-filter="life">生活技能</button><button class="filter-button" type="button" data-filter="support-1">1 SpLD</button><button class="filter-button" type="button" data-filter="support-2">2 ID</button><button class="filter-button" type="button" data-filter="support-3">3 ASD</button><button class="filter-button" type="button" data-filter="support-4">4 ADHD</button><button class="filter-button" type="button" data-filter="support-G">G Giftedness</button><button class="filter-button" type="button" data-filter="support-H">H HI</button><button class="filter-button" type="button" data-filter="support-E">E EBD</button><button class="filter-button" type="button" data-filter="support-8">8 SLI</button><button class="filter-button" type="button" data-filter="support-9">9 MI</button></div></div>
+        <div class="section-head" id="gamesAnchor"><div><div class="small-label" id="gamesKicker">一般活動</div><h2 id="gamesTitle" tabindex="-1">選一個，現在開始</h2><p id="stageGuide">目前是初小的一般活動：以具體圖片、單一步驟與直接日常詞彙開始。</p><div class="level-row" role="group" aria-label="選擇學習階段"><span class="level-intro">學習階段</span><button class="level-button active" type="button" data-stage="lower" aria-pressed="true">初小 <small>P1–P3</small></button><button class="level-button" type="button" data-stage="upper" aria-pressed="false">高小 <small>P4–P6</small></button><button class="level-button" type="button" data-stage="junior" aria-pressed="false">初中 <small>S1–S3</small></button><button class="level-button" type="button" data-stage="senior" aria-pressed="false">高中 <small>S4–S6</small></button></div><div class="support-key" id="supportKey"><span class="support-badge" data-code="1">1 SpLD</span><span class="support-badge" data-code="2">2 ID</span><span class="support-badge" data-code="3">3 ASD</span><span class="support-badge" data-code="4">4 ADHD</span><span class="support-badge" data-code="G">G Giftedness</span><span class="support-badge" data-code="H">HI</span><span class="support-badge" data-code="E">E EBD</span><span class="support-badge" data-code="8">8 SLI</span><span class="support-badge" data-code="9">9 MI</span></div></div><div class="filter-row" role="group" aria-label="小遊戲分類與支援標記"><button class="filter-button active" type="button" data-filter="all" aria-pressed="true">全部</button><button class="filter-button" type="button" data-filter="emotion" aria-pressed="false">情緒社交</button><button class="filter-button" type="button" data-filter="cognition" aria-pressed="false">認知學習</button><button class="filter-button" type="button" data-filter="life" aria-pressed="false">生活技能</button><button class="filter-button" type="button" data-filter="support-1" aria-pressed="false">1 SpLD</button><button class="filter-button" type="button" data-filter="support-2" aria-pressed="false">2 ID</button><button class="filter-button" type="button" data-filter="support-3" aria-pressed="false">3 ASD</button><button class="filter-button" type="button" data-filter="support-4" aria-pressed="false">4 ADHD</button><button class="filter-button" type="button" data-filter="support-G" aria-pressed="false">G Giftedness</button><button class="filter-button" type="button" data-filter="support-H" aria-pressed="false">H HI</button><button class="filter-button" type="button" data-filter="support-E" aria-pressed="false">E EBD</button><button class="filter-button" type="button" data-filter="support-8" aria-pressed="false">8 SLI</button><button class="filter-button" type="button" data-filter="support-9" aria-pressed="false">9 MI</button></div></div>
         <section class="game-grid" id="gameGrid" aria-label="十個訓練小遊戲"></section>
 
         <div class="section-head" id="supportAnchor"><div><div class="small-label">即時輔導工具</div><h2>準備好了才開始</h2><p>用少量、清晰和可預期的提示，陪學生穩定進入訓練。</p></div></div>
@@ -58,10 +59,10 @@
         </section>
       </section>
 
-      <section id="gameView" class="game-stage hidden" aria-live="polite">
+        <section id="gameView" class="game-stage hidden">
         <header class="stage-topbar"><button class="back-button" id="backToDashboard" type="button">← 回到訓練大廳</button><div class="stage-utilities"><button class="utility-button" id="stageReadable" type="button">Aa 高辨識文字</button><button class="utility-button" id="stageSound" type="button">🔊 指令聲音：開</button><button class="utility-button" id="stageHaptic" type="button">⌁ 觸覺提示：關</button></div></header>
         <section class="lesson-stagebar" aria-label="課堂帶領控制"><div class="lesson-stagecopy"><strong id="lessonStageTitle">課堂模式</strong><span id="lessonStageStats">完成 0 · 正確 0 · 提示 0 · 重試 0</span></div><div class="lesson-stage-actions"><button class="lesson-button" id="lessonPauseStage" type="button">Ⅱ 暫停</button><button class="lesson-button" id="lessonHintStage" type="button">💡 記提示</button><button class="lesson-button" id="lessonRetryStage" type="button">↺ 記重試</button></div></section>
-        <section class="stage-hero"><div class="stage-intro"><div><div class="stage-breadcrumb" id="stageCategory">情緒社交</div><div class="stage-level" id="stageLevel">初小 · P1–P3</div><h2 id="stageTitle">心情在哪裡？</h2><p id="stageDescription">看一看，找出一樣的表情。</p><div class="support-badge-row" id="stageSupport"></div></div><div class="round-counter">小任務<strong id="roundNumber">1 / 3</strong></div></div><section class="adhd-dashboard" id="adhdDashboard" hidden aria-label="ADHD 專注紀錄看板"></section><section class="asd-export-panel" id="asdExportPanel" hidden aria-label="ASD 家長教師進度匯出"></section><div class="round-dots" id="roundDots" role="img" aria-label="小遊戲進度"></div></section>
+        <section class="stage-hero"><div class="stage-intro"><div><div class="stage-breadcrumb" id="stageCategory">情緒社交</div><div class="stage-level" id="stageLevel">初小 · P1–P3</div><h2 id="stageTitle" tabindex="-1">心情在哪裡？</h2><p id="stageDescription">看一看，找出一樣的表情。</p><div class="support-badge-row" id="stageSupport"></div></div><div class="round-counter">小任務<strong id="roundNumber">1 / 3</strong></div></div><section class="adhd-dashboard" id="adhdDashboard" hidden aria-label="ADHD 專注紀錄看板"></section><section class="asd-export-panel" id="asdExportPanel" hidden aria-label="ASD 家長教師進度匯出"></section><div class="round-dots" id="roundDots" role="img" aria-label="小遊戲進度"></div></section>
         <section class="activity-card" id="activityCard"></section>
       </section>
     </main>
@@ -71,8 +72,8 @@
   <script src="modules/spld/spld-stage-data.js"></script>
   <script src="modules/spld/spld-p1-lab.js"></script>
   <script src="modules/spld/spld-p4-lab.js?v=8e1d3eec"></script>
-  <script src="modules/spld/spld-s1-lab.js?v=s1b7f8c9"></script>
-  <script src="modules/spld/spld-s4-lab.js?v=s4d2e3f4"></script>
+  <script src="modules/spld/spld-s1-lab.js?v=wcag-s1-20260822"></script>
+  <script src="modules/spld/spld-s4-lab.js?v=wcag-s4-20260822"></script>
   <script src="modules/adhd/adhd-stage-data.js"></script>
   <script src="modules/adhd/adhd-focus-lab.js"></script>
   <script src="modules/asd/asd-stage-data.js"></script>
@@ -81,6 +82,6 @@
   <script src="modules/gifted-hi/gifted-hi-stage-data.js"></script>
   <script src="modules/sli/sli-stage-data.js"></script>
   <script src="modules/mi/mi-stage-data.js"></script>
-  <script src="assets/js/sen-app.js?v=s4b7f8c9"></script>
+  <script src="assets/js/sen-app.js?v=wcag-app-20260822"></script>
 </body>
 </html>
