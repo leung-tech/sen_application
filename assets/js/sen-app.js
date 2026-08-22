@@ -465,10 +465,11 @@
         const activity = $('#activityCard');
         activity.innerHTML = renderActivity(activeGame.id, round);
         bindActivity(activeGame.id, round);
+        $('#stageTitle').focus({ preventScroll: true });
         speak(activeGame.id === 'spld' ? getSpldReadText(round) : getInstruction(activeGame.id, round));
       }
       function stageFrame(prompt, content, footer = true, feedbackText = '需要時可按「提示」，或再聽一次指令。') {
-        return `<div class="prompt-label">一起試一試</div><div class="activity-prompt">${prompt}</div>${content}<div class="feedback" id="gameFeedback">${feedbackText}</div>${footer ? `<div class="stage-footer"><button class="hint-button" id="hintButton" type="button">💡 聽解題提示</button><button class="hint-button" id="repeatButton" type="button">🔊 再聽一次</button></div>` : ''}`;
+        return `<div class="prompt-label">一起試一試</div><div class="activity-prompt">${prompt}</div>${content}<div class="feedback" id="gameFeedback" role="status" aria-live="polite" aria-atomic="true">${feedbackText}</div>${footer ? `<div class="stage-footer"><button class="hint-button" id="hintButton" type="button">💡 聽解題提示</button><button class="hint-button" id="repeatButton" type="button">🔊 再聽一次</button></div>` : ''}`;
       }
       function renderActivity(id, round) {
         if (id === 'pathway-asd') {
