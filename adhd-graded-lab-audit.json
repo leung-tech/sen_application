@@ -1,5 +1,23 @@
 {
-  "standard": "ADHD graded-game keyboard, semantics and 375px mobile audit",
+  "standard": "ADHD graded-game keyboard, direct-entry rewards, semantics and 375px mobile audit",
+  "directEntry": {
+    "before": {
+      "directCard": true,
+      "title": "ADHD 專注策略｜初小 · P1–P3",
+      "guide": "可直接選擇九項分級認知遊戲，或進入十關專注策略練習；兩種方式均只保留 ADHD 專屬內容，並可隨時休息或離開。",
+      "directText": "🧠\n九項分級認知遊戲\n\nCPT、步進記憶、中央箭頭、規則切換、空間記憶、視覺搜尋、星球追蹤與反應抑制，按目前學段自動調整。\n\n直接選關\n低壓短回合\n初小 · P1–P3 · 9 項遊戲"
+    },
+    "after": {
+      "dialog": true,
+      "gameCards": 9,
+      "effort": true,
+      "toolsPresent": true,
+      "soundPressed": "true",
+      "visualPressed": "true",
+      "soundCanDisable": true,
+      "visualCanDisable": true
+    }
+  },
   "menus": [
     {
       "stage": "lower",
@@ -20,7 +38,7 @@
         "schulte",
         "mot"
       ],
-      "controls": 10,
+      "controls": 14,
       "unnamed": 0
     },
     {
@@ -42,7 +60,7 @@
         "schulte",
         "mot"
       ],
-      "controls": 10,
+      "controls": 14,
       "unnamed": 0
     },
     {
@@ -64,7 +82,7 @@
         "schulte",
         "mot"
       ],
-      "controls": 10,
+      "controls": 14,
       "unnamed": 0
     },
     {
@@ -86,7 +104,7 @@
         "schulte",
         "mot"
       ],
-      "controls": 10,
+      "controls": 14,
       "unnamed": 0
     }
   ],
@@ -103,7 +121,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "8",
-        "controls": 2,
+        "controls": 6,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -124,7 +142,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "8",
-        "controls": 2,
+        "controls": 6,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -145,13 +163,13 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "8",
-        "controls": 3,
+        "controls": 7,
         "unnamed": 0,
         "motAlternative": true
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
+        "feedback": "✓ 正確，中央箭頭是向左。"
       }
     },
     {
@@ -166,7 +184,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "8",
-        "controls": 6,
+        "controls": 10,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -187,7 +205,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "2",
-        "controls": 6,
+        "controls": 10,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -208,13 +226,13 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "8",
-        "controls": 5,
+        "controls": 9,
         "unnamed": 0,
         "motAlternative": true
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 正確，你看的是顏色。"
+        "feedback": "↗ 這一張的顏色是藍色，下次慢慢看字體。"
       }
     },
     {
@@ -229,7 +247,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "10",
-        "controls": 2,
+        "controls": 6,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -250,13 +268,13 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "6",
-        "controls": 10,
+        "controls": 14,
         "unnamed": 0,
         "motAlternative": true
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 這次次序不同。下一回合會以 2 格慢慢再試。"
+        "feedback": "✓ 這一格正確，繼續想下一個位置。"
       }
     },
     {
@@ -271,7 +289,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "9",
-        "controls": 10,
+        "controls": 14,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -292,7 +310,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "11",
-        "controls": 2,
+        "controls": 6,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -313,7 +331,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "10",
-        "controls": 2,
+        "controls": 6,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -334,7 +352,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "10",
-        "controls": 3,
+        "controls": 7,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -355,7 +373,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "10",
-        "controls": 6,
+        "controls": 10,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -376,7 +394,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "2",
-        "controls": 7,
+        "controls": 11,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -397,13 +415,13 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "10",
-        "controls": 5,
+        "controls": 9,
         "unnamed": 0,
         "motAlternative": true
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 這一張的顏色是藍色，下次慢慢看字體。"
+        "feedback": "↗ 這一張的顏色是綠色，下次慢慢看字體。"
       }
     },
     {
@@ -418,7 +436,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "12",
-        "controls": 2,
+        "controls": 6,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -439,7 +457,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "7",
-        "controls": 10,
+        "controls": 14,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -460,7 +478,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "16",
-        "controls": 17,
+        "controls": 21,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -481,7 +499,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "14",
-        "controls": 2,
+        "controls": 6,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -502,7 +520,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "12",
-        "controls": 2,
+        "controls": 6,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -523,13 +541,13 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "12",
-        "controls": 3,
+        "controls": 7,
         "unnamed": 0,
         "motAlternative": true
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 正確，中央箭頭是向左。"
+        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
       }
     },
     {
@@ -544,7 +562,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "12",
-        "controls": 6,
+        "controls": 10,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -565,7 +583,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "3",
-        "controls": 9,
+        "controls": 13,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -586,13 +604,13 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "12",
-        "controls": 5,
+        "controls": 9,
         "unnamed": 0,
         "motAlternative": true
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 正確，你看的是顏色。"
+        "feedback": "↗ 這一張的顏色是黃色，下次慢慢看字體。"
       }
     },
     {
@@ -607,7 +625,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "14",
-        "controls": 2,
+        "controls": 6,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -628,7 +646,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "8",
-        "controls": 10,
+        "controls": 14,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -649,7 +667,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "25",
-        "controls": 26,
+        "controls": 30,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -670,7 +688,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "16",
-        "controls": 2,
+        "controls": 6,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -691,7 +709,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "14",
-        "controls": 2,
+        "controls": 6,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -712,7 +730,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "14",
-        "controls": 3,
+        "controls": 7,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -733,7 +751,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "14",
-        "controls": 6,
+        "controls": 10,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -754,7 +772,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "3",
-        "controls": 10,
+        "controls": 14,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -775,13 +793,13 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "14",
-        "controls": 5,
+        "controls": 9,
         "unnamed": 0,
         "motAlternative": true
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 這一張的顏色是黃色，下次慢慢看字體。"
+        "feedback": "↗ 這一張的顏色是藍色，下次慢慢看字體。"
       }
     },
     {
@@ -796,7 +814,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "16",
-        "controls": 2,
+        "controls": 6,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -817,7 +835,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "9",
-        "controls": 10,
+        "controls": 14,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -838,7 +856,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "25",
-        "controls": 26,
+        "controls": 30,
         "unnamed": 0,
         "motAlternative": true
       },
@@ -862,7 +880,7 @@
     "overflow": false,
     "dialogWidth": 343,
     "narrowTargets": [],
-    "controls": 10
+    "controls": 14
   },
   "ax": {
     "dialogs": 1,
