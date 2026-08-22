@@ -89,6 +89,36 @@
         { passage: '準備旅行時，班長把集合時間、地點、聯絡方法寫在同一張清單。出發前，同學再逐項核對，減少遲到和遺漏。', answer: '以清單集中並核對重要資料可減少出發前的遺漏。', choices: ['以清單集中並核對重要資料可減少出發前的遺漏。', '旅行只需要知道集合地點。', '班長要負責所有人的物品。'], hint: '找包含清單、核對和減少遺漏三個核心意思的選項。' },
         { passage: '有同學讀到不明白的長句時，先找出誰做甚麼，再圈起連接詞，最後把句子分成兩部分理解。難句因而變得較容易處理。', answer: '運用句法和關聯詞支架可幫助理解長難句。', choices: ['運用句法和關聯詞支架可幫助理解長難句。', '每一個長句都只有兩部分。', '只要圈起一個詞便能明白文章。'], hint: '主旨要包括多個理解步驟和它們共同的作用。' }
       ]
+    },
+    vocabulary: {
+      icon: '🎯', title: '詞義辨析雷達', description: '根據語境辨析近義詞、詞語搭配和書面語用法，選出最精準的詞。', focus: '進階詞彙與精準表意', accent: 'blue',
+      rounds: [
+        { context: '班會討論後，大家同意把小息閱讀角的建議寫進行動計畫。', prompt: '哪一個詞最適合填入「班會最終＿＿了這項建議」？', answer: '採納', choices: ['採納', '採取', '採集'], hint: '「採納」指接受意見或建議；「採取」多接行動或措施。' },
+        { context: '報告中的數字來自政府公開資料和學校問卷。', prompt: '哪一個詞最適合填入「資料來源相對＿＿」？', answer: '可靠', choices: ['可靠', '可惜', '可觀'], hint: '資料來源值得信任、可作判斷依據，便是「可靠」。' },
+        { context: '閱讀文章時，小組先圈出作者重複強調的概念。', prompt: '哪一個詞最適合填入「先＿＿文章的核心概念」？', answer: '辨認', choices: ['辨認', '辯論', '避免'], hint: '從文字中找出並認清某個概念，用「辨認」。' },
+        { context: '社區中心把長者的意見整理成三項服務改善方向。', prompt: '哪一個詞最適合填入「工作人員＿＿意見後提出方案」？', answer: '歸納', choices: ['歸納', '歸還', '歸屬'], hint: '把零散意見整理成幾個重點或規律，是「歸納」。' },
+        { context: '校刊文章先說明現象，再提出原因和可行做法。', prompt: '哪一個詞最適合填入「作者的觀點有資料作＿＿」？', answer: '佐證', choices: ['佐證', '證實', '證明'], hint: '資料用來支持某個觀點或說法，可說作「佐證」。' },
+        { context: '同學在討論時發現兩種方案都能減少紙張浪費。', prompt: '哪一個詞最適合填入「兩個方案各有＿＿」？', answer: '成效', choices: ['成效', '成果', '成分'], hint: '計畫或措施達成的實際效果，常用「成效」。' },
+        { context: '研究小組比較不同問卷的回覆，發現學生最重視安靜環境。', prompt: '哪一個詞最適合填入「問卷結果＿＿學生重視安靜環境」？', answer: '顯示', choices: ['顯示', '展示', '表演'], hint: '數據或結果讓人看出某件事，用「顯示」。' },
+        { context: '這篇說明文把複雜程序分成四個短步驟。', prompt: '哪一個詞最適合填入「這種寫法能＿＿讀者的理解負擔」？', answer: '減輕', choices: ['減輕', '減少', '降低'], hint: '「負擔」常與「減輕」搭配；三個詞意思相近，但搭配不同。' },
+        { context: '小組在交報告前逐項查看題目要求、引文和格式。', prompt: '哪一個詞最適合填入「提交前應＿＿資料是否完整」？', answer: '核對', choices: ['核對', '對待', '對照'], hint: '逐項比較及確認是否正確、齊全，用「核對」。' },
+        { context: '文章提醒讀者不要只看標題，還要細讀內容和資料來源。', prompt: '哪一個詞最適合填入「讀者要＿＿判斷資訊」？', answer: '審慎', choices: ['審慎', '深刻', '熱烈'], hint: '面對資訊時仔細小心、不輕易下結論，便是「審慎」。' }
+      ]
+    },
+    grammar: {
+      icon: '🧩', title: '句式關係校準', description: '辨析主謂關係、修飾語、關聯句式和語序，讓長句更清楚。', focus: '進階文法與句法拆解', accent: 'violet',
+      rounds: [
+        { sentence: '雖然資料很多，但是小組仍能按類別整理。', prompt: '這一句的關聯句式最主要表達甚麼關係？', answer: '轉折讓步', choices: ['轉折讓步', '因果結果', '條件假設'], hint: '前句承認有困難，後句卻指出仍然做到，是「雖然……但是……」的讓步轉折。' },
+        { sentence: '老師要求同學把訪問記錄整理成三個重點。', prompt: '「把訪問記錄整理成三個重點」中的主要動作是甚麼？', answer: '整理', choices: ['整理', '訪問記錄', '三個重點'], hint: '找出「誰做甚麼」中的動詞；同學做的動作是「整理」。' },
+        { sentence: '閱讀前先看標題的習慣，能幫助我們預測內容。', prompt: '哪一部分是整句的主語？', answer: '閱讀前先看標題的習慣', choices: ['閱讀前先看標題的習慣', '能幫助', '預測內容'], hint: '問「甚麼能幫助我們？」答案是「閱讀前先看標題的習慣」。' },
+        { sentence: '為了減少遺漏，班長把集合資料寫在同一張清單上。', prompt: '句首「為了減少遺漏」主要說明甚麼？', answer: '行動目的', choices: ['行動目的', '時間先後', '人物身分'], hint: '「為了……」通常交代後面行動想達到的目的。' },
+        { sentence: '如果能先圈出關鍵詞，理解長句便會較容易。', prompt: '這一句屬於哪一種關係？', answer: '條件結果', choices: ['條件結果', '並列列舉', '比喻說明'], hint: '「如果」提出條件，後句說在條件成立時會有的結果。' },
+        { sentence: '同學不但閱讀文章，還會把證據記在筆記上。', prompt: '哪一個詞最能說明「不但……還……」的作用？', answer: '遞進補充', choices: ['遞進補充', '相反對比', '選擇取捨'], hint: '後句在前句的行動上再加一層做法，是遞進補充。' },
+        { sentence: '把資料分類後，報告的脈絡變得更清楚。', prompt: '哪一部分是造成結果的先行動作？', answer: '把資料分類後', choices: ['把資料分類後', '報告的脈絡', '更清楚'], hint: '「……後」前面的部分先發生，並帶來後句的結果。' },
+        { sentence: '校刊刊登的訪問，讓更多同學認識社區服務。', prompt: '「校刊刊登的」在句中主要修飾哪一個名詞？', answer: '訪問', choices: ['訪問', '同學', '社區服務'], hint: '找緊接在修飾語後面的名詞；是「校刊刊登的訪問」。' },
+        { sentence: '我們應先確認資料來源，才引用在報告裡。', prompt: '哪一個改寫最能保持原句的先後關係？', answer: '確認來源後，再把資料引用在報告裡。', choices: ['確認來源後，再把資料引用在報告裡。', '引用資料後，才確認來源。', '資料來源不需要確認。'], hint: '原句的「先……才……」強調先確認、後引用，次序不可倒轉。' },
+        { sentence: '因為小組分工清楚，所以每個人都知道下一步要做甚麼。', prompt: '哪一部分是這一句的原因？', answer: '小組分工清楚', choices: ['小組分工清楚', '每個人都知道下一步', '要做甚麼'], hint: '「因為」後面說原因；「所以」後面說由原因帶來的結果。' }
+      ]
     }
   };
 
@@ -130,7 +160,7 @@
   }
 
   function menuMarkup() {
-    return shell(`<div class="spld-s1-heading"><span class="spld-s1-kicker">初中 S.1–S.3 · SpLD</span><h2>初中讀寫實驗室</h2><p>按今天要練的篇章、修辭或主旨技能直接開始。可以慢慢讀、看提示、換練習或隨時離開。</p></div><div class="spld-s1-menu">${Object.entries(activities).map(([key, activity]) => `<button type="button" class="spld-s1-menu-card ${activity.accent}" data-s1-activity="${key}"><span>${activity.icon}</span><strong>${activity.title}</strong><small>${activity.description}</small><em>10 個短回合</em></button>`).join('')}</div><aside class="spld-s1-low-pressure"><strong>低壓參與：</strong><span>👀 慢慢看句子</span><span>🔊 朗讀題目</span><span>💡 使用提示</span><span>↔ 隨時換練習</span></aside>`);
+    return shell(`<div class="spld-s1-heading"><span class="spld-s1-kicker">初中 S.1–S.3 · SpLD</span><h2>初中讀寫實驗室</h2><p>按今天要練的篇章、修辭、詞彙或句法技能直接開始。可以慢慢讀、看提示、換練習或隨時離開。</p></div><div class="spld-s1-menu">${Object.entries(activities).map(([key, activity]) => `<button type="button" class="spld-s1-menu-card ${activity.accent}" data-s1-activity="${key}"><span>${activity.icon}</span><strong>${activity.title}</strong><small>${activity.description}</small><em>${activity.rounds.length} 個短回合</em></button>`).join('')}</div><aside class="spld-s1-low-pressure"><strong>低壓參與：</strong><span>👀 慢慢看句子</span><span>🔊 朗讀題目</span><span>💡 使用提示</span><span>↔ 隨時換練習</span></aside>`);
   }
 
   function progressMarkup() {
@@ -170,12 +200,22 @@
     return `<article class="spld-s1-passage"><span>短文</span><p>${round.passage}</p></article><p class="spld-s1-prompt">篩走太細節或太絕對的選項，哪一句最能概括主旨？</p>${choiceGridMarkup(round.choices)}`;
   }
 
+  function vocabularyMarkup(round) {
+    return `<article class="spld-s1-passage"><span>詞語情境</span><p>${round.context}</p></article><p class="spld-s1-prompt">${round.prompt}</p>${choiceGridMarkup(round.choices)}`;
+  }
+
+  function grammarMarkup(round) {
+    return `<article class="spld-s1-rhetoric-scene"><span>句法觀察</span><p>${round.sentence}</p></article><p class="spld-s1-prompt">${round.prompt}</p>${choiceGridMarkup(round.choices)}`;
+  }
+
   function playAreaMarkup(round) {
     if (activeKey === 'connector') return connectorMarkup(round);
     if (activeKey === 'paragraph') return paragraphMarkup(round);
     if (activeKey === 'redundancy') return redundancyMarkup(round);
     if (activeKey === 'rhetoric') return rhetoricMarkup(round);
     if (activeKey === 'idiom') return idiomMarkup(round);
+    if (activeKey === 'vocabulary') return vocabularyMarkup(round);
+    if (activeKey === 'grammar') return grammarMarkup(round);
     return mainIdeaMarkup(round);
   }
 
@@ -201,6 +241,8 @@
     if (activeKey === 'redundancy') return `文章冗詞除錯。${round.sentence}。請找出可以刪走的重複字詞。`;
     if (activeKey === 'rhetoric') return `修辭手法分類卡。${round.sentence}。請選擇比喻、擬人或排比。`;
     if (activeKey === 'idiom') return `成語圖解猜謎。${round.riddle}。常見錯寫是${round.wrong}。請選出正確成語。`;
+    if (activeKey === 'vocabulary') return `詞義辨析雷達。${round.context}。${round.prompt}`;
+    if (activeKey === 'grammar') return `句式關係校準。${round.sentence}。${round.prompt}`;
     return `主旨提煉篩選器。${round.passage}。請選出最能概括主旨的句子。`;
   }
 
@@ -225,6 +267,8 @@
     if (activeKey === 'redundancy') return `移除「${choice}」後，句子的意思已經足夠清楚。`;
     if (activeKey === 'rhetoric') return `這句是${choice}：留意文字如何產生畫面、動作或節奏。`;
     if (activeKey === 'idiom') return `「${choice}」的字形和意思都正確。`;
+    if (activeKey === 'vocabulary') return `「${choice}」最配合這個語境，意思和搭配都準確。`;
+    if (activeKey === 'grammar') return `你已找出句中的${choice}，可以用這個線索拆解長句。`;
     return `這一句能包括短文最重要的內容，不只是一個細節。`;
   }
 
@@ -233,6 +277,8 @@
     if (activeKey === 'redundancy') return '慢慢比較：哪兩個字詞其實在說同一件事？';
     if (activeKey === 'rhetoric') return '看看句中有沒有「像」、人的動作，或三個結構相近的部分。';
     if (activeKey === 'idiom') return '再看一看圖中的關鍵物件，也留意同音字是否寫對。';
+    if (activeKey === 'vocabulary') return '先讀完整個情境，再比較三個詞的意思和慣常搭配。';
+    if (activeKey === 'grammar') return '可先找「誰做甚麼」、關聯詞或表示先後的詞語，再選答案。';
     return '找能同時包括多個重點的句子，避免只選一個細節。';
   }
 
@@ -346,8 +392,8 @@
         s1ActivityKey: key,
         lab: 's1',
         category: 'cognition',
-        categoryName: '初中 · SpLD 篇章與表意',
-        tone: ({ connector: 'teal', paragraph: 'purple', redundancy: 'orange', rhetoric: 'pink', idiom: 'blue', mainIdea: 'yellow' })[key] || 'purple',
+        categoryName: '初中 · SpLD 篇章、詞彙與文法',
+        tone: ({ connector: 'teal', paragraph: 'purple', redundancy: 'orange', rhetoric: 'pink', idiom: 'blue', mainIdea: 'yellow', vocabulary: 'blue', grammar: 'purple' })[key] || 'purple',
         icon: activity.icon,
         title: activity.title,
         description: activity.description,
