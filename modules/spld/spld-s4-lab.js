@@ -115,6 +115,8 @@
   const speak = (text) => {
     if (!('speechSynthesis' in window)) return false;
     window.speechSynthesis.cancel();
+    speechActive = true;
+    updateReadButton();
     const utterance = new SpeechSynthesisUtterance(String(text));
     utterance.lang = 'zh-HK'; utterance.rate = 0.72;
     utterance.onstart = () => { speechActive = true; updateReadButton(); };
