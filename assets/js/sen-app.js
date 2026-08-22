@@ -220,12 +220,22 @@
       function resetLessonSession() { if (!confirm('確定重設本節的裝置內記錄嗎？')) return; lessonSession = createLessonSession(); saveLessonSession(); renderLessonSession(); showToast('本節記錄已重設。'); }
       let adhdSession = null;
       let asdProgress = null;
+      let asdCoreRuns = [];
       function isAdhdGame() { return activeGame?.id === 'pathway-adhd'; }
       function isAsdGame() { return activeGame?.id === 'pathway-asd'; }
       function resetAsdProgress() { asdProgress = { startedAt: new Date().toLocaleString('zh-HK'), rounds: {} }; }
       function getAsdRoundProgress(index = roundIndex) { if (!asdProgress) return null; return asdProgress.rounds[index] || (asdProgress.rounds[index] = { attempts: 0, retries: 0, hints: 0, correct: false, completedAt: '' }); }
       function recordAsdAttempt(correct) { if (!isAsdGame() || !asdProgress) return; const progress = getAsdRoundProgress(); progress.attempts += 1; if (!correct) progress.retries += 1; if (correct && !progress.correct) { progress.correct = true; progress.completedAt = new Date().toLocaleString('zh-HK'); } renderAsdExportPanel(); }
       function recordAsdHint() { if (!isAsdGame() || !asdProgress) return; getAsdRoundProgress().hints += 1; renderAsdExportPanel(); }
+      function recordAsdLabResult(result) {
+        if (!result) return;
+        asdCoreRuns = [...asdCoreRuns, result].slice(-5);
+        if (lessonSession.mode) {
+          if (result.correct) changeLessonCount('correctAttempts', result.correct);
+          if (result.incorrect) changeLessonCount('retries', result.incorrect);
+        }
+        showToast(`已完成${result.label}：${result.correct} / ${result.total} 正確。`);
+      }
       function csvField(value) { return `"${String(value ?? '').replace(/"/g, '""')}"`; }
       function renderAsdExportPanel() {
         const panel = $('#asdExportPanel');
@@ -392,7 +402,8 @@
         document.body.classList.toggle('spld-s4-direct-select', isSpldS4DirectSelect);
         $('#gameGrid').classList.toggle('spld-primary-grid', isSpldP1DirectSelect || isSpldP4DirectSelect || isSpldS1DirectSelect || isSpldS4DirectSelect);
         const adhdDirectCard = activePathway === '4' ? `<button class="game-card adhd-graded-direct-card" type="button" data-adhd-graded-direct="true" data-tone="purple"><div class="game-visual" aria-hidden="true">🧠</div><h3>九項分級認知遊戲</h3><p>CPT、步進記憶、中央箭頭、規則切換、空間記憶、視覺搜尋、星球追蹤與反應抑制，按目前學段自動調整。</p><div class="support-badge-row" aria-label="ADHD 分級訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">低壓短回合</span></div><span class="tag">${stageProfiles[activeStage].label} · 9 項遊戲</span></button>` : '';
-        $('#gameGrid').innerHTML = adhdDirectCard + games.map(game => {
+        const asdDirectCard = activePathway === '3' ? `<button class="game-card asd-core-direct-card" type="button" data-asd-core-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">🤖</div><h3>五項 ASD 核心訓練</h3><p>情緒解碼、社交故事、一起看寶箱、細節與全圖轉換，以及安心感官小空間；按目前學段調整。</p><div class="support-badge-row" aria-label="ASD 核心訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">教師帶讀</span><span class="support-badge">低壓短回合</span></div><span class="tag">${stageProfiles[activeStage].label} · 5 項遊戲</span></button>` : '';
+        $('#gameGrid').innerHTML = asdDirectCard + adhdDirectCard + games.map(game => {
           const badges = activePathway ? renderSupportBadges(game.supports) : '<span class="support-badge">一般活動</span>';
           const label = activePathway ? '本專屬模組類別' : '一般活動類別';
           const directActivity = game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
@@ -402,6 +413,11 @@
           if (card.dataset.adhdGradedDirect) {
             if (!window.ADHD_GRADED_LAB) { showToast('分級認知訓練室正在準備中，請稍後再試。'); return; }
             window.ADHD_GRADED_LAB.open({ stage: activeStage, onComplete: recordAdhdLabResult });
+            return;
+          }
+          if (card.dataset.asdCoreDirect) {
+            if (!window.ASD_CORE_LAB) { showToast('ASD 核心訓練室正在準備中，請稍後再試。'); return; }
+            window.ASD_CORE_LAB.open({ stage: activeStage, onComplete: recordAsdLabResult });
             return;
           }
           if (card.dataset.spldActivity) {
