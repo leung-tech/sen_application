@@ -25,6 +25,18 @@
     mot: { icon: '🪐', title: '目標星球追蹤 MOT', description: '記住閃爍目標球，在移動後找回它們。', focus: '分配注意與空間追蹤' },
   };
 
+  const GAME_PREP = {
+    cpt: { icon: '🐱', steps: ['先看前一張和目前這一張。', '只有「貓咪後面緊接老鼠」時才按。', '不確定時可以先等一等。'] },
+    nback: { icon: '🧠', steps: ['看清楚目前圖案。', '想一想前面指定位置的圖案。', '相同時才按；不確定可以先停一停。'] },
+    stroop: { icon: '🎨', steps: ['先看字的顏色。', '不要跟著字的意思讀。', '按與字體顏色相同的按鈕。'] },
+    nogo: { icon: '🚦', steps: ['看到綠燈才按一下。', '看到紅燈時，讓手停住並等下一張。', '停得住也是一個成功。'] },
+    flanker: { icon: '↔️', steps: ['先找最中間的箭頭。', '只跟中間箭頭的方向走。', '旁邊箭頭只是干擾，不用理會。'] },
+    switch: { icon: '🃏', steps: ['看目標卡的顏色、形狀和數量。', '根據每次「對／錯」回饋找規律。', '規則改變時，慢慢重新做偵探。'] },
+    corsi: { icon: '🔷', steps: ['先看方塊依次亮起。', '心裡慢慢記住亮起的次序。', '亮完後，再用同一順序點選。'] },
+    schulte: { icon: '🔢', steps: ['先找數字 1。', '每次只找下一個數字。', '不用趕時間，慢慢掃視方格。'] },
+    mot: { icon: '🪐', steps: ['先記住紅色目標星球。', '星球移動時，眼睛安靜追蹤。', '停止後再慢慢選出目標。'] },
+  };
+
   let host = null;
   let options = null;
   let stage = 'lower';
@@ -74,12 +86,12 @@
     window.requestAnimationFrame(() => host?.querySelector(selector)?.focus());
   }
 
-  function setFeedback(text, tone = '') {
+  function setFeedback(text, tone = '', rewardKind = 'correct') {
     const feedback = host?.querySelector('#gradedLabFeedback');
     if (!feedback) return;
     feedback.className = `graded-feedback ${tone}`;
     feedback.textContent = text;
-    if (tone === 'ok') awardEffort('correct');
+    if (tone === 'ok') awardEffort(rewardKind);
     if (tone === 'try') showGentleSupport();
   }
 
@@ -125,12 +137,14 @@
 
   function awardEffort(kind) {
     if (!state) return;
-    state.effortStars = Math.min(5, (state.effortStars || 0) + (kind === 'finish' ? 2 : 1));
+    const gain = ['finish', 'switch-discovery', 'nogo-stop'].includes(kind) ? 2 : 1;
+    state.effortStars = Math.min(5, (state.effortStars || 0) + gain);
     const count = host?.querySelector('#gradedEffortCount');
     const meter = host?.querySelector('.graded-effort-meter');
     if (count) count.textContent = state.effortStars;
     if (meter) { meter.setAttribute('aria-label', `本次努力星 ${state.effortStars} / 5`); meter.querySelector('span').textContent = `${'★'.repeat(state.effortStars)}${'☆'.repeat(5 - state.effortStars)}`; meter.classList.add('earned'); window.setTimeout(() => meter.classList.remove('earned'), 420); }
-    if (kind === 'finish') { rewardVisual('finish'); playRewardSound('finish'); } else { rewardVisual('correct'); playRewardSound('correct'); }
+    rewardVisual(kind);
+    playRewardSound(kind);
   }
 
   function showGentleSupport() {
@@ -148,9 +162,14 @@
     const burst = document.createElement('div');
     burst.className = `graded-reward-burst ${kind}`;
     burst.setAttribute('aria-hidden', 'true');
-    burst.innerHTML = (kind === 'finish' ? ['🌟', '🎈', '✨', '⭐', '🌈'] : ['✨', '⭐', '💫']).map((icon, index) => `<span style="--delay:${index * 45}ms">${icon}</span>`).join('');
+    const visuals = {
+      finish: ['🌟', '🎈', '✨', '⭐', '🌈'], correct: ['✨', '⭐', '💫'],
+      'switch-match': ['🧩', '✨', '🔎'], 'switch-discovery': ['🔓', '🗝️', '🃏', '✨', '🌟'],
+      'nogo-go': ['🟢', '🚀', '✨'], 'nogo-stop': ['🛡️', '🛑', '⭐', '💫'],
+    };
+    burst.innerHTML = (visuals[kind] || visuals.correct).map((icon, index) => `<span style="--delay:${index * 45}ms">${icon}</span>`).join('');
     host.querySelector('.graded-lab')?.appendChild(burst);
-    window.setTimeout(() => burst.remove(), kind === 'finish' ? 1050 : 740);
+    window.setTimeout(() => burst.remove(), ['finish', 'switch-discovery', 'nogo-stop'].includes(kind) ? 1050 : 740);
   }
 
   function playRewardSound(kind) {
@@ -158,11 +177,15 @@
     try {
       audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
       if (audioContext.state === 'suspended') audioContext.resume();
-      const notes = kind === 'finish' ? [523, 659, 784] : kind === 'correct' ? [523, 659] : [440];
+      const notes = {
+        finish: [523, 659, 784], correct: [523, 659], soft: [440],
+        'switch-match': [440, 554], 'switch-discovery': [392, 523, 659, 784],
+        'nogo-go': [523, 659], 'nogo-stop': [349, 440, 523],
+      }[kind] || [523, 659];
       notes.forEach((frequency, index) => {
         const oscillator = audioContext.createOscillator();
         const gain = audioContext.createGain();
-        oscillator.type = 'sine';
+        oscillator.type = ['switch-discovery', 'nogo-stop'].includes(kind) ? 'triangle' : 'sine';
         oscillator.frequency.value = frequency;
         gain.gain.setValueAtTime(.0001, audioContext.currentTime + (index * .08));
         gain.gain.exponentialRampToValueAtTime(kind === 'soft' ? .018 : .028, audioContext.currentTime + (index * .08) + .02);
@@ -192,6 +215,16 @@
 
   function createRun(game, total) {
     state = { game, total, index: 0, correct: 0, incorrect: 0, reactionTimes: [], startedAt: Date.now(), locked: false, keyHandler: null, effortStars: 0 };
+  }
+
+  function renderReadyScreen(game) {
+    const info = GAME_INFO[game];
+    const prep = GAME_PREP[game];
+    state = { game, effortStars: 0, preparing: true, keyHandler: null };
+    shell(`${top(`${info.title} · 準備頁`, '請先由教師帶讀規則。未按「我準備好了」前不會開始計時、移動或出題。', `${grade().label} · 一起準備`)}<section class="graded-ready-card" aria-labelledby="readyTitle"><div class="graded-ready-icon" aria-hidden="true">${prep.icon}</div><div class="graded-ready-copy"><p class="graded-ready-kicker">先一起讀三步</p><h3 id="readyTitle">準備好了才開始</h3><ol>${prep.steps.map((step) => `<li>${step}</li>`).join('')}</ol><p class="graded-ready-note">可以請學生用點頭、手勢或說一句「我準備好了」回應；需要更多時間時，先看規則即可。</p></div></section><div class="graded-ready-actions"><button class="graded-secondary" id="gradedReadyBack" type="button">← 換一項遊戲</button><button class="graded-primary" id="gradedReadyStart" type="button">✓ 我準備好了，開始第一回合</button></div><div id="gradedLabFeedback" class="graded-feedback" role="status" aria-live="polite" aria-atomic="true">現在是準備時間，尚未開始計時或出題。</div>`);
+    host.querySelector('#gradedReadyBack')?.addEventListener('click', renderMenu);
+    host.querySelector('#gradedReadyStart')?.addEventListener('click', () => beginActivity(game));
+    focusSoon('#gradedReadyStart');
   }
 
   function finishGame() {
@@ -356,7 +389,8 @@
     const correct = pressed === state.expected;
     if (pressed) state.reactionTimes.push(Date.now() - state.shownAt);
     if (correct) state.correct += 1; else state.incorrect += 1;
-    setFeedback(correct ? (pressed ? '✓ 做得好，綠色時才按。' : '✓ 做得好，紅色時你停住了。') : (pressed ? '↗ 紅色時先停一停；下一張再試。' : '↗ 綠色時可以按；下一張慢慢看。'), correct ? 'ok' : 'try');
+    const rewardKind = pressed ? 'nogo-go' : 'nogo-stop';
+    setFeedback(correct ? (pressed ? '✓ 做得好，綠色時才按。' : '✓ 做得好，紅色時你停住了。') : (pressed ? '↗ 紅色時先停一停；下一張再試。' : '↗ 綠色時可以按；下一張慢慢看。'), correct ? 'ok' : 'try', rewardKind);
     sleep(() => nextTrial(renderNoGo), correct ? 500 : 800);
   }
 
@@ -431,8 +465,8 @@
         const rules = stage === 'lower' ? ['color', 'shape'] : ['color', 'shape', 'count'];
         state.rule = rules[(rules.indexOf(state.rule) + 1) % rules.length];
         state.successStreak = 0;
-        setFeedback('✓ 規則偵探很細心。下一張規則已經改變；重新從回饋找線索。', 'ok');
-      } else setFeedback('✓ 配對正確。記住這次的線索，再觀察下一張。', 'ok');
+        setFeedback('✓ 規則偵探很細心。下一張規則已經改變；重新從回饋找線索。', 'ok', 'switch-discovery');
+      } else setFeedback('✓ 配對正確。記住這次的線索，再觀察下一張。', 'ok', 'switch-match');
     } else {
       state.incorrect += 1;
       state.successStreak = 0;
@@ -673,6 +707,11 @@
 
   function startGame(game) {
     clearTimers();
+    renderReadyScreen(game);
+  }
+
+  function beginActivity(game) {
+    clearTimers();
     const settings = grade();
     if (game === 'cpt') {
       createRun(game, settings.cptTrials);
@@ -785,8 +824,9 @@
       .graded-schulte-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:19px}.graded-schulte-meta span{padding:7px 10px;border-radius:999px;background:#eaf1f8;color:#57708b;font-size:12px;font-weight:800}.graded-schulte-meta strong{color:#5946b1}.graded-schulte-grid{display:grid;gap:8px;max-width:520px;margin:19px auto}.graded-schulte-grid.size-3{grid-template-columns:repeat(3,1fr);max-width:360px}.graded-schulte-grid.size-4{grid-template-columns:repeat(4,1fr);max-width:430px}.graded-schulte-grid.size-5{grid-template-columns:repeat(5,1fr)}.graded-schulte-cell{aspect-ratio:1;min-height:48px;border:2px solid #c6d7e8;border-radius:13px;background:#fff;color:#334b68;font-size:clamp(16px,4vw,22px);font-weight:900}.graded-schulte-cell:hover:not(:disabled){border-color:#7b62bf;background:#f5f2ff}.graded-schulte-cell:disabled{border-color:#a6dcc8;background:#e5f7ee;color:#1b7960}.graded-mot-canvas{display:block;width:100%;max-width:600px;height:auto;margin:20px auto 0;border:3px solid #9cb7d5;border-radius:23px;background:#163866;touch-action:manipulation}.graded-mot-canvas:focus-visible{outline:4px solid #f1bf35;outline-offset:4px}.graded-mot-keyboard{max-width:600px;margin:10px auto 0;color:#60748e;text-align:center;font-size:12px;font-weight:750}
       .graded-support-tray{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px;padding:12px 14px;border:1px solid #dce4ef;border-radius:18px;background:linear-gradient(110deg,#f8fbff,#fffbef)}.graded-effort-meter{display:flex;align-items:center;gap:8px;color:#705e1a;white-space:nowrap}.graded-effort-meter span{color:#d49d22;font-size:20px;letter-spacing:1px}.graded-effort-meter strong{font-size:11px}.graded-effort-meter b{color:#8052b3;font-size:14px}.graded-effort-meter.earned{animation:graded-star-pop .42s cubic-bezier(.23,1,.32,1)}.graded-support-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px}.graded-tool{min-height:38px;padding:0 10px;border:1px solid #cbd8e5;border-radius:11px;background:#fff;color:#4e617d;font-size:11px;font-weight:850}.graded-tool[aria-pressed="true"]{border-color:#ad8b35;background:#fff8df;color:#6c5207}.graded-support-note{position:absolute;right:12px;bottom:calc(100% + 8px);z-index:3;max-width:430px;padding:10px 12px;border:1px solid #d7c0f0;border-radius:13px;background:#fff;color:#554479;box-shadow:0 10px 24px rgba(48,73,105,.16);font-size:12px;font-weight:760;line-height:1.55}.graded-support-note span{display:flex;gap:6px;margin-top:8px}.graded-support-note button{min-height:34px;padding:0 9px;border:1px solid #bca9dd;border-radius:9px;background:#f8f4ff;color:#59457d;font-size:11px;font-weight:850}.graded-rule-highlight{outline:4px solid rgba(222,176,47,.52);outline-offset:4px;animation:graded-rule-pulse .9s ease-out}.graded-reward-burst{position:absolute;z-index:5;top:28%;left:50%;width:170px;height:120px;pointer-events:none;transform:translateX(-50%)}.graded-reward-burst span{position:absolute;top:42%;left:50%;font-size:25px;animation:graded-reward-float .72s var(--delay) ease-out both}.graded-reward-burst span:nth-child(1){--x:-60px;--y:-48px}.graded-reward-burst span:nth-child(2){--x:3px;--y:-72px}.graded-reward-burst span:nth-child(3){--x:56px;--y:-35px}.graded-reward-burst span:nth-child(4){--x:-44px;--y:26px}.graded-reward-burst span:nth-child(5){--x:45px;--y:22px}.graded-reward-burst.finish span{font-size:30px}.graded-gentle-cue{position:absolute;z-index:5;top:34%;right:12%;font-size:28px;pointer-events:none;animation:graded-gentle-float .7s ease-out both}@keyframes graded-star-pop{50%{transform:scale(1.16)}}@keyframes graded-rule-pulse{0%{outline-color:rgba(222,176,47,.68)}100%{outline-color:rgba(222,176,47,0)}}@keyframes graded-reward-float{0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}25%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.12)}}@keyframes graded-gentle-float{0%{opacity:0;transform:translateY(12px) scale(.8)}35%{opacity:1}100%{opacity:0;transform:translateY(-18px) scale(1.05)}}
       .graded-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:23px}.graded-summary div{padding:16px 10px;border-radius:17px;background:#fff;text-align:center;box-shadow:0 8px 18px rgba(48,73,105,.08)}.graded-summary span{display:block;color:#73849b;font-size:11px;font-weight:800}.graded-summary strong{display:block;margin-top:5px;color:#30445f;font-size:27px}.graded-actions{display:flex;justify-content:center;gap:10px;margin-top:20px}.graded-primary,.graded-secondary{min-height:48px;padding:0 18px;border-radius:14px;font-size:14px;font-weight:900}.graded-primary{border:0;background:#6758bf;color:#fff}.graded-secondary{border:1px solid #cbd7e5;background:#fff;color:#4e627e}
+      .graded-ready-card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start;margin-top:22px;padding:20px;border:2px solid #d9d1f5;border-radius:22px;background:linear-gradient(135deg,#fbfaff,#fff8e9)}.graded-ready-icon{display:grid;place-items:center;width:76px;height:76px;border-radius:23px;background:#ece9fb;font-size:40px}.graded-ready-kicker{margin:0;color:#7157a4;font-size:11px;font-weight:900;letter-spacing:.08em}.graded-ready-copy h3{margin:4px 0 10px;color:#354965;font-size:23px}.graded-ready-copy ol{display:grid;gap:8px;margin:0;padding-left:23px;color:#4d617c;font-size:14px;line-height:1.5}.graded-ready-copy li::marker{color:#7d62bf;font-weight:950}.graded-ready-note{margin:13px 0 0;padding:10px 12px;border-radius:12px;background:#fff;color:#6b5b37;font-size:12px;line-height:1.55}.graded-ready-actions{display:flex;justify-content:center;gap:10px;margin-top:18px}.graded-reward-burst.switch-discovery{filter:drop-shadow(0 0 10px rgba(173,110,232,.52))}.graded-reward-burst.switch-discovery span{animation-duration:1.05s}.graded-reward-burst.nogo-stop{filter:drop-shadow(0 0 10px rgba(62,139,191,.48))}.graded-reward-burst.nogo-stop span{animation:graded-shield-float 1.05s var(--delay) ease-out both}@keyframes graded-shield-float{0%{opacity:0;transform:translate(-50%,-50%) scale(.65)}30%{opacity:1;transform:translate(-50%,-55%) scale(1.18)}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1)}}
       .graded-lab button:focus-visible{outline:4px solid #0d5f9c;outline-offset:3px}.graded-lab button:disabled{cursor:not-allowed;opacity:.62}
-      @media (max-width:640px){.graded-lab{padding:19px}.graded-game-grid{grid-template-columns:1fr}.graded-game-card{min-height:145px}.graded-summary{grid-template-columns:1fr}.graded-stimulus{min-height:145px}.graded-actions{flex-direction:column}.graded-primary,.graded-secondary{width:100%}.graded-card-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.graded-rule-card{min-height:92px}.graded-corsi-grid{gap:9px}.graded-corsi-cell{min-height:62px}.graded-support-tray{align-items:flex-start;flex-direction:column}.graded-support-actions{justify-content:flex-start}.graded-support-note{right:8px;left:8px;max-width:none}.graded-tool{min-height:40px}}
+      @media (max-width:640px){.graded-lab{padding:19px}.graded-game-grid{grid-template-columns:1fr}.graded-game-card{min-height:145px}.graded-summary{grid-template-columns:1fr}.graded-stimulus{min-height:145px}.graded-actions,.graded-ready-actions{flex-direction:column}.graded-primary,.graded-secondary{width:100%}.graded-card-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.graded-rule-card{min-height:92px}.graded-corsi-grid{gap:9px}.graded-corsi-cell{min-height:62px}.graded-support-tray{align-items:flex-start;flex-direction:column}.graded-support-actions{justify-content:flex-start}.graded-support-note{right:8px;left:8px;max-width:none}.graded-tool{min-height:40px}.graded-ready-card{grid-template-columns:1fr}.graded-ready-icon{width:62px;height:62px;font-size:33px}}
       @media (prefers-reduced-motion:reduce){.graded-game-card,.graded-progress i{transition:none!important}.graded-effort-meter.earned,.graded-rule-highlight,.graded-reward-burst span,.graded-gentle-cue{animation:none!important}}
     `;
     document.head.appendChild(style);
