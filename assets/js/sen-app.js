@@ -236,6 +236,14 @@
         }
         showToast(`已完成${result.label}：${result.correct} / ${result.total} 正確。`);
       }
+      function recordIdLabResult(result) {
+        if (!result) return;
+        if (lessonSession.mode) {
+          if (result.correct) changeLessonCount('correctAttempts', result.correct);
+          if (result.incorrect) changeLessonCount('retries', result.incorrect);
+        }
+        showToast(`已完成${result.label}：${result.correct} / ${result.total} 正確。`);
+      }
       function csvField(value) { return `"${String(value ?? '').replace(/"/g, '""')}"`; }
       function renderAsdExportPanel() {
         const panel = $('#asdExportPanel');
@@ -379,6 +387,11 @@
             $('#stageGuide').textContent = '可直接選擇五項 ASD 核心訓練，或進入十關社交情境練習；兩種方式均只保留 ASD 專屬內容，並可先帶讀規則、隨時休息或離開。';
             return;
           }
+          if (activePathway === '2') {
+            $('#gamesTitle').textContent = `${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}`;
+            $('#stageGuide').textContent = activeStage === 'junior' || activeStage === 'senior' ? '可直接選擇六項 ID 生活技能訓練，包括成人化社區適應與茶餐廳工作模擬；或進入十關實用生活練習。每項均可先帶讀、慢慢做及隨時離開。' : '可直接選擇五項 ID 生活技能訓練，包括分類、付款、生活步驟、手眼協調及節奏模仿；或進入十關實用生活練習。每項均可先帶讀、慢慢做及隨時離開。';
+            return;
+          }
           $('#gamesTitle').textContent = `${pathwayLabels[activePathway]}｜${primaryGame.title}`;
           $('#stageGuide').textContent = `目前是${stageProfiles[activeStage].label}。此區只保留本路線的 ${primaryGame.rounds.length} 關專屬訓練，不會顯示其他 SEN 類別或通用遊戲。`;
           return;
@@ -408,7 +421,8 @@
         $('#gameGrid').classList.toggle('spld-primary-grid', isSpldP1DirectSelect || isSpldP4DirectSelect || isSpldS1DirectSelect || isSpldS4DirectSelect);
         const adhdDirectCard = activePathway === '4' ? `<button class="game-card adhd-graded-direct-card" type="button" data-adhd-graded-direct="true" data-tone="purple"><div class="game-visual" aria-hidden="true">🧠</div><h3>九項分級認知遊戲</h3><p>CPT、步進記憶、中央箭頭、規則切換、空間記憶、視覺搜尋、星球追蹤與反應抑制，按目前學段自動調整。</p><div class="support-badge-row" aria-label="ADHD 分級訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">低壓短回合</span></div><span class="tag">${stageProfiles[activeStage].label} · 9 項遊戲</span></button>` : '';
         const asdDirectCard = activePathway === '3' ? `<button class="game-card asd-core-direct-card" type="button" data-asd-core-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">🤖</div><h3>五項 ASD 核心訓練</h3><p>情緒解碼、社交故事、一起看寶箱、細節與全圖轉換，以及安心感官小空間；按目前學段調整。</p><div class="support-badge-row" aria-label="ASD 核心訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">教師帶讀</span><span class="support-badge">低壓短回合</span></div><span class="tag">${stageProfiles[activeStage].label} · 5 項遊戲</span></button>` : '';
-        $('#gameGrid').innerHTML = asdDirectCard + adhdDirectCard + games.map(game => {
+        const idDirectCard = activePathway === '2' ? `<button class="game-card id-core-direct-card" type="button" data-id-core-direct="true" data-tone="blue"><div class="game-visual" aria-hidden="true">🧺</div><h3>生活技能直接選關</h3><p>分類、付款、生活步驟、手眼協調與節奏模仿；${activeStage === 'junior' || activeStage === 'senior' ? '另有成人化茶餐廳打工模擬。' : '每次只做一個清楚小步驟。'}</p><div class="support-badge-row" aria-label="ID 核心訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">超大操作</span><span class="support-badge">可選朗讀</span></div><span class="tag">${stageProfiles[activeStage].label} · ${activeStage === 'junior' || activeStage === 'senior' ? '6' : '5'} 項遊戲</span></button>` : '';
+        $('#gameGrid').innerHTML = asdDirectCard + adhdDirectCard + idDirectCard + games.map(game => {
           const badges = activePathway ? renderSupportBadges(game.supports) : '<span class="support-badge">一般活動</span>';
           const label = activePathway ? '本專屬模組類別' : '一般活動類別';
           const directActivity = game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
@@ -423,6 +437,11 @@
           if (card.dataset.asdCoreDirect) {
             if (!window.ASD_CORE_LAB) { showToast('ASD 核心訓練室正在準備中，請稍後再試。'); return; }
             window.ASD_CORE_LAB.open({ stage: activeStage, onComplete: recordAsdLabResult });
+            return;
+          }
+          if (card.dataset.idCoreDirect) {
+            if (!window.ID_CORE_LAB) { showToast('ID 生活技能訓練室正在準備中，請稍後再試。'); return; }
+            window.ID_CORE_LAB.open({ stage: activeStage, onComplete: recordIdLabResult });
             return;
           }
           if (card.dataset.spldActivity) {
