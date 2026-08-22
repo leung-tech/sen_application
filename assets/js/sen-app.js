@@ -175,6 +175,7 @@
       const spldP1StandaloneGames = window.SPLD_P1_LAB?.activityCards?.() || [];
       const spldP4StandaloneGames = window.SPLD_P4_LAB?.activityCards?.() || [];
       const spldS1StandaloneGames = window.SPLD_S1_LAB?.activityCards?.() || [];
+      const spldS4StandaloneGames = window.SPLD_S4_LAB?.activityCards?.() || [];
       const externalPathwayModules = window.SEN_PATHWAY_MODULES || {};
       Object.values(externalPathwayModules).forEach((moduleConfig) => {
         if (!moduleConfig?.card?.id) return;
@@ -185,7 +186,7 @@
         });
       });
       const pathwayGameMap = Object.fromEntries(pathwayTraining.map(game => [game.id, game]));
-      const gameMap = Object.fromEntries([...gameLibrary, spldTraining, ...spldP1StandaloneGames, ...spldP4StandaloneGames, ...spldS1StandaloneGames, ...pathwayTraining].map(game => [game.id, game]));
+      const gameMap = Object.fromEntries([...gameLibrary, spldTraining, ...spldP1StandaloneGames, ...spldP4StandaloneGames, ...spldS1StandaloneGames, ...spldS4StandaloneGames, ...pathwayTraining].map(game => [game.id, game]));
       let activeStage = 'lower';
       let activeFilter = 'all';
       let activePathway = null;
@@ -341,13 +342,14 @@
       }
       function updateGameLibraryHeading() {
         if (activePathway) {
-          if (activePathway === '1' && (activeStage === 'lower' || activeStage === 'upper' || activeStage === 'junior')) {
+          if (activePathway === '1' && (activeStage === 'lower' || activeStage === 'upper' || activeStage === 'junior' || activeStage === 'senior')) {
             $('#supportKey').hidden = true;
             $('#gamesKicker').textContent = '專屬訓練 · 直接選關';
             const isUpperSpld = activeStage === 'upper';
             const isJuniorSpld = activeStage === 'junior';
-            $('#gamesTitle').textContent = isJuniorSpld ? 'SpLD 讀寫策略｜初中 S1–S3' : isUpperSpld ? 'SpLD 讀寫策略｜高小 P4–P6' : 'SpLD 讀寫策略｜初小 P1–P3';
-            $('#stageGuide').textContent = isJuniorSpld ? '可直接選擇篇章結構、邏輯銜接、修辭及主旨提煉遊戲；原有 12 關基礎練習亦會保留。' : isUpperSpld ? '可直接選擇語素、句法等高小讀寫技能；原有 12 關基礎練習亦會保留，不需要先進入合併的讀寫闖關。' : '可直接選擇一項多感官讀寫遊戲；原有 12 關基礎練習亦會保留，不需要再先進入合併的讀寫實驗室。';
+            const isSeniorSpld = activeStage === 'senior';
+            $('#gamesTitle').textContent = isSeniorSpld ? 'SpLD 讀寫策略｜高中 S4–S6' : isJuniorSpld ? 'SpLD 讀寫策略｜初中 S1–S3' : isUpperSpld ? 'SpLD 讀寫策略｜高小 P4–P6' : 'SpLD 讀寫策略｜初小 P1–P3';
+            $('#stageGuide').textContent = isSeniorSpld ? '可直接選擇文言字義、通假字、論證、虛詞、學術詞彙及語病校對遊戲；原有 12 關基礎練習亦會保留。' : isJuniorSpld ? '可直接選擇篇章結構、邏輯銜接、修辭、主旨、詞彙及句法遊戲；原有 12 關基礎練習亦會保留。' : isUpperSpld ? '可直接選擇語素、句法等高小讀寫技能；原有 12 關基礎練習亦會保留，不需要先進入合併的讀寫闖關。' : '可直接選擇一項多感官讀寫遊戲；原有 12 關基礎練習亦會保留，不需要再先進入合併的讀寫實驗室。';
             return;
           }
           const primaryGame = getPrimaryPathwayGame();
@@ -365,7 +367,7 @@
       function renderGameLibrary(filter = activeFilter) {
         let source;
         if (activePathway) {
-          source = activePathway === '1' && activeStage === 'lower' ? [getPrimaryPathwayGame(), ...spldP1StandaloneGames] : activePathway === '1' && activeStage === 'upper' ? [getPrimaryPathwayGame(), ...spldP4StandaloneGames] : activePathway === '1' && activeStage === 'junior' ? [getPrimaryPathwayGame(), ...spldS1StandaloneGames] : [getPrimaryPathwayGame()];
+          source = activePathway === '1' && activeStage === 'lower' ? [getPrimaryPathwayGame(), ...spldP1StandaloneGames] : activePathway === '1' && activeStage === 'upper' ? [getPrimaryPathwayGame(), ...spldP4StandaloneGames] : activePathway === '1' && activeStage === 'junior' ? [getPrimaryPathwayGame(), ...spldS1StandaloneGames] : activePathway === '1' && activeStage === 'senior' ? [getPrimaryPathwayGame(), ...spldS4StandaloneGames] : [getPrimaryPathwayGame()];
         } else {
           source = filter === 'all' ? gameLibrary : filter.startsWith('support-') ? [] : gameLibrary.filter(game => game.category === filter);
         }
@@ -374,14 +376,16 @@
         const isSpldP1DirectSelect = activePathway === '1' && activeStage === 'lower';
         const isSpldP4DirectSelect = activePathway === '1' && activeStage === 'upper';
         const isSpldS1DirectSelect = activePathway === '1' && activeStage === 'junior';
+        const isSpldS4DirectSelect = activePathway === '1' && activeStage === 'senior';
         document.body.classList.toggle('spld-p1-direct-select', isSpldP1DirectSelect);
         document.body.classList.toggle('spld-p4-direct-select', isSpldP4DirectSelect);
         document.body.classList.toggle('spld-s1-direct-select', isSpldS1DirectSelect);
-        $('#gameGrid').classList.toggle('spld-primary-grid', isSpldP1DirectSelect || isSpldP4DirectSelect || isSpldS1DirectSelect);
+        document.body.classList.toggle('spld-s4-direct-select', isSpldS4DirectSelect);
+        $('#gameGrid').classList.toggle('spld-primary-grid', isSpldP1DirectSelect || isSpldP4DirectSelect || isSpldS1DirectSelect || isSpldS4DirectSelect);
         $('#gameGrid').innerHTML = games.map(game => {
           const badges = activePathway ? renderSupportBadges(game.supports) : '<span class="support-badge">一般活動</span>';
           const label = activePathway ? '本專屬模組類別' : '一般活動類別';
-          const directActivity = game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
+          const directActivity = game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
           return `<button class="game-card" type="button" data-game-id="${game.id}"${directActivity} data-tone="${game.tone}"><div class="game-visual" aria-hidden="true">${game.icon}</div><h3>${game.title}</h3><p>${game.description}</p><div class="support-badge-row" aria-label="${label}">${badges}</div><span class="tag">${game.tag}</span></button>`;
         }).join('');
         $$('.game-card').forEach(card => card.addEventListener('click', () => {
@@ -395,6 +399,10 @@
           }
           if (card.dataset.spldS1Activity) {
             window.SPLD_S1_LAB?.openActivity(card.dataset.spldS1Activity);
+            return;
+          }
+          if (card.dataset.spldS4Activity) {
+            window.SPLD_S4_LAB?.openActivity(card.dataset.spldS4Activity);
             return;
           }
           startGame(card.dataset.gameId);
@@ -690,9 +698,10 @@
       const pathwayLabels = { '1': 'SpLD 讀寫策略', '2': 'ID 生活選擇', '3': 'ASD 社交練習', '4': 'ADHD 專注策略', 'G': 'Giftedness 邏輯解難', 'H': 'HI 視覺化溝通', 'E': 'EBD 情緒調節', '8': 'SLI 理解與表達', '9': 'MI 溝通與選擇' };
       function updatePathwayStatus() {
         if (!activePathway) { $('#pathwayStatus').textContent = '尚未選擇路線。你可先按學生當日需要選擇一類，再按學段開始。'; return; }
-        if (activePathway === '1' && ['lower', 'upper', 'junior'].includes(activeStage)) {
-          const focus = activeStage === 'lower' ? '多感官讀寫' : activeStage === 'upper' ? '語素、句法與詞彙' : '篇章、修辭與主旨提煉';
-          $('#pathwayStatus').textContent = `已選擇 ${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}。現正顯示 1 組基礎練習和 6 項可直接選擇的${focus}關卡；本路線不會混入其他 SEN 類別或一般活動。`;
+        if (activePathway === '1' && ['lower', 'upper', 'junior', 'senior'].includes(activeStage)) {
+          const focus = activeStage === 'lower' ? '多感官讀寫' : activeStage === 'upper' ? '語素、句法與詞彙' : activeStage === 'junior' ? '篇章、修辭、詞彙與句法' : '文言、論證、學術詞彙與語病校對';
+          const directCount = activeStage === 'junior' ? 8 : 6;
+          $('#pathwayStatus').textContent = `已選擇 ${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}。現正顯示 1 組基礎練習和 ${directCount} 項可直接選擇的${focus}關卡；本路線不會混入其他 SEN 類別或一般活動。`;
           return;
         }
         const primary = getPrimaryPathwayGame();
@@ -773,6 +782,7 @@
       document.addEventListener('spld-p1-lab-complete', (event) => recordSpldLabCompletion(event, '初小讀寫實驗室'));
       document.addEventListener('spld-p4-lab-complete', (event) => recordSpldLabCompletion(event, '高小讀寫實驗室'));
       document.addEventListener('spld-s1-lab-complete', (event) => recordSpldLabCompletion(event, '初中讀寫實驗室'));
+      document.addEventListener('spld-s4-lab-complete', (event) => recordSpldLabCompletion(event, '高中讀寫實驗室'));
       renderLessonSession();
 
       // A prepared lesson link may append senType and stageLevel to open the
