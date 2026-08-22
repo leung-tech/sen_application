@@ -1,0 +1,874 @@
+{
+  "standard": "ADHD graded-game keyboard, semantics and 375px mobile audit",
+  "menus": [
+    {
+      "stage": "lower",
+      "dialog": true,
+      "role": "dialog",
+      "modal": "true",
+      "name": "ADHD 分級認知訓練室",
+      "focusInside": true,
+      "stageLabel": "初小 · P1–P3",
+      "gameKeys": [
+        "cpt",
+        "nback",
+        "stroop",
+        "nogo",
+        "flanker",
+        "switch",
+        "corsi",
+        "schulte",
+        "mot"
+      ],
+      "controls": 10,
+      "unnamed": 0
+    },
+    {
+      "stage": "upper",
+      "dialog": true,
+      "role": "dialog",
+      "modal": "true",
+      "name": "ADHD 分級認知訓練室",
+      "focusInside": true,
+      "stageLabel": "高小 · P4–P6",
+      "gameKeys": [
+        "cpt",
+        "nback",
+        "stroop",
+        "nogo",
+        "flanker",
+        "switch",
+        "corsi",
+        "schulte",
+        "mot"
+      ],
+      "controls": 10,
+      "unnamed": 0
+    },
+    {
+      "stage": "junior",
+      "dialog": true,
+      "role": "dialog",
+      "modal": "true",
+      "name": "ADHD 分級認知訓練室",
+      "focusInside": true,
+      "stageLabel": "初中 · S1–S3",
+      "gameKeys": [
+        "cpt",
+        "nback",
+        "stroop",
+        "nogo",
+        "flanker",
+        "switch",
+        "corsi",
+        "schulte",
+        "mot"
+      ],
+      "controls": 10,
+      "unnamed": 0
+    },
+    {
+      "stage": "senior",
+      "dialog": true,
+      "role": "dialog",
+      "modal": "true",
+      "name": "ADHD 分級認知訓練室",
+      "focusInside": true,
+      "stageLabel": "高中 · S4–S6",
+      "gameKeys": [
+        "cpt",
+        "nback",
+        "stroop",
+        "nogo",
+        "flanker",
+        "switch",
+        "corsi",
+        "schulte",
+        "mot"
+      ],
+      "controls": 10,
+      "unnamed": 0
+    }
+  ],
+  "gameReports": [
+    {
+      "stage": "lower",
+      "game": "cpt",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "8",
+        "controls": 2,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 先停一停；只有正確組合才按。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "nback",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "8",
+        "controls": 2,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 這一張不相同；下一張慢慢再看。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "flanker",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "8",
+        "controls": 3,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "switch",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "8",
+        "controls": 6,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 這次不相配。看看目標卡的顏色、形狀或數量，再試下一張。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "mot",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "2",
+        "controls": 6,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "已選 1 個，慢慢找回餘下目標。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "stroop",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "8",
+        "controls": 5,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "✓ 正確，你看的是顏色。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "nogo",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "10",
+        "controls": 2,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "✓ 做得好，綠色時才按。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "corsi",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "6",
+        "controls": 10,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 這次次序不同。下一回合會以 2 格慢慢再試。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "schulte",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "9",
+        "controls": 10,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 下一個是 1；慢慢掃視方格，不用急。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "cpt",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "11",
+        "controls": 2,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 先停一停；只有正確組合才按。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "nback",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "10",
+        "controls": 2,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 這一張不相同；下一張慢慢再看。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "flanker",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "10",
+        "controls": 3,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "switch",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "10",
+        "controls": 6,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 這次不相配。看看目標卡的顏色、形狀或數量，再試下一張。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "mot",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "2",
+        "controls": 7,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "已選 1 個，慢慢找回餘下目標。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "stroop",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "10",
+        "controls": 5,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 這一張的顏色是藍色，下次慢慢看字體。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "nogo",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "12",
+        "controls": 2,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "✓ 做得好，綠色時才按。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "corsi",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "7",
+        "controls": 10,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 這次次序不同。下一回合會以 2 格慢慢再試。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "schulte",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "16",
+        "controls": 17,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 下一個是 1；慢慢掃視方格，不用急。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "cpt",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "14",
+        "controls": 2,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 先停一停；只有正確組合才按。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "nback",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "12",
+        "controls": 2,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 這一張不相同；下一張慢慢再看。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "flanker",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "12",
+        "controls": 3,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "✓ 正確，中央箭頭是向左。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "switch",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "12",
+        "controls": 6,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 這次不相配。看看目標卡的顏色、形狀或數量，再試下一張。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "mot",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "3",
+        "controls": 9,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "已選 1 個，慢慢找回餘下目標。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "stroop",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "12",
+        "controls": 5,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "✓ 正確，你看的是顏色。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "nogo",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "14",
+        "controls": 2,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 紅色時先停一停；下一張再試。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "corsi",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "8",
+        "controls": 10,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "正在顯示第 4 個位置，共 4 個。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "schulte",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "25",
+        "controls": 26,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 下一個是 1；慢慢掃視方格，不用急。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "cpt",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "16",
+        "controls": 2,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 先停一停；只有正確組合才按。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "nback",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "14",
+        "controls": 2,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 這一張不相同；下一張慢慢再看。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "flanker",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "14",
+        "controls": 3,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "switch",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "14",
+        "controls": 6,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 這次不相配。看看目標卡的顏色、形狀或數量，再試下一張。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "mot",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "3",
+        "controls": 10,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "已選 1 個，慢慢找回餘下目標。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "stroop",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "14",
+        "controls": 5,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 這一張的顏色是黃色，下次慢慢看字體。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "nogo",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "16",
+        "controls": 2,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "✓ 做得好，綠色時才按。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "corsi",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "9",
+        "controls": 10,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "正在顯示第 4 個位置，共 5 個。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "schulte",
+      "initial": {
+        "dialog": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "progressRole": "progressbar",
+        "progressNow": "0",
+        "progressMin": "0",
+        "progressMax": "25",
+        "controls": 26,
+        "unnamed": 0,
+        "motAlternative": true
+      },
+      "interaction": {
+        "exists": true,
+        "feedback": "↗ 下一個是 1；慢慢掃視方格，不用急。"
+      }
+    }
+  ],
+  "keyboard": {
+    "focusCycle": {
+      "tabWraps": true,
+      "shiftTabWraps": true
+    },
+    "close": {
+      "closed": true,
+      "restored": true
+    }
+  },
+  "mobile": {
+    "overflow": false,
+    "dialogWidth": 343,
+    "narrowTargets": [],
+    "controls": 10
+  },
+  "ax": {
+    "dialogs": 1,
+    "statuses": 2,
+    "progressbars": 0
+  },
+  "failureCount": 0,
+  "failures": []
+}
