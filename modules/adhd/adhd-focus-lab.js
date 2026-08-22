@@ -36,12 +36,44 @@
   let state = null;
   let autoTimer = null;
   let nextTimer = null;
+  let returnFocus = null;
 
   function clearTimers() {
     window.clearTimeout(autoTimer);
     window.clearTimeout(nextTimer);
     autoTimer = null;
     nextTimer = null;
+  }
+
+  function getFocusableControls() {
+    if (!host) return [];
+    return [...host.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+      .filter((element) => element.offsetParent !== null);
+  }
+
+  function handleKeyboard(event) {
+    if (!host) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      close();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const controls = getFocusableControls();
+    const first = controls[0];
+    const last = controls.at(-1);
+    if (!first || !last) return;
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  function focusInitialControl() {
+    window.requestAnimationFrame(() => host?.querySelector('.focus-lab-close')?.focus());
   }
 
   function injectStyles() {
@@ -113,23 +145,23 @@
       stimulus = `<div class="focus-shape" style="color:${COLORS[trial.color]}">${trial.shape}</div>`;
       controls = `<div class="focus-choices"><button class="focus-choice collect" type="button" data-answer="collect">★ 收集目標</button><button class="focus-choice skip" type="button" data-answer="skip">→ 略過這張</button></div>`;
     }
-    shell(`<div class="focus-lab-top"><div><div class="focus-lab-kicker">${LABELS[state.mode]}</div><h2>專注挑戰</h2><p>${modeIntro}</p></div><button class="focus-lab-close" type="button" aria-label="關閉">×</button></div><div class="focus-status"><span>第 ${state.index + 1} / ${state.trials.length} 題</span><span>已完成 ${state.correct} 題</span></div><div class="focus-progress"><i style="width:${progress()}%"></i></div><div class="focus-rule">${state.mode === 'sustain' ? (state.index < 9 ? '找「黃色三角形」才按收集。' : '規則保持一樣：仍然只找「黃色三角形」。') : modeIntro}</div><div class="focus-stimulus-wrap">${stimulus}</div>${controls}<div class="focus-feedback" aria-live="polite"></div>`);
+    shell(`<div class="focus-lab-top"><div><div class="focus-lab-kicker">${LABELS[state.mode]}</div><h2>專注挑戰</h2><p>${modeIntro}</p></div><button class="focus-lab-close" type="button" aria-label="關閉">×</button></div><div class="focus-status"><span>第 ${state.index + 1} / ${state.trials.length} 題</span><span>已完成 ${state.correct} 題</span></div><div class="focus-progress" role="progressbar" aria-label="專注挑戰進度" aria-valuemin="0" aria-valuemax="${state.trials.length}" aria-valuenow="${state.index}" aria-valuetext="第 ${state.index + 1} / ${state.trials.length} 題"><i style="width:${progress()}%"></i></div><div class="focus-rule">${state.mode === 'sustain' ? (state.index < 9 ? '找「黃色三角形」才按收集。' : '規則保持一樣：仍然只找「黃色三角形」。') : modeIntro}</div><div class="focus-stimulus-wrap">${stimulus}</div>${controls}<div class="focus-feedback" role="status" aria-live="polite" aria-atomic="true"></div>`);
     host.querySelectorAll('[data-answer]').forEach(button => button.addEventListener('click', () => respond(button.dataset.answer)));
   }
 
   function renderDualTrial(trial) {
-    const base = `<div class="focus-lab-top"><div><div class="focus-lab-kicker">${LABELS.dual}</div><h2>雙線任務</h2><p>先保持密碼，再在干擾下做判斷，最後回想密碼數字。</p></div><button class="focus-lab-close" type="button" aria-label="關閉">×</button></div><div class="focus-status"><span>第 ${state.index + 1} / ${state.trials.length} 組</span><span>完成 ${state.correct} 組</span></div><div class="focus-progress"><i style="width:${progress()}%"></i></div>`;
+    const base = `<div class="focus-lab-top"><div><div class="focus-lab-kicker">${LABELS.dual}</div><h2>雙線任務</h2><p>先保持密碼，再在干擾下做判斷，最後回想密碼數字。</p></div><button class="focus-lab-close" type="button" aria-label="關閉">×</button></div><div class="focus-status"><span>第 ${state.index + 1} / ${state.trials.length} 組</span><span>完成 ${state.correct} 組</span></div><div class="focus-progress" role="progressbar" aria-label="雙線任務進度" aria-valuemin="0" aria-valuemax="${state.trials.length}" aria-valuenow="${state.index}" aria-valuetext="第 ${state.index + 1} / ${state.trials.length} 組"><i style="width:${progress()}%"></i></div>`;
     if (state.dualPhase === 'preview') {
       shell(`${base}<div class="focus-rule">第一步：只需記住密碼的數字。下一步會出現顏色判斷。</div><div class="focus-stimulus-wrap"><div class="focus-dual-code"><span>暫存密碼</span><strong>${trial.symbol} ${trial.number}</strong></div></div><div class="focus-instruction">先把數字放在心裡。畫面很快會轉到顏色判斷。</div>`);
       autoTimer = window.setTimeout(() => { state.dualPhase = 'classify'; renderTrial(); }, 1400);
       return;
     }
     if (state.dualPhase === 'classify') {
-      shell(`${base}<div class="focus-rule">第二步：不要按字義；請選文字真正的顏色，同時記住剛才的數字。</div><div class="focus-stimulus-wrap"><div class="focus-stroop" style="color:${COLORS[trial.colorName]}">${trial.word}</div></div><div class="focus-choices">${Object.keys(COLORS).map(label => `<button class="focus-choice" type="button" data-dual-color="${label}" style="border-color:${COLORS[label]}">${label}</button>`).join('')}</div><div class="focus-feedback" aria-live="polite"></div>`);
+      shell(`${base}<div class="focus-rule">第二步：不要按字義；請選文字真正的顏色，同時記住剛才的數字。</div><div class="focus-stimulus-wrap"><div class="focus-stroop" style="color:${COLORS[trial.colorName]}">${trial.word}</div></div><div class="focus-choices">${Object.keys(COLORS).map(label => `<button class="focus-choice" type="button" data-dual-color="${label}" style="border-color:${COLORS[label]}">${label}</button>`).join('')}</div><div class="focus-feedback" role="status" aria-live="polite" aria-atomic="true"></div>`);
       host.querySelectorAll('[data-dual-color]').forEach(button => button.addEventListener('click', () => respondDualColor(button.dataset.dualColor)));
       return;
     }
-    shell(`${base}<div class="focus-rule">第三步：剛才的密碼數字是甚麼？</div><div class="focus-stimulus-wrap"><div class="focus-dual-code"><span>回想剛才的密碼</span><strong>${trial.symbol} ？</strong></div></div><div class="focus-dual-recall">不用急；想一想顏色判斷前出現的數字。</div><div class="focus-choices"><button class="focus-choice" type="button" data-dual-number="${trial.number}">${trial.number}</button><button class="focus-choice" type="button" data-dual-number="${trial.decoy}">${trial.decoy}</button></div><div class="focus-feedback" aria-live="polite"></div>`);
+    shell(`${base}<div class="focus-rule">第三步：剛才的密碼數字是甚麼？</div><div class="focus-stimulus-wrap"><div class="focus-dual-code"><span>回想剛才的密碼</span><strong>${trial.symbol} ？</strong></div></div><div class="focus-dual-recall">不用急；想一想顏色判斷前出現的數字。</div><div class="focus-choices"><button class="focus-choice" type="button" data-dual-number="${trial.number}">${trial.number}</button><button class="focus-choice" type="button" data-dual-number="${trial.decoy}">${trial.decoy}</button></div><div class="focus-feedback" role="status" aria-live="polite" aria-atomic="true"></div>`);
     host.querySelectorAll('[data-dual-number]').forEach(button => button.addEventListener('click', () => respondDualNumber(Number(button.dataset.dualNumber))));
   }
 
@@ -199,22 +231,29 @@
     host.querySelector('#focusClose').addEventListener('click', close);
   }
 
-  function close() {
+  function close({ restoreFocus = true } = {}) {
     clearTimers();
+    document.removeEventListener('keydown', handleKeyboard);
+    const focusTarget = returnFocus;
     host?.remove();
     host = null;
     state = null;
+    returnFocus = null;
+    if (restoreFocus && focusTarget?.isConnected) window.requestAnimationFrame(() => focusTarget.focus());
   }
 
   window.ADHD_FOCUS_LAB = {
     open(nextOptions = {}) {
-      close();
+      close({ restoreFocus: false });
       options = nextOptions;
+      returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       injectStyles();
       host = document.createElement('div');
       host.id = 'adhdFocusLabRoot';
       document.body.appendChild(host);
+      document.addEventListener('keydown', handleKeyboard);
       renderHome();
+      focusInitialControl();
     },
   };
 })();
