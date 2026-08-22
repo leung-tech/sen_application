@@ -1,0 +1,793 @@
+{
+  "standard": "ID direct games, vocational transition and ASD sensory autonomy keyboard, semantics and mobile audit",
+  "direct": {
+    "before": {
+      "exists": true,
+      "guide": "可直接選擇五項 ID 生活技能訓練，包括分類、付款、生活步驟、手眼協調及節奏模仿；或進入十關實用生活練習。每項均可先帶讀、慢慢做及隨時離開。",
+      "text": "🧺\n生活技能直接選關\n\n分類、付款、生活步驟、手眼協調與節奏模仿；每次只做一個清楚小步驟。\n\n直接選關\n超大操作\n可選朗讀\n初小 · P1–P3 · 5 項遊戲"
+    },
+    "after": {
+      "dialog": true,
+      "cards": 5,
+      "role": "dialog",
+      "modal": "true",
+      "name": "idLabTitle",
+      "focusInside": true
+    }
+  },
+  "reports": [
+    {
+      "stage": "lower",
+      "game": "sort",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "3",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 6,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "✓ 香蕉放進這個箱子很合適。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "shop",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "3",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 7,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "先看價錢，再一枚一枚放硬幣。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "adl",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "3",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "✓ 對了，現在看下一步。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "trace",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "3",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "✓ 完成第 1 個點，現在看下一個。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "rhythm",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "3",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "示範完成；現在可以慢慢跟相同順序。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "sort",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 6,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "✓ 香蕉放進這個箱子很合適。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "shop",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 7,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "先看價錢，再一枚一枚放硬幣。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "adl",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "↗ 先找：「開水弄濕手」。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "trace",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "✓ 完成第 1 個點，現在看下一個。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "rhythm",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "示範完成；現在可以慢慢跟相同順序。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "sort",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 6,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "↗ 香蕉可以吃，是水果。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "shop",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 7,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "先看價錢，再一枚一枚放硬幣。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "adl",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "✓ 對了，現在看下一步。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "trace",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "✓ 完成第 1 個點，現在看下一個。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "rhythm",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "示範完成；現在可以慢慢跟相同順序。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "cafe",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "↗ 店長說：客人要的是「熱奶茶」。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "market",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": {
+          "items": 4,
+          "hasOrder": true
+        }
+      },
+      "interaction": {
+        "feedback": "↗ 櫃位上的是牛奶，再看一次圖示和名稱。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "library",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": {
+          "shelves": 4,
+          "hasHandover": true
+        }
+      },
+      "interaction": {
+        "feedback": "↗ 先看書名和圖示；這本書較接近「科學」。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "sort",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "5",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 6,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "↗ 香蕉可以吃，是水果。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "shop",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "5",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 7,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "先看價錢，再一枚一枚放硬幣。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "adl",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "5",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "↗ 先找：「開水弄濕手」。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "trace",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "5",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "✓ 完成第 1 個點，現在看下一個。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "rhythm",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "5",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "示範完成；現在可以慢慢跟相同順序。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "cafe",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "5",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "↗ 店長說：客人要的是「熱奶茶」。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "market",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "5",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": {
+          "items": 4,
+          "hasOrder": true
+        }
+      },
+      "interaction": {
+        "feedback": "↗ 櫃位上的是牛奶，再看一次圖示和名稱。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "library",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "5",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": {
+          "shelves": 4,
+          "hasHandover": true
+        }
+      },
+      "interaction": {
+        "feedback": "✓ 《地球與太陽》已放到科學書架。",
+        "exists": true
+      }
+    }
+  ],
+  "keyboard": {
+    "cycle": {
+      "tab": true,
+      "shiftTab": true
+    },
+    "close": {
+      "closed": true,
+      "restored": true
+    }
+  },
+  "sensory": {
+    "scenario": 3,
+    "visuals": 3,
+    "paces": 3,
+    "breath": true,
+    "exit": true,
+    "feedback": "停一停：想停多久都可以",
+    "noAutoAudio": true,
+    "dialog": true
+  },
+  "mobile": {
+    "overflow": false,
+    "controls": 8,
+    "marketItems": 4,
+    "narrow": []
+  },
+  "ax": {
+    "dialogs": 1,
+    "statuses": 3,
+    "progressbars": 1
+  },
+  "failureCount": 0,
+  "failures": []
+}
