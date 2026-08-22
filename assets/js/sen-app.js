@@ -398,11 +398,11 @@
             return;
           }
           if (card.dataset.spldS1Activity) {
-            window.SPLD_S1_LAB?.openActivity(card.dataset.spldS1Activity);
+            window.SPLD_S1_LAB?.openActivity(card.dataset.spldS1Activity, card);
             return;
           }
           if (card.dataset.spldS4Activity) {
-            window.SPLD_S4_LAB?.openActivity(card.dataset.spldS4Activity);
+            window.SPLD_S4_LAB?.openActivity(card.dataset.spldS4Activity, card);
             return;
           }
           startGame(card.dataset.gameId);
@@ -717,8 +717,8 @@
       function selectPathway(type) {
         activePathway = type;
         activeFilter = `support-${type}`;
-        $$('.pathway-card').forEach(card => card.classList.toggle('active', card.dataset.type === type));
-        $$('.filter-button').forEach(button => button.classList.toggle('active', button.dataset.filter === activeFilter));
+        $$('.pathway-card').forEach(card => { const selected = card.dataset.type === type; card.classList.toggle('active', selected); card.setAttribute('aria-pressed', String(selected)); });
+        $$('.filter-button').forEach(button => { const selected = button.dataset.filter === activeFilter; button.classList.toggle('active', selected); button.setAttribute('aria-pressed', String(selected)); });
         updatePathwayStatus(); updateSuggested(); renderGameLibrary();
         showToast(`已選擇 ${pathwayLabels[type]} 路線。`);
         setTimeout(() => $('#gamesAnchor').scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
@@ -726,7 +726,7 @@
       function clearPathwaySelection(message) {
         if (!activePathway) return;
         activePathway = null;
-        $$('.pathway-card').forEach(card => card.classList.remove('active'));
+        $$('.pathway-card').forEach(card => { card.classList.remove('active'); card.setAttribute('aria-pressed', 'false'); });
         updatePathwayStatus();
         if (message) showToast(message);
       }
@@ -734,8 +734,8 @@
         activeStage = stage;
         activeFilter = activePathway ? `support-${activePathway}` : 'all';
         $('#stageGuide').textContent = stageProfiles[stage].guide;
-        $$('.level-button').forEach(button => button.classList.toggle('active', button.dataset.stage === stage));
-        $$('.filter-button').forEach(button => button.classList.toggle('active', button.dataset.filter === activeFilter));
+        $$('.level-button').forEach(button => { const selected = button.dataset.stage === stage; button.classList.toggle('active', selected); button.setAttribute('aria-pressed', String(selected)); });
+        $$('.filter-button').forEach(button => { const selected = button.dataset.filter === activeFilter; button.classList.toggle('active', selected); button.setAttribute('aria-pressed', String(selected)); });
         updatePathwayStatus(); updateSuggested(); renderGameLibrary(); showToast(`已切換至${stageProfiles[stage].label}任務。`);
       }
       updateSuggested(); renderGameLibrary(); updateTokenBoard(); updateDashboardProgress();
@@ -747,7 +747,7 @@
         if (filter.startsWith('support-')) { selectPathway(filter.replace('support-', '')); return; }
         clearPathwaySelection('已退出專屬路線，現正顯示一般活動。');
         activeFilter = filter;
-        $$('.filter-button').forEach(item => item.classList.toggle('active', item === button));
+        $$('.filter-button').forEach(item => { const selected = item === button; item.classList.toggle('active', selected); item.setAttribute('aria-pressed', String(selected)); });
         updateSuggested(); renderGameLibrary();
       }));
       $$('.level-button').forEach(button => button.addEventListener('click', () => selectStage(button.dataset.stage)));
