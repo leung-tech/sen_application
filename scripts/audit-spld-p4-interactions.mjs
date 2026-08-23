@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises';
 
 const port = 9388;
 const reportPath = '/home/ubuntu/sen_application/spld-p4-interaction-audit.json';
-const pageUrl = 'file:///home/ubuntu/sen_application/index.html?senAudit=p4-interaction';
+const pageUrl = process.env.SEN_AUDIT_URL || 'file:///home/ubuntu/sen_application/index.html?senAudit=p4-interaction';
 const chrome = spawn('chromium', ['--headless', '--no-sandbox', '--disable-gpu', `--remote-debugging-port=${port}`, '--user-data-dir=/tmp/sen-p4-interaction-cdp', '--window-size=1280,900', 'about:blank'], { stdio: 'ignore' });
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
