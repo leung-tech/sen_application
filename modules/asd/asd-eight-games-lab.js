@@ -94,7 +94,7 @@
     q('[data-asd8-break]')?.addEventListener('click', () => pauseScreen());
   }
   function header(title, subtitle, eyebrow = currentStage().label) {
-    return `<header class="asd8-header"><div><span class="asd8-eyebrow">${eyebrow}</span><h2>${title}</h2><p>${subtitle}</p></div><button class="asd8-close" type="button" data-asd8-close aria-label="關閉八項 ASD 分齡遊戲">×</button></header>`;
+    return `<header class="asd8-header"><div><span class="asd8-eyebrow">${eyebrow}</span><h2>${title}</h2><p>${subtitle}</p></div><button class="asd8-close" type="button" data-asd8-close aria-label="關閉 ASD 分齡社交探索">×</button></header>`;
   }
   function supportBar() {
     return `<aside class="asd8-support" aria-label="學習支援設定"><button type="button" data-asd8-break>☁ 先停一停</button><button type="button" id="asd8Sound" aria-pressed="${state.sound}">${state.sound ? '🔊 回饋朗讀：開' : '🔇 回饋朗讀：關'}</button><button type="button" id="asd8Motion" aria-pressed="${state.reduceMotion}">${state.reduceMotion ? '◌ 減少動態：開' : '◒ 減少動態：關'}</button></aside>`;
