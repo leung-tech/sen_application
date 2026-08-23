@@ -382,7 +382,7 @@
       function shuffle(items) { const copy = [...items]; for (let i = copy.length - 1; i > 0; i -= 1) { const j = Math.floor(Math.random() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; } return copy; }
       function escapeHTML(value) { return String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#039;', '"': '&quot;' }[char])); }
 
-      const supportLabels = { '1': 'SpLD', '2': 'ID', '3': 'ASD', '4': 'ADHD', 'G': 'Giftedness', 'H': 'HI', 'E': 'EBD', '8': 'SLI', '9': 'MI', 'V': 'VI', 'P': 'PD' };
+      const supportLabels = { '1': 'SpLD', '2': 'ID', '3': 'ASD', '4': 'ADHD', 'G': 'Giftedness', 'H': 'HI', 'E': 'EBD', '8': 'SLI', '9': 'MI', 'V': 'VI', 'P': 'PD', 'C': 'Career' };
       function renderSupportBadges(codes) {
         return codes.map(code => `<span class="support-badge" data-code="${code}" title="支援標記：${code} ${supportLabels[code]}">${code} ${supportLabels[code]}</span>`).join('');
       }
@@ -891,7 +891,7 @@
       }
 
       // Dashboard interactions
-      const pathwayLabels = { '1': 'SpLD 讀寫策略', '2': 'ID 生活選擇', '3': 'ASD 社交練習', '4': 'ADHD 專注策略', 'G': 'Giftedness 邏輯解難', 'H': 'HI 視覺化溝通', 'E': 'EBD 情緒調節', '8': 'SLI 理解與表達', '9': 'MI 溝通與選擇', 'V': 'VI 視覺障礙', 'P': 'PD 肢體傷殘' };
+      const pathwayLabels = { '1': 'SpLD 讀寫策略', '2': 'ID 生活選擇', '3': 'ASD 社交練習', '4': 'ADHD 專注策略', 'G': 'Giftedness 邏輯解難', 'H': 'HI 視覺化溝通', 'E': 'EBD 情緒調節', '8': 'SLI 理解與表達', '9': 'MI 溝通與選擇', 'V': 'VI 視覺障礙', 'P': 'PD 肢體傷殘', 'C': '生涯探索與職場策略' };
       function updatePathwayStatus() {
         if (!activePathway) { $('#pathwayStatus').textContent = '尚未選擇路線。你可先按學生當日需要選擇一類，再按學段開始。'; return; }
         if (activePathway === '1' && ['lower', 'upper', 'junior', 'senior'].includes(activeStage)) {
@@ -905,12 +905,22 @@
           $('#pathwayStatus').textContent = `已選擇 ${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}。現正顯示兩項${mode}的新遊戲；本路線不會混入其他 SEN 類別或一般活動。`;
           return;
         }
+        if (activePathway === 'C') {
+          $('#pathwayStatus').textContent = `已選擇 ${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}。現正顯示兩項低壓力生涯探索遊戲；不作個人選科、升學或職業決定。`;
+          return;
+        }
         const primary = getPrimaryPathwayGame();
         $('#pathwayStatus').textContent = `已選擇 ${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}。現正顯示「${primary.title}」專屬模組；本路線不會混入其他 SEN 類別或一般活動。`;
       }
       function updateSuggested() {
+        delete $('#startSuggested').dataset.careerPathway;
         if (activePathway === 'V' || activePathway === 'P') {
           $('#startSuggested').textContent = activePathway === 'V' ? '▶ 從「尋找糖果屋」開始' : '▶ 從「單鍵太空熱氣球」開始';
+          $('#startSuggested').dataset.game = '';
+          return;
+        }
+        if (activePathway === 'C') {
+          $('#startSuggested').textContent = activeStage === 'lower' ? '▶ 從「職業動物森林」開始' : activeStage === 'upper' ? '▶ 從「時空快遞」開始' : activeStage === 'junior' ? '▶ 從「青年工場」開始' : '▶ 從「DSE 放榜：平行宇宙」開始';
           $('#startSuggested').dataset.game = '';
           return;
         }
@@ -944,13 +954,30 @@
         });
         return true;
       }
+      function renderCareerPathwayDirect() {
+        if (activePathway !== 'C') return false;
+        $('#supportKey').hidden = true;
+        $('#gamesKicker').textContent = '生涯探索 · 直接選關';
+        $('#gamesTitle').textContent = `生涯探索與職場策略｜${stageProfiles[activeStage].label}`;
+        $('#stageGuide').textContent = '本學段提供兩項以自我概念、職場策略、支援網絡及多元可能為核心的生涯探索。活動沒有排名、能力評分或個人出路結論。';
+        $('#startSuggested').textContent = activeStage === 'lower' ? '▶ 從「職業動物森林」開始' : activeStage === 'upper' ? '▶ 從「時空快遞」開始' : activeStage === 'junior' ? '▶ 從「青年工場」開始' : '▶ 從「DSE 放榜：平行宇宙」開始';
+        $('#startSuggested').dataset.game = '';
+        $('#startSuggested').dataset.careerPathway = 'true';
+        $('#gameGrid').classList.remove('spld-primary-grid');
+        $('#gameGrid').innerHTML = `<button class="game-card career-direct-card" type="button" data-career-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">🗺️</div><h3>八項 SEN 生涯規劃遊戲</h3><p>初小職業特質、高小時間與非言語線索、初中職場安全與價值澄清，或高中多元出路與面試表達結構；全程可停一停、可重試。</p><div class="support-badge-row"><span class="support-badge">不作評分</span><span class="support-badge">可選旁白</span><span class="support-badge">多元可能</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項新遊戲</span></button>`;
+        $('[data-career-direct]')?.addEventListener('click', (event) => {
+          if (!window.CAREER_GAMES_LAB) { showToast('生涯探索遊戲正在準備中，請稍後再試。'); return; }
+          window.CAREER_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: event.currentTarget });
+        });
+        return true;
+      }
       function selectPathway(type) {
         activePathway = type;
         activeFilter = `support-${type}`;
         $$('.pathway-card').forEach(card => { const selected = card.dataset.type === type; card.classList.toggle('active', selected); card.setAttribute('aria-pressed', String(selected)); });
         $$('.filter-button').forEach(button => { const selected = button.dataset.filter === activeFilter; button.classList.toggle('active', selected); button.setAttribute('aria-pressed', String(selected)); });
         updatePathwayStatus();
-        if (renderAccessPathwayDirect()) { showToast(`已選擇 ${pathwayLabels[type]} 路線。`); setTimeout(() => $('#gamesAnchor').scrollIntoView({ behavior: 'smooth', block: 'start' }), 80); return; }
+        if (renderAccessPathwayDirect() || renderCareerPathwayDirect()) { showToast(`已選擇 ${pathwayLabels[type]} 路線。`); setTimeout(() => $('#gamesAnchor').scrollIntoView({ behavior: 'smooth', block: 'start' }), 80); return; }
         updateSuggested(); renderGameLibrary();
         showToast(`已選擇 ${pathwayLabels[type]} 路線。`);
         setTimeout(() => $('#gamesAnchor').scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
@@ -969,12 +996,13 @@
         $$('.level-button').forEach(button => { const selected = button.dataset.stage === stage; button.classList.toggle('active', selected); button.setAttribute('aria-pressed', String(selected)); });
         $$('.filter-button').forEach(button => { const selected = button.dataset.filter === activeFilter; button.classList.toggle('active', selected); button.setAttribute('aria-pressed', String(selected)); });
         updatePathwayStatus();
-        if (renderAccessPathwayDirect()) { showToast(`已切換至${stageProfiles[stage].label}任務。`); return; }
+        if (renderAccessPathwayDirect() || renderCareerPathwayDirect()) { showToast(`已切換至${stageProfiles[stage].label}任務。`); return; }
         updateSuggested(); renderGameLibrary(); showToast(`已切換至${stageProfiles[stage].label}任務。`);
       }
       updateSuggested(); renderGameLibrary(); updateTokenBoard(); updateDashboardProgress();
       $('#startSuggested').addEventListener('click', () => {
         const accessType = $('#startSuggested').dataset.accessType;
+        if ($('#startSuggested').dataset.careerPathway === 'true' && window.CAREER_GAMES_LAB) { window.CAREER_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: $('#startSuggested') }); return; }
         if (accessType === 'V' && window.VI_GAMES_LAB) { window.VI_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: $('#startSuggested') }); return; }
         if (accessType === 'P' && window.PD_GAMES_LAB) { window.PD_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: $('#startSuggested') }); return; }
         startGame($('#startSuggested').dataset.game || 'emotion');
