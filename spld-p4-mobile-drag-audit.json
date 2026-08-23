@@ -47,7 +47,7 @@
   },
   "returnToBank": {
     "nonePlaced": true,
-    "feedback": "「圖書」已放回積木區。可慢慢再試，或直接點選積木。"
+    "feedback": "「小明」已放回積木區。可慢慢再試，或直接點選積木。"
   },
   "tapAlternative": {
     "placed": "小明",
