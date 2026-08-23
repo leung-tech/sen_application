@@ -377,7 +377,7 @@
   }
 
   function choiceGridMarkup(choices) {
-    return `<div class="spld-p4-choice-grid">${choices.map((choice, index) => `<button type="button" class="spld-p4-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
+    return `<section class="spld-p4-mission-board" aria-label="詞彙任務台"><div class="spld-p4-choice-dock" data-p4-choice-dock role="img" aria-label="任務格。可把策略卡拖到這裏，或直接點選策略卡。"><span>🎯</span><strong>任務格</strong><small>把最合適的詞卡送進來</small></div><p>可拖放策略卡；不想拖放時，直接點選亦可。</p><div class="spld-p4-choice-grid">${choices.map((choice, index) => `<button type="button" class="spld-p4-choice" data-choice="${choice}" draggable="true"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div></section>`;
   }
 
   function prepareMemoryCards(round) {
@@ -439,6 +439,7 @@
     }));
     if (activityMode() === 'morpheme') {
       document.querySelectorAll('.spld-p4-choice').forEach((button) => button.addEventListener('click', () => chooseMorpheme(button, round)));
+      bindChoiceDock((button) => chooseMorpheme(button, round));
     } else if (activityMode() === 'sentence') {
       document.querySelectorAll('.spld-p4-block').forEach((button) => button.addEventListener('click', () => {
         if (suppressTouchSentenceClick) return;
@@ -477,7 +478,36 @@
       });
     } else {
       document.querySelectorAll('.spld-p4-choice').forEach((button) => button.addEventListener('click', () => chooseSimpleChoice(button, round)));
+      bindChoiceDock((button) => chooseSimpleChoice(button, round));
     }
+  }
+
+  function bindChoiceDock(onDropChoice) {
+    const dock = document.querySelector('[data-p4-choice-dock]');
+    if (!dock) return;
+    let draggedChoice = '';
+    document.querySelectorAll('.spld-p4-choice').forEach((button) => {
+      button.addEventListener('dragstart', (event) => {
+        draggedChoice = button.dataset.choice || '';
+        event.dataTransfer?.setData('text/plain', draggedChoice);
+        event.dataTransfer.effectAllowed = 'move';
+        button.classList.add('dragging');
+      });
+      button.addEventListener('dragend', () => {
+        draggedChoice = '';
+        button.classList.remove('dragging');
+        dock.classList.remove('drag-over');
+      });
+    });
+    dock.addEventListener('dragover', (event) => { event.preventDefault(); dock.classList.add('drag-over'); });
+    dock.addEventListener('dragleave', () => dock.classList.remove('drag-over'));
+    dock.addEventListener('drop', (event) => {
+      event.preventDefault();
+      const choice = event.dataTransfer?.getData('text/plain') || draggedChoice;
+      const button = [...document.querySelectorAll('.spld-p4-choice')].find((item) => item.dataset.choice === choice);
+      dock.classList.remove('drag-over');
+      if (button) onDropChoice(button);
+    });
   }
 
   function chooseMorpheme(button, round) {
@@ -649,6 +679,9 @@
     const touchStyle = document.createElement('style');
     touchStyle.textContent = `.spld-p4-block{touch-action:none}.spld-p4-block.touch-ready{border-color:#8072d8;background:#f4f1ff;box-shadow:0 0 0 4px rgba(128,114,216,.13)}.spld-p4-block.touch-dragging{opacity:.82;transform:scale(.985);border-color:#5f4ec2;background:#eeebff;box-shadow:0 12px 24px rgba(80,63,166,.18)}.spld-p4-slot.touch-drag-over{transform:translateY(-2px);border-color:#5b49bc;background:#e8e4ff;box-shadow:0 0 0 4px rgba(91,73,188,.14)}@media(max-width:620px){.spld-p4-play-area:has(.spld-p4-slots){display:flex;flex-direction:column}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-block-bank{order:3;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:4px}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-slots{order:4;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:14px 0 10px}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-sentence-preview{order:5}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-block{min-height:68px;padding:8px 6px;font-size:16px;line-height:1.28;overflow-wrap:anywhere}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-slot{min-height:88px;padding:6px}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-slot span{font-size:11px}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-slot strong{font-size:16px;overflow-wrap:anywhere}}@media(prefers-reduced-motion:reduce){.spld-p4-block.touch-dragging,.spld-p4-slot.touch-drag-over{transform:none}}`;
     document.head.appendChild(touchStyle);
+    const gameplayStyle = document.createElement('style');
+    gameplayStyle.textContent = `.spld-p4-mission-board{display:grid;gap:12px;margin-top:14px}.spld-p4-choice-dock{display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center;min-height:92px;padding:14px 16px;border:3px dashed #38a492;border-radius:18px;background:linear-gradient(135deg,#e9fff8,#f5fffb);color:#176d62;transition:transform 180ms cubic-bezier(.23,1,.32,1),background 180ms cubic-bezier(.23,1,.32,1),box-shadow 180ms cubic-bezier(.23,1,.32,1)}.spld-p4-choice-dock>span{grid-row:span 2;font-size:36px}.spld-p4-choice-dock strong{font-size:18px}.spld-p4-choice-dock small{color:#47786f;font-size:14px;line-height:1.45}.spld-p4-choice-dock.drag-over{transform:translateY(-2px) scale(1.01);border-style:solid;background:#d7f8ec;box-shadow:0 10px 22px rgba(25,136,116,.18)}.spld-p4-mission-board>p{margin:0;color:#587184;font-size:14px;font-weight:750;line-height:1.5}.spld-p4-choice{cursor:grab;transition:transform 160ms cubic-bezier(.23,1,.32,1),box-shadow 180ms cubic-bezier(.23,1,.32,1),opacity 160ms}.spld-p4-choice:hover{transform:translateY(-3px);box-shadow:0 9px 18px rgba(39,106,98,.15)}.spld-p4-choice:active{cursor:grabbing;transform:scale(.98)}.spld-p4-choice.dragging{opacity:.56}@media(max-width:620px){.spld-p4-choice-dock{min-height:84px}.spld-p4-choice-dock>span{font-size:32px}.spld-p4-mission-board>p{font-size:13px}}@media(prefers-reduced-motion:reduce){.spld-p4-choice-dock,.spld-p4-choice{transition:none}}`;
+    document.head.appendChild(gameplayStyle);
   }
 
   window.SPLD_P4_LAB = {
