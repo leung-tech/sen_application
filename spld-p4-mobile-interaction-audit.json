@@ -1,0 +1,73 @@
+{
+  "standard": "375px P4 memory study-to-match and collocation touch interaction audit",
+  "memoryInitial": {
+    "root": true,
+    "overflow": false,
+    "cards": 4,
+    "hidden": true,
+    "disabled": 4,
+    "study": "👀 翻開全部詞語卡",
+    "rects": [
+      {
+        "width": 133,
+        "height": 104,
+        "font": "23px"
+      },
+      {
+        "width": 133,
+        "height": 104,
+        "font": "23px"
+      },
+      {
+        "width": 133,
+        "height": 104,
+        "font": "23px"
+      },
+      {
+        "width": 133,
+        "height": 104,
+        "font": "23px"
+      }
+    ]
+  },
+  "memoryStudy": {
+    "shown": true,
+    "next": "我記好了，開始配對",
+    "disabled": 4
+  },
+  "memoryMatch": {
+    "hiddenAgain": true,
+    "enabled": 4,
+    "studyGone": true,
+    "overflow": false
+  },
+  "collocation": {
+    "root": true,
+    "overflow": false,
+    "choices": 3,
+    "retry": "先把動詞和每個選項慢慢讀一遍，找最自然的搭配。",
+    "retryState": "spld-p4-feedback try",
+    "success": "✓ 「發揮潛能」是合適的詞語搭配。",
+    "successState": "spld-p4-feedback success",
+    "promptFont": "20px",
+    "rects": [
+      {
+        "width": 87,
+        "height": 98,
+        "font": "24px"
+      },
+      {
+        "width": 87,
+        "height": 98,
+        "font": "24px"
+      },
+      {
+        "width": 87,
+        "height": 98,
+        "font": "24px"
+      }
+    ]
+  },
+  "failureCount": 0,
+  "failures": []
+}
