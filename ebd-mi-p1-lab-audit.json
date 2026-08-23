@@ -1,0 +1,1257 @@
+{
+  "standard": "EBD/MI four-stage 32 direct-entry games, preparation, safe low-pressure interactions, keyboard and 375px audit",
+  "baseUrl": "file:///home/ubuntu/sen_application/index.html",
+  "menus": [
+    {
+      "stage": "lower",
+      "track": "ebd",
+      "loaded": true,
+      "cards": [
+        "ebd-cool",
+        "ebd-stop",
+        "ebd-rhythm",
+        "ebd-tidy"
+      ]
+    },
+    {
+      "stage": "lower",
+      "track": "mi",
+      "loaded": true,
+      "cards": [
+        "mi-bubble",
+        "mi-safe",
+        "mi-calm",
+        "mi-breath"
+      ]
+    },
+    {
+      "stage": "upper",
+      "track": "ebd",
+      "loaded": true,
+      "cards": [
+        "ebd-emotion-clue",
+        "ebd-pause-plan",
+        "ebd-repair-choice",
+        "ebd-classroom-reset"
+      ]
+    },
+    {
+      "stage": "upper",
+      "track": "mi",
+      "loaded": true,
+      "cards": [
+        "mi-weather-map",
+        "mi-support-menu",
+        "mi-thought-cloud",
+        "mi-small-step-route"
+      ]
+    },
+    {
+      "stage": "junior",
+      "track": "ebd",
+      "loaded": true,
+      "cards": [
+        "ebd-tone-workshop",
+        "ebd-conflict-route",
+        "ebd-chain-clue",
+        "ebd-reset-rhythm"
+      ]
+    },
+    {
+      "stage": "junior",
+      "track": "mi",
+      "loaded": true,
+      "cards": [
+        "mi-context-card",
+        "mi-network-map",
+        "mi-anchor-breath",
+        "mi-task-breakdown"
+      ]
+    },
+    {
+      "stage": "senior",
+      "track": "ebd",
+      "loaded": true,
+      "cards": [
+        "ebd-workplace-tone",
+        "ebd-incident-order",
+        "ebd-boundary-plan",
+        "ebd-reset-plan"
+      ]
+    },
+    {
+      "stage": "senior",
+      "track": "mi",
+      "loaded": true,
+      "cards": [
+        "mi-practicum-prep",
+        "mi-pressure-signal",
+        "mi-need-statement",
+        "mi-daily-return"
+      ]
+    }
+  ],
+  "games": [
+    {
+      "stage": "lower",
+      "track": "ebd",
+      "id": "ebd-cool",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你完成了準備和放鬆。冰涼的顏色慢慢回到火山旁。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "lower",
+      "track": "ebd",
+      "id": "ebd-stop",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你在紅色提示時先停住了。現在可以慢慢選擇下一步。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "lower",
+      "track": "ebd",
+      "id": "ebd-rhythm",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你已用自己的節奏完成三個慢呼吸拍子。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "lower",
+      "track": "ebd",
+      "id": "ebd-tidy",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你慢慢把三樣用品放回原位了。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "lower",
+      "track": "mi",
+      "id": "mi-bubble",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了「🛟 告訴成人」作為下一步。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "lower",
+      "track": "mi",
+      "id": "mi-safe",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了「🥤 喝一口水」。你可把這個選擇告訴教師。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "lower",
+      "track": "mi",
+      "id": "mi-calm",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了平靜線索：「🌤️ 看一看窗外的光」。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "lower",
+      "track": "mi",
+      "id": "mi-breath",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你已按自己的節奏走過一個呼吸循環。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "upper",
+      "track": "ebd",
+      "id": "ebd-emotion-clue",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了平靜線索：「😔 可能有點失望」。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "upper",
+      "track": "ebd",
+      "id": "ebd-pause-plan",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你在紅色提示時先停住了。現在可以慢慢選擇下一步。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "upper",
+      "track": "ebd",
+      "id": "ebd-repair-choice",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了「💬 說「剛才我太急了」」。你可把這個選擇告訴教師。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "upper",
+      "track": "ebd",
+      "id": "ebd-classroom-reset",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你慢慢把三樣用品放回原位了。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "upper",
+      "track": "mi",
+      "id": "mi-weather-map",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了平靜線索：「🌤️ 有點雲，但還可以」。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "upper",
+      "track": "mi",
+      "id": "mi-support-menu",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了「🧑‍🏫 告訴信任的成人」。你可把這個選擇告訴教師。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "upper",
+      "track": "mi",
+      "id": "mi-thought-cloud",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了「🛟 告訴成人」作為下一步。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "upper",
+      "track": "mi",
+      "id": "mi-small-step-route",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你慢慢把三樣用品放回原位了。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "junior",
+      "track": "ebd",
+      "id": "ebd-tone-workshop",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了平靜線索：「💬「我想停一分鐘，之後再討論。」」。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "junior",
+      "track": "ebd",
+      "id": "ebd-conflict-route",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了「👂 先聽對方說完」。你可把這個選擇告訴教師。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "junior",
+      "track": "ebd",
+      "id": "ebd-chain-clue",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你慢慢把三樣用品放回原位了。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "junior",
+      "track": "ebd",
+      "id": "ebd-reset-rhythm",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你已用自己的節奏完成三個慢呼吸拍子。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "junior",
+      "track": "mi",
+      "id": "mi-context-card",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了平靜線索：「📝 看一題，再做一個小步」。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "junior",
+      "track": "mi",
+      "id": "mi-network-map",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了「🧑‍🏫 信任的教師」。你可把這個選擇告訴教師。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "junior",
+      "track": "mi",
+      "id": "mi-anchor-breath",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你已按自己的節奏走過一個呼吸循環。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "junior",
+      "track": "mi",
+      "id": "mi-task-breakdown",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你慢慢把三樣用品放回原位了。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "senior",
+      "track": "ebd",
+      "id": "ebd-workplace-tone",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了平靜線索：「💬「我想確認一次，哪部分需要重做？」」。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "senior",
+      "track": "ebd",
+      "id": "ebd-incident-order",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你慢慢把三樣用品放回原位了。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "senior",
+      "track": "ebd",
+      "id": "ebd-boundary-plan",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了「💬 清楚說出可以做甚麼」。你可把這個選擇告訴教師。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "senior",
+      "track": "ebd",
+      "id": "ebd-reset-plan",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你已按自己的節奏走過一個呼吸循環。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "senior",
+      "track": "mi",
+      "id": "mi-practicum-prep",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了「🗓️ 看清工作安排」。你可把這個選擇告訴教師。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "senior",
+      "track": "mi",
+      "id": "mi-pressure-signal",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了平靜線索：「🛟 告訴可信任成人並安排短休息」。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "senior",
+      "track": "mi",
+      "id": "mi-need-statement",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你選了「🛟 告訴成人」作為下一步。",
+        "progress": "100%"
+      }
+    },
+    {
+      "stage": "senior",
+      "track": "mi",
+      "id": "mi-daily-return",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "adult": true,
+        "pause": true,
+        "leave": true,
+        "draggable": true
+      },
+      "interaction": {
+        "complete": true,
+        "status": "你慢慢把三樣用品放回原位了。",
+        "progress": "100%"
+      }
+    }
+  ],
+  "keyboard": {
+    "tabWrap": true,
+    "shiftWrap": true,
+    "closed": true,
+    "restored": true
+  },
+  "mobile": {
+    "overflow": false,
+    "dialogWidth": 359,
+    "narrow": [],
+    "sources": [
+      {
+        "w": 287,
+        "h": 76,
+        "draggable": true
+      },
+      {
+        "w": 287,
+        "h": 76,
+        "draggable": true
+      },
+      {
+        "w": 287,
+        "h": 76,
+        "draggable": true
+      },
+      {
+        "w": 287,
+        "h": 76,
+        "draggable": true
+      }
+    ],
+    "zones": [
+      {
+        "w": 287,
+        "h": 80
+      }
+    ]
+  },
+  "failureCount": 0,
+  "failures": []
+}
