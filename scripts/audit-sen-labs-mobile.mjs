@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises';
 
 const port = 9336;
 const outputPath = '/home/ubuntu/sen_application/sen-labs-mobile-audit.json';
-const pageUrl = 'file:///home/ubuntu/sen_application/index.html?senAudit=labs';
+const pageUrl = process.env.SEN_AUDIT_URL || 'file:///home/ubuntu/sen_application/index.html?senAudit=labs';
 const chrome = spawn('chromium', ['--headless', '--no-sandbox', '--disable-gpu', `--remote-debugging-port=${port}`, '--user-data-dir=/tmp/sen-labs-audit-cdp', '--window-size=375,812', 'about:blank'], { stdio: 'ignore' });
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
