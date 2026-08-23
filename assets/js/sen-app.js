@@ -408,7 +408,7 @@
           }
           if (activePathway === '3') {
             $('#gamesTitle').textContent = `${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}`;
-            $('#stageGuide').textContent = '可直接選擇五項 ASD 核心訓練，或進入十關社交情境練習；兩種方式均只保留 ASD 專屬內容，並可先帶讀規則、隨時休息或離開。';
+            $('#stageGuide').textContent = '可直接選擇五項 ASD 核心訓練、八項分齡社交學習遊戲，或進入十關社交情境練習；所有活動均可先帶讀規則、隨時休息或離開。';
             return;
           }
           if (activePathway === '2') {
@@ -480,8 +480,9 @@
         $('#gameGrid').classList.toggle('spld-primary-grid', isSpldP1DirectSelect || isSpldP4DirectSelect || isSpldS1DirectSelect || isSpldS4DirectSelect || isGifted2eDirectSelect || isSliDirectSelect || isEbdMiDirectSelect);
         const adhdDirectCard = activePathway === '4' ? `<button class="game-card adhd-graded-direct-card" type="button" data-adhd-graded-direct="true" data-tone="purple"><div class="game-visual" aria-hidden="true">🧠</div><h3>九項分級認知遊戲</h3><p>CPT、步進記憶、中央箭頭、規則切換、空間記憶、視覺搜尋、星球追蹤與反應抑制，按目前學段自動調整。</p><div class="support-badge-row" aria-label="ADHD 分級訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">低壓短回合</span></div><span class="tag">${stageProfiles[activeStage].label} · 9 項遊戲</span></button>` : '';
         const asdDirectCard = activePathway === '3' ? `<button class="game-card asd-core-direct-card" type="button" data-asd-core-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">🤖</div><h3>五項 ASD 核心訓練</h3><p>情緒解碼、社交故事、一起看寶箱、細節與全圖轉換，以及安心感官小空間；按目前學段調整。</p><div class="support-badge-row" aria-label="ASD 核心訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">教師帶讀</span><span class="support-badge">低壓短回合</span></div><span class="tag">${stageProfiles[activeStage].label} · 5 項遊戲</span></button>` : '';
+        const asdEightDirectCard = activePathway === '3' ? `<button class="game-card asd-eight-direct-card" type="button" data-asd-eight-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">🧭</div><h3>八項 ASD 分齡社交遊戲</h3><p>本學段可直接玩兩項新遊戲：眼神與情緒、高小讀心與距離、初中潛台詞與協作，或高中面試與應變；全程提供關卡、溫和計時與暫停。</p><div class="support-badge-row" aria-label="ASD 分齡社交遊戲內容"><span class="support-badge">直接選關</span><span class="support-badge">鍵盤操作</span><span class="support-badge">可選靜音</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項新遊戲</span></button>` : '';
         const idDirectCard = activePathway === '2' ? `<button class="game-card id-core-direct-card" type="button" data-id-core-direct="true" data-tone="blue"><div class="game-visual" aria-hidden="true">🧺</div><h3>生活技能直接選關</h3><p>分類、付款、生活步驟、手眼協調與節奏模仿；${activeStage === 'junior' || activeStage === 'senior' ? '另有成人化茶餐廳打工模擬。' : '每次只做一個清楚小步驟。'}</p><div class="support-badge-row" aria-label="ID 核心訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">超大操作</span><span class="support-badge">可選朗讀</span></div><span class="tag">${stageProfiles[activeStage].label} · ${activeStage === 'junior' || activeStage === 'senior' ? '6' : '5'} 項遊戲</span></button>` : '';
-        $('#gameGrid').innerHTML = asdDirectCard + adhdDirectCard + idDirectCard + games.map(game => {
+        $('#gameGrid').innerHTML = asdDirectCard + asdEightDirectCard + adhdDirectCard + idDirectCard + games.map(game => {
           const badges = activePathway ? renderSupportBadges(game.supports) : '<span class="support-badge">一般活動</span>';
           const label = activePathway ? '本專屬模組類別' : '一般活動類別';
           const directActivity = game.ebdMiActivity ? ` data-ebdmi-track="${game.ebdMiTrack}" data-ebdmi-activity="${game.ebdMiActivity}"` : game.giftedEightActivity ? ` data-gifted-eight-activity="${game.giftedEightActivity}"` : game.gifted2eActivity ? ` data-gifted2e-activity="${game.gifted2eActivity}"` : game.giftedCrossActivity ? ` data-gifted-cross-activity="${game.giftedCrossActivity}"` : game.sliEightActivityKey ? ` data-sli-eight-activity="${game.sliEightActivityKey}"` : game.sliActivityKey ? ` data-sli-activity="${game.sliActivityKey}"` : game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
@@ -496,6 +497,11 @@
           if (card.dataset.asdCoreDirect) {
             if (!window.ASD_CORE_LAB) { showToast('ASD 核心訓練室正在準備中，請稍後再試。'); return; }
             window.ASD_CORE_LAB.open({ stage: activeStage, onComplete: recordAsdLabResult });
+            return;
+          }
+          if (card.dataset.asdEightDirect) {
+            if (!window.ASD_EIGHT_GAMES_LAB) { showToast('ASD 分齡社交遊戲正在準備中，請稍後再試。'); return; }
+            window.ASD_EIGHT_GAMES_LAB.open({ stage: activeStage, onComplete: recordAsdLabResult, trigger: card });
             return;
           }
           if (card.dataset.idCoreDirect) {
