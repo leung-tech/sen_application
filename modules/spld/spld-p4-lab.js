@@ -172,6 +172,8 @@
   let memoryPreviewVisible = false;
   let memoryPhase = 'study';
   let draggedSentenceBlock = '';
+  let touchSentenceDrag = null;
+  let suppressTouchSentenceClick = false;
   let result = { correct: 0, retries: 0, hints: 0 };
   let completed = false;
   let selectedDifficulty = 'basic';
@@ -241,6 +243,58 @@
     panel.textContent = message;
   }
 
+  function clearTouchSentenceDrag() {
+    document.querySelectorAll('.spld-p4-block.touch-ready,.spld-p4-block.touch-dragging').forEach((block) => block.classList.remove('touch-ready', 'touch-dragging'));
+    document.querySelectorAll('[data-sentence-slot].touch-drag-over').forEach((slot) => slot.classList.remove('touch-drag-over'));
+    touchSentenceDrag = null;
+  }
+
+  function sentenceSlotAtPoint(clientX, clientY) {
+    return document.elementFromPoint(clientX, clientY)?.closest?.('[data-sentence-slot]') || null;
+  }
+
+  function bindTouchSentenceDrag(button, round) {
+    button.addEventListener('pointerdown', (event) => {
+      if (event.pointerType !== 'touch') return;
+      touchSentenceDrag = { pointerId: event.pointerId, block: button.dataset.block || '', startX: event.clientX, startY: event.clientY, moved: false };
+      button.classList.add('touch-ready');
+      button.setPointerCapture?.(event.pointerId);
+    });
+    button.addEventListener('pointermove', (event) => {
+      const drag = touchSentenceDrag;
+      if (!drag || drag.pointerId !== event.pointerId) return;
+      if (!drag.moved && Math.hypot(event.clientX - drag.startX, event.clientY - drag.startY) < 10) return;
+      if (!drag.moved) {
+        drag.moved = true;
+        button.classList.remove('touch-ready');
+        button.classList.add('touch-dragging');
+        feedback(`已拿起「${drag.block}」。拖到主語、謂語或賓語位置後放開。`, 'hint');
+      }
+      event.preventDefault();
+      document.querySelectorAll('[data-sentence-slot].touch-drag-over').forEach((slot) => slot.classList.remove('touch-drag-over'));
+      sentenceSlotAtPoint(event.clientX, event.clientY)?.classList.add('touch-drag-over');
+    });
+    button.addEventListener('pointerup', (event) => {
+      const drag = touchSentenceDrag;
+      if (!drag || drag.pointerId !== event.pointerId) return;
+      if (!drag.moved) {
+        clearTouchSentenceDrag();
+        return;
+      }
+      event.preventDefault();
+      const slot = sentenceSlotAtPoint(event.clientX, event.clientY);
+      clearTouchSentenceDrag();
+      suppressTouchSentenceClick = true;
+      window.setTimeout(() => { suppressTouchSentenceClick = false; }, 260);
+      if (slot) {
+        placeSentenceBlock(drag.block, Number(slot.dataset.sentenceSlot), round);
+        return;
+      }
+      feedback(`「${drag.block}」已放回積木區。可慢慢再試，或直接點選積木。`, 'hint');
+    });
+    button.addEventListener('pointercancel', clearTouchSentenceDrag);
+  }
+
   function difficultyMarkup() {
     if (!isGradedActivity()) return '';
     const setting = difficultySettings[selectedDifficulty];
@@ -254,7 +308,7 @@
   function sentenceMarkup(round) {
     const labels = ['主語（誰）', '謂語（做甚麼）', '賓語（甚麼）'];
     const complete = selectedBlocks.filter(Boolean).length === labels.length;
-    return `<div class="spld-p4-sentence-guide"><span>句法積木</span><strong>先找誰 → 做甚麼 → 甚麼</strong></div><p class="spld-p4-prompt">可把積木拖到合適位置；也可直接點選積木，按次序放入。</p><p class="spld-p4-drag-note" id="spldP4DragNote">拖拉或點選均可。句子會在三格都完成後才顯示。</p><div class="spld-p4-slots" aria-describedby="spldP4DragNote">${labels.map((label, index) => `<div class="spld-p4-slot ${selectedBlocks[index] ? 'filled' : ''}" data-sentence-slot="${index}" role="button" tabindex="0" aria-label="${label}放置位置，目前${selectedBlocks[index] || '未放置'}"><span>${label}</span><strong>${selectedBlocks[index] || '？'}</strong></div>`).join('')}</div><p class="spld-p4-sentence-preview">${complete ? selectedBlocks.join(' ') : '完成三格後，這裡會出現完整句子。'}</p><div class="spld-p4-block-bank" aria-label="可拖拉或點選的句子積木">${blockOptions.map((block) => `<button type="button" class="spld-p4-block ${selectedBlocks.includes(block) ? 'used' : ''}" data-block="${block}" draggable="${!selectedBlocks.includes(block)}" ${selectedBlocks.includes(block) ? 'disabled' : ''}>${block}</button>`).join('')}</div>`;
+    return `<div class="spld-p4-sentence-guide"><span>句法積木</span><strong>先找誰 → 做甚麼 → 甚麼</strong></div><p class="spld-p4-prompt">可把積木拖到合適位置；也可直接點選積木，按次序放入。</p><p class="spld-p4-drag-note" id="spldP4DragNote">手機：手指拖動後放開；也可輕按積木。句子會在三格都完成後才顯示。</p><div class="spld-p4-slots" aria-describedby="spldP4DragNote">${labels.map((label, index) => `<div class="spld-p4-slot ${selectedBlocks[index] ? 'filled' : ''}" data-sentence-slot="${index}" role="button" tabindex="0" aria-label="${label}放置位置，目前${selectedBlocks[index] || '未放置'}"><span>${label}</span><strong>${selectedBlocks[index] || '？'}</strong></div>`).join('')}</div><p class="spld-p4-sentence-preview">${complete ? selectedBlocks.join(' ') : '完成三格後，這裡會出現完整句子。'}</p><div class="spld-p4-block-bank" aria-label="可拖拉或點選的句子積木">${blockOptions.map((block) => `<button type="button" class="spld-p4-block ${selectedBlocks.includes(block) ? 'used' : ''}" data-block="${block}" draggable="${!selectedBlocks.includes(block)}" style="touch-action:none" ${selectedBlocks.includes(block) ? 'disabled' : ''}>${block}</button>`).join('')}</div>`;
   }
 
   function collocationMarkup(round) {
@@ -331,13 +385,17 @@
     if (activeKey === 'morpheme') {
       document.querySelectorAll('.spld-p4-choice').forEach((button) => button.addEventListener('click', () => chooseMorpheme(button, round)));
     } else if (activeKey === 'sentence') {
-      document.querySelectorAll('.spld-p4-block').forEach((button) => button.addEventListener('click', () => chooseSentenceBlock(button.dataset.block, round)));
+      document.querySelectorAll('.spld-p4-block').forEach((button) => button.addEventListener('click', () => {
+        if (suppressTouchSentenceClick) return;
+        chooseSentenceBlock(button.dataset.block, round);
+      }));
       document.querySelectorAll('.spld-p4-block').forEach((button) => button.addEventListener('dragstart', (event) => {
         draggedSentenceBlock = button.dataset.block || '';
         event.dataTransfer?.setData('text/plain', button.dataset.block || '');
         event.dataTransfer.effectAllowed = 'move';
       }));
       document.querySelectorAll('.spld-p4-block').forEach((button) => button.addEventListener('dragend', () => { draggedSentenceBlock = ''; }));
+      document.querySelectorAll('.spld-p4-block').forEach((button) => bindTouchSentenceDrag(button, round));
       document.querySelectorAll('[data-sentence-slot]').forEach((slot) => {
         slot.addEventListener('dragover', (event) => { event.preventDefault(); slot.classList.add('drag-over'); });
         slot.addEventListener('dragleave', () => slot.classList.remove('drag-over'));
@@ -504,6 +562,8 @@
   function prepareRoundState() {
     selectedBlocks = [];
     draggedSentenceBlock = '';
+    touchSentenceDrag = null;
+    suppressTouchSentenceClick = false;
     blockOptions = activeKey === 'sentence' ? shuffle([currentRound().subject, currentRound().verb, currentRound().object]) : [];
     if (activeKey === 'memory') prepareMemoryCards(currentRound());
     else { flippedCards = []; matchedPairs = []; memoryCards = []; }
@@ -529,6 +589,9 @@
     const interactionStyle = document.createElement('style');
     interactionStyle.textContent = `.spld-p4-play-area{padding:clamp(26px,4vw,38px)}.spld-p4-difficulty-buttons button:nth-child(3){grid-column:1/-1}.spld-p4-sentence-guide{margin-bottom:22px}.spld-p4-drag-note{margin:0 0 18px;color:#5e5a7e;font-size:15px;font-weight:750;line-height:1.55}.spld-p4-slots{gap:16px;margin:20px 0 16px}.spld-p4-slot{min-height:132px;transition:transform 180ms cubic-bezier(.23,1,.32,1),border-color 180ms cubic-bezier(.23,1,.32,1),background 180ms cubic-bezier(.23,1,.32,1),box-shadow 180ms cubic-bezier(.23,1,.32,1)}.spld-p4-slot.drag-over{transform:translateY(-2px);border-color:#604ec6;background:#eeebff;box-shadow:0 10px 22px rgba(94,78,198,.18)}.spld-p4-block-bank{gap:14px;padding-top:5px}.spld-p4-block{min-height:66px;padding:11px 19px;cursor:grab;transition:transform 160ms cubic-bezier(.23,1,.32,1),box-shadow 180ms cubic-bezier(.23,1,.32,1),background 180ms cubic-bezier(.23,1,.32,1)}.spld-p4-block:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 17px rgba(77,62,155,.16)}.spld-p4-block:active:not(:disabled){cursor:grabbing;transform:scale(.98)}.spld-p4-memory-board{gap:16px;margin-top:20px}.spld-p4-memory-card{min-height:112px;transition:transform 190ms cubic-bezier(.23,1,.32,1),border-color 190ms cubic-bezier(.23,1,.32,1),background 190ms cubic-bezier(.23,1,.32,1)}.spld-p4-memory-board.study .spld-p4-memory-card.revealed{animation:spld-p4-reveal 240ms cubic-bezier(.23,1,.32,1) both}.spld-p4-memory-card:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 9px 18px rgba(160,82,122,.13)}.spld-p4-memory-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:20px;padding:14px 16px;border-radius:16px;background:#fff7fb;color:#7e4662}.spld-p4-memory-actions button{min-height:52px;padding:10px 16px;border:1px solid #a6527a;border-radius:12px;background:#a6527a;color:#fff;font-size:16px;font-weight:850;cursor:pointer}.spld-p4-memory-actions span{font-size:14px;font-weight:750;line-height:1.55}.spld-p4-feedback.success{animation:spld-p4-feedback-in 240ms cubic-bezier(.23,1,.32,1)}@keyframes spld-p4-reveal{from{opacity:.35;transform:rotateY(65deg) scale(.97)}to{opacity:1;transform:rotateY(0) scale(1)}}@keyframes spld-p4-feedback-in{from{opacity:.35;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}@media(max-width:620px){.spld-p4-play-area{padding:24px 16px}.spld-p4-sentence-guide{margin-bottom:16px}.spld-p4-drag-note{font-size:14px}.spld-p4-slots{grid-template-columns:1fr;gap:11px}.spld-p4-slot{min-height:100px}.spld-p4-block-bank{display:grid;grid-template-columns:1fr;gap:10px}.spld-p4-block{width:100%;min-height:62px;font-size:18px}.spld-p4-memory-board{gap:12px}.spld-p4-memory-card{min-height:104px}.spld-p4-memory-actions{align-items:stretch;flex-direction:column}.spld-p4-memory-actions button{width:100%}}@media(prefers-reduced-motion:reduce){.spld-p4-slot,.spld-p4-block,.spld-p4-memory-card{transition:none}.spld-p4-memory-board.study .spld-p4-memory-card.revealed,.spld-p4-feedback.success{animation:none}}`;
     document.head.appendChild(interactionStyle);
+    const touchStyle = document.createElement('style');
+    touchStyle.textContent = `.spld-p4-block{touch-action:none}.spld-p4-block.touch-ready{border-color:#8072d8;background:#f4f1ff;box-shadow:0 0 0 4px rgba(128,114,216,.13)}.spld-p4-block.touch-dragging{opacity:.82;transform:scale(.985);border-color:#5f4ec2;background:#eeebff;box-shadow:0 12px 24px rgba(80,63,166,.18)}.spld-p4-slot.touch-drag-over{transform:translateY(-2px);border-color:#5b49bc;background:#e8e4ff;box-shadow:0 0 0 4px rgba(91,73,188,.14)}@media(max-width:620px){.spld-p4-play-area:has(.spld-p4-slots){display:flex;flex-direction:column}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-block-bank{order:3;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:4px}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-slots{order:4;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:14px 0 10px}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-sentence-preview{order:5}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-block{min-height:68px;padding:8px 6px;font-size:16px;line-height:1.28;overflow-wrap:anywhere}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-slot{min-height:88px;padding:6px}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-slot span{font-size:11px}.spld-p4-play-area:has(.spld-p4-slots) .spld-p4-slot strong{font-size:16px;overflow-wrap:anywhere}}@media(prefers-reduced-motion:reduce){.spld-p4-block.touch-dragging,.spld-p4-slot.touch-drag-over{transform:none}}`;
+    document.head.appendChild(touchStyle);
   }
 
   window.SPLD_P4_LAB = {
