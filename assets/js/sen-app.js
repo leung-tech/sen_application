@@ -906,7 +906,7 @@
           return;
         }
         if (activePathway === 'C') {
-          $('#pathwayStatus').textContent = `已選擇 ${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}。現正顯示兩項低壓力生涯探索遊戲；不作個人選科、升學或職業決定。`;
+          $('#pathwayStatus').textContent = `已選擇 ${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}。現正顯示四項低壓力生涯探索遊戲；不作個人選科、升學或職業決定。`;
           return;
         }
         const primary = getPrimaryPathwayGame();
@@ -959,12 +959,12 @@
         $('#supportKey').hidden = true;
         $('#gamesKicker').textContent = '生涯探索 · 直接選關';
         $('#gamesTitle').textContent = `生涯探索與職場策略｜${stageProfiles[activeStage].label}`;
-        $('#stageGuide').textContent = '本學段提供兩項以自我概念、職場策略、支援網絡及多元可能為核心的生涯探索。活動沒有排名、能力評分或個人出路結論。';
+        $('#stageGuide').textContent = '本學段提供四項以自我概念、職場策略、支援網絡及多元可能為核心的生涯探索。活動沒有排名、能力評分、強制倒數或個人出路結論。';
         $('#startSuggested').textContent = activeStage === 'lower' ? '▶ 從「職業動物森林」開始' : activeStage === 'upper' ? '▶ 從「時空快遞」開始' : activeStage === 'junior' ? '▶ 從「青年工場」開始' : '▶ 從「DSE 放榜：平行宇宙」開始';
         $('#startSuggested').dataset.game = '';
         $('#startSuggested').dataset.careerPathway = 'true';
         $('#gameGrid').classList.remove('spld-primary-grid');
-        $('#gameGrid').innerHTML = `<button class="game-card career-direct-card" type="button" data-career-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">🗺️</div><h3>八項 SEN 生涯規劃遊戲</h3><p>初小職業特質、高小時間與非言語線索、初中職場安全與價值澄清，或高中多元出路與面試表達結構；全程可停一停、可重試。</p><div class="support-badge-row"><span class="support-badge">不作評分</span><span class="support-badge">可選旁白</span><span class="support-badge">多元可能</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項新遊戲</span></button>`;
+        $('#gameGrid').innerHTML = `<button class="game-card career-direct-card" type="button" data-career-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">🗺️</div><h3>十六項 SEN 生涯規劃遊戲</h3><p>初小職業特質、準時準備與代幣概念；高小時間、職業辨識與禮貌表達；初中職場安全、防騙與溝通；高中多元出路、無障礙調適與面試反思。全程可停一停、可重試。</p><div class="support-badge-row"><span class="support-badge">不作評分</span><span class="support-badge">可選旁白</span><span class="support-badge">多元可能</span></div><span class="tag">${stageProfiles[activeStage].label} · 4 項遊戲</span></button>`;
         $('[data-career-direct]')?.addEventListener('click', (event) => {
           if (!window.CAREER_GAMES_LAB) { showToast('生涯探索遊戲正在準備中，請稍後再試。'); return; }
           window.CAREER_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: event.currentTarget });
