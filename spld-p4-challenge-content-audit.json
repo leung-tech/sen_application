@@ -1,0 +1,154 @@
+{
+  "standard": "P4 sentence challenge content count, SVO completeness, vocabulary diversity and language-load span",
+  "count": 10,
+  "items": [
+    {
+      "number": 1,
+      "subject": "作者",
+      "verb": "提出",
+      "object": "明確的論點",
+      "sentence": "作者提出明確的論點",
+      "subjectLength": 2,
+      "verbLength": 2,
+      "objectLength": 5,
+      "abstractTerms": [
+        "論點"
+      ],
+      "hasHint": true
+    },
+    {
+      "number": 2,
+      "subject": "學生",
+      "verb": "比較",
+      "object": "兩種解題策略",
+      "sentence": "學生比較兩種解題策略",
+      "subjectLength": 2,
+      "verbLength": 2,
+      "objectLength": 6,
+      "abstractTerms": [
+        "策略"
+      ],
+      "hasHint": true
+    },
+    {
+      "number": 3,
+      "subject": "圖表",
+      "verb": "顯示",
+      "object": "閱讀習慣的變化",
+      "sentence": "圖表顯示閱讀習慣的變化",
+      "subjectLength": 2,
+      "verbLength": 2,
+      "objectLength": 7,
+      "abstractTerms": [
+        "變化"
+      ],
+      "hasHint": true
+    },
+    {
+      "number": 4,
+      "subject": "班級",
+      "verb": "制定",
+      "object": "實踐環保的計畫",
+      "sentence": "班級制定實踐環保的計畫",
+      "subjectLength": 2,
+      "verbLength": 2,
+      "objectLength": 7,
+      "abstractTerms": [
+        "計畫"
+      ],
+      "hasHint": true
+    },
+    {
+      "number": 5,
+      "subject": "義工",
+      "verb": "協助",
+      "object": "社區活動的安排",
+      "sentence": "義工協助社區活動的安排",
+      "subjectLength": 2,
+      "verbLength": 2,
+      "objectLength": 7,
+      "abstractTerms": [
+        "安排"
+      ],
+      "hasHint": true
+    },
+    {
+      "number": 6,
+      "subject": "校方",
+      "verb": "蒐集",
+      "object": "師生對活動的意見",
+      "sentence": "校方蒐集師生對活動的意見",
+      "subjectLength": 2,
+      "verbLength": 2,
+      "objectLength": 8,
+      "abstractTerms": [
+        "意見"
+      ],
+      "hasHint": true
+    },
+    {
+      "number": 7,
+      "subject": "研究小組",
+      "verb": "分析",
+      "object": "調查所得的數據",
+      "sentence": "研究小組分析調查所得的數據",
+      "subjectLength": 4,
+      "verbLength": 2,
+      "objectLength": 7,
+      "abstractTerms": [
+        "數據"
+      ],
+      "hasHint": true
+    },
+    {
+      "number": 8,
+      "subject": "團隊",
+      "verb": "評估",
+      "object": "活動推行的成效",
+      "sentence": "團隊評估活動推行的成效",
+      "subjectLength": 2,
+      "verbLength": 2,
+      "objectLength": 7,
+      "abstractTerms": [
+        "成效"
+      ],
+      "hasHint": true
+    },
+    {
+      "number": 9,
+      "subject": "導師",
+      "verb": "引導",
+      "object": "學生修訂論證結構",
+      "sentence": "導師引導學生修訂論證結構",
+      "subjectLength": 2,
+      "verbLength": 2,
+      "objectLength": 8,
+      "abstractTerms": [
+        "論證"
+      ],
+      "hasHint": true
+    },
+    {
+      "number": 10,
+      "subject": "小組",
+      "verb": "檢視",
+      "object": "報告的論據是否足夠",
+      "sentence": "小組檢視報告的論據是否足夠",
+      "subjectLength": 2,
+      "verbLength": 2,
+      "objectLength": 9,
+      "abstractTerms": [
+        "論據"
+      ],
+      "hasHint": true
+    }
+  ],
+  "minObjectLength": 5,
+  "maxObjectLength": 9,
+  "allSvo": true,
+  "allHints": true,
+  "distinctVerbs": 10,
+  "distinctSubjects": 10,
+  "failureCount": 0,
+  "failures": []
+}
