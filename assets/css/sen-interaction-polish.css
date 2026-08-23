@@ -1,0 +1,28 @@
+:root { --sen-motion-out: cubic-bezier(.23,1,.32,1); --sen-motion-move: cubic-bezier(.77,0,.175,1); }
+
+/* Keep the classroom interface spacious enough for shared reading and pointing. */
+.game-grid, .answer-grid, .spld-choice-grid, .sequence-options, .memory-board { gap: clamp(12px, 1.8vw, 20px); }
+.activity-card { padding: clamp(24px, 3.2vw, 38px); }
+.answer-grid, .spld-choice-grid { margin-top: clamp(18px, 2.4vw, 28px); }
+
+button, [role="button"] { transition: transform 160ms var(--sen-motion-out), box-shadow 180ms var(--sen-motion-out), border-color 180ms var(--sen-motion-out), background-color 180ms var(--sen-motion-out); }
+button:active:not(:disabled), [role="button"]:active:not([aria-disabled="true"]) { transform: scale(.975); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .game-card, .pathway-card, .support-card, .activity-card, .stage-hero { animation: sen-soft-enter 260ms var(--sen-motion-out) both; }
+  .game-card:hover, .pathway-card:hover, .support-card:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(32, 59, 88, .12); }
+  .answer-card:hover, .spld-answer:hover, .sequence-card:hover, .memory-card:hover { transform: translateY(-2px); }
+  .answer-card.correct, .spld-answer.correct, .sequence-card.correct, .memory-card.matched { animation: sen-gentle-success 420ms var(--sen-motion-out); }
+}
+
+@keyframes sen-soft-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes sen-gentle-success { 0% { transform: scale(1); } 42% { transform: scale(1.025); } 100% { transform: scale(1); } }
+
+@media (max-width: 520px) {
+  .activity-card { padding: 22px 16px; }
+  .game-grid, .answer-grid, .spld-choice-grid, .sequence-options, .memory-board { gap: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button, [role="button"] { transition: none; }
+}
