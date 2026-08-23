@@ -1,0 +1,58 @@
+{
+  "standard": "375px P4 sentence touch drag threshold, highlight, drop, return and tap alternative audit",
+  "drag": {
+    "overflow": false,
+    "scrollTop": 387,
+    "touchAction": "none",
+    "from": {
+      "x": 187.5,
+      "y": 398.328125,
+      "top": 364.328125,
+      "width": 87,
+      "height": 68
+    },
+    "to": {
+      "x": 92.5,
+      "y": 490.328125,
+      "top": 446.328125,
+      "width": 87,
+      "height": 88
+    },
+    "shortMove": {
+      "ready": true,
+      "dragging": false
+    },
+    "dragging": {
+      "block": true,
+      "slot": true,
+      "feedback": "已拿起「小明」。拖到主語、謂語或賓語位置後放開。"
+    },
+    "placed": "小明",
+    "successFeedback": "✓ 放好了「小明」。接著看下一格。",
+    "blockAboveSlot": true,
+    "slotSizes": [
+      {
+        "width": 87,
+        "height": 88
+      },
+      {
+        "width": 87,
+        "height": 88
+      },
+      {
+        "width": 87,
+        "height": 88
+      }
+    ]
+  },
+  "returnToBank": {
+    "nonePlaced": true,
+    "feedback": "「圖書」已放回積木區。可慢慢再試，或直接點選積木。"
+  },
+  "tapAlternative": {
+    "placed": "小明",
+    "feedback": "✓ 放好了「小明」。接著看下一格。"
+  },
+  "failureCount": 0,
+  "failures": []
+}
