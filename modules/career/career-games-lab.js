@@ -27,7 +27,7 @@
       { time: '07:15', icon: '🎒', label: '核對隨身物品', prompt: '已經穿好衣服，下一步怎樣令自己更安心？', answer: '核對工作證、八達通和水樽', choices: ['隨意出門不核對', '核對工作證、八達通和水樽'], ifThen: '如果我怕忘記東西，我可以逐樣指住工作證、八達通和水樽核對。', feedback: '你用了視覺核對，讓出門準備更容易記得。' },
       { time: '07:25', icon: '🚶', label: '出門與回到任務', prompt: '看見路邊小狗很可愛，但現在要去實習。可以怎樣做？', answer: '先到達後再在合適時間欣賞', choices: ['停下很久忘記時間', '先到達後再在合適時間欣賞'], ifThen: '如果我被有趣的事吸引，我可以對自己說「先到目的地，之後再看」。', feedback: '你留意到干擾，也選擇了可以回到任務的做法。' }
     ] },
-    { id: 'tokens', icon: '🪙', title: '勞動換來的「快樂零用錢」', focus: '完成小任務後，觀察代幣慢慢累積', prep: ['每完成一件清楚小任務，會得到 $2 練習代幣。', '可以慢慢完成五件任務，累積到 $10。', '這是金錢概念練習，不是真實交易或消費建議。'], type: 'tokens', rounds: [
+    { id: 'tokens', icon: '🪙', title: '勞動換來的「快樂零用錢」', focus: '完成小任務後，觀察代幣慢慢累積', prep: ['每完成一件清楚小任務，會得到 $2 練習代幣。', '可以慢慢完成八件任務，累積到 $16。', '這是金錢概念練習，不是真實交易或消費建議。'], type: 'tokens', rounds: [
       { prompt: '小農場想先整理水果。哪個做法合適？', answer: '把紅蘋果放進水果箱', choices: ['把紅蘋果放進水果箱', '把水果丟到地上'] },
       { prompt: '小動物洗澡後，下一步可以？', answer: '用毛巾輕輕抹乾', choices: ['用毛巾輕輕抹乾', '把水不停濺向朋友'] },
       { prompt: '手作店的桌面有紙碎，適合怎樣做？', answer: '把紙碎放進回收箱', choices: ['把紙碎放進回收箱', '把紙碎藏在椅子下'] },
@@ -71,6 +71,22 @@
       { prompt: '感到很失落、想完全放棄時，可以？', answer: '先休息，再和可信任的人討論修訂履歷或找下一個機會。', choices: ['獨自承受而不求助', '先休息，再和可信任的人討論修訂履歷或找下一個機會。'] }
     ] }
   );
+
+  function extendToEight(game) {
+    const base = game.rounds.map((round) => ({ ...round }));
+    while (game.rounds.length < 8) {
+      const source = base[game.rounds.length % base.length];
+      const number = game.rounds.length + 1;
+      const extra = { ...source };
+      if (extra.prompt) extra.prompt = `溫習小題 ${number}：${extra.prompt}`;
+      if (extra.trait) extra.trait = `${extra.trait}（再看一次）`;
+      if (extra.label) extra.label = `${extra.label} · 溫習`;
+      if (extra.step) extra.prompt = `第二輪 PREP 練習：${source.prompt}`;
+      game.rounds.push(extra);
+    }
+  }
+  Object.values(GAMES).flat().forEach(extendToEight);
+
   let host = null, config = null, state = null, returnFocus = null;
   const q = (s) => host?.querySelector(s); const qa = (s) => host ? [...host.querySelectorAll(s)] : [];
   const current = () => GAMES[config.stage][state.index];
@@ -80,7 +96,7 @@
   function tools() { return `<footer class="career-tools"><button id="careerRead" type="button">${state.speech ? '🔊 旁白：開' : '🔇 旁白：關'}</button><button id="careerMotion" type="button">${state.reduced ? '◌ 減少動態：開' : '◒ 減少動態：關'}</button><button id="careerHelp" type="button">☁ 先停一停</button></footer>`; }
   function render(content) { host.classList.toggle('career-reduced', state?.reduced); host.innerHTML = `<section class="career-shell" role="dialog" aria-modal="true" aria-labelledby="careerTitle">${content}</section>`; q('#careerClose')?.addEventListener('click', close); q('#careerRead')?.addEventListener('click', () => { state.speech = !state.speech; q('#careerRead').textContent = state.speech ? '🔊 旁白：開' : '🔇 旁白：關'; if (state.speech) speak(q('#careerStatus')?.textContent); }); q('#careerMotion')?.addEventListener('click', () => { state.reduced = !state.reduced; host.classList.toggle('career-reduced', state.reduced); q('#careerMotion').textContent = state.reduced ? '◌ 減少動態：開' : '◒ 減少動態：關'; }); q('#careerHelp')?.addEventListener('click', () => status('可以先停一停。生涯探索沒有唯一答案；準備好再慢慢繼續。', 'help')); }
   function status(text, kind = '') { const el = q('#careerStatus'); if (el) { el.textContent = text; el.className = `career-status ${kind}`; } speak(text); }
-  function progress() { const total = GAMES[config.stage].length; return `<div class="career-progress"><div><i style="width:${(state.index / total) * 100}%"></i></div><b>任務 ${Math.min(state.index + 1, total)}/${total}</b><span>沒有比較或排名</span></div>`; }
+  function progress() { const total = GAMES[config.stage].length; const game = current(); const rounds = game?.rounds?.length || 0; return `<div class="career-progress"><div><i style="width:${(state.index / total) * 100}%"></i></div><b>活動 ${Math.min(state.index + 1, total)}/${total}</b><span>練習 ${Math.min((state.round || 0) + 1, rounds)}/${rounds || '—'} · 沒有比較或排名</span></div>`; }
   function frame(title, detail, content) { render(`${header(title, detail)}${progress()}<main class="career-work">${content}</main><div id="careerStatus" class="career-status" role="status" aria-live="polite">請按自己的節奏探索；不需要得到完美答案。</div>${tools()}`); wait(() => speak(detail)); }
   function finishRound(game) { state.round += 1; if (state.round < game.rounds.length) play(game); else { state.index += 1; state.index >= GAMES[config.stage].length ? finish() : ready(current()); } }
   function right(text, game) { state.correct += 1; status(`✓ ${text}`, 'ok'); wait(() => finishRound(game)); }

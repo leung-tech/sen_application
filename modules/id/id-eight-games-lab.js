@@ -17,7 +17,7 @@
     burger: { icon: '🍔', title: '快餐店實習生：漢堡包組裝線', focus: '初中 · 工作步驟與記憶', description: '跟隨由左至右的視覺食譜，逐步完成漢堡包。', prep: ['先看頂部的食譜順序。', '每次只拿下一樣食材。', '完成一步才做下一步。'] },
     schedule: { icon: '⏰', title: '我的一日小鬧鐘', focus: '初中 · 時間與日程', description: '把返學、食晚餐和瞓覺配對到合適的數字時間。', prep: ['先讀一次時鐘上的數字。', '想想這個時間通常做甚麼。', '可把活動拖到時鐘，也可直接點選。'] },
     stock: { icon: '🛒', title: '超級市場理貨員', focus: '高中 · 職業分類與上架', description: '把飲品和清潔用品放到對應貨架，練習理貨工作。', prep: ['先看推車內的一件貨品。', '看清楚它是飲品還是清潔用品。', '把貨品放到相同類別的貨架。'] },
-    emergency: { icon: '☎️', title: '緊急求助熱線：119 還是 999？', focus: '高中 · 危機求助與自我保護', description: '在火警或有人暈倒時，練習撥打 999 並說出地址。', prep: ['先看情境，判斷是否需要緊急協助。', '需要消防車或救護車時，慢慢按 9、9、9。', '接通後，先選擇自己的地址資料。'], total: 4 },
+    emergency: { icon: '☎️', title: '緊急求助熱線：119 還是 999？', focus: '高中 · 危機求助與自我保護', description: '在火警或有人暈倒時，練習撥打 999 並說出地址。', prep: ['先看情境，判斷是否需要緊急協助。', '需要消防車或救護車時，慢慢按 9、9、9。', '接通後，先選擇自己的地址資料。'], total: 8 },
   };
 
   const BUS = [{ color: '紅色', tone: 'red', icon: '🎒' }, { color: '黃色', tone: 'yellow', icon: '🧸' }, { color: '藍色', tone: 'blue', icon: '🎒' }];
@@ -28,6 +28,8 @@
   const SCHEDULE = [{ time: '08:00', sun: '🌅', answer: '返學', choices: ['返學', '瞓覺', '食晚餐'] }, { time: '18:30', sun: '🌇', answer: '食晚餐', choices: ['瞓覺', '食晚餐', '返學'] }, { time: '21:30', sun: '🌙', answer: '瞓覺', choices: ['食晚餐', '返學', '瞓覺'] }];
   const STOCK = [{ item: '紙包奶', icon: '🥛', shelf: 'drink' }, { item: '洗潔精', icon: '🧴', shelf: 'clean' }, { item: '汽水', icon: '🥤', shelf: 'drink' }];
   const EMERGENCY = [{ scene: '家裡廚房著火了。', icon: '🔥' }, { scene: '看見有人暈倒，需要救護車。', icon: '🧑‍⚕️' }, { scene: '大廈走廊有濃煙。', icon: '💨' }];
+
+  const roundItem = (items) => items[state.round % items.length];
 
   let host = null;
   let options = null;
@@ -103,7 +105,7 @@
 
   function ready(id) {
     const item = GAMES[id];
-    state = { game: id, speech: true, reduceMotion: false, paused: false, round: 0, total: item.total || 3, correct: 0, tries: 0, paid: 0, used: [], dial: '' };
+    state = { game: id, speech: true, reduceMotion: false, paused: false, round: 0, total: item.total || 8, correct: 0, tries: 0, paid: 0, used: [], dial: '' };
     screen(`${header(`${item.title} · 準備頁`, '按「我準備好了」後才會開始題目；沒有計時壓力。')}<main class="id8-workspace"><section class="id8-ready"><span>${item.icon}</span><div><b>先一起讀三步</b><ol>${item.prep.map((step) => `<li>${step}</li>`).join('')}</ol><p>可用點選、拖放、指一指或說出答案。感到不確定時，隨時可先停一停。</p></div></section><div class="id8-actions"><button id="id8Menu" class="id8-plain" type="button">← 換一項</button><button id="id8Start" class="id8-main" type="button">✓ 我準備好了</button></div></main><div id="id8Status" class="id8-status" role="status" aria-live="polite">現在是準備時間；廣東話旁白已開啟。</div>${support()}`);
     q('#id8Menu')?.addEventListener('click', menu);
     q('#id8Start')?.addEventListener('click', () => begin(id));
@@ -122,7 +124,7 @@
   }
 
   function renderBus() {
-    const item = BUS[state.round];
+    const item = roundItem(BUS);
     shell(GAMES.bus.title, '請把物件放到相同顏色的校園巴士。', `<div class="id8-task"><p>這是一個 <b>${item.color} ${item.icon}</b>。</p><div id="id8BusItem" class="id8-drag-item" draggable="true"><span>${item.icon}</span><b>${item.color}物件</b></div><div class="id8-bus-row">${BUS.map((bus) => `<button type="button" class="id8-bus ${bus.tone}" data-id8-bus="${bus.color}"><span>🚌</span><b>${bus.color}巴士</b></button>`).join('')}</div></div>`, `現在是一個${item.color}${item.icon}。請找${item.color}巴士。`);
     const decide = (color) => color === item.color ? correct(`答對啦！${item.color}物件已上車。`, () => advance(renderBus)) : gentle(`再看看物件和巴士的顏色。`);
     qa('[data-id8-bus]').forEach((button) => button.addEventListener('click', () => decide(button.dataset.id8Bus)));
@@ -130,38 +132,38 @@
   }
 
   function renderOutfit() {
-    const item = OUTFIT[state.round];
+    const item = roundItem(OUTFIT);
     shell(GAMES.outfit.title, `窗外${item.weather}。小明要帶甚麼出街？`, `<div class="id8-task"><div class="id8-weather"><span>${item.sky}</span><div><b>窗外：${item.weather}</b><small>請為小明選一樣合適物品。</small></div></div><div class="id8-person"><span>🙂</span><div><b>小明</b><p>請把物品交給我。</p></div></div><div class="id8-choice-grid">${item.choices.map((choice) => `<button type="button" class="id8-choice" data-id8-outfit="${choice}">${choice}</button>`).join('')}</div></div>`, `今日${item.weather}。小明要帶甚麼出街？`);
     qa('[data-id8-outfit]').forEach((button) => button.addEventListener('click', () => button.dataset.id8Outfit === item.answer ? correct(`對了，${item.answer}很合適。`, () => advance(renderOutfit)) : gentle(`再看看窗外的${item.weather}圖示。`)));
   }
 
   function renderSnack() {
-    const item = SNACK[state.round];
+    const item = roundItem(SNACK);
     const coins = [1, 2, 5, 10];
     shell(GAMES.snack.title, `小食部的${item.item}售價 $${item.price}。請慢慢選硬幣。`, `<div class="id8-task"><div class="id8-order"><span>${item.icon}</span><b>${item.item}</b><strong>售價：$${item.price}</strong></div><div class="id8-payment"><b>收銀機：$${state.paid} / $${item.price}</b><div>${'🪙'.repeat(state.used.length) || '請選硬幣'}</div></div><div class="id8-money-row">${coins.map((amount) => `<button type="button" data-id8-coin="${amount}"><span>🪙</span>$${amount}</button>`).join('')}</div></div>`, `這個${item.item}售價${item.price}元。現在收銀機有${state.paid}元。`);
     qa('[data-id8-coin]').forEach((button) => button.addEventListener('click', () => { const amount = Number(button.dataset.id8Coin); if (state.paid + amount > item.price) return gentle(`現在已有${state.paid}元。麵包只需要${item.price}元，可以試另一枚硬幣。`); state.paid += amount; state.used.push(amount); if (state.paid === item.price) correct(`剛好 ${item.price} 元。多謝你付款。`, () => { state.paid = 0; state.used = []; advance(renderSnack); }); else renderSnack(); }));
   }
 
   function renderSigns() {
-    const item = SIGNS[state.round];
+    const item = roundItem(SIGNS);
     shell(GAMES.signs.title, item.scene, `<div class="id8-task"><div class="id8-sign-scene"><span>${item.icon}</span><b>${item.scene}</b></div><div class="id8-choice-grid">${item.choices.map((choice) => `<button type="button" class="id8-choice" data-id8-sign="${choice}">${choice}</button>`).join('')}</div></div>`, item.scene);
     qa('[data-id8-sign]').forEach((button) => button.addEventListener('click', () => button.dataset.id8Sign === item.answer ? correct('你選擇了安全又合適的做法。', () => advance(renderSigns)) : gentle('再看看大圖示，想想甚麼做法較安全。')));
   }
 
   function renderBurger() {
-    const expected = BURGER[state.round];
-    shell(GAMES.burger.title, '跟隨頂部視覺食譜，由左至右放食材。', `<div class="id8-task"><div class="id8-recipe">${BURGER.map((part, index) => `<span class="${index < state.round ? 'done' : index === state.round ? 'now' : ''}">${part.icon}<small>${part.part}</small></span>`).join('')}</div><p>現在是第 ${state.round + 1} 步：請選 <b>${expected.part}</b>。</p><div class="id8-ingredient-row">${BURGER.map((part) => `<button type="button" data-id8-burger="${part.part}"><span>${part.icon}</span>${part.part}</button>`).join('')}</div></div>`, `請跟食譜。現在是第${state.round + 1}步，選${expected.part}。`);
+    const recipeStep = state.round % BURGER.length; const expected = BURGER[recipeStep];
+    shell(GAMES.burger.title, '跟隨頂部視覺食譜，由左至右放食材。', `<div class="id8-task"><div class="id8-recipe">${BURGER.map((part, index) => `<span class="${index < recipeStep ? 'done' : index === recipeStep ? 'now' : ''}">${part.icon}<small>${part.part}</small></span>`).join('')}</div><p>現在是第 ${state.round + 1}/${state.total} 步：請選 <b>${expected.part}</b>。</p><div class="id8-ingredient-row">${BURGER.map((part) => `<button type="button" data-id8-burger="${part.part}"><span>${part.icon}</span>${part.part}</button>`).join('')}</div></div>`, `請跟食譜。現在是第${state.round + 1}步，選${expected.part}。`);
     qa('[data-id8-burger]').forEach((button) => button.addEventListener('click', () => button.dataset.id8Burger === expected.part ? correct(`已放好${expected.part}。`, () => advance(renderBurger)) : gentle(`先看食譜的下一格。現在需要${expected.part}。`)));
   }
 
   function renderSchedule() {
-    const item = SCHEDULE[state.round];
+    const item = roundItem(SCHEDULE);
     shell(GAMES.schedule.title, `時鐘顯示 ${item.time}。這個時間通常做甚麼？`, `<div class="id8-task"><div class="id8-clock"><span>${item.sun}</span><b>${item.time}</b><small>現在做甚麼？</small></div><div class="id8-choice-grid">${item.choices.map((choice) => `<button type="button" class="id8-choice" data-id8-schedule="${choice}">${choice}</button>`).join('')}</div></div>`, `時鐘顯示${item.time}。這個時間通常做甚麼？`);
     qa('[data-id8-schedule]').forEach((button) => button.addEventListener('click', () => button.dataset.id8Schedule === item.answer ? correct(`對了，${item.time}通常是${item.answer}時間。`, () => advance(renderSchedule)) : gentle(`再看看${item.time}和天空圖示。`)));
   }
 
   function renderStock() {
-    const item = STOCK[state.round];
+    const item = roundItem(STOCK);
     shell(GAMES.stock.title, '把推車內貨品放到相同類別的貨架。', `<div class="id8-task"><div id="id8StockItem" class="id8-drag-item" draggable="true"><span>${item.icon}</span><b>${item.item}</b></div><div class="id8-shelf-row"><button type="button" class="id8-shelf drink" data-id8-shelf="drink"><span>🥤</span><b>飲品貨架</b><small>奶、汽水、果汁</small></button><button type="button" class="id8-shelf clean" data-id8-shelf="clean"><span>🧴</span><b>清潔用品貨架</b><small>洗潔精、沐浴露</small></button></div></div>`, `推車內有${item.item}。請放到合適貨架。`);
     const decide = (shelf) => shelf === item.shelf ? correct(`${item.item}已放到合適貨架。`, () => advance(renderStock)) : gentle('貨架會輕輕提醒你。再看看這是飲品還是清潔用品。');
     qa('[data-id8-shelf]').forEach((button) => button.addEventListener('click', () => decide(button.dataset.id8Shelf)));
@@ -169,14 +171,14 @@
   }
 
   function renderEmergency() {
-    const item = EMERGENCY[Math.min(state.round, EMERGENCY.length - 1)];
-    if (state.round < 3) {
-      shell(GAMES.emergency.title, `${item.scene} 需要緊急協助時，請慢慢按 9、9、9。`, `<div class="id8-task"><div class="id8-emergency-scene"><span>${item.icon}</span><b>${item.scene}</b><small>需要消防車或救護車時，香港緊急電話是 999。</small></div><div class="id8-dial-display" aria-live="polite">${state.dial || '___'}</div><div class="id8-dial-pad">${['1','2','3','4','5','6','7','8','9'].map((digit) => `<button type="button" data-id8-digit="${digit}">${digit}</button>`).join('')}</div></div>`, `需要緊急協助時，請慢慢按九、九、九。現在請按第${state.round + 1}個九。`);
-      qa('[data-id8-digit]').forEach((button) => button.addEventListener('click', () => { const digit = button.dataset.id8Digit; if (digit !== '9') return gentle('緊急電話是九、九、九。現在請按九。'); state.dial += '9'; correct(`已按第 ${state.round + 1} 個九。`, () => advance(renderEmergency)); }));
+    const emergencyStep = state.round % 4; const item = EMERGENCY[Math.floor(state.round / 4) % EMERGENCY.length];
+    if (emergencyStep < 3) {
+      shell(GAMES.emergency.title, `${item.scene} 需要緊急協助時，請慢慢按 9、9、9。`, `<div class="id8-task"><div class="id8-emergency-scene"><span>${item.icon}</span><b>${item.scene}</b><small>需要消防車或救護車時，香港緊急電話是 999。</small></div><div class="id8-dial-display" aria-live="polite">${state.dial || '___'}</div><div class="id8-dial-pad">${['1','2','3','4','5','6','7','8','9'].map((digit) => `<button type="button" data-id8-digit="${digit}">${digit}</button>`).join('')}</div></div>`, `需要緊急協助時，請慢慢按九、九、九。現在請按第${emergencyStep + 1}個九。`);
+      qa('[data-id8-digit]').forEach((button) => button.addEventListener('click', () => { const digit = button.dataset.id8Digit; if (digit !== '9') return gentle('緊急電話是九、九、九。現在請按九。'); state.dial += '9'; correct(`已按第 ${emergencyStep + 1} 個九。`, () => advance(renderEmergency)); }));
       return;
     }
     shell(GAMES.emergency.title, '已接通 999。現在選一個圖示，告訴接線員你的位置。', `<div class="id8-task"><div class="id8-emergency-scene"><span>☎️</span><b>接線員：請問你在哪裡？</b></div><div class="id8-helper-row"><button type="button" data-id8-address="yes"><span>🏠</span><b>我家地址</b><small>先說清楚大廈／屋苑名稱</small></button><button type="button" data-id8-address="no"><span>🎮</span><b>遊戲名稱</b><small>這不是接線員需要的資料</small></button></div></div>`, '已接通九九九。請選擇我家地址，告訴接線員你的位置。');
-    qa('[data-id8-address]').forEach((button) => button.addEventListener('click', () => button.dataset.id8Address === 'yes' ? correct('對了，先說清楚自己的地址。接線員會繼續協助。', () => { state.round = state.total; finish(); }) : gentle('接線員需要知道你在哪裡。請選擇我家地址。')));
+    qa('[data-id8-address]').forEach((button) => button.addEventListener('click', () => button.dataset.id8Address === 'yes' ? correct('對了，先說清楚自己的地址。接線員會繼續協助。', () => { state.dial = ''; advance(renderEmergency); }) : gentle('接線員需要知道你在哪裡。請選擇我家地址。')));
   }
 
   function handleKey(event) { if (host && event.key === 'Escape') { event.preventDefault(); close(); } }
