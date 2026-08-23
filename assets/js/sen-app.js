@@ -382,7 +382,7 @@
       function shuffle(items) { const copy = [...items]; for (let i = copy.length - 1; i > 0; i -= 1) { const j = Math.floor(Math.random() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; } return copy; }
       function escapeHTML(value) { return String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#039;', '"': '&quot;' }[char])); }
 
-      const supportLabels = { '1': 'SpLD', '2': 'ID', '3': 'ASD', '4': 'ADHD', 'G': 'Giftedness', 'H': 'HI', 'E': 'EBD', '8': 'SLI', '9': 'MI' };
+      const supportLabels = { '1': 'SpLD', '2': 'ID', '3': 'ASD', '4': 'ADHD', 'G': 'Giftedness', 'H': 'HI', 'E': 'EBD', '8': 'SLI', '9': 'MI', 'V': 'VI', 'P': 'PD' };
       function renderSupportBadges(codes) {
         return codes.map(code => `<span class="support-badge" data-code="${code}" title="支援標記：${code} ${supportLabels[code]}">${code} ${supportLabels[code]}</span>`).join('');
       }
@@ -414,6 +414,13 @@
           if (activePathway === '2') {
             $('#gamesTitle').textContent = `${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}`;
             $('#stageGuide').textContent = activeStage === 'junior' || activeStage === 'senior' ? '可直接選擇 ID 核心訓練、兩組分齡生活遊戲及十關實用生活練習；初中涵蓋個人衛生、點數付款、工作步驟與日程，高中涵蓋職業安全、包裝、理貨與緊急求助。每項均提供廣東話旁白、大型操作區及溫和重試提示。' : '可直接選擇 ID 核心訓練及兩組分齡生活遊戲；初小涵蓋安全物件、制服角色、顏色配對與自理，高小涵蓋拍卡、圖示導航、硬幣付款與社區標示。每項均提供廣東話旁白、大型操作區及溫和重試提示。';
+            return;
+          }
+          if (activePathway === 'V' || activePathway === 'P') {
+            const label = activePathway === 'V' ? 'VI 視覺障礙' : 'PD 肢體傷殘';
+            const focus = activePathway === 'V' ? '鍵盤優先、可選音訊、高對比、方向與螢幕閱讀策略' : '單鍵操作、掃描選取、Tab 導覽、節能及無障礙生活策略';
+            $('#gamesTitle').textContent = `${label}｜${stageProfiles[activeStage].label}`;
+            $('#stageGuide').textContent = `可直接選擇兩項${focus}練習。所有活動提供大型控制、鍵盤替代、可選旁白、可選音訊與減少動態設定；內容用於課堂策略練習，不作能力比較。`;
             return;
           }
           if (activePathway === '8' && (window.SLI_CORE_LAB || window.SLI_EIGHT_GAMES_LAB)) {
@@ -484,8 +491,10 @@
         const idDirectCard = activePathway === '2' ? `<button class="game-card id-core-direct-card" type="button" data-id-core-direct="true" data-tone="blue"><div class="game-visual" aria-hidden="true">🧺</div><h3>生活技能直接選關</h3><p>分類、付款、生活步驟、手眼協調與節奏模仿；${activeStage === 'junior' || activeStage === 'senior' ? '另有成人化茶餐廳打工模擬。' : '每次只做一個清楚小步驟。'}</p><div class="support-badge-row" aria-label="ID 核心訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">超大操作</span><span class="support-badge">可選朗讀</span></div><span class="tag">${stageProfiles[activeStage].label} · ${activeStage === 'junior' || activeStage === 'senior' ? '6' : '5'} 項遊戲</span></button>` : '';
          const idEightDirectCard = activePathway === '2' ? `<button class="game-card id-eight-direct-card" type="button" data-id-eight-direct="true" data-tone="blue"><div class="game-visual" aria-hidden="true">🧩</div><h3>八項 ID 分齡生活遊戲</h3><p>初小顏色與自理、高小硬幣與標示、初中工作與日程，或高中理貨與緊急求助；全程配有廣東話旁白、大型操作區和可重試提示。</p><div class="support-badge-row" aria-label="ID 分齡生活遊戲內容"><span class="support-badge">直接選關</span><span class="support-badge">大型操作</span><span class="support-badge">廣東話旁白</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項新遊戲</span></button>` : '';
          const idAdvancedDirectCard = activePathway === '2' ? `<button class="game-card id-advanced-direct-card" type="button" data-id-advanced-direct="true" data-tone="blue"><div class="game-visual" aria-hidden="true">🦺</div><h3>新增八項 ID 安全與工作遊戲</h3><p>初小家居安全與制服求助、高小拍卡與圖示導航、初中洗頭與點數付款，或高中碎紙安全與禮品包裝；全程提供慢速旁白、大圖示和溫和重試。</p><div class="support-badge-row" aria-label="ID 安全與工作遊戲內容"><span class="support-badge">直接選關</span><span class="support-badge">安全步驟</span><span class="support-badge">可拖放或點選</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項新增遊戲</span></button>` : '';
+         const viDirectCard = activePathway === 'V' ? `<button class="game-card vi-direct-card" type="button" data-vi-direct="true" data-tone="purple"><div class="game-visual" aria-hidden="true">🦯</div><h3>八項 VI 聽覺與鍵盤遊戲</h3><p>初小定向與盲打、高小環境聲與盲文、初中高速聽讀與聲音雷達，或高中港鐵導航與 DSE 查閱；可選音訊、高對比和全鍵盤操作。</p><div class="support-badge-row"><span class="support-badge">鍵盤優先</span><span class="support-badge">高對比</span><span class="support-badge">可選音訊</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項新遊戲</span></button>` : '';
+         const pdDirectCard = activePathway === 'P' ? `<button class="game-card pd-direct-card" type="button" data-pd-direct="true" data-tone="blue"><div class="game-visual" aria-hidden="true">♿</div><h3>八項 PD 輔具與生活遊戲</h3><p>初小單鍵與掃描、高小節能與無障礙路徑、初中自我倡導與停留選取，或高中智能家居與數碼職前技能；支援單鍵、Tab 和點按替代。</p><div class="support-badge-row"><span class="support-badge">單鍵替代</span><span class="support-badge">Tab 導覽</span><span class="support-badge">無強制倒數</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項新遊戲</span></button>` : '';
         const hiEightDirectCard = activePathway === 'H' ? `<button class="game-card hi-eight-direct-card" type="button" data-hi-eight-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">👂</div><h3>八項 HI 分齡視覺聆聽遊戲</h3><p>初小音高與聲調、高小口型與表情、初中降噪與自我倡導，或高中接單與考場輔具；全部音訊皆可選，視覺線索永遠保留。</p><div class="support-badge-row" aria-label="HI 分齡視覺聆聽遊戲內容"><span class="support-badge">直接選關</span><span class="support-badge">視覺優先</span><span class="support-badge">可選音訊</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項新遊戲</span></button>` : '';
-        $('#gameGrid').innerHTML = asdDirectCard + asdEightDirectCard + adhdDirectCard + idDirectCard + idEightDirectCard + idAdvancedDirectCard + hiEightDirectCard + games.map(game => {
+        $('#gameGrid').innerHTML = asdDirectCard + asdEightDirectCard + adhdDirectCard + idDirectCard + idEightDirectCard + idAdvancedDirectCard + hiEightDirectCard + viDirectCard + pdDirectCard + games.map(game => {
           const badges = activePathway ? renderSupportBadges(game.supports) : '<span class="support-badge">一般活動</span>';
           const label = activePathway ? '本專屬模組類別' : '一般活動類別';
           const directActivity = game.ebdMiActivity ? ` data-ebdmi-track="${game.ebdMiTrack}" data-ebdmi-activity="${game.ebdMiActivity}"` : game.giftedEightActivity ? ` data-gifted-eight-activity="${game.giftedEightActivity}"` : game.gifted2eActivity ? ` data-gifted2e-activity="${game.gifted2eActivity}"` : game.giftedCrossActivity ? ` data-gifted-cross-activity="${game.giftedCrossActivity}"` : game.sliEightActivityKey ? ` data-sli-eight-activity="${game.sliEightActivityKey}"` : game.sliActivityKey ? ` data-sli-activity="${game.sliActivityKey}"` : game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
@@ -525,6 +534,16 @@
           if (card.dataset.hiEightDirect) {
             if (!window.HI_EIGHT_GAMES_LAB) { showToast('HI 分齡視覺聆聽遊戲正在準備中，請稍後再試。'); return; }
             window.HI_EIGHT_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: card });
+            return;
+          }
+          if (card.dataset.viDirect) {
+            if (!window.VI_GAMES_LAB) { showToast('VI 遊戲正在準備中，請稍後再試。'); return; }
+            window.VI_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: card });
+            return;
+          }
+          if (card.dataset.pdDirect) {
+            if (!window.PD_GAMES_LAB) { showToast('PD 遊戲正在準備中，請稍後再試。'); return; }
+            window.PD_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: card });
             return;
           }
           if (card.dataset.gifted2eActivity) {
@@ -872,7 +891,7 @@
       }
 
       // Dashboard interactions
-      const pathwayLabels = { '1': 'SpLD 讀寫策略', '2': 'ID 生活選擇', '3': 'ASD 社交練習', '4': 'ADHD 專注策略', 'G': 'Giftedness 邏輯解難', 'H': 'HI 視覺化溝通', 'E': 'EBD 情緒調節', '8': 'SLI 理解與表達', '9': 'MI 溝通與選擇' };
+      const pathwayLabels = { '1': 'SpLD 讀寫策略', '2': 'ID 生活選擇', '3': 'ASD 社交練習', '4': 'ADHD 專注策略', 'G': 'Giftedness 邏輯解難', 'H': 'HI 視覺化溝通', 'E': 'EBD 情緒調節', '8': 'SLI 理解與表達', '9': 'MI 溝通與選擇', 'V': 'VI 視覺障礙', 'P': 'PD 肢體傷殘' };
       function updatePathwayStatus() {
         if (!activePathway) { $('#pathwayStatus').textContent = '尚未選擇路線。你可先按學生當日需要選擇一類，再按學段開始。'; return; }
         if (activePathway === '1' && ['lower', 'upper', 'junior', 'senior'].includes(activeStage)) {
@@ -881,22 +900,58 @@
           $('#pathwayStatus').textContent = `已選擇 ${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}。現正顯示 1 組基礎練習和 ${directCount} 項可直接選擇的${focus}關卡；本路線不會混入其他 SEN 類別或一般活動。`;
           return;
         }
+        if (activePathway === 'V' || activePathway === 'P') {
+          const mode = activePathway === 'V' ? '鍵盤優先、可選音訊與高對比' : '單鍵、掃描、Tab 導覽與大型控制';
+          $('#pathwayStatus').textContent = `已選擇 ${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}。現正顯示兩項${mode}的新遊戲；本路線不會混入其他 SEN 類別或一般活動。`;
+          return;
+        }
         const primary = getPrimaryPathwayGame();
         $('#pathwayStatus').textContent = `已選擇 ${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}。現正顯示「${primary.title}」專屬模組；本路線不會混入其他 SEN 類別或一般活動。`;
       }
       function updateSuggested() {
+        if (activePathway === 'V' || activePathway === 'P') {
+          $('#startSuggested').textContent = activePathway === 'V' ? '▶ 從「尋找糖果屋」開始' : '▶ 從「單鍵太空熱氣球」開始';
+          $('#startSuggested').dataset.game = '';
+          return;
+        }
         const primary = getPrimaryPathwayGame();
         if (primary) { $('#startSuggested').textContent = `▶ 從「${primary.title}」開始`; $('#startSuggested').dataset.game = primary.id; return; }
         const generalGame = getStageGame(gameLibrary[0]);
         $('#startSuggested').textContent = `▶ 從一般活動「${generalGame.title}」開始`;
         $('#startSuggested').dataset.game = generalGame.id;
       }
+      function renderAccessPathwayDirect() {
+        if (activePathway !== 'V' && activePathway !== 'P') return false;
+        const isVi = activePathway === 'V';
+        const label = isVi ? 'VI 視覺障礙' : 'PD 肢體傷殘';
+        const title = isVi ? '八項 VI 聽覺與鍵盤遊戲' : '八項 PD 輔具與生活遊戲';
+        const description = isVi ? '初小定向與盲打、高小環境聲與盲文、初中高速聽讀與聲音雷達，或高中港鐵導航與 DSE 查閱；可選音訊、高對比和全鍵盤操作。' : '初小單鍵與掃描、高小節能與無障礙路徑、初中自我倡導與停留選取，或高中智能家居與數碼職前技能；支援單鍵、Tab 和點按替代。';
+        const badges = isVi ? '<span class="support-badge">鍵盤優先</span><span class="support-badge">高對比</span><span class="support-badge">可選音訊</span>' : '<span class="support-badge">單鍵替代</span><span class="support-badge">Tab 導覽</span><span class="support-badge">無強制倒數</span>';
+        $('#supportKey').hidden = true;
+        $('#gamesKicker').textContent = '專屬訓練 · 直接選關';
+        $('#gamesTitle').textContent = `${label}｜${stageProfiles[activeStage].label}`;
+        $('#stageGuide').textContent = isVi ? '本學段提供兩項以鍵盤、可選音訊、高對比與視覺／聽覺替代為核心的活動；文字提示會一直保留。' : '本學段提供兩項以單鍵、掃描、Tab 導覽及大型控制為核心的活動；不設扣分或強制倒數。';
+        $('#startSuggested').textContent = isVi ? '▶ 從「尋找糖果屋」開始' : '▶ 從「單鍵太空熱氣球」開始';
+        $('#startSuggested').dataset.game = '';
+        $('#startSuggested').dataset.accessType = activePathway;
+        $('#gameGrid').classList.remove('spld-primary-grid');
+        $('#gameGrid').innerHTML = `<button class="game-card ${isVi ? 'vi-direct-card' : 'pd-direct-card'}" type="button" data-access-direct="${activePathway}" data-tone="${isVi ? 'purple' : 'blue'}"><div class="game-visual" aria-hidden="true">${isVi ? '🦯' : '♿'}</div><h3>${title}</h3><p>${description}</p><div class="support-badge-row">${badges}</div><span class="tag">${stageProfiles[activeStage].label} · 2 項新遊戲</span></button>`;
+        $('[data-access-direct]')?.addEventListener('click', (event) => {
+          const trigger = event.currentTarget;
+          const lab = isVi ? window.VI_GAMES_LAB : window.PD_GAMES_LAB;
+          if (!lab) { showToast(`${label} 遊戲正在準備中，請稍後再試。`); return; }
+          lab.open({ stage: activeStage, onComplete: recordIdLabResult, trigger });
+        });
+        return true;
+      }
       function selectPathway(type) {
         activePathway = type;
         activeFilter = `support-${type}`;
         $$('.pathway-card').forEach(card => { const selected = card.dataset.type === type; card.classList.toggle('active', selected); card.setAttribute('aria-pressed', String(selected)); });
         $$('.filter-button').forEach(button => { const selected = button.dataset.filter === activeFilter; button.classList.toggle('active', selected); button.setAttribute('aria-pressed', String(selected)); });
-        updatePathwayStatus(); updateSuggested(); renderGameLibrary();
+        updatePathwayStatus();
+        if (renderAccessPathwayDirect()) { showToast(`已選擇 ${pathwayLabels[type]} 路線。`); setTimeout(() => $('#gamesAnchor').scrollIntoView({ behavior: 'smooth', block: 'start' }), 80); return; }
+        updateSuggested(); renderGameLibrary();
         showToast(`已選擇 ${pathwayLabels[type]} 路線。`);
         setTimeout(() => $('#gamesAnchor').scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
       }
@@ -913,10 +968,17 @@
         $('#stageGuide').textContent = stageProfiles[stage].guide;
         $$('.level-button').forEach(button => { const selected = button.dataset.stage === stage; button.classList.toggle('active', selected); button.setAttribute('aria-pressed', String(selected)); });
         $$('.filter-button').forEach(button => { const selected = button.dataset.filter === activeFilter; button.classList.toggle('active', selected); button.setAttribute('aria-pressed', String(selected)); });
-        updatePathwayStatus(); updateSuggested(); renderGameLibrary(); showToast(`已切換至${stageProfiles[stage].label}任務。`);
+        updatePathwayStatus();
+        if (renderAccessPathwayDirect()) { showToast(`已切換至${stageProfiles[stage].label}任務。`); return; }
+        updateSuggested(); renderGameLibrary(); showToast(`已切換至${stageProfiles[stage].label}任務。`);
       }
       updateSuggested(); renderGameLibrary(); updateTokenBoard(); updateDashboardProgress();
-      $('#startSuggested').addEventListener('click', () => startGame($('#startSuggested').dataset.game || 'emotion'));
+      $('#startSuggested').addEventListener('click', () => {
+        const accessType = $('#startSuggested').dataset.accessType;
+        if (accessType === 'V' && window.VI_GAMES_LAB) { window.VI_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: $('#startSuggested') }); return; }
+        if (accessType === 'P' && window.PD_GAMES_LAB) { window.PD_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: $('#startSuggested') }); return; }
+        startGame($('#startSuggested').dataset.game || 'emotion');
+      });
       $('#backToDashboard').addEventListener('click', showDashboard);
       $$('.pathway-card').forEach(card => card.addEventListener('click', () => selectPathway(card.dataset.type)));
       $$('.filter-button').forEach(button => button.addEventListener('click', () => {

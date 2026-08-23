@@ -10,6 +10,8 @@
     { "id": "Giftedness", "entry": "gifted/index.html", "data": ["gifted-hi/gifted-hi-stage-data.js"] },
     { "id": "HI", "entry": "hi/index.html", "data": ["gifted-hi/gifted-hi-stage-data.js", "hi/hi-eight-games-lab.js"] },
     { "id": "SLI", "entry": "sli/index.html", "data": ["sli/sli-stage-data.js"] },
-    { "id": "MI", "entry": "mi/index.html", "data": ["mi/mi-stage-data.js"] }
+    { "id": "MI", "entry": "mi/index.html", "data": ["mi/mi-stage-data.js"] },
+    { "id": "VI", "entry": "index.html?senType=V", "data": ["accessibility/vi-pd-games-lab.js"] },
+    { "id": "PD", "entry": "index.html?senType=P", "data": ["accessibility/vi-pd-games-lab.js"] }
   ]
 }
