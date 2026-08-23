@@ -1,0 +1,1386 @@
+{
+  "standard": "Giftedness eight activities detailed 375px direct-card, ready, dialog, touch target, overflow, alternative interaction and semantic audit",
+  "baseUrl": "file:///home/ubuntu/sen_application/index.html",
+  "viewport": {
+    "width": 375,
+    "height": 812
+  },
+  "menus": [
+    {
+      "stage": "lower",
+      "documentOverflow": false,
+      "cards": [
+        {
+          "id": "flex-castle",
+          "text": "🏰 彈性城堡工房 使用現有的功能卡建造可使用的城堡；可保留、調整或換一種可行設計。 G Giftedness Giftedness · 初小 P1–P3 · 3 回合",
+          "overflow": false,
+          "rect": {
+            "w": 351,
+            "h": 233,
+            "right": 363
+          }
+        },
+        {
+          "id": "selective-listening",
+          "text": "🎼 指揮家的選擇性聆聽台 先選一條你想跟隨的節奏線索，再慢慢辨認規律；聲音和動態均可關閉。 G Giftedness Giftedness · 初小 P1–P3 · 3 回合",
+          "overflow": false,
+          "rect": {
+            "w": 351,
+            "h": 233,
+            "right": 363
+          }
+        }
+      ]
+    },
+    {
+      "stage": "upper",
+      "documentOverflow": false,
+      "cards": [
+        {
+          "id": "viewpoint-studio",
+          "text": "🪐 宇宙觀點工作室 閱讀不同角色以圖像、短句或條列提供的資料，找出可支持下一步理解的提問。 G Giftedness Giftedness · 高小 P4–P6 · 3 回合",
+          "overflow": false,
+          "rect": {
+            "w": 351,
+            "h": 233,
+            "right": 363
+          }
+        },
+        {
+          "id": "rule-sandbox",
+          "text": "🧭 規則設計沙盒 比較規則草案對不同使用者的影響，再提出可修訂、可試行的下一步。 G Giftedness Giftedness · 高小 P4–P6 · 3 回合",
+          "overflow": false,
+          "rect": {
+            "w": 351,
+            "h": 233,
+            "right": 363
+          }
+        }
+      ]
+    },
+    {
+      "stage": "junior",
+      "documentOverflow": false,
+      "cards": [
+        {
+          "id": "perspective-toolkit",
+          "text": "🧰 情境觀點工具箱 整理虛構角色的可確定資料、未知處與支持選項；可以選「需要更多資料」。 G Giftedness Giftedness · 初中 S1–S3 · 3 回合",
+          "overflow": false,
+          "rect": {
+            "w": 351,
+            "h": 233,
+            "right": 363
+          }
+        },
+        {
+          "id": "tone-workbench",
+          "text": "🗣️ 說話溫度工作台 把清楚的觀察、可修訂建議和尊重收尾組成訊息；不評定人格或社交能力。 G Giftedness Giftedness · 初中 S1–S3 · 3 回合",
+          "overflow": false,
+          "rect": {
+            "w": 351,
+            "h": 233,
+            "right": 363
+          }
+        }
+      ]
+    },
+    {
+      "stage": "senior",
+      "documentOverflow": false,
+      "cards": [
+        {
+          "id": "achievement-map",
+          "text": "🗺️ 多元成就地圖 從虛構角色的學習、創作、關係和休息投入中選擇想保留的故事線索；不涉及分數或排名。 G Giftedness Giftedness · 高中 S4–S6 · 3 回合",
+          "overflow": false,
+          "rect": {
+            "w": 351,
+            "h": 233,
+            "right": 363
+          }
+        },
+        {
+          "id": "values-sandbox",
+          "text": "🌌 哲學價值沙盒 在虛構社區方案中選取、略過或拒絕價值卡，提出下一個想探索的問題；沒有正確人生答案。 G Giftedness Giftedness · 高中 S4–S6 · 3 回合",
+          "overflow": false,
+          "rect": {
+            "w": 351,
+            "h": 233,
+            "right": 363
+          }
+        }
+      ]
+    }
+  ],
+  "games": [
+    {
+      "stage": "lower",
+      "id": "flex-castle",
+      "ready": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 812,
+          "right": 375,
+          "bottom": 812
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "🔊 朗讀規則",
+            "x": 20,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 183,
+            "bottom": 731
+          },
+          {
+            "text": "我準備好了",
+            "x": 193,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 355,
+            "bottom": 731
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "play": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 1189,
+          "right": 375,
+          "bottom": 1189
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "🧱 入口標示把它放到最相符的位置。",
+            "x": 20,
+            "y": 507,
+            "w": 335,
+            "h": 71,
+            "right": 355,
+            "bottom": 577
+          },
+          {
+            "text": "🧱 安全欄杆把它放到最相符的位置。",
+            "x": 20,
+            "y": 587,
+            "w": 335,
+            "h": 71,
+            "right": 355,
+            "bottom": 658
+          },
+          {
+            "text": "🧱 歡迎旗幟把它放到最相符的位置。",
+            "x": 20,
+            "y": 668,
+            "w": 335,
+            "h": 71,
+            "right": 355,
+            "bottom": 739
+          },
+          {
+            "text": "入口位置放入一張功能卡。",
+            "x": 20,
+            "y": 753,
+            "w": 335,
+            "h": 71,
+            "right": 355,
+            "bottom": 823
+          },
+          {
+            "text": "城牆邊放入一張功能卡。",
+            "x": 20,
+            "y": 833,
+            "w": 335,
+            "h": 71,
+            "right": 355,
+            "bottom": 904
+          },
+          {
+            "text": "塔頂放入一張功能卡。",
+            "x": 20,
+            "y": 914,
+            "w": 335,
+            "h": 71,
+            "right": 355,
+            "bottom": 985
+          },
+          {
+            "text": "💡 看提示",
+            "x": 20,
+            "y": 1002,
+            "w": 104,
+            "h": 48,
+            "right": 124,
+            "bottom": 1050
+          },
+          {
+            "text": "🔊 朗讀這頁",
+            "x": 134,
+            "y": 1002,
+            "w": 120,
+            "h": 48,
+            "right": 253,
+            "bottom": 1050
+          },
+          {
+            "text": "先停一停",
+            "x": 20,
+            "y": 1060,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 1108
+          },
+          {
+            "text": "請教師一起看",
+            "x": 126,
+            "y": 1060,
+            "w": 128,
+            "h": 48,
+            "right": 254,
+            "bottom": 1108
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "detail": {
+        "id": "flex-castle",
+        "dialogRole": "dialog",
+        "dialogModal": "true",
+        "progress": true,
+        "status": "polite",
+        "dragCards": [
+          "true",
+          "true",
+          "true"
+        ],
+        "clickAlternative": true,
+        "valueSkip": false,
+        "valueDecline": false
+      }
+    },
+    {
+      "stage": "lower",
+      "id": "selective-listening",
+      "ready": {
+        "rect": {
+          "x": 0,
+          "y": -315,
+          "w": 375,
+          "h": 1127,
+          "right": 375,
+          "bottom": 812
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": -261,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": -213
+          },
+          {
+            "text": "靜態圖像線索只看圖像和文字，不播放聲音或動態。",
+            "x": 20,
+            "y": 487,
+            "w": 335,
+            "h": 71,
+            "right": 355,
+            "bottom": 558
+          },
+          {
+            "text": "可選朗讀只在你按朗讀按鈕時讀出題目。",
+            "x": 20,
+            "y": 572,
+            "w": 335,
+            "h": 71,
+            "right": 355,
+            "bottom": 642
+          },
+          {
+            "text": "單一線索模式每次只顯示一條規律，按需要再看其他資料。",
+            "x": 20,
+            "y": 656,
+            "w": 335,
+            "h": 71,
+            "right": 355,
+            "bottom": 727
+          },
+          {
+            "text": "🔊 朗讀規則",
+            "x": 20,
+            "y": 744,
+            "w": 163,
+            "h": 48,
+            "right": 183,
+            "bottom": 792
+          },
+          {
+            "text": "我準備好了",
+            "x": 193,
+            "y": 744,
+            "w": 163,
+            "h": 48,
+            "right": 355,
+            "bottom": 792
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "play": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 812,
+          "right": 375,
+          "bottom": 812
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "●",
+            "x": 37,
+            "y": 454,
+            "w": 301,
+            "h": 48,
+            "right": 338,
+            "bottom": 502
+          },
+          {
+            "text": "○",
+            "x": 37,
+            "y": 514,
+            "w": 301,
+            "h": 48,
+            "right": 338,
+            "bottom": 562
+          },
+          {
+            "text": "△",
+            "x": 37,
+            "y": 574,
+            "w": 301,
+            "h": 48,
+            "right": 338,
+            "bottom": 622
+          },
+          {
+            "text": "💡 看提示",
+            "x": 20,
+            "y": 656,
+            "w": 104,
+            "h": 48,
+            "right": 124,
+            "bottom": 704
+          },
+          {
+            "text": "🔊 朗讀這頁",
+            "x": 134,
+            "y": 656,
+            "w": 120,
+            "h": 48,
+            "right": 253,
+            "bottom": 704
+          },
+          {
+            "text": "先停一停",
+            "x": 20,
+            "y": 714,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 762
+          },
+          {
+            "text": "請教師一起看",
+            "x": 126,
+            "y": 714,
+            "w": 128,
+            "h": 48,
+            "right": 254,
+            "bottom": 762
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "detail": {
+        "id": "selective-listening",
+        "dialogRole": "dialog",
+        "dialogModal": "true",
+        "progress": true,
+        "status": "polite",
+        "dragCards": [],
+        "clickAlternative": false,
+        "valueSkip": false,
+        "valueDecline": false
+      }
+    },
+    {
+      "stage": "upper",
+      "id": "viewpoint-studio",
+      "ready": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 812,
+          "right": 375,
+          "bottom": 812
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "🔊 朗讀規則",
+            "x": 20,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 183,
+            "bottom": 731
+          },
+          {
+            "text": "我準備好了",
+            "x": 193,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 355,
+            "bottom": 731
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "play": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 1040,
+          "right": 375,
+          "bottom": 1040
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "只選一位角色的說法，其他資料不需要看。",
+            "x": 20,
+            "y": 685,
+            "w": 335,
+            "h": 72,
+            "right": 355,
+            "bottom": 757
+          },
+          {
+            "text": "先問：哪些用水可安全重用，以及幼苗最少需要多少水？",
+            "x": 20,
+            "y": 767,
+            "w": 335,
+            "h": 72,
+            "right": 355,
+            "bottom": 839
+          },
+          {
+            "text": "直接規定所有人不能使用水。",
+            "x": 20,
+            "y": 849,
+            "w": 335,
+            "h": 48,
+            "right": 355,
+            "bottom": 897
+          },
+          {
+            "text": "💡 看提示",
+            "x": 20,
+            "y": 914,
+            "w": 104,
+            "h": 48,
+            "right": 124,
+            "bottom": 962
+          },
+          {
+            "text": "🔊 朗讀這頁",
+            "x": 134,
+            "y": 914,
+            "w": 120,
+            "h": 48,
+            "right": 253,
+            "bottom": 962
+          },
+          {
+            "text": "先停一停",
+            "x": 20,
+            "y": 972,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 1020
+          },
+          {
+            "text": "請教師一起看",
+            "x": 126,
+            "y": 972,
+            "w": 128,
+            "h": 48,
+            "right": 254,
+            "bottom": 1020
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "detail": {
+        "id": "viewpoint-studio",
+        "dialogRole": "dialog",
+        "dialogModal": "true",
+        "progress": true,
+        "status": "polite",
+        "dragCards": [],
+        "clickAlternative": false,
+        "valueSkip": false,
+        "valueDecline": false
+      }
+    },
+    {
+      "stage": "upper",
+      "id": "rule-sandbox",
+      "ready": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 812,
+          "right": 375,
+          "bottom": 812
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "🔊 朗讀規則",
+            "x": 20,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 183,
+            "bottom": 731
+          },
+          {
+            "text": "我準備好了",
+            "x": 193,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 355,
+            "bottom": 731
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "play": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 966,
+          "right": 375,
+          "bottom": 966
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "先試行分時入口與清楚步行線，並邀請不同使用者提出觀察。",
+            "x": 20,
+            "y": 635,
+            "w": 335,
+            "h": 72,
+            "right": 355,
+            "bottom": 707
+          },
+          {
+            "text": "只有最快的人可以先進入。",
+            "x": 20,
+            "y": 717,
+            "w": 335,
+            "h": 48,
+            "right": 355,
+            "bottom": 765
+          },
+          {
+            "text": "不需要任何安排。",
+            "x": 20,
+            "y": 775,
+            "w": 335,
+            "h": 48,
+            "right": 355,
+            "bottom": 823
+          },
+          {
+            "text": "💡 看提示",
+            "x": 20,
+            "y": 840,
+            "w": 104,
+            "h": 48,
+            "right": 124,
+            "bottom": 888
+          },
+          {
+            "text": "🔊 朗讀這頁",
+            "x": 134,
+            "y": 840,
+            "w": 120,
+            "h": 48,
+            "right": 253,
+            "bottom": 888
+          },
+          {
+            "text": "先停一停",
+            "x": 20,
+            "y": 898,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 946
+          },
+          {
+            "text": "請教師一起看",
+            "x": 126,
+            "y": 898,
+            "w": 128,
+            "h": 48,
+            "right": 254,
+            "bottom": 946
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "detail": {
+        "id": "rule-sandbox",
+        "dialogRole": "dialog",
+        "dialogModal": "true",
+        "progress": true,
+        "status": "polite",
+        "dragCards": [],
+        "clickAlternative": false,
+        "valueSkip": false,
+        "valueDecline": false
+      }
+    },
+    {
+      "stage": "junior",
+      "id": "perspective-toolkit",
+      "ready": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 812,
+          "right": 375,
+          "bottom": 812
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "🔊 朗讀規則",
+            "x": 20,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 183,
+            "bottom": 731
+          },
+          {
+            "text": "我準備好了",
+            "x": 193,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 355,
+            "bottom": 731
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "play": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 1016,
+          "right": 375,
+          "bottom": 1016
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "先查看版本紀錄，並用中性句確認圖表是否移到別頁。",
+            "x": 20,
+            "y": 685,
+            "w": 335,
+            "h": 72,
+            "right": 355,
+            "bottom": 757
+          },
+          {
+            "text": "直接認定有人故意刪掉資料。",
+            "x": 20,
+            "y": 767,
+            "w": 335,
+            "h": 48,
+            "right": 355,
+            "bottom": 815
+          },
+          {
+            "text": "不看資料，立刻停止所有人的工作。",
+            "x": 20,
+            "y": 825,
+            "w": 335,
+            "h": 48,
+            "right": 355,
+            "bottom": 873
+          },
+          {
+            "text": "💡 看提示",
+            "x": 20,
+            "y": 890,
+            "w": 104,
+            "h": 48,
+            "right": 124,
+            "bottom": 938
+          },
+          {
+            "text": "🔊 朗讀這頁",
+            "x": 134,
+            "y": 890,
+            "w": 120,
+            "h": 48,
+            "right": 253,
+            "bottom": 938
+          },
+          {
+            "text": "先停一停",
+            "x": 20,
+            "y": 948,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 996
+          },
+          {
+            "text": "請教師一起看",
+            "x": 126,
+            "y": 948,
+            "w": 128,
+            "h": 48,
+            "right": 254,
+            "bottom": 996
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "detail": {
+        "id": "perspective-toolkit",
+        "dialogRole": "dialog",
+        "dialogModal": "true",
+        "progress": true,
+        "status": "polite",
+        "dragCards": [],
+        "clickAlternative": false,
+        "valueSkip": false,
+        "valueDecline": false
+      }
+    },
+    {
+      "stage": "junior",
+      "id": "tone-workbench",
+      "ready": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 812,
+          "right": 375,
+          "bottom": 812
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "🔊 朗讀規則",
+            "x": 20,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 183,
+            "bottom": 731
+          },
+          {
+            "text": "我準備好了",
+            "x": 193,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 355,
+            "bottom": 731
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "play": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 812,
+          "right": 375,
+          "bottom": 812
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "我看到你已整理了景點；我們可否一起補上每段交通時間，再比較兩個安排？",
+            "x": 20,
+            "y": 478,
+            "w": 335,
+            "h": 72,
+            "right": 355,
+            "bottom": 550
+          },
+          {
+            "text": "這個安排一看就知道不對。",
+            "x": 20,
+            "y": 560,
+            "w": 335,
+            "h": 48,
+            "right": 355,
+            "bottom": 608
+          },
+          {
+            "text": "不用討論，直接把你的部分刪掉。",
+            "x": 20,
+            "y": 618,
+            "w": 335,
+            "h": 48,
+            "right": 355,
+            "bottom": 666
+          },
+          {
+            "text": "💡 看提示",
+            "x": 20,
+            "y": 683,
+            "w": 104,
+            "h": 48,
+            "right": 124,
+            "bottom": 731
+          },
+          {
+            "text": "🔊 朗讀這頁",
+            "x": 134,
+            "y": 683,
+            "w": 120,
+            "h": 48,
+            "right": 253,
+            "bottom": 731
+          },
+          {
+            "text": "先停一停",
+            "x": 20,
+            "y": 741,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 789
+          },
+          {
+            "text": "請教師一起看",
+            "x": 126,
+            "y": 741,
+            "w": 128,
+            "h": 48,
+            "right": 254,
+            "bottom": 789
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "detail": {
+        "id": "tone-workbench",
+        "dialogRole": "dialog",
+        "dialogModal": "true",
+        "progress": true,
+        "status": "polite",
+        "dragCards": [],
+        "clickAlternative": false,
+        "valueSkip": false,
+        "valueDecline": false
+      }
+    },
+    {
+      "stage": "senior",
+      "id": "achievement-map",
+      "ready": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 812,
+          "right": 375,
+          "bottom": 812
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "🔊 朗讀規則",
+            "x": 20,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 183,
+            "bottom": 731
+          },
+          {
+            "text": "我準備好了",
+            "x": 193,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 355,
+            "bottom": 731
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "play": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 1078,
+          "right": 375,
+          "bottom": 1078
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "作品整理：選出三張最能說明設計過程的草圖。",
+            "x": 20,
+            "y": 519,
+            "w": 335,
+            "h": 72,
+            "right": 355,
+            "bottom": 591
+          },
+          {
+            "text": "關係投入：和朋友預留一段不談展覽的運動時間。",
+            "x": 20,
+            "y": 601,
+            "w": 335,
+            "h": 72,
+            "right": 355,
+            "bottom": 673
+          },
+          {
+            "text": "休息安排：選擇一晚不修改作品，明天再檢查。",
+            "x": 20,
+            "y": 683,
+            "w": 335,
+            "h": 72,
+            "right": 355,
+            "bottom": 755
+          },
+          {
+            "text": "略過這回合",
+            "x": 20,
+            "y": 887,
+            "w": 163,
+            "h": 48,
+            "right": 183,
+            "bottom": 935
+          },
+          {
+            "text": "繼續下一回合",
+            "x": 193,
+            "y": 887,
+            "w": 163,
+            "h": 48,
+            "right": 355,
+            "bottom": 935
+          },
+          {
+            "text": "💡 看提示",
+            "x": 20,
+            "y": 952,
+            "w": 104,
+            "h": 48,
+            "right": 124,
+            "bottom": 1000
+          },
+          {
+            "text": "🔊 朗讀這頁",
+            "x": 134,
+            "y": 952,
+            "w": 120,
+            "h": 48,
+            "right": 253,
+            "bottom": 1000
+          },
+          {
+            "text": "先停一停",
+            "x": 20,
+            "y": 1010,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 1058
+          },
+          {
+            "text": "請教師一起看",
+            "x": 126,
+            "y": 1010,
+            "w": 128,
+            "h": 48,
+            "right": 254,
+            "bottom": 1058
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "detail": {
+        "id": "achievement-map",
+        "dialogRole": "dialog",
+        "dialogModal": "true",
+        "progress": true,
+        "status": "polite",
+        "dragCards": [],
+        "clickAlternative": false,
+        "valueSkip": false,
+        "valueDecline": false
+      }
+    },
+    {
+      "stage": "senior",
+      "id": "values-sandbox",
+      "ready": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 812,
+          "right": 375,
+          "bottom": 812
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "🔊 朗讀規則",
+            "x": 20,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 183,
+            "bottom": 731
+          },
+          {
+            "text": "我準備好了",
+            "x": 193,
+            "y": 683,
+            "w": 163,
+            "h": 48,
+            "right": 355,
+            "bottom": 731
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "play": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 1169,
+          "right": 375,
+          "bottom": 1169
+        },
+        "buttons": [
+          {
+            "text": "離開練習",
+            "x": 20,
+            "y": 54,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 102
+          },
+          {
+            "text": "求知",
+            "x": 20,
+            "y": 495,
+            "w": 335,
+            "h": 48,
+            "right": 355,
+            "bottom": 543
+          },
+          {
+            "text": "關係",
+            "x": 20,
+            "y": 555,
+            "w": 335,
+            "h": 48,
+            "right": 355,
+            "bottom": 603
+          },
+          {
+            "text": "安全",
+            "x": 20,
+            "y": 615,
+            "w": 335,
+            "h": 48,
+            "right": 355,
+            "bottom": 663
+          },
+          {
+            "text": "創造",
+            "x": 20,
+            "y": 675,
+            "w": 335,
+            "h": 48,
+            "right": 355,
+            "bottom": 723
+          },
+          {
+            "text": "這回合不使用價值卡",
+            "x": 20,
+            "y": 930,
+            "w": 105,
+            "h": 96,
+            "right": 125,
+            "bottom": 1026
+          },
+          {
+            "text": "略過這回合",
+            "x": 135,
+            "y": 942,
+            "w": 105,
+            "h": 72,
+            "right": 240,
+            "bottom": 1014
+          },
+          {
+            "text": "繼續下一回合",
+            "x": 250,
+            "y": 942,
+            "w": 105,
+            "h": 72,
+            "right": 355,
+            "bottom": 1014
+          },
+          {
+            "text": "💡 看提示",
+            "x": 20,
+            "y": 1043,
+            "w": 104,
+            "h": 48,
+            "right": 124,
+            "bottom": 1091
+          },
+          {
+            "text": "🔊 朗讀這頁",
+            "x": 134,
+            "y": 1043,
+            "w": 120,
+            "h": 48,
+            "right": 253,
+            "bottom": 1091
+          },
+          {
+            "text": "先停一停",
+            "x": 20,
+            "y": 1101,
+            "w": 96,
+            "h": 48,
+            "right": 116,
+            "bottom": 1149
+          },
+          {
+            "text": "請教師一起看",
+            "x": 126,
+            "y": 1101,
+            "w": 128,
+            "h": 48,
+            "right": 254,
+            "bottom": 1149
+          }
+        ],
+        "tooSmall": [],
+        "overflow": [],
+        "documentOverflow": false
+      },
+      "detail": {
+        "id": "values-sandbox",
+        "dialogRole": "dialog",
+        "dialogModal": "true",
+        "progress": true,
+        "status": "polite",
+        "dragCards": [],
+        "clickAlternative": false,
+        "valueSkip": true,
+        "valueDecline": true
+      }
+    }
+  ],
+  "screenshots": [
+    "/home/ubuntu/sen_application/gifted-eight-mobile-screenshots/flex-castle.png",
+    "/home/ubuntu/sen_application/gifted-eight-mobile-screenshots/values-sandbox.png"
+  ],
+  "failureCount": 0,
+  "failures": []
+}
