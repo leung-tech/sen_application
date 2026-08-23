@@ -2,7 +2,9 @@
   "standard": "WCAG 2.1 AA targeted keyboard and screen-reader simulation plus 375px touch-layout review",
   "baseUrl": "https://leung-tech.github.io/sen_application/index.html",
   "coverage": {
-    "sli": "SLI 十項直接選關另由 scripts/audit-sli-core-lab.mjs 覆蓋。"
+    "sli": "SLI 十項直接選關由 scripts/audit-sli-core-lab.mjs 覆蓋。",
+    "ebdMi": "EBD／MI 四學段直接選關由 scripts/audit-ebd-mi-p1-lab.mjs 覆蓋。",
+    "gifted2e": "Giftedness／2e 四學段直接選關由 scripts/audit-gifted-2e-lab.mjs 覆蓋。"
   },
   "common": [
     {
@@ -48,27 +50,6 @@
       "feedback": "💡 想一想老師剛才說要用甚麼。"
     },
     {
-      "label": "Giftedness 邏輯解難｜lower",
-      "opened": {
-        "pathway": true,
-        "stage": true,
-        "card": true
-      },
-      "initial": {
-        "activityExists": true,
-        "stageTitleFocused": true,
-        "feedbackRole": "status",
-        "feedbackLive": "polite",
-        "feedbackAtomic": "true",
-        "buttons": 5,
-        "unnamed": 0,
-        "nativeButtons": true,
-        "firstAnswerName": "🔢\n30",
-        "hintExists": true
-      },
-      "feedback": "💡 先看增加了多少：+4、+6、+8，下一次會加多少？"
-    },
-    {
       "label": "HI 視覺溝通｜lower",
       "opened": {
         "pathway": true,
@@ -88,48 +69,6 @@
         "hintExists": true
       },
       "feedback": "💡 先看目前的圖示，再看它右邊的下一張圖。"
-    },
-    {
-      "label": "EBD 情緒調節｜lower",
-      "opened": {
-        "pathway": true,
-        "stage": true,
-        "card": true
-      },
-      "initial": {
-        "activityExists": true,
-        "stageTitleFocused": true,
-        "feedbackRole": "status",
-        "feedbackLive": "polite",
-        "feedbackAtomic": "true",
-        "buttons": 5,
-        "unnamed": 0,
-        "nativeButtons": true,
-        "firstAnswerName": "😌\n平靜",
-        "hintExists": true
-      },
-      "feedback": "💡 慢慢呼吸和放鬆肩膀常是平靜的訊號。"
-    },
-    {
-      "label": "MI 溝通與選擇｜lower",
-      "opened": {
-        "pathway": true,
-        "stage": true,
-        "card": true
-      },
-      "initial": {
-        "activityExists": true,
-        "stageTitleFocused": true,
-        "feedbackRole": "status",
-        "feedbackLive": "polite",
-        "feedbackAtomic": "true",
-        "buttons": 5,
-        "unnamed": 0,
-        "nativeButtons": true,
-        "firstAnswerName": "🥤\n我想喝水",
-        "hintExists": true
-      },
-      "feedback": "💡 找有水杯圖案和「喝水」意思的卡。"
     }
   ],
   "asd": [
@@ -280,25 +219,7 @@
         "controlCount": 5
       },
       {
-        "label": "Giftedness 邏輯解難",
-        "overflow": false,
-        "narrowTargets": [],
-        "controlCount": 5
-      },
-      {
         "label": "HI 視覺溝通",
-        "overflow": false,
-        "narrowTargets": [],
-        "controlCount": 5
-      },
-      {
-        "label": "EBD 情緒調節",
-        "overflow": false,
-        "narrowTargets": [],
-        "controlCount": 5
-      },
-      {
-        "label": "MI 溝通與選擇",
         "overflow": false,
         "narrowTargets": [],
         "controlCount": 5
