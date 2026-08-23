@@ -193,7 +193,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
+        "feedback": "✓ 正確，中央箭頭是向左。"
       }
     },
     {
@@ -280,7 +280,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 這一張的顏色是黃色，下次慢慢看字體。"
+        "feedback": "↗ 這一張的顏色是綠色，下次慢慢看字體。"
       }
     },
     {
@@ -338,7 +338,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 這次次序不同。下一回合會以 2 格慢慢再試。"
+        "feedback": "✓ 這一格正確，繼續想下一個位置。"
       }
     },
     {
@@ -541,7 +541,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 正確，你看的是顏色。"
+        "feedback": "↗ 這一張的顏色是藍色，下次慢慢看字體。"
       }
     },
     {
@@ -715,7 +715,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 正確，中央箭頭是向左。"
+        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
       }
     },
     {
@@ -802,7 +802,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 這一張的顏色是黃色，下次慢慢看字體。"
+        "feedback": "✓ 正確，你看的是顏色。"
       }
     },
     {
@@ -976,7 +976,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 正確，中央箭頭是向左。"
+        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
       }
     },
     {
@@ -1150,7 +1150,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 下一個是 1；慢慢掃視方格，不用急。"
+        "feedback": "請找數字 2。找到後按一下。"
       }
     }
   ],
