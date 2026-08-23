@@ -1,0 +1,1844 @@
+{
+  "routeCount": 36,
+  "checkCount": 108,
+  "failureCount": 0,
+  "failures": [],
+  "results": [
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "SpLD",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 7,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "SpLD",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 7,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "SpLD",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 9,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "SpLD",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 7,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "ID",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "ID",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "ID",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "ID",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "ASD",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "ASD",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "ASD",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "ASD",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "ADHD",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 281,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "ADHD",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 281,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "ADHD",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 281,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "ADHD",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 281,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "EBD",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "EBD",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "EBD",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "EBD",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "Giftedness",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "Giftedness",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "Giftedness",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "Giftedness",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "HI",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "HI",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "HI",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "HI",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "SLI",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 3,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "SLI",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 3,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "SLI",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "SLI",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "MI",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "MI",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "MI",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "desktop",
+      "route": {
+        "senType": "MI",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 1265,
+      "viewportWidth": 1280,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 219,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "SpLD",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 7,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "SpLD",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 7,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "SpLD",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 9,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "SpLD",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 7,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "ID",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "ID",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "ID",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "ID",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "ASD",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "ASD",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "ASD",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "ASD",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "ADHD",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "ADHD",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "ADHD",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "ADHD",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "EBD",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 228,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "EBD",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 228,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "EBD",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 228,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "EBD",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 228,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "Giftedness",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "Giftedness",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "Giftedness",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "Giftedness",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 263,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "HI",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 228,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "HI",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 228,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "HI",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 228,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "HI",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 354,
+      "minGameCardHeight": 228,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "SLI",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 3,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "SLI",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 3,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "SLI",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "SLI",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "MI",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 246,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "MI",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 228,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "MI",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 228,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "tablet",
+      "route": {
+        "senType": "MI",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 753,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 231,
+      "minGameCardHeight": 228,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "SpLD",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 7,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "SpLD",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 7,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "SpLD",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 9,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "SpLD",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 7,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "ID",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 267,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "ID",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 267,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "ID",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 267,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "ID",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 267,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "ASD",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 283,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "ASD",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 283,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "ASD",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 283,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "ASD",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 283,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "ADHD",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 273,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "ADHD",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 273,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "ADHD",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 273,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "ADHD",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 273,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "EBD",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "EBD",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "EBD",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "EBD",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "Giftedness",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 257,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "Giftedness",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 241,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "Giftedness",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 241,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "Giftedness",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 257,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "HI",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "HI",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "HI",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "HI",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 1,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "SLI",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 3,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 241,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "SLI",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 3,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 241,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "SLI",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 241,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "SLI",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 2,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 241,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "MI",
+        "stageLevel": "P1–P3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "MI",
+        "stageLevel": "P4–P6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "MI",
+        "stageLevel": "S1–S3"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    },
+    {
+      "viewport": "mobile",
+      "route": {
+        "senType": "MI",
+        "stageLevel": "S4–S6"
+      },
+      "scrollWidth": 375,
+      "viewportWidth": 375,
+      "horizontalOverflow": false,
+      "cardCount": 4,
+      "pathwayCardCount": 9,
+      "cardsWithinViewportWidth": true,
+      "minGameCardWidth": 170,
+      "minGameCardHeight": 225,
+      "minPrimaryTargetWidth": 44,
+      "minPrimaryTargetHeight": 44
+    }
+  ]
+}
