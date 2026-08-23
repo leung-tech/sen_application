@@ -8,7 +8,7 @@
     { "id": "ADHD", "entry": "adhd/index.html", "data": ["adhd/adhd-stage-data.js", "adhd/adhd-focus-lab.js"] },
     { "id": "EBD", "entry": "ebd/index.html", "data": ["ebd/ebd-stage-data.js"] },
     { "id": "Giftedness", "entry": "gifted/index.html", "data": ["gifted-hi/gifted-hi-stage-data.js"] },
-    { "id": "HI", "entry": "hi/index.html", "data": ["gifted-hi/gifted-hi-stage-data.js"] },
+    { "id": "HI", "entry": "hi/index.html", "data": ["gifted-hi/gifted-hi-stage-data.js", "hi/hi-eight-games-lab.js"] },
     { "id": "SLI", "entry": "sli/index.html", "data": ["sli/sli-stage-data.js"] },
     { "id": "MI", "entry": "mi/index.html", "data": ["mi/mi-stage-data.js"] }
   ]
