@@ -6,7 +6,7 @@
     "blocks": 3,
     "slots": 3,
     "preview": "完成三格後，這裡會出現完整句子。",
-    "dragNote": "拖拉或點選均可。句子會在三格都完成後才顯示。"
+    "dragNote": "手機：手指拖動後放開；也可輕按積木。句子會在三格都完成後才顯示。"
   },
   "sentenceDrop": {
     "supported": true,
