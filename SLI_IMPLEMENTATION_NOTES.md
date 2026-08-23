@@ -9,4 +9,4 @@
 | 初小「句子組裝工廠」 | 「小貓」語塊可拖入「誰」落點；落點高亮，放置後顯示「已放入」回饋。直接點選語塊仍保留。 |
 | 分學段入口 | 初小三項、高小三項、初中兩項及高中兩項均會按所選學段顯示，合共十項，互不混入。 |
 
-後續公開稽核會覆蓋十個直接入口、三步準備頁、每種互動型態、Tab 循環、Escape、焦點回復、動態回饋語意、減少動態效果與 375px 手機版。
+公開 GitHub Pages 已以 Chromium 與 Chrome DevTools Protocol 完成回歸稽核：四個學段共 **10 項直接選關**、三步教師帶讀準備頁、傳送門及語塊拖拉、點選替代、低壓工具、Tab／Shift+Tab 焦點循環、Escape、焦點回復、輔助科技動態狀態與進度列，以及 375px 手機版均已通過，結果為 **`failureCount: 0`**。可重跑腳本位於 [`scripts/audit-sli-core-lab.mjs`](scripts/audit-sli-core-lab.mjs)。
