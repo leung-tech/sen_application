@@ -1581,7 +1581,7 @@
       "pathwayCardCount": 9,
       "cardsWithinViewportWidth": true,
       "minGameCardWidth": 170,
-      "minGameCardHeight": 241,
+      "minGameCardHeight": 233,
       "minPrimaryTargetWidth": 44,
       "minPrimaryTargetHeight": 44
     },
@@ -1598,7 +1598,7 @@
       "pathwayCardCount": 9,
       "cardsWithinViewportWidth": true,
       "minGameCardWidth": 170,
-      "minGameCardHeight": 241,
+      "minGameCardHeight": 233,
       "minPrimaryTargetWidth": 44,
       "minPrimaryTargetHeight": 44
     },
@@ -1615,7 +1615,7 @@
       "pathwayCardCount": 9,
       "cardsWithinViewportWidth": true,
       "minGameCardWidth": 170,
-      "minGameCardHeight": 241,
+      "minGameCardHeight": 233,
       "minPrimaryTargetWidth": 44,
       "minPrimaryTargetHeight": 44
     },
@@ -1632,7 +1632,7 @@
       "pathwayCardCount": 9,
       "cardsWithinViewportWidth": true,
       "minGameCardWidth": 170,
-      "minGameCardHeight": 257,
+      "minGameCardHeight": 233,
       "minPrimaryTargetWidth": 44,
       "minPrimaryTargetHeight": 44
     },
