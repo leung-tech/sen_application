@@ -40,7 +40,7 @@
         "vocational": null
       },
       "interaction": {
-        "feedback": "✓ 香蕉放進這個箱子很合適。",
+        "feedback": "↗ 香蕉可以吃，是水果。",
         "exists": true
       }
     },
@@ -96,7 +96,7 @@
         "vocational": null
       },
       "interaction": {
-        "feedback": "✓ 對了，現在看下一步。",
+        "feedback": "↗ 先找：「開水弄濕手」。",
         "exists": true
       }
     },
@@ -180,7 +180,7 @@
         "vocational": null
       },
       "interaction": {
-        "feedback": "↗ 香蕉可以吃，是水果。",
+        "feedback": "✓ 香蕉放進這個箱子很合適。",
         "exists": true
       }
     },
@@ -214,6 +214,146 @@
     },
     {
       "stage": "upper",
+      "game": "adl",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "✓ 對了，現在看下一步。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "trace",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "✓ 完成第 1 個點，現在看下一個。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "rhythm",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 8,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "示範完成；現在可以慢慢跟相同順序。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "sort",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 6,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "✓ 香蕉放進這個箱子很合適。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "shop",
+      "ready": {
+        "steps": 3,
+        "start": "✓ 我準備好了，開始",
+        "status": "現在是準備時間，尚未開始活動。"
+      },
+      "initial": {
+        "dialog": true,
+        "statusRole": "status",
+        "statusLive": "polite",
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "4",
+          "now": "0"
+        },
+        "tray": true,
+        "controls": 7,
+        "unnamed": 0,
+        "vocational": null
+      },
+      "interaction": {
+        "feedback": "先看價錢，再一枚一枚放硬幣。",
+        "exists": true
+      }
+    },
+    {
+      "stage": "junior",
       "game": "adl",
       "ready": {
         "steps": 3,
@@ -237,146 +377,6 @@
       },
       "interaction": {
         "feedback": "↗ 先找：「開水弄濕手」。",
-        "exists": true
-      }
-    },
-    {
-      "stage": "upper",
-      "game": "trace",
-      "ready": {
-        "steps": 3,
-        "start": "✓ 我準備好了，開始",
-        "status": "現在是準備時間，尚未開始活動。"
-      },
-      "initial": {
-        "dialog": true,
-        "statusRole": "status",
-        "statusLive": "polite",
-        "progress": {
-          "role": "progressbar",
-          "min": "0",
-          "max": "4",
-          "now": "0"
-        },
-        "tray": true,
-        "controls": 8,
-        "unnamed": 0,
-        "vocational": null
-      },
-      "interaction": {
-        "feedback": "✓ 完成第 1 個點，現在看下一個。",
-        "exists": true
-      }
-    },
-    {
-      "stage": "upper",
-      "game": "rhythm",
-      "ready": {
-        "steps": 3,
-        "start": "✓ 我準備好了，開始",
-        "status": "現在是準備時間，尚未開始活動。"
-      },
-      "initial": {
-        "dialog": true,
-        "statusRole": "status",
-        "statusLive": "polite",
-        "progress": {
-          "role": "progressbar",
-          "min": "0",
-          "max": "4",
-          "now": "0"
-        },
-        "tray": true,
-        "controls": 8,
-        "unnamed": 0,
-        "vocational": null
-      },
-      "interaction": {
-        "feedback": "示範完成；現在可以慢慢跟相同順序。",
-        "exists": true
-      }
-    },
-    {
-      "stage": "junior",
-      "game": "sort",
-      "ready": {
-        "steps": 3,
-        "start": "✓ 我準備好了，開始",
-        "status": "現在是準備時間，尚未開始活動。"
-      },
-      "initial": {
-        "dialog": true,
-        "statusRole": "status",
-        "statusLive": "polite",
-        "progress": {
-          "role": "progressbar",
-          "min": "0",
-          "max": "4",
-          "now": "0"
-        },
-        "tray": true,
-        "controls": 6,
-        "unnamed": 0,
-        "vocational": null
-      },
-      "interaction": {
-        "feedback": "✓ 香蕉放進這個箱子很合適。",
-        "exists": true
-      }
-    },
-    {
-      "stage": "junior",
-      "game": "shop",
-      "ready": {
-        "steps": 3,
-        "start": "✓ 我準備好了，開始",
-        "status": "現在是準備時間，尚未開始活動。"
-      },
-      "initial": {
-        "dialog": true,
-        "statusRole": "status",
-        "statusLive": "polite",
-        "progress": {
-          "role": "progressbar",
-          "min": "0",
-          "max": "4",
-          "now": "0"
-        },
-        "tray": true,
-        "controls": 7,
-        "unnamed": 0,
-        "vocational": null
-      },
-      "interaction": {
-        "feedback": "先看價錢，再一枚一枚放硬幣。",
-        "exists": true
-      }
-    },
-    {
-      "stage": "junior",
-      "game": "adl",
-      "ready": {
-        "steps": 3,
-        "start": "✓ 我準備好了，開始",
-        "status": "現在是準備時間，尚未開始活動。"
-      },
-      "initial": {
-        "dialog": true,
-        "statusRole": "status",
-        "statusLive": "polite",
-        "progress": {
-          "role": "progressbar",
-          "min": "0",
-          "max": "4",
-          "now": "0"
-        },
-        "tray": true,
-        "controls": 8,
-        "unnamed": 0,
-        "vocational": null
-      },
-      "interaction": {
-        "feedback": "✓ 對了，現在看下一步。",
         "exists": true
       }
     },
@@ -460,7 +460,7 @@
         "vocational": null
       },
       "interaction": {
-        "feedback": "↗ 店長說：客人要的是「熱奶茶」。",
+        "feedback": "✓ 找到熱奶茶。現在做付款。",
         "exists": true
       }
     },
@@ -491,7 +491,7 @@
         }
       },
       "interaction": {
-        "feedback": "✓ 已掃描牛奶。現在收款。",
+        "feedback": "↗ 櫃位上的是牛奶，再看一次圖示和名稱。",
         "exists": true
       }
     },
@@ -550,7 +550,7 @@
         "vocational": null
       },
       "interaction": {
-        "feedback": "↗ 香蕉可以吃，是水果。",
+        "feedback": "✓ 香蕉放進這個箱子很合適。",
         "exists": true
       }
     },
@@ -690,7 +690,7 @@
         "vocational": null
       },
       "interaction": {
-        "feedback": "✓ 找到熱奶茶。現在做付款。",
+        "feedback": "↗ 店長說：客人要的是「熱奶茶」。",
         "exists": true
       }
     },
@@ -752,7 +752,7 @@
         }
       },
       "interaction": {
-        "feedback": "↗ 先看書名和圖示；這本書較接近「科學」。",
+        "feedback": "✓ 《地球與太陽》已放到科學書架。",
         "exists": true
       }
     }
