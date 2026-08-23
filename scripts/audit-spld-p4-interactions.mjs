@@ -66,7 +66,8 @@ try {
 
   const sentenceDrop = await evaluate(client, `(() => {
     const root = document.querySelector('.spld-p4-lab');
-    const block = [...(root?.querySelectorAll('.spld-p4-block[draggable="true"]') || [])].find((item) => item.textContent.trim() === '研究小組');
+    const expected = (window.SPLD_P4_LAB?.activityCards?.().find((card) => card.p4ActivityKey === 'sentence')?.rounds || []).find((round) => round.level === 'challenge')?.subject || '';
+    const block = [...(root?.querySelectorAll('.spld-p4-block[draggable="true"]') || [])].find((item) => item.textContent.trim() === expected);
     const slot = root?.querySelector('[data-sentence-slot="0"]');
     if (!block || !slot || !window.DataTransfer) return { supported: false };
     const transfer = new DataTransfer();
@@ -74,7 +75,7 @@ try {
     block.dispatchEvent(new DragEvent('dragstart', { bubbles: true, cancelable: true, dataTransfer: transfer }));
     slot.dispatchEvent(new DragEvent('dragover', { bubbles: true, cancelable: true, dataTransfer: transfer }));
     slot.dispatchEvent(new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: transfer }));
-    return { supported: true, placed: root?.querySelector('[data-sentence-slot="0"] strong')?.textContent || '', feedback: root?.querySelector('#spldP4Feedback')?.textContent || '' };
+    return { supported: true, expected, placed: root?.querySelector('[data-sentence-slot="0"] strong')?.textContent || '', feedback: root?.querySelector('#spldP4Feedback')?.textContent || '' };
   })()`);
 
   const memoryBefore = await evaluate(client, `(() => {
@@ -125,7 +126,7 @@ try {
 
   const failures = [];
   if (!challenge.root || !challenge.progress.includes('/ 10') || challenge.blocks !== 3 || challenge.slots !== 3 || !challenge.preview.includes('完成三格後') || !challenge.dragNote.includes('拖拉或點選')) failures.push('句型重組挑戰難度未載入完整題庫或拖拉操作說明。');
-  if (!sentenceDrop.supported || sentenceDrop.placed !== '研究小組' || !sentenceDrop.feedback) failures.push('句型積木拖拉至句法位置的互動或回饋不完整。');
+  if (!sentenceDrop.supported || !sentenceDrop.expected || sentenceDrop.placed !== sentenceDrop.expected || !sentenceDrop.feedback) failures.push('句型積木拖拉至句法位置的互動或回饋不完整。');
   if (memoryBefore.cards !== 4 || memoryBefore.disabled !== 4 || !memoryBefore.hidden || !memoryBefore.studyButton.includes('翻開全部')) failures.push('翻卡遊戲未從全部遮蓋的記憶準備步驟開始。');
   if (!memoryStudy.revealed || memoryStudy.stillDisabled !== 4 || !memoryStudy.startButton.includes('我記好了')) failures.push('翻卡遊戲的全部翻開記憶步驟不完整。');
   if (!memoryMatch.hiddenAgain || memoryMatch.enabledCards !== 4 || !memoryMatch.studyButtonGone) failures.push('翻卡遊戲未正確由記憶步驟轉入配對步驟。');
