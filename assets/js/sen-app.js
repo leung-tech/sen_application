@@ -426,14 +426,15 @@
             $('#stageGuide').textContent = `可直接選擇 ${count} 項${focus}練習。每項均有教師帶讀準備頁、粵語朗讀、看提示、先停一停、換練習及隨時離開；錄音與回放均可選而且只留在裝置上，不會作聲調、流暢度、聲音或能力評定。`;
             return;
           }
-          if (activePathway === 'G' && (window.GIFTED_2E_LAB || window.GIFTED_CROSS_SEN_LAB)) {
+          if (activePathway === 'G' && (window.GIFTED_2E_LAB || window.GIFTED_CROSS_SEN_LAB || window.GIFTED_EIGHT_GAMES_LAB)) {
             const coreCount = window.GIFTED_2E_LAB?.activityCards(activeStage).length || 0;
             const crossCount = window.GIFTED_CROSS_SEN_LAB?.activityCards(activeStage).length || 0;
-            const count = coreCount + crossCount;
-            const focus = activeStage === 'lower' ? '彈性解題、感官自主與概念表徵' : activeStage === 'upper' ? '社交線索推理、多角度思考與空間記憶' : activeStage === 'junior' ? '協作策略、角色工作台與社交線索' : '多元價值、故事編輯與社區系統取捨';
-            $('#gamesKicker').textContent = '資優／2e · 直接選關';
-            $('#gamesTitle').textContent = `Giftedness／2e｜${stageProfiles[activeStage].label}`;
-            $('#stageGuide').textContent = `可直接選擇 ${count} 項${focus}課堂練習。跨 SEN 標記只用於提示可選支架，不會混入其他 SEN 題庫；每項均有教師帶讀、可選粵語朗讀、看提示、先停一停、請教師一起看及隨時離開；不作診斷、治療、能力比較或人生價值評分。`;
+            const giftedCount = window.GIFTED_EIGHT_GAMES_LAB?.activityCards(activeStage).length || 0;
+            const count = coreCount + crossCount + giftedCount;
+            const focus = activeStage === 'lower' ? '彈性建構、感官自主、選擇性焦點與概念表徵' : activeStage === 'upper' ? '多角度推理、規則設計、社交線索與空間記憶' : activeStage === 'junior' ? '情境觀點、修辭改寫、協作策略與社交線索' : '多元投入、價值反思、故事編輯與社區系統取捨';
+            $('#gamesKicker').textContent = 'Giftedness／2e · 直接選關';
+            $('#gamesTitle').textContent = `Giftedness｜${stageProfiles[activeStage].label}`;
+            $('#stageGuide').textContent = `可直接選擇 ${count} 項${focus}課堂練習。Giftedness 專有活動、既有 2e 活動及跨 SEN 2e 支架均保持獨立；跨 SEN 標記只提示可選支架，不會混入其他 SEN 題庫。每項均有教師帶讀、可選粵語朗讀、看提示、先停一停、請教師一起看及隨時離開；不作診斷、治療、能力比較、排名或人生價值評分。`;
             return;
           }
           if ((activePathway === 'E' || activePathway === '9') && window.EBD_MI_CORE_LAB) {
@@ -456,7 +457,7 @@
       function renderGameLibrary(filter = activeFilter) {
         let source;
         if (activePathway) {
-          source = activePathway === '1' && activeStage === 'lower' ? [getPrimaryPathwayGame(), ...spldP1StandaloneGames] : activePathway === '1' && activeStage === 'upper' ? [getPrimaryPathwayGame(), ...spldP4StandaloneGames] : activePathway === '1' && activeStage === 'junior' ? [getPrimaryPathwayGame(), ...spldS1StandaloneGames] : activePathway === '1' && activeStage === 'senior' ? [getPrimaryPathwayGame(), ...spldS4StandaloneGames] : activePathway === 'G' && (window.GIFTED_2E_LAB || window.GIFTED_CROSS_SEN_LAB) ? [...(window.GIFTED_2E_LAB?.activityCards(activeStage) || []), ...(window.GIFTED_CROSS_SEN_LAB?.activityCards(activeStage) || [])] : activePathway === '8' && (window.SLI_CORE_LAB || window.SLI_EIGHT_GAMES_LAB) ? [...(window.SLI_CORE_LAB?.activityCards(activeStage) || []), ...(window.SLI_EIGHT_GAMES_LAB?.activityCards(activeStage) || [])] : activePathway === 'E' && window.EBD_MI_CORE_LAB ? window.EBD_MI_CORE_LAB.activityCards('ebd', activeStage) : activePathway === '9' && window.EBD_MI_CORE_LAB ? window.EBD_MI_CORE_LAB.activityCards('mi', activeStage) : [getPrimaryPathwayGame()];
+          source = activePathway === '1' && activeStage === 'lower' ? [getPrimaryPathwayGame(), ...spldP1StandaloneGames] : activePathway === '1' && activeStage === 'upper' ? [getPrimaryPathwayGame(), ...spldP4StandaloneGames] : activePathway === '1' && activeStage === 'junior' ? [getPrimaryPathwayGame(), ...spldS1StandaloneGames] : activePathway === '1' && activeStage === 'senior' ? [getPrimaryPathwayGame(), ...spldS4StandaloneGames] : activePathway === 'G' && (window.GIFTED_2E_LAB || window.GIFTED_CROSS_SEN_LAB || window.GIFTED_EIGHT_GAMES_LAB) ? [...(window.GIFTED_EIGHT_GAMES_LAB?.activityCards(activeStage) || []), ...(window.GIFTED_2E_LAB?.activityCards(activeStage) || []), ...(window.GIFTED_CROSS_SEN_LAB?.activityCards(activeStage) || [])] : activePathway === '8' && (window.SLI_CORE_LAB || window.SLI_EIGHT_GAMES_LAB) ? [...(window.SLI_CORE_LAB?.activityCards(activeStage) || []), ...(window.SLI_EIGHT_GAMES_LAB?.activityCards(activeStage) || [])] : activePathway === 'E' && window.EBD_MI_CORE_LAB ? window.EBD_MI_CORE_LAB.activityCards('ebd', activeStage) : activePathway === '9' && window.EBD_MI_CORE_LAB ? window.EBD_MI_CORE_LAB.activityCards('mi', activeStage) : [getPrimaryPathwayGame()];
         } else {
           source = filter === 'all' ? gameLibrary : filter.startsWith('support-') ? [] : gameLibrary.filter(game => game.category === filter);
         }
@@ -466,7 +467,7 @@
         const isSpldP4DirectSelect = activePathway === '1' && activeStage === 'upper';
         const isSpldS1DirectSelect = activePathway === '1' && activeStage === 'junior';
         const isSpldS4DirectSelect = activePathway === '1' && activeStage === 'senior';
-        const isGifted2eDirectSelect = activePathway === 'G' && Boolean(window.GIFTED_2E_LAB || window.GIFTED_CROSS_SEN_LAB);
+        const isGifted2eDirectSelect = activePathway === 'G' && Boolean(window.GIFTED_2E_LAB || window.GIFTED_CROSS_SEN_LAB || window.GIFTED_EIGHT_GAMES_LAB);
         const isSliDirectSelect = activePathway === '8' && Boolean(window.SLI_CORE_LAB || window.SLI_EIGHT_GAMES_LAB);
         const isEbdMiDirectSelect = (activePathway === 'E' || activePathway === '9') && Boolean(window.EBD_MI_CORE_LAB);
         document.body.classList.toggle('spld-p1-direct-select', isSpldP1DirectSelect);
@@ -483,7 +484,7 @@
         $('#gameGrid').innerHTML = asdDirectCard + adhdDirectCard + idDirectCard + games.map(game => {
           const badges = activePathway ? renderSupportBadges(game.supports) : '<span class="support-badge">一般活動</span>';
           const label = activePathway ? '本專屬模組類別' : '一般活動類別';
-          const directActivity = game.ebdMiActivity ? ` data-ebdmi-track="${game.ebdMiTrack}" data-ebdmi-activity="${game.ebdMiActivity}"` : game.gifted2eActivity ? ` data-gifted2e-activity="${game.gifted2eActivity}"` : game.giftedCrossActivity ? ` data-gifted-cross-activity="${game.giftedCrossActivity}"` : game.sliEightActivityKey ? ` data-sli-eight-activity="${game.sliEightActivityKey}"` : game.sliActivityKey ? ` data-sli-activity="${game.sliActivityKey}"` : game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
+          const directActivity = game.ebdMiActivity ? ` data-ebdmi-track="${game.ebdMiTrack}" data-ebdmi-activity="${game.ebdMiActivity}"` : game.giftedEightActivity ? ` data-gifted-eight-activity="${game.giftedEightActivity}"` : game.gifted2eActivity ? ` data-gifted2e-activity="${game.gifted2eActivity}"` : game.giftedCrossActivity ? ` data-gifted-cross-activity="${game.giftedCrossActivity}"` : game.sliEightActivityKey ? ` data-sli-eight-activity="${game.sliEightActivityKey}"` : game.sliActivityKey ? ` data-sli-activity="${game.sliActivityKey}"` : game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
           return `<button class="game-card" type="button" data-game-id="${game.id}"${directActivity} data-tone="${game.tone}"><div class="game-visual" aria-hidden="true">${game.icon}</div><h3>${game.title}</h3><p>${game.description}</p><div class="support-badge-row" aria-label="${label}">${badges}</div><span class="tag">${game.tag}</span></button>`;
         }).join('');
         $$('.game-card').forEach(card => card.addEventListener('click', () => {
@@ -510,6 +511,11 @@
           if (card.dataset.giftedCrossActivity) {
             if (!window.GIFTED_CROSS_SEN_LAB) { showToast('跨 SEN 資優／2e 課堂練習正在準備中，請稍後再試。'); return; }
             window.GIFTED_CROSS_SEN_LAB.openActivity(card.dataset.giftedCrossActivity, { stage: activeStage, onComplete: recordGifted2eLabResult, trigger: card });
+            return;
+          }
+          if (card.dataset.giftedEightActivity) {
+            if (!window.GIFTED_EIGHT_GAMES_LAB) { showToast('Giftedness 課堂練習正在準備中，請稍後再試。'); return; }
+            window.GIFTED_EIGHT_GAMES_LAB.openActivity(card.dataset.giftedEightActivity, { stage: activeStage, onComplete: recordGifted2eLabResult, trigger: card });
             return;
           }
           if (card.dataset.sliEightActivity) {
