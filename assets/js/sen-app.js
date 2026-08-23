@@ -252,6 +252,14 @@
         }
         showToast(`已完成${result.label}：${result.correct} / ${result.total} 正確。`);
       }
+      function recordEbdMiLabResult(result) {
+        if (!result) return;
+        if (lessonSession.mode) {
+          if (result.correct) changeLessonCount('correctAttempts', result.correct);
+          if (result.incorrect) changeLessonCount('retries', result.incorrect);
+        }
+        showToast(`已完成${result.label}：${result.correct} / ${result.total} 小練習。`);
+      }
       function csvField(value) { return `"${String(value ?? '').replace(/"/g, '""')}"`; }
       function renderAsdExportPanel() {
         const panel = $('#asdExportPanel');
@@ -408,6 +416,14 @@
             $('#stageGuide').textContent = `可直接選擇 ${count} 項${focus}練習。每項均有教師帶讀準備頁、粵語朗讀、看提示、先停一停、換練習及隨時離開；結果只供課堂回顧，不作診斷。`;
             return;
           }
+          if ((activePathway === 'E' || activePathway === '9') && window.EBD_MI_CORE_LAB) {
+            const track = activePathway === 'E' ? 'ebd' : 'mi';
+            const count = window.EBD_MI_CORE_LAB.activityCards(track, activeStage).length;
+            $('#gamesKicker').textContent = '專屬訓練 · 初小直接選關';
+            $('#gamesTitle').textContent = `${activePathway === 'E' ? 'EBD 情緒與行為支持' : 'MI 情緒健康與溝通支持'}｜${stageProfiles[activeStage].label}`;
+            $('#stageGuide').textContent = `可直接選擇 ${count} 項低壓情緒支持練習。每項均有教師帶讀、粵語朗讀、看提示、先停一停、需要成人支持及隨時離開；內容只供課堂覺察與溝通練習，不作診斷、治療或危機處理。`;
+            return;
+          }
           $('#gamesTitle').textContent = `${pathwayLabels[activePathway]}｜${primaryGame.title}`;
           $('#stageGuide').textContent = `目前是${stageProfiles[activeStage].label}。此區只保留本路線的 ${primaryGame.rounds.length} 關專屬訓練，不會顯示其他 SEN 類別或通用遊戲。`;
           return;
@@ -420,7 +436,7 @@
       function renderGameLibrary(filter = activeFilter) {
         let source;
         if (activePathway) {
-          source = activePathway === '1' && activeStage === 'lower' ? [getPrimaryPathwayGame(), ...spldP1StandaloneGames] : activePathway === '1' && activeStage === 'upper' ? [getPrimaryPathwayGame(), ...spldP4StandaloneGames] : activePathway === '1' && activeStage === 'junior' ? [getPrimaryPathwayGame(), ...spldS1StandaloneGames] : activePathway === '1' && activeStage === 'senior' ? [getPrimaryPathwayGame(), ...spldS4StandaloneGames] : activePathway === '8' && window.SLI_CORE_LAB ? window.SLI_CORE_LAB.activityCards(activeStage) : [getPrimaryPathwayGame()];
+          source = activePathway === '1' && activeStage === 'lower' ? [getPrimaryPathwayGame(), ...spldP1StandaloneGames] : activePathway === '1' && activeStage === 'upper' ? [getPrimaryPathwayGame(), ...spldP4StandaloneGames] : activePathway === '1' && activeStage === 'junior' ? [getPrimaryPathwayGame(), ...spldS1StandaloneGames] : activePathway === '1' && activeStage === 'senior' ? [getPrimaryPathwayGame(), ...spldS4StandaloneGames] : activePathway === '8' && window.SLI_CORE_LAB ? window.SLI_CORE_LAB.activityCards(activeStage) : activePathway === 'E' && window.EBD_MI_CORE_LAB ? window.EBD_MI_CORE_LAB.activityCards('ebd', activeStage) : activePathway === '9' && window.EBD_MI_CORE_LAB ? window.EBD_MI_CORE_LAB.activityCards('mi', activeStage) : [getPrimaryPathwayGame()];
         } else {
           source = filter === 'all' ? gameLibrary : filter.startsWith('support-') ? [] : gameLibrary.filter(game => game.category === filter);
         }
@@ -431,19 +447,21 @@
         const isSpldS1DirectSelect = activePathway === '1' && activeStage === 'junior';
         const isSpldS4DirectSelect = activePathway === '1' && activeStage === 'senior';
         const isSliDirectSelect = activePathway === '8' && Boolean(window.SLI_CORE_LAB);
+        const isEbdMiDirectSelect = (activePathway === 'E' || activePathway === '9') && Boolean(window.EBD_MI_CORE_LAB);
         document.body.classList.toggle('spld-p1-direct-select', isSpldP1DirectSelect);
         document.body.classList.toggle('spld-p4-direct-select', isSpldP4DirectSelect);
         document.body.classList.toggle('spld-s1-direct-select', isSpldS1DirectSelect);
         document.body.classList.toggle('spld-s4-direct-select', isSpldS4DirectSelect);
         document.body.classList.toggle('sli-direct-select', isSliDirectSelect);
-        $('#gameGrid').classList.toggle('spld-primary-grid', isSpldP1DirectSelect || isSpldP4DirectSelect || isSpldS1DirectSelect || isSpldS4DirectSelect || isSliDirectSelect);
+        document.body.classList.toggle('ebd-mi-direct-select', isEbdMiDirectSelect);
+        $('#gameGrid').classList.toggle('spld-primary-grid', isSpldP1DirectSelect || isSpldP4DirectSelect || isSpldS1DirectSelect || isSpldS4DirectSelect || isSliDirectSelect || isEbdMiDirectSelect);
         const adhdDirectCard = activePathway === '4' ? `<button class="game-card adhd-graded-direct-card" type="button" data-adhd-graded-direct="true" data-tone="purple"><div class="game-visual" aria-hidden="true">🧠</div><h3>九項分級認知遊戲</h3><p>CPT、步進記憶、中央箭頭、規則切換、空間記憶、視覺搜尋、星球追蹤與反應抑制，按目前學段自動調整。</p><div class="support-badge-row" aria-label="ADHD 分級訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">低壓短回合</span></div><span class="tag">${stageProfiles[activeStage].label} · 9 項遊戲</span></button>` : '';
         const asdDirectCard = activePathway === '3' ? `<button class="game-card asd-core-direct-card" type="button" data-asd-core-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">🤖</div><h3>五項 ASD 核心訓練</h3><p>情緒解碼、社交故事、一起看寶箱、細節與全圖轉換，以及安心感官小空間；按目前學段調整。</p><div class="support-badge-row" aria-label="ASD 核心訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">教師帶讀</span><span class="support-badge">低壓短回合</span></div><span class="tag">${stageProfiles[activeStage].label} · 5 項遊戲</span></button>` : '';
         const idDirectCard = activePathway === '2' ? `<button class="game-card id-core-direct-card" type="button" data-id-core-direct="true" data-tone="blue"><div class="game-visual" aria-hidden="true">🧺</div><h3>生活技能直接選關</h3><p>分類、付款、生活步驟、手眼協調與節奏模仿；${activeStage === 'junior' || activeStage === 'senior' ? '另有成人化茶餐廳打工模擬。' : '每次只做一個清楚小步驟。'}</p><div class="support-badge-row" aria-label="ID 核心訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">超大操作</span><span class="support-badge">可選朗讀</span></div><span class="tag">${stageProfiles[activeStage].label} · ${activeStage === 'junior' || activeStage === 'senior' ? '6' : '5'} 項遊戲</span></button>` : '';
         $('#gameGrid').innerHTML = asdDirectCard + adhdDirectCard + idDirectCard + games.map(game => {
           const badges = activePathway ? renderSupportBadges(game.supports) : '<span class="support-badge">一般活動</span>';
           const label = activePathway ? '本專屬模組類別' : '一般活動類別';
-          const directActivity = game.sliActivityKey ? ` data-sli-activity="${game.sliActivityKey}"` : game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
+          const directActivity = game.ebdMiActivity ? ` data-ebdmi-track="${game.ebdMiTrack}" data-ebdmi-activity="${game.ebdMiActivity}"` : game.sliActivityKey ? ` data-sli-activity="${game.sliActivityKey}"` : game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
           return `<button class="game-card" type="button" data-game-id="${game.id}"${directActivity} data-tone="${game.tone}"><div class="game-visual" aria-hidden="true">${game.icon}</div><h3>${game.title}</h3><p>${game.description}</p><div class="support-badge-row" aria-label="${label}">${badges}</div><span class="tag">${game.tag}</span></button>`;
         }).join('');
         $$('.game-card').forEach(card => card.addEventListener('click', () => {
@@ -465,6 +483,11 @@
           if (card.dataset.sliActivity) {
             if (!window.SLI_CORE_LAB) { showToast('SLI 言語訓練室正在準備中，請稍後再試。'); return; }
             window.SLI_CORE_LAB.openActivity(card.dataset.sliActivity, { stage: activeStage, onComplete: recordSliLabResult, trigger: card });
+            return;
+          }
+          if (card.dataset.ebdmiActivity) {
+            if (!window.EBD_MI_CORE_LAB) { showToast('EBD／MI 情緒支持練習正在準備中，請稍後再試。'); return; }
+            window.EBD_MI_CORE_LAB.openActivity(card.dataset.ebdmiTrack, card.dataset.ebdmiActivity, { stage: activeStage, onComplete: recordEbdMiLabResult, trigger: card });
             return;
           }
           if (card.dataset.spldActivity) {
