@@ -32,3 +32,7 @@
 | 高中直接選關只顯示價值沙盒 | 通過 |
 | 虛構情境、略過選項及非排名界線可見 | 通過 |
 | 人生好壞、幸福度或價值高低評分 | 未出現 |
+
+## GitHub Pages 公開稽核
+
+已對公開網址 `https://leung-tech.github.io/sen_application/index.html` 執行 `audit-gifted-2e-lab.mjs`。稽核覆蓋四個學段的直接選關與核心互動、教師準備頁、`role="dialog"`／`aria-modal`、狀態訊息、進度條、Tab／Shift+Tab 焦點循環、Escape 焦點回復、`prefers-reduced-motion` 及 375px 手機控制範圍。結果為 **4 項活動、0 項失敗**。
