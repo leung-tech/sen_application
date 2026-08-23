@@ -54,7 +54,7 @@ try {
   }
   const adhd = await client.call('Runtime.evaluate', { expression: `(() => { window.ADHD_FOCUS_LAB?.open(); const root = document.querySelector('#adhdFocusLabRoot'); const rects = [...(root?.querySelectorAll('button') || [])].map((element) => { const rect = element.getBoundingClientRect(); return { width: Math.round(rect.width), height: Math.round(rect.height) }; }).filter((rect) => rect.width > 0 && rect.height > 0); return { lab: 'adhd', activity: 'home', found: Boolean(root), horizontalOverflow: document.documentElement.scrollWidth > innerWidth, labWidth: Math.round(root?.getBoundingClientRect().width || 0), toolCount: rects.length, minTargetHeight: rects.length ? Math.min(...rects.map((rect) => rect.height)) : 0, minTargetWidth: rects.length ? Math.min(...rects.map((rect) => rect.width)) : 0 }; })()`, returnByValue: true });
   results.push(adhd.result.value);
-  const failures = results.filter((result) => !result.found || result.horizontalOverflow || result.labWidth > 375 || result.minTargetHeight < 36);
+  const failures = results.filter((result) => !result.found || result.horizontalOverflow || result.labWidth > 375 || result.minTargetHeight < 40 || result.minTargetWidth < 40);
   const report = { checkCount: results.length, failureCount: failures.length, failures, results };
   await writeFile(outputPath, JSON.stringify(report, null, 2));
   console.log(JSON.stringify({ checkCount: report.checkCount, failureCount: report.failureCount, failures }, null, 2));
