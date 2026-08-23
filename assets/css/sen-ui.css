@@ -152,3 +152,12 @@
     @media (max-width: 520px) {
       .outline-button, .token-actions button, .spld-read-button { min-height: 44px; }
     }
+    /* SpLD visual reading support: optional guide strip, never eye tracking or performance measurement. */
+    .spld-reading-tracker { width:min(100%,790px); margin:0 auto 12px; border:1px solid #d7d1ff; border-radius:14px; background:#fbfaff; color:#4d4378; text-align:left; }
+    .spld-reading-tracker summary { min-height:44px; padding:12px 14px; cursor:pointer; color:#584bb0; font-size:13px; font-weight:900; }
+    .spld-reading-tracker[open] summary { border-bottom:1px solid #e3dfff; }
+    .spld-reading-tracker p { margin:0; padding:12px 14px 4px; color:#43506b; font-size:16px; font-weight:760; line-height:1.75; }
+    .spld-reading-tracker small { display:block; padding:8px 14px 14px; color:#6a6183; font-size:11px; font-weight:740; line-height:1.5; }
+    .spld-tracker-lane { height:10px; margin:13px 14px 0; overflow:hidden; border-radius:999px; background:#ebe8ff; }
+    .spld-tracker-lane i { display:block; width:38%; height:100%; border-radius:inherit; background:linear-gradient(90deg,#6d5bc8,#77b9dc); }
+    .spld-reading-tracker summary:focus-visible { outline:3px solid #146ca6; outline-offset:3px; }

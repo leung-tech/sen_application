@@ -262,6 +262,7 @@
       }
       function recordEbdMiLabResult(result) {
         if (!result) return;
+        if (result.openEnded) { showToast(`已完成${result.label}；這是八個策略情境的課堂回顧，不作行為評分。`); return; }
         if (lessonSession.mode) {
           if (result.correct) changeLessonCount('correctAttempts', result.correct);
           if (result.incorrect) changeLessonCount('retries', result.incorrect);
@@ -378,6 +379,7 @@
       function stripMarkup(value) { return String(value || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim(); }
       function getSpldReadText(round) { return `讀寫焦點：${round.band}。${round.instruction}。題目：${stripMarkup(round.prompt)}。${round.context ? `資料：${stripMarkup(round.context)}。` : ''}`; }
       function getSpldVisualCue(round) { return `<aside class="spld-visual-cue" aria-label="視覺解題步驟"><span class="spld-visual-label">視覺解題步驟</span><div class="spld-step-row"><span class="spld-step-chip">① 看題目</span><span class="spld-step-chip">② 圈關鍵詞</span><span class="spld-step-chip">③ 慢讀選項</span><span class="spld-step-chip">④ 作出選擇</span></div><div class="spld-keyword-card">本關讀寫焦點：<strong>${round.band}</strong>。先找有粗體或重要意思的詞。</div></aside>`; }
+      function getSpldReadingTracker(round) { const text = stripMarkup(round.context || round.prompt); return `<details class="spld-reading-tracker"><summary>▰ 開啟文字閱讀導向條</summary><div class="spld-tracker-lane" aria-hidden="true"><i></i></div><p>${text}</p><small>可把手指、游標或這條色帶放在正在讀的一行附近，慢慢向下移動；這只是自選閱讀支架，不量度視線、速度或能力。</small></details>`; }
       function readSpldHint(round) { speak(`解題小提示。${round.clue}`, .66); }
       function shuffle(items) { const copy = [...items]; for (let i = copy.length - 1; i > 0; i -= 1) { const j = Math.floor(Math.random() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; } return copy; }
       function escapeHTML(value) { return String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#039;', '"': '&quot;' }[char])); }
@@ -498,7 +500,7 @@
         const miFifteenDirectCard = activePathway === '9' ? `<button class="game-card mi-fifteen-direct-card" type="button" data-mi-fifteen-direct="true" data-tone="purple"><div class="game-visual" aria-hidden="true">🛟</div><h3>MI 十五項情緒支持練習</h3><p>按目前學段提供十五項覺察、調節、思維彈性、支持與自我倡導練習；每項均有八題、朗讀、暫停及成人支持提示。</p><div class="support-badge-row" aria-label="MI 十五項情緒支持練習內容"><span class="support-badge">15 項直接選關</span><span class="support-badge">每項 8 題</span><span class="support-badge">非診斷支持</span></div><span class="tag">${stageProfiles[activeStage].label} · 15 項活動</span></button>` : '';
          const viDirectCard = activePathway === 'V' ? `<button class="game-card vi-direct-card" type="button" data-vi-direct="true" data-tone="purple"><div class="game-visual" aria-hidden="true">🦯</div><h3>VI 鍵盤與生活策略</h3><p>本學段提供兩項定向與螢幕閱讀練習：初小定向與盲打、高小環境聲與盲文、初中高速聽讀與聲音雷達，或高中港鐵導航與 DSE 查閱；可選音訊、高對比和全鍵盤操作。</p><div class="support-badge-row"><span class="support-badge">鍵盤優先</span><span class="support-badge">高對比</span><span class="support-badge">可選音訊</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項活動</span></button>` : '';
          const pdDirectCard = activePathway === 'P' ? `<button class="game-card pd-direct-card" type="button" data-pd-direct="true" data-tone="blue"><div class="game-visual" aria-hidden="true">♿</div><h3>PD 輔具與生活策略</h3><p>本學段提供兩項輔具與日常策略練習：初小單鍵與掃描、高小節能與無障礙路徑、初中自我倡導與停留選取，或高中智能家居與數碼職前技能；支援單鍵、Tab 和點按替代。</p><div class="support-badge-row"><span class="support-badge">單鍵替代</span><span class="support-badge">Tab 導覽</span><span class="support-badge">無強制倒數</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項活動</span></button>` : '';
-        const hiEightDirectCard = activePathway === 'H' ? `<button class="game-card hi-eight-direct-card" type="button" data-hi-eight-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">👂</div><h3>HI 視覺溝通探索</h3><p>本學段提供兩項視覺優先練習：初小音高與聲調、高小口型與表情、初中降噪與自我倡導，或高中接單與考場輔具；全部音訊皆可選，視覺線索永遠保留。</p><div class="support-badge-row" aria-label="HI 視覺溝通探索內容"><span class="support-badge">直接選關</span><span class="support-badge">視覺優先</span><span class="support-badge">可選音訊</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項活動</span></button>` : '';
+        const hiEightDirectCard = activePathway === 'H' ? `<button class="game-card hi-eight-direct-card" type="button" data-hi-eight-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">👂</div><h3>HI 視覺溝通探索</h3><p>本學段提供兩項視覺優先練習；初小另加入環境提示視覺站，以圖示、文字與可選震動示意認識安全下一步。全部音訊皆可選，視覺線索永遠保留。</p><div class="support-badge-row" aria-label="HI 視覺溝通探索內容"><span class="support-badge">直接選關</span><span class="support-badge">視覺優先</span><span class="support-badge">可選音訊</span></div><span class="tag">${stageProfiles[activeStage].label} · ${activeStage === 'lower' ? '3' : '2'} 項活動</span></button>` : '';
         $('#gameGrid').innerHTML = asdFifteenDirectCard + asdDirectCard + asdEightDirectCard + adhdFifteenDirectCard + adhdDirectCard + idFifteenDirectCard + idDirectCard + idEightDirectCard + idAdvancedDirectCard + sliFifteenDirectCard + miFifteenDirectCard + hiEightDirectCard + viDirectCard + pdDirectCard + games.map(game => {
           const badges = activePathway ? renderSupportBadges(game.supports) : '<span class="support-badge">一般活動</span>';
           const label = activePathway ? '本專屬模組類別' : '一般活動類別';
@@ -714,10 +716,11 @@
         }
         if (id === 'spld') {
           const reading = round.context ? `<article class="spld-reading">${round.context}</article>` : '';
+          const tracker = getSpldReadingTracker(round);
           const controls = `<div class="spld-read-controls" aria-label="SpLD 朗讀控制"><button class="spld-read-button" id="spldReadPrompt" type="button">🔊 朗讀題目</button><button class="spld-read-button" id="spldReadHint" type="button">🐢 慢讀提示</button><button class="spld-read-button" id="spldReadChoices" type="button">🔉 朗讀選項</button></div>`;
           const visual = getSpldVisualCue(round);
           const hint = `<aside class="spld-hint" aria-label="解題小提示"><span class="spld-hint-label">解題小提示</span><strong>${round.clue}</strong><small>提示已經顯示在這裏；需要時可按「慢讀提示」再聽一次。</small></aside>`;
-          return stageFrame(`<span class="spld-band">${round.band}</span><br>${round.prompt}`, `${reading}<div class="spld-focus">讀寫焦點：${round.band}</div>${controls}${visual}${hint}<div class="spld-choice-grid">${round.choices.map(choice => `<button class="spld-answer" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div>`, true, '先看紫色視覺步驟，再慢讀關鍵詞和選項。');
+          return stageFrame(`<span class="spld-band">${round.band}</span><br>${round.prompt}`, `${reading}${tracker}<div class="spld-focus">讀寫焦點：${round.band}</div>${controls}${visual}${hint}<div class="spld-choice-grid">${round.choices.map(choice => `<button class="spld-answer" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div>`, true, '先看紫色視覺步驟，再慢讀關鍵詞和選項。');
         }
         if (id === 'emotion') {
           return stageFrame(`找出和這張一樣的心情：<span class="sr-only">${round.word}</span>`, `<div class="match-target" aria-label="目標表情 ${round.word}">${round.target}</div><div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);

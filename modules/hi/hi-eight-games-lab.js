@@ -11,7 +11,8 @@
   const games = {
     lower: [
       { key: 'rainbow', icon: '🌈', title: '聲波彩虹橋', focus: '高音與低音辨識', description: '按一下才播放聲音，再用星星或雲朵配對音高；每一步都有色彩線索。', steps: 8 },
-      { key: 'tones', icon: '🎢', title: '廣東話聲調「過山車」', focus: '視覺化聲調曲線', description: '把平穩或向上走的音高線，配對到清楚的文字和軌道圖。', steps: 8 }
+      { key: 'tones', icon: '🎢', title: '廣東話聲調「過山車」', focus: '視覺化聲調曲線', description: '把平穩或向上走的音高線，配對到清楚的文字和軌道圖。', steps: 8 },
+      { key: 'visualizer', icon: '🚨', title: '環境提示視覺站', focus: '環境提示與安全行動', description: '把門鈴、警報、車輛與課室提示轉成圖示、文字和可選震動節奏示意；不需要先聽見聲音。', steps: 8 }
     ],
     upper: [
       { key: 'lips', icon: '🕵️', title: '神探唇讀術：校園密碼', focus: '口型與字卡提示', description: '先看清楚的嘴型圖與發音線索，再選出同學或老師的訊息。', steps: 8 },
@@ -119,7 +120,17 @@
       bind() { $all('[data-hi8-dse]').forEach((button) => button.addEventListener('click', () => choose(button.dataset.hi8Dse === item.answer, '做得好，你清楚地使用了無障礙支援。', '遇到設備問題時，可以先舉手並說明自己聽到的情況。'))); }
     };
   }
-  const renderers = { rainbow, tones, lips, expression, noise, shield, takeaway, dse };
+  function visualizer() { const items = [
+    { icon: '🔔', cue: '門鈴圖示 · 藍色短閃兩次', answer: '先找家中大人或用安全方式確認', choices: ['先找家中大人或用安全方式確認', '立刻自己開門', '跑去窗邊大叫'] },
+    { icon: '🚨', cue: '警報圖示 · 紅色規律閃動', answer: '按學校既有程序跟隨成人到安全位置', choices: ['按學校既有程序跟隨成人到安全位置', '躲在桌下不理提示', '自己衝去看發生甚麼事'] },
+    { icon: '🚑', cue: '緊急車輛圖示 · 藍紅方向波紋', answer: '停在安全位置，讓車輛先通過', choices: ['停在安全位置，讓車輛先通過', '走到馬路中央看車', '一直追著車跑'] },
+    { icon: '🚇', cue: '車門提示 · 黃色邊線與關門圖示', answer: '離開門邊，等下一班或下一個安全位置', choices: ['離開門邊，等下一班或下一個安全位置', '把手伸進門縫', '坐在地上等門開'] },
+    { icon: '🏫', cue: '課室提示 · 綠色收拾圖示與時間表', answer: '跟著圖示收拾，準備下一步', choices: ['跟著圖示收拾，準備下一步', '把所有物品扔進書包', '完全不看時間表'] },
+    { icon: '🚦', cue: '過路提示 · 綠色步行圖示', answer: '先看周圍安全，再按交通規則過路', choices: ['先看周圍安全，再按交通規則過路', '閉上眼睛衝出去', '只看電話過路'] },
+    { icon: '📢', cue: '集合提示 · 藍色旗幟與集合點箭頭', answer: '到圖示所指的集合位置等候', choices: ['到圖示所指的集合位置等候', '自己走到遠處', '留在原地不停叫'] },
+    { icon: '⏸️', cue: '休息提示 · 紫色暫停圖示與水樽', answer: '先停一停，喝水或看下一步卡', choices: ['先停一停，喝水或看下一步卡', '逼自己立刻做更多', '把提示卡撕掉'] }
+  ]; const item = items[state.index % items.length]; return { visual: `<div class="hi8-visual"><div class="hi8-symbol">${item.icon}</div><div class="hi8-caption"><strong>視覺提示：</strong>${item.cue}<br><small>這是圖示與文字安全提示練習；不同場所的真實設備和程序可能不同。</small></div></div>`, prompt: '看到這個視覺提示時，哪個下一步最安全？', buttons: `<button class="hi8-btn" data-hi8-vibrate type="button">⌁ 可選：震動節奏示意</button><div class="hi8-choice-grid">${item.choices.map(x => `<button class="hi8-choice" data-hi8-visualizer="${x}" type="button">${x}</button>`).join('')}</div>`, bind() { $all('[data-hi8-vibrate]').forEach(b => b.addEventListener('click', () => { if ('vibrate' in navigator) navigator.vibrate([30, 55, 30]); status('已播放可選震動節奏示意。這不是測試，也不需要使用震動才可完成。'); })); $all('[data-hi8-visualizer]').forEach(b => b.addEventListener('click', () => choose(b.dataset.hi8Visualizer === item.answer, `答對了，${item.answer}。`, '再看圖示與文字提示，先選一個能保護自己和別人的安全下一步。'))); } }; }
+  const renderers = { rainbow, tones, lips, expression, visualizer, noise, shield, takeaway, dse };
   function renderPlay() { const game = currentGame(); const scene = renderers[game.key](); setFrame(`${progress(game.steps)}<main class="hi8-play"><div class="hi8-intro">${game.focus} · ${game.description}</div><h3 class="hi8-prompt">${scene.prompt}</h3>${scene.visual}${scene.buttons}<div class="hi8-status" id="hi8Status" aria-live="polite">${state.audioOn ? '音訊提示已開啟；你可按播放按鈕，再慢慢作答。' : '音訊提示現時關閉；全部題目均提供文字和視覺線索。'}</div></main>${controls()}`); scene.bind(); bindControls(); speak(scene.prompt); }
   function renderMenu() { state.gameKey = null; setFrame(`<p class="hi8-intro">每個學段有兩項新遊戲。聲音永遠是可選提示；文字、圖像、色彩和清楚的自我倡導語句同樣重要。</p><div class="hi8-menu">${games[state.stage].map(game => `<button class="hi8-game-card" data-hi8-game="${game.key}" type="button"><span class="hi8-game-icon">${game.icon}</span><span><span class="hi8-kicker">${game.focus}</span><h3>${game.title}</h3><p>${game.description}</p></span><span class="hi8-arrow">→</span></button>`).join('')}</div><div class="hi8-status" id="hi8Status">請選一項想練習的溝通或生活技能。</div>${controls()}`); $all('[data-hi8-game]').forEach(button => button.addEventListener('click', () => { state.gameKey = button.dataset.hi8Game; state.index = 0; state.correct = 0; state.incorrect = 0; state.data = {}; renderReady(); })); bindControls(); }
   function renderReady() { const game = currentGame(); setFrame(`<div class="hi8-visual"><div class="hi8-symbol">${game.icon}</div><div class="hi8-caption">先以視覺線索完成每一步；音訊與文字朗讀可按需要開啟。</div></div><p class="hi8-intro"><strong>三個小步驟：</strong><br>1. 先看清楚文字、圖像和色彩線索。<br>2. 需要時自行選擇播放音訊或文字朗讀。<br>3. 任何時候都可慢慢重試或提出支援需要。</p><div class="hi8-choice-grid"><button class="hi8-btn" id="hi8Back" type="button">← 換一項</button><button class="hi8-btn hi8-primary" id="hi8Start" type="button">✓ 我準備好了</button></div><div class="hi8-status" id="hi8Status">這是準備時間；不會自動播放聲音，也沒有倒數。</div>${controls()}`); root().querySelector('#hi8Back').addEventListener('click', renderMenu); root().querySelector('#hi8Start').addEventListener('click', renderPlay); bindControls(); }
