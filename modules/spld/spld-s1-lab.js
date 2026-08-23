@@ -119,6 +119,32 @@
         { sentence: '我們應先確認資料來源，才引用在報告裡。', prompt: '哪一個改寫最能保持原句的先後關係？', answer: '確認來源後，再把資料引用在報告裡。', choices: ['確認來源後，再把資料引用在報告裡。', '引用資料後，才確認來源。', '資料來源不需要確認。'], hint: '原句的「先……才……」強調先確認、後引用，次序不可倒轉。' },
         { sentence: '因為小組分工清楚，所以每個人都知道下一步要做甚麼。', prompt: '哪一部分是這一句的原因？', answer: '小組分工清楚', choices: ['小組分工清楚', '每個人都知道下一步', '要做甚麼'], hint: '「因為」後面說原因；「所以」後面說由原因帶來的結果。' }
       ]
+    },
+    examRadar: {
+      icon: '📡', title: '審題防陷阱雷達', description: '圈出題目中的否定詞、限定詞和答題範圍，再決定最穩妥的下一步。', focus: '審題策略與抑制控制', accent: 'yellow',
+      rounds: [
+        { prompt: '題目問「以下哪項**不包括**在環保做法中？」首先要留意哪個詞？', answer: '不包括', choices: ['不包括', '環保', '做法'], hint: '否定詞會改變答案方向；先把它圈起來。' },
+        { prompt: '題目寫「根據**第二段**內容回答」，要先看哪個範圍？', answer: '第二段', choices: ['第二段', '整篇文章', '題目號碼'], hint: '先確認資料範圍，避免找錯段落。' },
+        { prompt: '題目問「作者**主要**想說甚麼？」應優先找甚麼？', answer: '核心意思', choices: ['核心意思', '一個小例子', '最長的句子'], hint: '主要是找整段最重要的意思，不是只找一個細節。' },
+        { prompt: '題目要求「選出**最合適**的標題」，答題前應怎樣做？', answer: '比較所有選項是否涵蓋主旨', choices: ['比較所有選項是否涵蓋主旨', '立刻選第一個選項', '只看最短的選項'], hint: '「最合適」要比較，不用急著選第一個看見的答案。' },
+        { prompt: '題目問「下列**只有一項**正確」，應採用哪個策略？', answer: '逐項核對證據', choices: ['逐項核對證據', '選看起來最熟悉的', '把全部都選'], hint: '有限定詞時，逐項用資料核對最穩妥。' },
+        { prompt: '題目寫「先說明原因，**再**提出建議」，要注意甚麼？', answer: '答題次序', choices: ['答題次序', '字數大小', '紙張顏色'], hint: '「先、再」提示兩部分的安排次序。' },
+        { prompt: '題目問「哪項**並非**作者觀點？」最適合的第一步是？', answer: '圈出並非，再回文找證據', choices: ['圈出並非，再回文找證據', '只憑自己想法回答', '略過所有選項'], hint: '先圈否定詞，再回到文章核對每一個選項。' },
+        { prompt: '題目要求「用**自己的話**概括」，應避免甚麼？', answer: '整句直接抄錄', choices: ['整句直接抄錄', '保留核心意思', '先列關鍵詞'], hint: '先列重點，再用自己的短句重組意思。' }
+      ]
+    },
+    chartText: {
+      icon: '📈', title: '圖表與文字轉換器', description: '把簡單圖表趨勢轉成精準文字，或從文字找出相符的資料描述。', focus: '多模態資訊轉換', accent: 'blue',
+      rounds: [
+        { prompt: '柱狀圖顯示：一月至三月的借書量由 20 本、30 本升至 40 本。哪句描述最準確？', answer: '借書量持續上升', choices: ['借書量持續上升', '借書量持續下降', '借書量完全不變'], hint: '數字每月增加，描述可用「持續上升」。' },
+        { prompt: '折線圖顯示：星期一 80 人、星期二 80 人、星期三 80 人使用閱讀角。哪句描述最準確？', answer: '使用人數保持穩定', choices: ['使用人數保持穩定', '使用人數急升', '使用人數急跌'], hint: '三天數字一樣，表示保持穩定。' },
+        { prompt: '圓形圖顯示：60% 選擇步行上學、25% 乘巴士、15% 乘車。哪項最多？', answer: '步行上學', choices: ['步行上學', '乘巴士', '乘車'], hint: '比較百分比，60% 是最大的部分。' },
+        { prompt: '表格顯示：回收紙張由 50 公斤增加到 75 公斤。增加了多少？', answer: '25 公斤', choices: ['25 公斤', '50 公斤', '75 公斤'], hint: '用新數量 75 減原來 50。' },
+        { prompt: '圖表顯示四月的活動參加人數比三月少。哪個詞最合適？', answer: '下降', choices: ['下降', '增加', '持平'], hint: '比之前少，可以用「下降」。' },
+        { prompt: '資料顯示：閱讀時間由 10 分鐘增至 20 分鐘，之後仍是 20 分鐘。哪句最準確？', answer: '先上升，後保持穩定', choices: ['先上升，後保持穩定', '一直下降', '完全沒有改變'], hint: '先比較前兩個數字，再看最後有沒有變動。' },
+        { prompt: '表格顯示甲組完成 8 題、乙組完成 6 題。哪句是客觀描述？', answer: '甲組完成題數較乙組多', choices: ['甲組完成題數較乙組多', '乙組一定不努力', '甲組一定最聰明'], hint: '圖表只能支持數量比較，不用推斷人的能力或努力。' },
+        { prompt: '圖表顯示使用水樽的人數增加，同時即棄膠樽數量減少。哪個結論最謹慎？', answer: '兩項變化同時出現，值得再了解原因', choices: ['兩項變化同時出現，值得再了解原因', '水樽一定是唯一原因', '圖表完全沒有資料'], hint: '圖表能顯示同時變化；因果關係需要更多資料確認。' }
+      ]
     }
   };
 
@@ -253,6 +279,11 @@
     return `<article class="spld-s1-rhetoric-scene"><span>句法觀察</span><p>${round.sentence}</p></article><p class="spld-s1-prompt">${round.prompt}</p>${choiceGridMarkup(round.choices)}`;
   }
 
+  function strategyMarkup(round) {
+    const label = activeKey === 'chartText' ? '資料轉換' : '審題策略';
+    return `<article class="spld-s1-passage"><span>${label}</span><p>${round.prompt}</p></article><p class="spld-s1-prompt">慢慢比較每個選項，選出最符合題目重點的一項。</p>${choiceGridMarkup(round.choices)}`;
+  }
+
   function playAreaMarkup(round) {
     if (activeKey === 'connector') return connectorMarkup(round);
     if (activeKey === 'paragraph') return paragraphMarkup(round);
@@ -261,6 +292,7 @@
     if (activeKey === 'idiom') return idiomMarkup(round);
     if (activeKey === 'vocabulary') return vocabularyMarkup(round);
     if (activeKey === 'grammar') return grammarMarkup(round);
+    if (activeKey === 'examRadar' || activeKey === 'chartText') return strategyMarkup(round);
     return mainIdeaMarkup(round);
   }
 
@@ -289,6 +321,8 @@
     if (activeKey === 'idiom') return `成語圖解猜謎。${round.riddle}。常見錯寫是${round.wrong}。請選出正確成語。`;
     if (activeKey === 'vocabulary') return `詞義辨析雷達。${round.context}。${round.prompt}`;
     if (activeKey === 'grammar') return `句式關係校準。${round.sentence}。${round.prompt}`;
+    if (activeKey === 'examRadar') return `審題防陷阱雷達。${round.prompt}`;
+    if (activeKey === 'chartText') return `圖表與文字轉換器。${round.prompt}`;
     return `主旨提煉篩選器。${round.passage}。請選出最能概括主旨的句子。`;
   }
 
@@ -324,6 +358,8 @@
     if (activeKey === 'idiom') return `「${choice}」的字形和意思都正確。`;
     if (activeKey === 'vocabulary') return `「${choice}」最配合這個語境，意思和搭配都準確。`;
     if (activeKey === 'grammar') return `你已找出句中的${choice}，可以用這個線索拆解長句。`;
+    if (activeKey === 'examRadar') return `你已留意「${choice}」這個審題線索，可以慢慢再看要求。`;
+    if (activeKey === 'chartText') return `「${choice}」是符合資料的客觀描述。`;
     return `這一句能包括短文最重要的內容，不只是一個細節。`;
   }
 
@@ -334,6 +370,8 @@
     if (activeKey === 'idiom') return '再看一看圖中的關鍵物件，也留意同音字是否寫對。';
     if (activeKey === 'vocabulary') return '先讀完整個情境，再比較三個詞的意思和慣常搭配。';
     if (activeKey === 'grammar') return '可先找「誰做甚麼」、關聯詞或表示先後的詞語，再選答案。';
+    if (activeKey === 'examRadar') return '先圈出否定詞、限定詞或資料範圍，再慢慢比較選項。';
+    if (activeKey === 'chartText') return '先看數字或趨勢，再選不過度推論的客觀描述。';
     return '找能同時包括多個重點的句子，避免只選一個細節。';
   }
 

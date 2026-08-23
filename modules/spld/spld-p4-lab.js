@@ -159,6 +159,58 @@
         { noun: '毛巾', target: '條', choices: ['條', '張', '件'], picture: '🧻', hint: '長長的毛巾，可以說「一條毛巾」。' },
         { noun: '學校', target: '所', choices: ['所', '輛', '枝'], picture: '🏫', hint: '學校、醫院等地方，常用「所」來數。' }
       ]
+    },
+    punctuation: {
+      icon: '✒️', title: '標點符號迷宮', description: '根據句子語氣和停頓，選出最合適的標點符號。', focus: '斷句與語氣辨識', accent: 'orange', mode: 'context',
+      rounds: [
+        { picture: '❓', sentence: '「你今天帶了圖書證＿＿」句末應放甚麼？', target: '？', choices: ['？', '。', '！'], hint: '這是一個想知道答案的問句，用問號。' },
+        { picture: '🎉', sentence: '「太好了，我們完成報告了＿＿」句末應放甚麼？', target: '！', choices: ['！', '？', '，'], hint: '很高興或很有力地說話，可以用感嘆號。' },
+        { picture: '📖', sentence: '「小明今天到圖書館借書＿＿」句末應放甚麼？', target: '。', choices: ['。', '？', '！'], hint: '這是一句平靜說明，用句號。' },
+        { picture: '🧺', sentence: '「請帶水樽＿＿帽子和毛巾。」空格應放甚麼？', target: '、', choices: ['、', '？', '！'], hint: '列出三樣物品時，物品之間可用頓號。' },
+        { picture: '🗣️', sentence: '「老師說＿＿先看題目，再作答。」空格應放甚麼？', target: '：', choices: ['：', '。', '、'], hint: '說話內容前面常用冒號。' },
+        { picture: '🌧️', sentence: '「雖然下雨＿＿我們仍會在禮堂活動。」空格應放甚麼？', target: '，', choices: ['，', '！', '？'], hint: '前後兩個短句之間需要短暫停頓，用逗號。' },
+        { picture: '📚', sentence: '「我最喜歡的地方是圖書館＿＿」句末應放甚麼？', target: '。', choices: ['。', '？', '：'], hint: '這是一句完整的說明句，用句號。' },
+        { picture: '🙋', sentence: '「請問集合地點在哪裏＿＿」句末應放甚麼？', target: '？', choices: ['？', '！', '、'], hint: '問集合地點是一個問題，用問號。' }
+      ]
+    },
+    keyword: {
+      icon: '🔑', title: '關鍵字尋寶', description: '在短訊息中找出時間、地點、人物或任務重點。', focus: '尋讀與資訊篩選', accent: 'teal', mode: 'context',
+      rounds: [
+        { picture: '📅', sentence: '通知：請在星期五前交回家長通告。哪個是重要日期？', target: '星期五', choices: ['星期五', '家長', '通告'], hint: '先找表示時間的詞語。' },
+        { picture: '📍', sentence: '明天早上九時在禮堂集合。哪個是集合地點？', target: '禮堂', choices: ['禮堂', '九時', '明天'], hint: '找表示在哪裏的地方名稱。' },
+        { picture: '🧴', sentence: '遠足日請帶水樽和雨傘。哪個是要帶的物品？', target: '水樽', choices: ['水樽', '遠足日', '請帶'], hint: '找「帶」字後面的用品。' },
+        { picture: '👥', sentence: '班長負責在活動前提醒大家集合。誰負責提醒？', target: '班長', choices: ['班長', '大家', '活動'], hint: '找句子中做這件事的人。' },
+        { picture: '📚', sentence: '圖書館星期三會提早在四時關門。哪個是關門時間？', target: '四時', choices: ['四時', '星期三', '圖書館'], hint: '先找數字和時間單位。' },
+        { picture: '🧪', sentence: '科學課前請完成安全檢查表。要先完成甚麼？', target: '安全檢查表', choices: ['安全檢查表', '科學課', '課前'], hint: '找「請完成」後面的任務。' },
+        { picture: '🚌', sentence: '校巴將於下午三時半在正門開出。校巴在哪裏開出？', target: '正門', choices: ['正門', '三時半', '下午'], hint: '找表示地點的字詞。' },
+        { picture: '✉️', sentence: '請把問題電郵給陳老師。應聯絡誰？', target: '陳老師', choices: ['陳老師', '問題', '電郵'], hint: '找「給」字後面的收件人。' }
+      ]
+    },
+    fraction: {
+      icon: '🍕', title: '分數面積切割', description: '把圖像和分數意思配好，建立整體與部分的概念。', focus: '分數視覺表徵', accent: 'pink', mode: 'context',
+      rounds: [
+        { picture: '🍕', sentence: '一個薄餅平均分成 2 份，吃了其中 1 份，是多少？', target: '二分之一', choices: ['二分之一', '三分之一', '四分之一'], hint: '整體有兩等份，選了一份，就是二分之一。' },
+        { picture: '🍫', sentence: '一條朱古力平均分成 4 格，吃了 1 格，是多少？', target: '四分之一', choices: ['四分之一', '二分之一', '四分之三'], hint: '分母看總格數 4，分子看選了 1 格。' },
+        { picture: '🍎', sentence: '把 1 個蘋果平均切成 4 份，拿了 2 份，是多少？', target: '二分之一', choices: ['二分之一', '四分之一', '四分之三'], hint: '四份中的兩份，和一半一樣多。' },
+        { picture: '🎂', sentence: '蛋糕平均分成 8 份，留下 6 份，是多少？', target: '八分之六', choices: ['八分之六', '八分之二', '六分之八'], hint: '總數是 8，留下的是 6，先說總份數再說選取份數。' },
+        { picture: '🟦', sentence: '圖形平均分成 3 部分，塗了 1 部分，是多少？', target: '三分之一', choices: ['三分之一', '三分之二', '二分之一'], hint: '三等份中有一份塗色。' },
+        { picture: '🍉', sentence: '西瓜平均分成 6 份，吃了 3 份，最接近多少？', target: '二分之一', choices: ['二分之一', '三分之一', '六分之一'], hint: '6 份的一半是 3 份。' },
+        { picture: '🧩', sentence: '拼圖平均分成 5 塊，完成了 4 塊，是多少？', target: '五分之四', choices: ['五分之四', '四分之五', '五分之一'], hint: '總共有 5 塊，完成 4 塊。' },
+        { picture: '🥛', sentence: '一杯果汁喝掉一半，最合適的分數是？', target: '二分之一', choices: ['二分之一', '四分之一', '三分之一'], hint: '一半就是把整體平均分兩份，取其中一份。' }
+      ]
+    },
+    mindmap: {
+      icon: '🧠', title: '心智地圖填空', description: '從短文找出中心概念和合適的重點分支。', focus: '圖像組織與閱讀理解', accent: 'blue', mode: 'context',
+      rounds: [
+        { picture: '🌱', sentence: '中心概念是「種植」。哪一個最適合作為分支？', target: '澆水', choices: ['澆水', '校巴', '雨傘'], hint: '澆水是照顧植物時會做的事。' },
+        { picture: '📚', sentence: '中心概念是「圖書館」。哪一個最適合作為分支？', target: '借書', choices: ['借書', '煮飯', '游泳'], hint: '圖書館提供借書和閱讀服務。' },
+        { picture: '♻️', sentence: '中心概念是「環保」。哪一個最適合作為分支？', target: '回收', choices: ['回收', '浪費', '插隊'], hint: '回收可以減少浪費，是環保行動。' },
+        { picture: '🏃', sentence: '中心概念是「健康」。哪一個最適合作為分支？', target: '運動', choices: ['運動', '熬夜', '亂丟垃圾'], hint: '適量運動有助保持健康。' },
+        { picture: '🚌', sentence: '中心概念是「外出」。哪一個最適合作為分支？', target: '看路線', choices: ['看路線', '忘記地點', '不帶用品'], hint: '外出前先看路線，會較容易做好準備。' },
+        { picture: '👥', sentence: '中心概念是「小組合作」。哪一個最適合作為分支？', target: '分工', choices: ['分工', '責怪', '離開'], hint: '小組合作時，先分工能令每人知道自己的任務。' },
+        { picture: '📖', sentence: '中心概念是「閱讀理解」。哪一個最適合作為分支？', target: '圈關鍵詞', choices: ['圈關鍵詞', '跳過全文', '只看圖片'], hint: '圈出關鍵詞可以幫助找資料和理解重點。' },
+        { picture: '🌧️', sentence: '中心概念是「下雨天」。哪一個最適合作為分支？', target: '帶雨傘', choices: ['帶雨傘', '穿泳衣', '忘記天氣'], hint: '下雨天帶雨傘是實際準備。' }
+      ]
     }
   };
 
@@ -184,6 +236,7 @@
   };
 
   const currentActivity = () => activities[activeKey];
+  const activityMode = () => currentActivity()?.mode || (activeKey === 'morpheme' ? 'morpheme' : activeKey === 'sentence' ? 'sentence' : activeKey === 'collocation' ? 'collocation' : activeKey === 'context' ? 'context' : activeKey === 'memory' ? 'memory' : 'classifier');
   const isGradedActivity = () => activeKey === 'morpheme' || activeKey === 'sentence';
   const currentRounds = () => isGradedActivity() ? currentActivity().rounds.filter((round) => (round.level || 'basic') === selectedDifficulty) : currentActivity().rounds;
   const currentRound = () => currentRounds()[roundIndex];
@@ -350,7 +403,8 @@
   function renderRound() {
     const activity = currentActivity();
     const round = currentRound();
-    const playArea = activeKey === 'morpheme' ? morphemeMarkup(round) : activeKey === 'sentence' ? sentenceMarkup(round) : activeKey === 'collocation' ? collocationMarkup(round) : activeKey === 'context' ? contextMarkup(round) : activeKey === 'memory' ? memoryMarkup(round) : classifierMarkup(round);
+    const mode = activityMode();
+    const playArea = mode === 'morpheme' ? morphemeMarkup(round) : mode === 'sentence' ? sentenceMarkup(round) : mode === 'collocation' ? collocationMarkup(round) : mode === 'context' ? contextMarkup(round) : mode === 'memory' ? memoryMarkup(round) : classifierMarkup(round);
     const heading = `<div class="spld-p4-heading compact"><span class="spld-p4-kicker">${activity.focus}</span><h2>${activity.icon} ${activity.title}</h2><p>${activity.description}</p></div>`;
     const dialog = document.querySelector('.spld-p4-lab');
     dialog.innerHTML = `<button class="spld-p4-close" type="button" aria-label="關閉高小讀寫實驗室">×</button>${heading}${difficultyMarkup()}${progressMarkup()}<div class="spld-p4-play-area">${playArea}</div><div class="spld-p4-feedback" id="spldP4Feedback" role="status" aria-live="polite" aria-atomic="true">慢慢看一看；不知道時可以按提示。</div>${toolsMarkup()}`;
@@ -360,7 +414,8 @@
   function bindRound(round) {
     document.querySelector('.spld-p4-close')?.addEventListener('click', closeLab);
     document.querySelector('#spldP4Read')?.addEventListener('click', () => {
-      const readText = activeKey === 'morpheme' ? `${round.prompt}。核心語素是${round.core}，意思類別是${round.category}。` : activeKey === 'sentence' ? '句型重組積木。請把主語、謂語和賓語按正確次序排好。' : activeKey === 'collocation' ? `詞語配對連連看。請為「${round.verb}」選出最合適的詞語。` : activeKey === 'context' ? `上下文偵探。${round.sentence}` : activeKey === 'memory' ? `同反義詞翻牌。請找出兩組意思${round.relation === '同義詞' ? '相近' : '相反'}的詞語。` : `量詞填空大闖關。一＿＿${round.noun}，請選出最合適的量詞。`;
+      const mode = activityMode();
+      const readText = mode === 'morpheme' ? `${round.prompt}。核心語素是${round.core}，意思類別是${round.category}。` : mode === 'sentence' ? '句型重組積木。請把主語、謂語和賓語按正確次序排好。' : mode === 'collocation' ? `詞語配對連連看。請為「${round.verb}」選出最合適的詞語。` : mode === 'context' ? `${currentActivity().title}。${round.sentence}` : mode === 'memory' ? `同反義詞翻牌。請找出兩組意思${round.relation === '同義詞' ? '相近' : '相反'}的詞語。` : `量詞填空大闖關。一＿＿${round.noun}，請選出最合適的量詞。`;
       speak(readText);
     });
     document.querySelector('#spldP4Hint')?.addEventListener('click', () => {
@@ -382,9 +437,9 @@
       feedback(`已切換至${difficultySettings[nextDifficulty].label}：${difficultySettings[nextDifficulty].note}`, 'hint');
       speak(`已切換至${difficultySettings[nextDifficulty].label}練習。`);
     }));
-    if (activeKey === 'morpheme') {
+    if (activityMode() === 'morpheme') {
       document.querySelectorAll('.spld-p4-choice').forEach((button) => button.addEventListener('click', () => chooseMorpheme(button, round)));
-    } else if (activeKey === 'sentence') {
+    } else if (activityMode() === 'sentence') {
       document.querySelectorAll('.spld-p4-block').forEach((button) => button.addEventListener('click', () => {
         if (suppressTouchSentenceClick) return;
         chooseSentenceBlock(button.dataset.block, round);
@@ -407,7 +462,7 @@
           draggedSentenceBlock = '';
         });
       });
-    } else if (activeKey === 'memory') {
+    } else if (activityMode() === 'memory') {
       document.querySelectorAll('[data-memory-card]').forEach((button) => button.addEventListener('click', () => chooseMemoryCard(button.dataset.memoryCard, round)));
       document.querySelector('#spldP4MemoryStudy')?.addEventListener('click', () => {
         if (!memoryPreviewVisible) {
@@ -477,7 +532,8 @@
     if (choice === round.target) {
       result.correct += 1;
       button.classList.add('correct');
-      const successText = activeKey === 'collocation' ? `「${round.verb}${round.target}」是合適的詞語搭配。` : activeKey === 'context' ? `「${round.target}」放進句子後，前後意思就連起來了。` : `「一${round.target}${round.noun}」讀起來正確。`;
+      const mode = activityMode();
+      const successText = mode === 'collocation' ? `「${round.verb}${round.target}」是合適的詞語搭配。` : mode === 'context' ? `✓ 你找到了「${round.target}」這個合適重點。` : `「一${round.target}${round.noun}」讀起來正確。`;
       feedback(`✓ ${successText}`, 'success');
       speak(`答對了。${successText}`);
       wait(nextRound);
@@ -485,7 +541,8 @@
     }
     result.retries += 1;
     button.classList.add('wrong');
-    const retryText = activeKey === 'collocation' ? '先把動詞和每個選項慢慢讀一遍，找最自然的搭配。' : activeKey === 'context' ? '先看圖像和前後句的關鍵詞，再試一次。' : '先把量詞和名詞一起慢慢讀一遍，再試一次。';
+    const mode = activityMode();
+    const retryText = mode === 'collocation' ? '先把動詞和每個選項慢慢讀一遍，找最自然的搭配。' : mode === 'context' ? '先看圖像和前後句的關鍵詞，再試一次。' : '先把量詞和名詞一起慢慢讀一遍，再試一次。';
     feedback(retryText, 'try');
     speak(retryText);
     wait(() => button.classList.remove('wrong'), 720);

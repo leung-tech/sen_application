@@ -55,6 +55,58 @@
         { character: '河', picture: '🌊', prompt: '「河」字和水有關，送到哪個部首籃子？', target: '氵', choices: ['氵', '扌', '艹'], hint: '河水是水；「河」字左邊有三點水氵。', meaning: '💧 水相關字', success: '答對了！「河」有三點水，和水有關。' },
         { character: '花', picture: '🌼', prompt: '「花」字和植物有關，送到哪個部首籃子？', target: '艹', choices: ['艹', '扌', '氵'], hint: '花是植物；「花」字上面有草字頭艹。', meaning: '🌱 植物相關字', success: '答對了！「花」有草字頭，和植物有關。' }
       ]
+    },
+    train: {
+      icon: '🚂', title: '詞語接龍列車', description: '看尾字和意思，選出可以接上車廂的詞語。', focus: '詞彙提取與工作記憶', accent: 'violet',
+      rounds: [
+        { sentence: '「雨＿＿」後面最適合接哪個字，組成和天氣有關的詞？', target: '傘', choices: ['傘', '筆', '床'], hint: '下雨時會用到的是雨傘。', meaning: '🌧️ 雨＋傘＝雨傘', success: '答對了！雨傘已經接上列車。' },
+        { sentence: '「書＿＿」後面最適合接哪個字，組成放課本的詞？', target: '包', choices: ['包', '花', '山'], hint: '課本通常放進書包。', meaning: '🎒 書＋包＝書包', success: '答對了！書包已經接上列車。' },
+        { sentence: '「校＿＿」後面最適合接哪個字，組成上課的地方？', target: '園', choices: ['園', '車', '水'], hint: '同學每天回到校園上課。', meaning: '🏫 校＋園＝校園', success: '答對了！校園已經接上列車。' },
+        { sentence: '「手＿＿」後面最適合接哪個字，組成保暖用品？', target: '套', choices: ['套', '紙', '口'], hint: '天冷時可以戴手套保護雙手。', meaning: '🧤 手＋套＝手套', success: '答對了！手套已經接上列車。' },
+        { sentence: '「火＿＿」後面最適合接哪個字，組成交通工具？', target: '車', choices: ['車', '山', '花'], hint: '火車可以載人到不同地方。', meaning: '🚆 火＋車＝火車', success: '答對了！火車已經接上列車。' },
+        { sentence: '「圖＿＿」後面最適合接哪個字，組成可以閱讀的物品？', target: '書', choices: ['書', '雨', '手'], hint: '圖書館裡有很多圖書。', meaning: '📚 圖＋書＝圖書', success: '答對了！圖書已經接上列車。' },
+        { sentence: '「花＿＿」後面最適合接哪個字，組成開滿植物的地方？', target: '園', choices: ['園', '筆', '車'], hint: '有很多花的地方可以叫花園。', meaning: '🌷 花＋園＝花園', success: '答對了！花園已經接上列車。' },
+        { sentence: '「口＿＿」後面最適合接哪個字，組成用來喝水的物品？', target: '杯', choices: ['杯', '袋', '門'], hint: '喝水時可以使用口杯。', meaning: '🥤 口＋杯＝口杯', success: '答對了！口杯已經接上列車。' }
+      ]
+    },
+    semantic: {
+      icon: '🏝️', title: '語意分類島', description: '看詞語意思，把它送到合適的分類小島。', focus: '語意網絡與詞彙組織', accent: 'green',
+      rounds: [
+        { sentence: '「蘋果」應該送到哪一個分類小島？', target: '水果', choices: ['水果', '動物', '文具'], hint: '蘋果可以吃，是水果。', meaning: '🍎 看意思分類', success: '答對了！蘋果來到水果島。' },
+        { sentence: '「小狗」應該送到哪一個分類小島？', target: '動物', choices: ['動物', '交通工具', '衣服'], hint: '小狗是會走路和叫的動物。', meaning: '🐶 看意思分類', success: '答對了！小狗來到動物島。' },
+        { sentence: '「鉛筆」應該送到哪一個分類小島？', target: '文具', choices: ['文具', '水果', '家具'], hint: '寫字和畫畫會用到鉛筆。', meaning: '✏️ 看意思分類', success: '答對了！鉛筆來到文具島。' },
+        { sentence: '「巴士」應該送到哪一個分類小島？', target: '交通工具', choices: ['交通工具', '植物', '食物'], hint: '巴士可以載人出行。', meaning: '🚌 看意思分類', success: '答對了！巴士來到交通工具島。' },
+        { sentence: '「雨傘」應該送到哪一個分類小島？', target: '日用品', choices: ['日用品', '動物', '水果'], hint: '下雨時可以用雨傘，是生活常用品。', meaning: '☂️ 看意思分類', success: '答對了！雨傘來到日用品島。' },
+        { sentence: '「玫瑰」應該送到哪一個分類小島？', target: '植物', choices: ['植物', '文具', '交通工具'], hint: '玫瑰會生長和開花，是植物。', meaning: '🌹 看意思分類', success: '答對了！玫瑰來到植物島。' },
+        { sentence: '「牛奶」應該送到哪一個分類小島？', target: '飲品', choices: ['飲品', '家具', '衣服'], hint: '牛奶可以喝，是飲品。', meaning: '🥛 看意思分類', success: '答對了！牛奶來到飲品島。' },
+        { sentence: '「外套」應該送到哪一個分類小島？', target: '衣服', choices: ['衣服', '食物', '動物'], hint: '外套穿在身上保暖。', meaning: '🧥 看意思分類', success: '答對了！外套來到衣服島。' }
+      ]
+    },
+    numberline: {
+      icon: '🔢', title: '數字跳格子', description: '在清楚數線上慢慢向前或向後跳，找出答案。', focus: '數感與心理數線', accent: 'blue',
+      rounds: [
+        { sentence: '從 2 向前跳 3 格，會到哪個數字？', target: '5', choices: ['5', '3', '6'], hint: '2 之後數 3、4、5，一共向前跳三格。', meaning: '2 ＋ 3', success: '答對了！你跳到 5。' },
+        { sentence: '從 7 向後跳 2 格，會到哪個數字？', target: '5', choices: ['5', '6', '9'], hint: '7 往回數兩格：6、5。', meaning: '7 － 2', success: '答對了！你跳到 5。' },
+        { sentence: '從 4 向前跳 4 格，會到哪個數字？', target: '8', choices: ['8', '7', '9'], hint: '4 之後數 5、6、7、8。', meaning: '4 ＋ 4', success: '答對了！你跳到 8。' },
+        { sentence: '從 9 向後跳 3 格，會到哪個數字？', target: '6', choices: ['6', '7', '12'], hint: '9 往回數 8、7、6。', meaning: '9 － 3', success: '答對了！你跳到 6。' },
+        { sentence: '從 1 向前跳 6 格，會到哪個數字？', target: '7', choices: ['7', '6', '8'], hint: '從 1 後面逐格數到第六格是 7。', meaning: '1 ＋ 6', success: '答對了！你跳到 7。' },
+        { sentence: '從 10 向後跳 4 格，會到哪個數字？', target: '6', choices: ['6', '5', '14'], hint: '10 往回數 9、8、7、6。', meaning: '10 － 4', success: '答對了！你跳到 6。' },
+        { sentence: '從 3 向前跳 5 格，會到哪個數字？', target: '8', choices: ['8', '7', '9'], hint: '3 後面數 4、5、6、7、8。', meaning: '3 ＋ 5', success: '答對了！你跳到 8。' },
+        { sentence: '從 8 向後跳 5 格，會到哪個數字？', target: '3', choices: ['3', '4', '13'], hint: '8 往回數 7、6、5、4、3。', meaning: '8 － 5', success: '答對了！你跳到 3。' }
+      ]
+    },
+    sentenceTrain: {
+      icon: '📝', title: '句子重組小火車', description: '比較三個短句，選出詞序清楚的一句。', focus: '句法意識與句子理解', accent: 'amber',
+      rounds: [
+        { sentence: '哪一句的詞序最清楚？', target: '小明在操場跑步。', choices: ['小明在操場跑步。', '操場小明跑步在。', '跑步小明在操場。'], hint: '先找誰：小明；再找在哪裏：操場；最後是做甚麼：跑步。', meaning: '🚂 誰＋在哪裏＋做甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '哪一句的詞序最清楚？', target: '姐姐在房間看書。', choices: ['姐姐在房間看書。', '房間姐姐看書在。', '看書姐姐房間在。'], hint: '姐姐是誰，房間是地點，看書是動作。', meaning: '🚂 誰＋在哪裏＋做甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '哪一句的詞序最清楚？', target: '爸爸在廚房煮飯。', choices: ['爸爸在廚房煮飯。', '煮飯爸爸廚房在。', '廚房煮飯在爸爸。'], hint: '爸爸做煮飯這個動作，地點在廚房。', meaning: '🚂 誰＋在哪裏＋做甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '哪一句的詞序最清楚？', target: '小美帶雨傘上學。', choices: ['小美帶雨傘上學。', '雨傘小美上學帶。', '上學帶小美雨傘。'], hint: '先找小美，再找她帶甚麼和要去哪裏。', meaning: '🚂 誰＋帶甚麼＋做甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '哪一句的詞序最清楚？', target: '老師請同學安靜排隊。', choices: ['老師請同學安靜排隊。', '同學老師排隊安靜請。', '安靜老師請排隊同學。'], hint: '老師是提出要求的人，同學是要做事的人。', meaning: '🚂 誰＋請誰＋做甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '哪一句的詞序最清楚？', target: '我們一起整理課本。', choices: ['我們一起整理課本。', '課本一起我們整理。', '整理我們課本一起。'], hint: '我們是做事的人，整理是動作，課本是物品。', meaning: '🚂 誰＋做甚麼＋甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '哪一句的詞序最清楚？', target: '弟弟喜歡吃蘋果。', choices: ['弟弟喜歡吃蘋果。', '蘋果弟弟吃喜歡。', '喜歡蘋果弟弟吃。'], hint: '弟弟是人物，吃是動作，蘋果是食物。', meaning: '🚂 誰＋做甚麼＋甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '哪一句的詞序最清楚？', target: '媽媽幫我找水樽。', choices: ['媽媽幫我找水樽。', '水樽媽媽我找幫。', '幫水樽媽媽找我。'], hint: '媽媽是幫忙的人，水樽是要找的物品。', meaning: '🚂 誰＋幫誰＋做甚麼', success: '答對了！句子列車排得很清楚。' }
+      ]
     }
   };
 
@@ -283,7 +335,7 @@
         activityKey: key,
         category: 'cognition',
         categoryName: '初小 · SpLD 多感官讀寫',
-        tone: ({ assembly: 'purple', spotting: 'orange', rhyme: 'teal', stroke: 'blue', triple: 'pink', radical: 'yellow' })[key] || 'purple',
+        tone: ({ assembly: 'purple', spotting: 'orange', rhyme: 'teal', stroke: 'blue', triple: 'pink', radical: 'yellow', train: 'purple', semantic: 'green', numberline: 'blue', sentenceTrain: 'orange' })[key] || 'purple',
         icon: activity.icon,
         title: activity.title,
         description: activity.description,
