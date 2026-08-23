@@ -1,0 +1,506 @@
+{
+  "standard": "SLI eight safe classroom games: ready screen, optional local recording, semantics, interaction, keyboard, reduced-motion intent and 375px audit",
+  "baseUrl": "https://leung-tech.github.io/sen_application/index.html",
+  "menus": [
+    {
+      "stage": "lower",
+      "coreLoaded": true,
+      "eightLoaded": true,
+      "title": "SLI 理解與表達｜初小 · P1–P3",
+      "guide": "可直接選擇 5 項聲調聽辨、詞彙分類、因果複句及基本句型練習。每項均有教師帶讀準備頁、粵語朗讀、看提示、先停一停、換練習及隨時離開；錄音與回放均可選而且只留在裝置上，不會作聲調、流暢度、聲音或能力評定。",
+      "coreCards": [
+        "sound",
+        "portal",
+        "factory"
+      ],
+      "eightCards": [
+        "tone-park",
+        "cause-workshop"
+      ]
+    },
+    {
+      "stage": "upper",
+      "coreLoaded": true,
+      "eightLoaded": true,
+      "title": "SLI 理解與表達｜高小 · P4–P6",
+      "guide": "可直接選擇 5 項字詞提取、故事敘事、說話準備、情緒語用及多步指示練習。每項均有教師帶讀準備頁、粵語朗讀、看提示、先停一停、換練習及隨時離開；錄音與回放均可選而且只留在裝置上，不會作聲調、流暢度、聲音或能力評定。",
+      "coreCards": [
+        "timeline",
+        "emotion",
+        "courier"
+      ],
+      "eightCards": [
+        "word-net",
+        "pace-route"
+      ]
+    },
+    {
+      "stage": "junior",
+      "coreLoaded": true,
+      "eightLoaded": true,
+      "title": "SLI 理解與表達｜初中 · S1–S3",
+      "guide": "可直接選擇 4 項成語隱喻、對話修補、潛台詞理解及理據組織練習。每項均有教師帶讀準備頁、粵語朗讀、看提示、先停一停、換練習及隨時離開；錄音與回放均可選而且只留在裝置上，不會作聲調、流暢度、聲音或能力評定。",
+      "coreCards": [
+        "subtext",
+        "debate"
+      ],
+      "eightCards": [
+        "idiom-decoder",
+        "repair-station"
+      ]
+    },
+    {
+      "stage": "senior",
+      "coreLoaded": true,
+      "eightLoaded": true,
+      "title": "SLI 理解與表達｜高中 · S4–S6",
+      "guide": "可直接選擇 4 項討論骨架、主持準備、面試表達及服務應變練習。每項均有教師帶讀準備頁、粵語朗讀、看提示、先停一停、換練習及隨時離開；錄音與回放均可選而且只留在裝置上，不會作聲調、流暢度、聲音或能力評定。",
+      "coreCards": [
+        "interview",
+        "resolve"
+      ],
+      "eightCards": [
+        "discussion-scaffold",
+        "voice-use"
+      ]
+    }
+  ],
+  "games": [
+    {
+      "stage": "lower",
+      "game": "tone-park",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "steps": 3,
+        "start": "✓ 我準備好了，開始第一回合",
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "support": true,
+        "sequence": {
+          "choices": 3
+        },
+        "record": {
+          "start": true,
+          "playbackDisabled": true,
+          "privacy": true
+        }
+      },
+      "interaction": {
+        "drag": false,
+        "feedback": "↗ 先由教師讀三張卡；可留意「詩」和「書」的聲線都較平穩而高。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "cause-workshop",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "steps": 3,
+        "start": "✓ 我準備好了，開始第一回合",
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "support": true,
+        "sequence": {
+          "pieces": [
+            {
+              "draggable": true,
+              "width": 84,
+              "height": 48
+            },
+            {
+              "draggable": true,
+              "width": 68,
+              "height": 48
+            },
+            {
+              "draggable": true,
+              "width": 100,
+              "height": 48
+            },
+            {
+              "draggable": true,
+              "width": 68,
+              "height": 48
+            }
+          ],
+          "slots": 4
+        },
+        "record": null
+      },
+      "interaction": {
+        "drag": true,
+        "feedback": "↗ 先放「因為」，再放原因；中間用「所以」帶出結果。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "word-net",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "steps": 3,
+        "start": "✓ 我準備好了，開始第一回合",
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "support": true,
+        "sequence": {
+          "choices": 3
+        },
+        "record": null
+      },
+      "interaction": {
+        "drag": false,
+        "feedback": "↗ 可先把三條線索分成外形、地方和特徵；不需要急著選。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "pace-route",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "steps": 3,
+        "start": "✓ 我準備好了，開始第一回合",
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "support": true,
+        "sequence": {
+          "choices": 3
+        },
+        "record": {
+          "start": true,
+          "playbackDisabled": true,
+          "privacy": true
+        }
+      },
+      "interaction": {
+        "drag": false,
+        "feedback": "↗ 這不是速度挑戰；先用一個自己覺得可行的小方法。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "idiom-decoder",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "steps": 3,
+        "start": "✓ 我準備好了，開始第一回合",
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "support": true,
+        "sequence": {
+          "choices": 3
+        },
+        "record": null
+      },
+      "interaction": {
+        "drag": false,
+        "feedback": "↗ 比較「原本已完成」和「後來加了無關內容」兩個情境線索。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "repair-station",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "steps": 3,
+        "start": "✓ 我準備好了，開始第一回合",
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "support": true,
+        "sequence": {
+          "choices": 3
+        },
+        "record": null
+      },
+      "interaction": {
+        "drag": false,
+        "feedback": "↗ 先確認資料，不用猜定對方的心情或目的。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "discussion-scaffold",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "steps": 3,
+        "start": "✓ 我準備好了，開始第一回合",
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "support": true,
+        "sequence": {
+          "pieces": [
+            {
+              "draggable": true,
+              "width": 244,
+              "height": 48
+            },
+            {
+              "draggable": true,
+              "width": 364,
+              "height": 48
+            },
+            {
+              "draggable": true,
+              "width": 324,
+              "height": 48
+            },
+            {
+              "draggable": true,
+              "width": 388,
+              "height": 48
+            }
+          ],
+          "slots": 4
+        },
+        "record": {
+          "start": true,
+          "playbackDisabled": true,
+          "privacy": true
+        }
+      },
+      "interaction": {
+        "drag": true,
+        "feedback": "↗ 先說你這一回合想討論的立場，再補一個原因、例子或回應，最後收束重點。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "voice-use",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "steps": 3,
+        "start": "✓ 我準備好了，開始第一回合",
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "support": true,
+        "sequence": {
+          "choices": 3
+        },
+        "record": {
+          "start": true,
+          "playbackDisabled": true,
+          "privacy": true
+        }
+      },
+      "interaction": {
+        "drag": false,
+        "feedback": "✓ 你選了一個可調整、可得到支持的準備方式。"
+      }
+    }
+  ],
+  "keyboard": {
+    "tabWrap": true,
+    "shiftWrap": true,
+    "closed": true,
+    "restored": true
+  },
+  "mobile": {
+    "overflow": false,
+    "dialogWidth": 355,
+    "controls": [
+      {
+        "label": "×",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "label": "我的立場：可在教師指引下使用 AI 協助初稿。",
+        "width": 323,
+        "height": 72
+      },
+      {
+        "label": "理據：可幫助整理初步想法。",
+        "width": 244,
+        "height": 48
+      },
+      {
+        "label": "總結：使用時需要清楚規則和個人判斷。",
+        "width": 323,
+        "height": 72
+      },
+      {
+        "label": "例子／回應：仍要核對資料和用自己的語言修改。",
+        "width": 323,
+        "height": 72
+      },
+      {
+        "label": "🎙️ 開始錄音",
+        "width": 122,
+        "height": 46
+      },
+      {
+        "label": "▶ 重聽我的錄音",
+        "width": 150,
+        "height": 46
+      },
+      {
+        "label": "👁 看規則",
+        "width": 102,
+        "height": 51
+      },
+      {
+        "label": "🔊 朗讀本頁",
+        "width": 122,
+        "height": 51
+      },
+      {
+        "label": "☁ 先停一停",
+        "width": 118,
+        "height": 46
+      }
+    ],
+    "narrow": [],
+    "slots": [
+      {
+        "width": 157,
+        "height": 88
+      },
+      {
+        "width": 157,
+        "height": 88
+      },
+      {
+        "width": 157,
+        "height": 88
+      },
+      {
+        "width": 157,
+        "height": 88
+      }
+    ]
+  },
+  "ax": {
+    "dialogs": 1,
+    "statuses": 3,
+    "progressbars": 1
+  },
+  "failureCount": 0,
+  "failures": []
+}
