@@ -280,7 +280,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 這一張的顏色是綠色，下次慢慢看字體。"
+        "feedback": "↗ 這一張的顏色是黃色，下次慢慢看字體。"
       }
     },
     {
@@ -309,7 +309,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 做得好，綠色時才按。"
+        "feedback": "↗ 紅色時先停一停；下一張再試。"
       }
     },
     {
@@ -454,7 +454,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 正確，中央箭頭是向左。"
+        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
       }
     },
     {
@@ -541,7 +541,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 這一張的顏色是綠色，下次慢慢看字體。"
+        "feedback": "✓ 正確，你看的是顏色。"
       }
     },
     {
@@ -802,7 +802,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 正確，你看的是顏色。"
+        "feedback": "↗ 這一張的顏色是黃色，下次慢慢看字體。"
       }
     },
     {
@@ -831,7 +831,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 做得好，綠色時才按。"
+        "feedback": "↗ 紅色時先停一停；下一張再試。"
       }
     },
     {
@@ -976,7 +976,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 中央箭頭是向右；下次只看中間。"
+        "feedback": "✓ 正確，中央箭頭是向左。"
       }
     },
     {
@@ -1063,7 +1063,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 這一張的顏色是黃色，下次慢慢看字體。"
+        "feedback": "✓ 正確，你看的是顏色。"
       }
     },
     {
