@@ -1,9 +1,9 @@
 (() => {
   const GRADE = {
-    lower: { label: '初小 · P1–P3', emotionCount: 3, rounds: 4, jointTargets: 3, jointMode: 'basic', visualMode: 'detail', sensoryCount: 3 },
-    upper: { label: '高小 · P4–P6', emotionCount: 5, rounds: 5, jointTargets: 4, jointMode: 'basic', visualMode: 'switch', sensoryCount: 4 },
-    junior: { label: '初中 · S1–S3', emotionCount: 5, rounds: 6, jointTargets: 4, jointMode: 'compound', visualMode: 'switch', sensoryCount: 5 },
-    senior: { label: '高中 · S4–S6', emotionCount: 6, rounds: 6, jointTargets: 4, jointMode: 'conflict', visualMode: 'switch', sensoryCount: 5 },
+    lower: { label: '初小 · P1–P3', emotionCount: 8, rounds: 8, jointTargets: 8, jointMode: 'basic', visualMode: 'detail', sensoryCount: 8 },
+    upper: { label: '高小 · P4–P6', emotionCount: 8, rounds: 8, jointTargets: 8, jointMode: 'basic', visualMode: 'switch', sensoryCount: 8 },
+    junior: { label: '初中 · S1–S3', emotionCount: 8, rounds: 8, jointTargets: 8, jointMode: 'compound', visualMode: 'switch', sensoryCount: 8 },
+    senior: { label: '高中 · S4–S6', emotionCount: 8, rounds: 8, jointTargets: 8, jointMode: 'conflict', visualMode: 'switch', sensoryCount: 8 },
   };
 
   const GAMES = {

@@ -1,10 +1,10 @@
 (function () {
   'use strict';
   const GRADE = {
-    lower: { label: '初小 · P1–P3', rounds: 3, coinMax: 3, rhythm: ['red'], tea: false },
-    upper: { label: '高小 · P4–P6', rounds: 4, coinMax: 4, rhythm: ['red', 'blue'], tea: false },
-    junior: { label: '初中 · S1–S3', rounds: 4, coinMax: 5, rhythm: ['red', 'blue', 'green'], tea: true },
-    senior: { label: '高中 · S4–S6', rounds: 5, coinMax: 6, rhythm: ['red', 'green', 'blue', 'red'], tea: true },
+    lower: { label: '初小 · P1–P3', rounds: 8, coinMax: 8, rhythm: ['red', 'blue'], tea: false },
+    upper: { label: '高小 · P4–P6', rounds: 8, coinMax: 8, rhythm: ['red', 'blue'], tea: false },
+    junior: { label: '初中 · S1–S3', rounds: 8, coinMax: 8, rhythm: ['red', 'blue', 'green'], tea: true },
+    senior: { label: '高中 · S4–S6', rounds: 8, coinMax: 8, rhythm: ['red', 'green', 'blue', 'red'], tea: true },
   };
   const ACTIVITIES = {
     sort: { icon: '🧺', title: '物品分類小幫手', focus: '概念與分類', description: '看一張圖卡，把物品放到合適的清楚箱子。', prep: ['先看物品圖卡。', '只選一個合適的箱子。', '不確定可以按「看提示」。'] },
