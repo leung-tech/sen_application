@@ -10,8 +10,9 @@
   },
   "sentenceDrop": {
     "supported": true,
-    "placed": "研究小組",
-    "feedback": "✓ 放好了「研究小組」。接著看下一格。"
+    "expected": "作者",
+    "placed": "作者",
+    "feedback": "✓ 放好了「作者」。接著看下一格。"
   },
   "memoryBefore": {
     "cards": 4,
