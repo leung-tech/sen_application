@@ -1,0 +1,187 @@
+{
+  "standard": "Gifted/2e four-stage direct-entry games, preparation, safe low-pressure interactions, keyboard, reduced-motion and 375px audit",
+  "baseUrl": "file:///home/ubuntu/sen_application/index.html",
+  "menus": [
+    {
+      "stage": "lower",
+      "loaded": true,
+      "cards": [
+        "flex-puzzle"
+      ],
+      "hiCard": false
+    },
+    {
+      "stage": "upper",
+      "loaded": true,
+      "cards": [
+        "space-clues"
+      ],
+      "hiCard": false
+    },
+    {
+      "stage": "junior",
+      "loaded": true,
+      "cards": [
+        "team-command"
+      ],
+      "hiCard": false
+    },
+    {
+      "stage": "senior",
+      "loaded": true,
+      "cards": [
+        "values-sandbox"
+      ],
+      "hiCard": false
+    }
+  ],
+  "games": [
+    {
+      "id": "flex-puzzle",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "stage": "lower",
+      "interaction": {
+        "complete": true,
+        "text": "本節回顧 · 不作能力評分完成這次課堂練習你完成了三個短回合。你選過：看提示。 教師可問：「哪一張支持卡令你最容易繼續？」再做一次回到直接選關",
+        "overflow": false
+      }
+    },
+    {
+      "id": "space-clues",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "stage": "upper",
+      "interaction": {
+        "complete": true,
+        "text": "本節回顧 · 不作能力評分完成這次課堂練習你完成了三個短回合。你先用規律找線索，再用中性確認句理解 NPC 想怎樣繼續。教師可問：「還有甚麼句子可以確認對方的需要？」再做一次回到直接選關",
+        "overflow": false
+      }
+    },
+    {
+      "id": "team-command",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "stage": "junior",
+      "interaction": {
+        "complete": true,
+        "text": "本節回顧 · 不作能力評分完成這次課堂練習你完成了三個短回合。你把資料、方案與核對工作安排到互補角色。教師可問：「下次想先邀請組員選哪一個部分？」再做一次回到直接選關",
+        "overflow": false
+      }
+    },
+    {
+      "id": "values-sandbox",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "optional"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "stage": "senior",
+      "interaction": {
+        "complete": true,
+        "text": "本節回顧 · 不作能力評分完成這次課堂練習你完成了一個自選反思流程。在虛構的「城市問題研究員」中，你放進考慮清單的價值是：創造、學習。這不代表任何人生較好；教師可問：「這些價值還可以用甚麼方式表現？」再做一次回到直接選關",
+        "overflow": false
+      }
+    }
+  ],
+  "keyboard": {
+    "tabWrap": true,
+    "shiftWrap": true,
+    "closed": true,
+    "restored": true
+  },
+  "mobile": {
+    "overflow": false,
+    "dialogWidth": 375,
+    "narrow": [],
+    "roleCards": true
+  },
+  "motion": {
+    "transition": "0s"
+  },
+  "failureCount": 0,
+  "failures": []
+}
