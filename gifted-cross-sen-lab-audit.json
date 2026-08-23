@@ -1,6 +1,6 @@
 {
   "standard": "Cross-SEN 2e eight-game direct-entry, preparation, safe interactions, keyboard, reduced-motion and 375px audit",
-  "baseUrl": "file:///home/ubuntu/sen_application/index.html",
+  "baseUrl": "https://leung-tech.github.io/sen_application/index.html",
   "menus": [
     {
       "stage": "lower",
