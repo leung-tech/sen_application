@@ -7,10 +7,7 @@ const baseUrl = process.env.SEN_AUDIT_URL || 'https://leung-tech.github.io/sen_a
 const pathways = [
   { type: '3', id: 'pathway-asd', label: 'ASD 社交情境' },
   { type: '2', id: 'pathway-id', label: 'ID 生活選擇' },
-  { type: 'G', id: 'pathway-gifted', label: 'Giftedness 邏輯解難' },
   { type: 'H', id: 'pathway-hi', label: 'HI 視覺溝通' },
-  { type: 'E', id: 'pathway-ebd', label: 'EBD 情緒調節' },
-  { type: '9', id: 'pathway-mi', label: 'MI 溝通與選擇' },
 ];
 const asdStages = ['lower', 'upper', 'junior', 'senior'];
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -213,7 +210,7 @@ try {
   if (adhd.ax.dialogs.length !== 1 || adhd.ax.statuses < 1) failures.push('ADHD：輔助科技語意樹未顯示預期對話框與狀態。');
   mobile.pathways.forEach((report) => { if (report.overflow || report.narrowTargets.length) failures.push(`${report.label}：375px 行動版出現橫向溢出或小於 40px 的互動控制。`); });
   if (mobile.adhd.overflow || mobile.adhd.narrowTargets.length) failures.push('ADHD：375px 行動版出現橫向溢出或小於 40px 的互動控制。');
-  const output = { standard: 'WCAG 2.1 AA targeted keyboard and screen-reader simulation plus 375px touch-layout review', baseUrl, coverage: { sli: 'SLI 十項直接選關另由 scripts/audit-sli-core-lab.mjs 覆蓋。' }, common, asd, adhd, mobile, failureCount: failures.length, failures };
+  const output = { standard: 'WCAG 2.1 AA targeted keyboard and screen-reader simulation plus 375px touch-layout review', baseUrl, coverage: { sli: 'SLI 十項直接選關由 scripts/audit-sli-core-lab.mjs 覆蓋。', ebdMi: 'EBD／MI 四學段直接選關由 scripts/audit-ebd-mi-p1-lab.mjs 覆蓋。', gifted2e: 'Giftedness／2e 四學段直接選關由 scripts/audit-gifted-2e-lab.mjs 覆蓋。' }, common, asd, adhd, mobile, failureCount: failures.length, failures };
   await writeFile(reportPath, `${JSON.stringify(output, null, 2)}\n`);
   console.log(JSON.stringify({ commonRoutes: common.length, asdStages: asd.length, failureCount: failures.length, failures }, null, 2));
   client.close();
