@@ -1,0 +1,277 @@
+{
+  "checkCount": 27,
+  "failureCount": 0,
+  "failures": [],
+  "results": [
+    {
+      "lab": "p1",
+      "activity": "assembly",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 9,
+      "minTargetHeight": 37,
+      "minTargetWidth": 37
+    },
+    {
+      "lab": "p1",
+      "activity": "spotting",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 37,
+      "minTargetWidth": 37
+    },
+    {
+      "lab": "p1",
+      "activity": "rhyme",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 8,
+      "minTargetHeight": 37,
+      "minTargetWidth": 37
+    },
+    {
+      "lab": "p1",
+      "activity": "stroke",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 6,
+      "minTargetHeight": 37,
+      "minTargetWidth": 37
+    },
+    {
+      "lab": "p1",
+      "activity": "triple",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 8,
+      "minTargetHeight": 37,
+      "minTargetWidth": 37
+    },
+    {
+      "lab": "p1",
+      "activity": "radical",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 37,
+      "minTargetWidth": 37
+    },
+    {
+      "lab": "p4",
+      "activity": "morpheme",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 10,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "p4",
+      "activity": "sentence",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 13,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "p4",
+      "activity": "collocation",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "p4",
+      "activity": "context",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "p4",
+      "activity": "memory",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 9,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "p4",
+      "activity": "classifier",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s1",
+      "activity": "connector",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s1",
+      "activity": "paragraph",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s1",
+      "activity": "redundancy",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s1",
+      "activity": "rhetoric",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s1",
+      "activity": "idiom",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s1",
+      "activity": "mainIdea",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s1",
+      "activity": "vocabulary",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s1",
+      "activity": "grammar",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s4",
+      "activity": "polysemy",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s4",
+      "activity": "loan",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s4",
+      "activity": "argument",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s4",
+      "activity": "functionWord",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s4",
+      "activity": "academic",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "s4",
+      "activity": "surgery",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 343,
+      "toolCount": 7,
+      "minTargetHeight": 44,
+      "minTargetWidth": 44
+    },
+    {
+      "lab": "adhd",
+      "activity": "home",
+      "found": true,
+      "horizontalOverflow": false,
+      "labWidth": 375,
+      "toolCount": 5,
+      "minTargetHeight": 40,
+      "minTargetWidth": 40
+    }
+  ]
+}
