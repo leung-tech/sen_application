@@ -157,7 +157,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 先想一想：接受別人想安靜的需要，能讓互動更舒服。"
+        "feedback": "↗ 先想一想：改變時先知道新的第一步，較容易重新開始。"
       }
     },
     {
@@ -325,7 +325,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "↗ 先想一想：表情和動作可能表示聲音或距離令他不舒服。"
+        "feedback": "↗ 先想一想：道歉並把回合交回對方，是清楚的修復方法。"
       }
     },
     {
@@ -355,13 +355,13 @@
           "clues": 0,
           "targets": 4,
           "distractor": false,
-          "ruleText": "機器人正在看向上面。先看眼睛和手，再找同一方向的寶箱。"
+          "ruleText": "機器人正在看向右邊。先看眼睛和手，再找同一方向的寶箱。"
         }
       },
       "teacherDialogue": null,
       "interaction": {
         "exists": true,
-        "feedback": "✓ 你和機器人一起看向上面。"
+        "feedback": "↗ 再看看機器人的眼睛和手，慢慢找方向。"
       }
     },
     {
@@ -391,7 +391,7 @@
       "teacherDialogue": null,
       "interaction": {
         "exists": true,
-        "feedback": "✓ 對了，你找到了 △。"
+        "feedback": "↗ 再慢慢找一次 △。"
       }
     },
     {
@@ -493,7 +493,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 別人未即時回覆可能在上課、休息或還未看見；清楚而不催迫的跟進較容易得到回應。 可以嘗試說：「可以說：「大家方便在今晚八時前看一看第一部分嗎？」」"
+        "feedback": "✓ 意外改變確實不容易；一個短介紹和一個清楚角色，能把不確定的情況拆成可做的小步。 可以嘗試說：「可以說：「我叫阿明，我剛轉來這隊。第一步我可以做甚麼？」」"
       }
     },
     {
@@ -581,7 +581,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "6",
-        "controls": 13,
+        "controls": 24,
         "unnamed": 0,
         "rule": true,
         "joint": null
@@ -661,7 +661,7 @@
       },
       "interaction": {
         "exists": true,
-        "feedback": "✓ 被更正可能令人尷尬，但先完成眼前一小步能保留選擇；課後仍可用較私人的方式問清楚。 可以嘗試說：「可以說：「我先記下來，課後可以問你哪裡要改嗎？」」"
+        "feedback": "↗ 先想一想：照片和訊息也有個人界線；未問同意便轉發，可能令當事人尷尬或不安全。"
       }
     },
     {
@@ -691,13 +691,13 @@
           "clues": 3,
           "targets": 12,
           "distractor": true,
-          "ruleText": "逐步判讀：先跟眼睛看向上面；手勢正在指向下面，它是干擾線索。最後找環形寶箱。"
+          "ruleText": "逐步判讀：先跟眼睛看向下面；手勢正在指向左邊，它是干擾線索。最後找星形寶箱。"
         }
       },
       "teacherDialogue": null,
       "interaction": {
         "exists": true,
-        "feedback": "↗ 先跟眼睛看向上面；手勢正在指向下面，它是干擾線索。最後找環形寶箱。 不用急，先只找第一步「眼神」。"
+        "feedback": "↗ 先跟眼睛看向下面；手勢正在指向左邊，它是干擾線索。最後找星形寶箱。 不用急，先只找第一步「眼神」。"
       }
     },
     {
@@ -749,7 +749,7 @@
         "progressNow": "0",
         "progressMin": "0",
         "progressMax": "6",
-        "controls": 13,
+        "controls": 24,
         "unnamed": 0,
         "rule": true,
         "joint": null
