@@ -36,3 +36,5 @@
 | ADHD 分級遊戲 | 4 個學段 × 9 項，共 36 個流程，`failureCount: 0`。 |
 | ASD 核心訓練 | 4 個學段 × 5 項，共 20 個流程，`failureCount: 0`。 |
 | ID 生活技能及職業轉銜 | 26 個流程，`failureCount: 0`。 |
+
+上述稽核其後已直接對 [GitHub Pages 公開版本](https://leung-tech.github.io/sen_application/) 重跑，所有結果維持 **`failureCount: 0`**。公開版測試包括跨模組可及性、SLI 十項直接選關、27 項 375px 讀寫手機檢查、ADHD 36 個流程、ASD 20 個流程及 ID 26 個流程。
