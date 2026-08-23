@@ -584,10 +584,10 @@
           return stageFrame(`找出和這張一樣的心情：<span class="sr-only">${round.word}</span>`, `<div class="match-target" aria-label="目標表情 ${round.word}">${round.target}</div><div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
         }
         if (id === 'colour') {
-          return stageFrame(`把「${round.name}」放到${round.label}盒。`, `<div class="sort-scene"><div class="sort-item" aria-label="${round.name}">${round.item}</div><div class="basket-row"><button class="basket red" type="button" data-colour="red"><span class="basket-emoji">🧺</span>紅色盒</button><button class="basket yellow" type="button" data-colour="yellow"><span class="basket-emoji">🧺</span>黃色盒</button><button class="basket blue" type="button" data-colour="blue"><span class="basket-emoji">🧺</span>藍色盒</button></div></div>`);
+          return stageFrame(`把「${round.name}」放到${round.label}盒。`, `<div class="sort-scene"><div class="sort-item" draggable="true" data-sort-item data-sen-drag-source tabindex="0" aria-label="${round.name}，可拖到顏色盒，也可直接按顏色盒">${round.item}</div><div class="basket-row"><button class="basket red" type="button" data-colour="red" data-sen-drop-zone="colour"><span class="basket-emoji">🧺</span>紅色盒</button><button class="basket yellow" type="button" data-colour="yellow" data-sen-drop-zone="colour"><span class="basket-emoji">🧺</span>黃色盒</button><button class="basket blue" type="button" data-colour="blue" data-sen-drop-zone="colour"><span class="basket-emoji">🧺</span>藍色盒</button></div></div>`);
         }
         if (id === 'routine') {
-          return stageFrame(`把「${round.title}」的三個步驟放進小火車。`, `<div class="sequence-board"><div class="sequence-slots" id="sequenceSlots">${[1, 2, 3].map(index => `<div class="sequence-slot"><span class="slot-number">${index}</span><span>第 ${index} 步</span></div>`).join('')}</div><div class="sequence-options" id="sequenceOptions">${shuffle(round.cards).map(([emoji, label], index) => `<button class="sequence-card" type="button" data-index="${index}" data-emoji="${emoji}" data-label="${label}"><span>${emoji}</span>${label}</button>`).join('')}</div></div>`);
+          return stageFrame(`把「${round.title}」的三個步驟放進小火車。`, `<div class="sequence-board"><div class="sequence-slots" id="sequenceSlots">${[1, 2, 3].map(index => `<div class="sequence-slot" data-sequence-slot="${index - 1}" data-sen-drop-zone="routine"><span class="slot-number">${index}</span><span>第 ${index} 步</span></div>`).join('')}</div><div class="sequence-options" id="sequenceOptions">${shuffle(round.cards).map(([emoji, label], index) => `<button class="sequence-card" type="button" data-index="${index}" data-emoji="${emoji}" data-label="${label}" draggable="true" data-sen-drag-source><span>${emoji}</span>${label}</button>`).join('')}</div></div>`);
         }
         if (id === 'listen') {
           return stageFrame(round.listenText || '按喇叭聽一聽，再點選正確圖片。', `<button class="listen-orb" id="listenButton" type="button" aria-label="播放詞語">🔊</button><div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
@@ -650,9 +650,15 @@
           $$('.answer-card').forEach(button => button.addEventListener('click', () => evaluate(button, button.dataset.answer === (id === 'emotion' ? round.answer : id === 'listen' ? round.word : round.answer), button.dataset.answer)));
           if (id === 'listen') $('#listenButton').addEventListener('click', () => speak(round.listenText || round.word));
         }
-        if (id === 'colour') { $$('.basket').forEach(button => button.addEventListener('click', () => evaluate(button, button.dataset.colour === round.color, button.dataset.colour === round.color ? `${round.name}找到了${round.label}盒。` : '這個盒子的顏色不一樣。'))); }
+        if (id === 'colour') {
+          const chooseColour = (button) => evaluate(button, button.dataset.colour === round.color, button.dataset.colour === round.color ? `${round.name}找到了${round.label}盒。` : '這個盒子的顏色不一樣。');
+          const item = $('[data-sort-item]');
+          item?.addEventListener('dragstart', (event) => { try { event.dataTransfer?.setData('text/plain', round.name); } catch {} });
+          $$('.basket').forEach((button) => { button.addEventListener('click', () => chooseColour(button)); button.addEventListener('dragover', (event) => event.preventDefault()); button.addEventListener('drop', (event) => { event.preventDefault(); chooseColour(button); }); });
+        }
         if (id === 'routine') {
-          $$('.sequence-card').forEach(button => button.addEventListener('click', () => {
+          let draggedCard = null;
+          const chooseSequence = (button) => {
             if (gameState.locked || button.disabled) return;
             gameState.selectedSequence.push([button.dataset.emoji, button.dataset.label]); button.disabled = true;
             renderSequenceSlots();
@@ -660,7 +666,9 @@
               const correct = gameState.selectedSequence.every((card, index) => card[1] === round.cards[index][1]);
               if (correct) success('步驟排得很好！你記得了整個流程。'); else failure('我們一起看看哪一步要先做。按提示後再試一次。', () => renderStage());
             }
-          }));
+          };
+          $$('.sequence-card').forEach((button) => { button.addEventListener('click', () => chooseSequence(button)); button.addEventListener('dragstart', (event) => { draggedCard = button; try { event.dataTransfer?.setData('text/plain', button.dataset.label); } catch {} }); button.addEventListener('dragend', () => { draggedCard = null; }); });
+          $$('[data-sequence-slot]').forEach((slot) => { slot.addEventListener('dragover', (event) => event.preventDefault()); slot.addEventListener('drop', (event) => { event.preventDefault(); const next = gameState.selectedSequence.length; if (Number(slot.dataset.sequenceSlot) !== next) { $('#gameFeedback').className = 'feedback try'; $('#gameFeedback').textContent = `先放到第 ${next + 1} 步。`; return; } if (draggedCard) chooseSequence(draggedCard); draggedCard = null; }); });
         }
         if (id === 'fruit') {
           $('#fruitButton').addEventListener('click', () => { if (gameState.locked) return; gameState.fruitCount = Math.min(6, gameState.fruitCount + 1); renderFruit(); makeTone(540, .07, .015); });
