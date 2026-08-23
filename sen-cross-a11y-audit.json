@@ -1,0 +1,316 @@
+{
+  "standard": "WCAG 2.1 AA targeted keyboard and screen-reader simulation plus 375px touch-layout review",
+  "baseUrl": "file:///home/ubuntu/sen_application/index.html",
+  "coverage": {
+    "sli": "SLI 十項直接選關另由 scripts/audit-sli-core-lab.mjs 覆蓋。"
+  },
+  "common": [
+    {
+      "label": "ASD 社交情境｜lower",
+      "opened": {
+        "pathway": true,
+        "stage": true,
+        "card": true
+      },
+      "initial": {
+        "activityExists": true,
+        "stageTitleFocused": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "buttons": 5,
+        "unnamed": 0,
+        "nativeButtons": true,
+        "firstAnswerName": "🗣️\n我可以一起玩嗎？",
+        "hintExists": true
+      },
+      "feedback": "💡 問句可以讓同學有時間回應。"
+    },
+    {
+      "label": "ID 生活選擇｜lower",
+      "opened": {
+        "pathway": true,
+        "stage": true,
+        "card": true
+      },
+      "initial": {
+        "activityExists": true,
+        "stageTitleFocused": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "buttons": 5,
+        "unnamed": 0,
+        "nativeButtons": true,
+        "firstAnswerName": "📘\n功課冊和鉛筆",
+        "hintExists": true
+      },
+      "feedback": "💡 想一想老師剛才說要用甚麼。"
+    },
+    {
+      "label": "Giftedness 邏輯解難｜lower",
+      "opened": {
+        "pathway": true,
+        "stage": true,
+        "card": true
+      },
+      "initial": {
+        "activityExists": true,
+        "stageTitleFocused": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "buttons": 5,
+        "unnamed": 0,
+        "nativeButtons": true,
+        "firstAnswerName": "🔢\n30",
+        "hintExists": true
+      },
+      "feedback": "💡 先看增加了多少：+4、+6、+8，下一次會加多少？"
+    },
+    {
+      "label": "HI 視覺溝通｜lower",
+      "opened": {
+        "pathway": true,
+        "stage": true,
+        "card": true
+      },
+      "initial": {
+        "activityExists": true,
+        "stageTitleFocused": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "buttons": 5,
+        "unnamed": 0,
+        "nativeButtons": true,
+        "firstAnswerName": "✏️\n準備寫字",
+        "hintExists": true
+      },
+      "feedback": "💡 先看目前的圖示，再看它右邊的下一張圖。"
+    },
+    {
+      "label": "EBD 情緒調節｜lower",
+      "opened": {
+        "pathway": true,
+        "stage": true,
+        "card": true
+      },
+      "initial": {
+        "activityExists": true,
+        "stageTitleFocused": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "buttons": 5,
+        "unnamed": 0,
+        "nativeButtons": true,
+        "firstAnswerName": "😌\n平靜",
+        "hintExists": true
+      },
+      "feedback": "💡 慢慢呼吸和放鬆肩膀常是平靜的訊號。"
+    },
+    {
+      "label": "MI 溝通與選擇｜lower",
+      "opened": {
+        "pathway": true,
+        "stage": true,
+        "card": true
+      },
+      "initial": {
+        "activityExists": true,
+        "stageTitleFocused": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "buttons": 5,
+        "unnamed": 0,
+        "nativeButtons": true,
+        "firstAnswerName": "🥤\n我想喝水",
+        "hintExists": true
+      },
+      "feedback": "💡 找有水杯圖案和「喝水」意思的卡。"
+    }
+  ],
+  "asd": [
+    {
+      "label": "ASD 社交情境｜lower",
+      "opened": {
+        "pathway": true,
+        "stage": true,
+        "card": true
+      },
+      "initial": {
+        "activityExists": true,
+        "stageTitleFocused": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "buttons": 5,
+        "unnamed": 0,
+        "nativeButtons": true,
+        "firstAnswerName": "🗣️\n我可以一起玩嗎？",
+        "hintExists": true
+      },
+      "feedback": "💡 問句可以讓同學有時間回應。"
+    },
+    {
+      "label": "ASD 社交情境｜upper",
+      "opened": {
+        "pathway": true,
+        "stage": true,
+        "card": true
+      },
+      "initial": {
+        "activityExists": true,
+        "stageTitleFocused": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "buttons": 5,
+        "unnamed": 0,
+        "nativeButtons": true,
+        "firstAnswerName": "🎲\n下一局我可以一起玩嗎？",
+        "hintExists": true
+      },
+      "feedback": "💡 說「下一局」表示你願意等候。"
+    },
+    {
+      "label": "ASD 社交情境｜junior",
+      "opened": {
+        "pathway": true,
+        "stage": true,
+        "card": true
+      },
+      "initial": {
+        "activityExists": true,
+        "stageTitleFocused": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "buttons": 5,
+        "unnamed": 0,
+        "nativeButtons": true,
+        "firstAnswerName": "🙋\n我想參加，可以幫哪一部分？",
+        "hintExists": true
+      },
+      "feedback": "💡 先表達想參加，再問如何協助。"
+    },
+    {
+      "label": "ASD 社交情境｜senior",
+      "opened": {
+        "pathway": true,
+        "stage": true,
+        "card": true
+      },
+      "initial": {
+        "activityExists": true,
+        "stageTitleFocused": true,
+        "feedbackRole": "status",
+        "feedbackLive": "polite",
+        "feedbackAtomic": "true",
+        "buttons": 5,
+        "unnamed": 0,
+        "nativeButtons": true,
+        "firstAnswerName": "🗣️\n早晨，我已到達，請問我先做哪一項？",
+        "hintExists": true
+      },
+      "feedback": "💡 問好、報到、問下一步是清楚開始。"
+    }
+  ],
+  "adhd": {
+    "opened": {
+      "pathway": true,
+      "stage": true,
+      "card": true
+    },
+    "launch": true,
+    "home": {
+      "dialog": true,
+      "role": "dialog",
+      "modal": "true",
+      "name": "ADHD 專注實驗室",
+      "focusInside": true,
+      "controls": 5,
+      "unnamed": 0
+    },
+    "focusCycle": {
+      "tabWraps": true,
+      "shiftTabWraps": true
+    },
+    "escape": {
+      "closed": true,
+      "restored": true
+    },
+    "close": {
+      "closed": true,
+      "restored": true
+    },
+    "trial": {
+      "feedbackLive": "polite",
+      "feedbackAtomic": "true",
+      "feedbackText": "↗ 先看規則，再慢慢試下一張。",
+      "progressRole": "progressbar",
+      "progressNow": "0",
+      "progressMin": "0",
+      "progressMax": "8"
+    },
+    "ax": {
+      "dialogs": [
+        "ADHD 專注實驗室"
+      ],
+      "statuses": 3,
+      "progressbars": 1
+    }
+  },
+  "mobile": {
+    "width": 375,
+    "height": 812,
+    "pathways": [
+      {
+        "label": "ASD 社交情境",
+        "overflow": false,
+        "narrowTargets": [],
+        "controlCount": 5
+      },
+      {
+        "label": "ID 生活選擇",
+        "overflow": false,
+        "narrowTargets": [],
+        "controlCount": 5
+      },
+      {
+        "label": "Giftedness 邏輯解難",
+        "overflow": false,
+        "narrowTargets": [],
+        "controlCount": 5
+      },
+      {
+        "label": "HI 視覺溝通",
+        "overflow": false,
+        "narrowTargets": [],
+        "controlCount": 5
+      },
+      {
+        "label": "EBD 情緒調節",
+        "overflow": false,
+        "narrowTargets": [],
+        "controlCount": 5
+      },
+      {
+        "label": "MI 溝通與選擇",
+        "overflow": false,
+        "narrowTargets": [],
+        "controlCount": 5
+      }
+    ],
+    "adhd": {
+      "overflow": false,
+      "dialogWidth": 339,
+      "narrowTargets": [],
+      "controlCount": 5
+    }
+  },
+  "failureCount": 0,
+  "failures": []
+}
