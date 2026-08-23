@@ -1,0 +1,325 @@
+{
+  "standard": "Cross-SEN 2e eight-game direct-entry, preparation, safe interactions, keyboard, reduced-motion and 375px audit",
+  "baseUrl": "file:///home/ubuntu/sen_application/index.html",
+  "menus": [
+    {
+      "stage": "lower",
+      "loaded": true,
+      "cards": [
+        "quiet-lab",
+        "concept-blocks"
+      ],
+      "hiCard": false
+    },
+    {
+      "stage": "upper",
+      "loaded": true,
+      "cards": [
+        "case-workshop",
+        "memory-map"
+      ],
+      "hiCard": false
+    },
+    {
+      "stage": "junior",
+      "loaded": true,
+      "cards": [
+        "thought-workbench",
+        "social-decoder"
+      ],
+      "hiCard": false
+    },
+    {
+      "stage": "senior",
+      "loaded": true,
+      "cards": [
+        "story-editor",
+        "community-sandbox"
+      ],
+      "hiCard": false
+    }
+  ],
+  "games": [
+    {
+      "stage": "lower",
+      "id": "quiet-lab",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "本節回顧 · 不作能力評分完成這次課堂練習你完成了三個短回合。你使用了「靜音＋靜態提示」完成安靜觀察。教師可問：「下次你還想保留哪一種提示方式？」再做一次回到直接選關"
+      }
+    },
+    {
+      "stage": "lower",
+      "id": "concept-blocks",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "本節回顧 · 不作能力評分完成這次課堂練習你完成了三個短回合。你把概念卡連到圖像與關係鏈。教師可問：「哪一張圖像最幫助你記住這個詞語？」再做一次回到直接選關"
+      }
+    },
+    {
+      "stage": "upper",
+      "id": "case-workshop",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "本節回顧 · 不作能力評分完成這次課堂練習你完成了三個短回合。你查看規則、處境和影響資料，再找出一個可討論的下一步。教師可問：「還有哪一張資料卡值得再看一次？」再做一次回到直接選關"
+      }
+    },
+    {
+      "stage": "upper",
+      "id": "memory-map",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "本節回顧 · 不作能力評分完成這次課堂練習你完成了三個短回合。你把學習線索放到圖像房間。教師可問：「你想保留圖像、首字、色彩、朗讀，還是自己的紙筆方式？」再做一次回到直接選關"
+      }
+    },
+    {
+      "stage": "junior",
+      "id": "thought-workbench",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "本節回顧 · 不作能力評分完成這次課堂練習你完成了三個短回合。你用虛構角色整理了事實、可能想法和支持選項。教師可問：「哪一類線索最能幫角色決定下一步？」再做一次回到直接選關"
+      }
+    },
+    {
+      "stage": "junior",
+      "id": "social-decoder",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "本節回顧 · 不作能力評分完成這次課堂練習你完成了三個短回合。你查看對話的明說內容、情境線索與多個可能意思，再選擇中性確認句。教師可問：「還有甚麼問題可以幫助大家澄清？」再做一次回到直接選關"
+      }
+    },
+    {
+      "stage": "senior",
+      "id": "story-editor",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "本節回顧 · 不作能力評分完成這次課堂練習你完成了三個短回合。你從虛構角色的作品、學習過程與支持選項中整理故事卡。教師可問：「這個故事還可以怎樣修訂？」再做一次回到直接選關"
+      }
+    },
+    {
+      "stage": "senior",
+      "id": "community-sandbox",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "本節回顧 · 不作能力評分完成這次課堂練習你完成了三個短回合。你在虛構社區中選擇了可試行方案與下一個要問的問題。教師可問：「還想知道哪一位使用者的觀點？」再做一次回到直接選關"
+      }
+    }
+  ],
+  "keyboard": {
+    "tabWrap": true,
+    "shiftWrap": true,
+    "closed": true,
+    "restored": true
+  },
+  "mobile": {
+    "overflow": false,
+    "dialogWidth": 375,
+    "narrow": [],
+    "dragCards": true
+  },
+  "motion": {
+    "transition": "0s"
+  },
+  "failureCount": 0,
+  "failures": []
+}
