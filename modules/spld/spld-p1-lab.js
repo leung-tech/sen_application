@@ -61,6 +61,7 @@
   let active = null;
   let roundIndex = 0;
   let selectedParts = ['', ''];
+  let draggedPart = null;
   let selectedStrokes = [];
   let strokeOptions = [];
   let result = { correct: 0, retries: 0, hints: 0 };
@@ -124,7 +125,7 @@
     const radicalBaskets = { '扌': ['✋', '手部動作'], '氵': ['💧', '水相關'], '艹': ['🌱', '植物相關'] };
 
     if (active === activities.assembly) {
-      activityMarkup = `<div class="spld-assembly-guide"><span>目標字</span><strong>${round.target}</strong><small>${round.guide} 結構</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-assembly-slots" aria-label="部件拼盤"><button type="button" class="spld-part-slot" data-slot="0"><span>左邊</span><strong>${selectedParts[0] || '？'}</strong></button><span class="spld-plus">＋</span><button type="button" class="spld-part-slot" data-slot="1"><span>右邊</span><strong>${selectedParts[1] || '？'}</strong></button></div><p class="spld-lab-instruction">先按一個部件，它會放進第一個空格；需要時可按空格換位置。</p><div class="spld-part-bank">${round.parts.map((part) => `<button type="button" class="spld-part-piece ${selectedParts.includes(part) ? 'used' : ''}" data-part="${part}" ${selectedParts.includes(part) ? 'disabled' : ''}>${part}</button>`).join('')}</div>`;
+      activityMarkup = `<div class="spld-assembly-guide"><span>目標字</span><strong>${round.target}</strong><small>${round.guide} 結構</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-assembly-slots" aria-label="部件拼盤"><button type="button" class="spld-part-slot" data-slot="0" data-sen-drop-zone="part"><span>左邊</span><strong>${selectedParts[0] || '？'}</strong></button><span class="spld-plus">＋</span><button type="button" class="spld-part-slot" data-slot="1" data-sen-drop-zone="part"><span>右邊</span><strong>${selectedParts[1] || '？'}</strong></button></div><p class="spld-lab-instruction">可把部件拖到左右位置；也可按一個部件，它會放進下一個空格。</p><div class="spld-part-bank">${round.parts.map((part) => `<button type="button" class="spld-part-piece ${selectedParts.includes(part) ? 'used' : ''}" data-part="${part}" draggable="${!selectedParts.includes(part)}" data-sen-drag-source ${selectedParts.includes(part) ? 'disabled' : ''}>${part}</button>`).join('')}</div>`;
     } else if (active === activities.stroke) {
       activityMarkup = `<div class="spld-stroke-target"><span>目標字</span><strong>${round.target}</strong><small>${round.steps.length} 筆</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-stroke-slots">${round.steps.map((_, index) => `<div class="spld-stroke-slot ${selectedStrokes[index] ? 'filled' : ''}"><b>${index + 1}</b><strong>${selectedStrokes[index] || '？'}</strong></div>`).join('')}</div><div class="spld-stroke-options">${strokeOptions.map((step) => `<button type="button" class="spld-stroke-option ${selectedStrokes.includes(step) ? 'used' : ''}" data-stroke="${step}" ${selectedStrokes.includes(step) ? 'disabled' : ''}>${step}</button>`).join('')}</div>`;
     } else if (active === activities.triple) {
@@ -149,7 +150,15 @@
     document.querySelector('#spldLabHint')?.addEventListener('click', () => { result.hints += 1; feedback(`💡 ${round.hint}`, 'hint'); speak(round.hint); });
     document.querySelector('#spldLabBack')?.addEventListener('click', openMenu);
     if (active === activities.assembly) {
-      document.querySelectorAll('.spld-part-piece').forEach((button) => button.addEventListener('click', () => choosePart(button.dataset.part)));
+      document.querySelectorAll('.spld-part-piece').forEach((button) => {
+        button.addEventListener('click', () => choosePart(button.dataset.part));
+        button.addEventListener('dragstart', (event) => { draggedPart = button.dataset.part; try { event.dataTransfer?.setData('text/plain', draggedPart); } catch {} });
+        button.addEventListener('dragend', () => { draggedPart = null; });
+      });
+      document.querySelectorAll('.spld-part-slot').forEach((slot) => {
+        slot.addEventListener('dragover', (event) => event.preventDefault());
+        slot.addEventListener('drop', (event) => { event.preventDefault(); const part = event.dataTransfer?.getData('text/plain') || draggedPart; if (part) choosePart(part, Number(slot.dataset.slot)); draggedPart = null; });
+      });
       document.querySelectorAll('.spld-part-slot').forEach((button) => button.addEventListener('click', () => clearSlot(Number(button.dataset.slot))));
     } else if (active === activities.stroke) {
       document.querySelectorAll('.spld-stroke-option').forEach((button) => button.addEventListener('click', () => chooseStroke(button.dataset.stroke)));
@@ -160,8 +169,9 @@
     }
   }
 
-  function choosePart(part) {
-    const slot = selectedParts.findIndex((value) => !value);
+  function choosePart(part, preferredSlot = null) {
+    if (selectedParts.includes(part)) return;
+    const slot = Number.isInteger(preferredSlot) && !selectedParts[preferredSlot] ? preferredSlot : selectedParts.findIndex((value) => !value);
     if (slot === -1) return;
     selectedParts[slot] = part;
     if (selectedParts.length === 2 && selectedParts.every(Boolean)) {
