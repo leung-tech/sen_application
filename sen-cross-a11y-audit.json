@@ -1,6 +1,6 @@
 {
   "standard": "WCAG 2.1 AA targeted keyboard and screen-reader simulation plus 375px touch-layout review",
-  "baseUrl": "file:///home/ubuntu/sen_application/index.html",
+  "baseUrl": "https://leung-tech.github.io/sen_application/index.html",
   "coverage": {
     "sli": "SLI 十項直接選關另由 scripts/audit-sli-core-lab.mjs 覆蓋。"
   },
