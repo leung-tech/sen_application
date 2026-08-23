@@ -413,7 +413,7 @@
           }
           if (activePathway === '2') {
             $('#gamesTitle').textContent = `${pathwayLabels[activePathway]}｜${stageProfiles[activeStage].label}`;
-            $('#stageGuide').textContent = activeStage === 'junior' || activeStage === 'senior' ? '可直接選擇 ID 核心訓練及兩項分齡生活遊戲，包括工作步驟、日程安排、超市理貨與緊急求助；或進入十關實用生活練習。每項均提供廣東話旁白、大型操作區及溫和重試提示。' : '可直接選擇 ID 核心訓練及兩項分齡生活遊戲，包括顏色配對、天氣自理、硬幣付款與社區標示；或進入十關實用生活練習。每項均提供廣東話旁白、大型操作區及溫和重試提示。';
+            $('#stageGuide').textContent = activeStage === 'junior' || activeStage === 'senior' ? '可直接選擇 ID 核心訓練、兩組分齡生活遊戲及十關實用生活練習；初中涵蓋個人衛生、點數付款、工作步驟與日程，高中涵蓋職業安全、包裝、理貨與緊急求助。每項均提供廣東話旁白、大型操作區及溫和重試提示。' : '可直接選擇 ID 核心訓練及兩組分齡生活遊戲；初小涵蓋安全物件、制服角色、顏色配對與自理，高小涵蓋拍卡、圖示導航、硬幣付款與社區標示。每項均提供廣東話旁白、大型操作區及溫和重試提示。';
             return;
           }
           if (activePathway === '8' && (window.SLI_CORE_LAB || window.SLI_EIGHT_GAMES_LAB)) {
@@ -483,8 +483,9 @@
         const asdEightDirectCard = activePathway === '3' ? `<button class="game-card asd-eight-direct-card" type="button" data-asd-eight-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">🧭</div><h3>八項 ASD 分齡社交遊戲</h3><p>本學段可直接玩兩項新遊戲：眼神與情緒、高小讀心與距離、初中潛台詞與協作，或高中面試與應變；全程提供關卡、溫和計時與暫停。</p><div class="support-badge-row" aria-label="ASD 分齡社交遊戲內容"><span class="support-badge">直接選關</span><span class="support-badge">鍵盤操作</span><span class="support-badge">可選靜音</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項新遊戲</span></button>` : '';
         const idDirectCard = activePathway === '2' ? `<button class="game-card id-core-direct-card" type="button" data-id-core-direct="true" data-tone="blue"><div class="game-visual" aria-hidden="true">🧺</div><h3>生活技能直接選關</h3><p>分類、付款、生活步驟、手眼協調與節奏模仿；${activeStage === 'junior' || activeStage === 'senior' ? '另有成人化茶餐廳打工模擬。' : '每次只做一個清楚小步驟。'}</p><div class="support-badge-row" aria-label="ID 核心訓練內容"><span class="support-badge">直接選關</span><span class="support-badge">超大操作</span><span class="support-badge">可選朗讀</span></div><span class="tag">${stageProfiles[activeStage].label} · ${activeStage === 'junior' || activeStage === 'senior' ? '6' : '5'} 項遊戲</span></button>` : '';
          const idEightDirectCard = activePathway === '2' ? `<button class="game-card id-eight-direct-card" type="button" data-id-eight-direct="true" data-tone="blue"><div class="game-visual" aria-hidden="true">🧩</div><h3>八項 ID 分齡生活遊戲</h3><p>初小顏色與自理、高小硬幣與標示、初中工作與日程，或高中理貨與緊急求助；全程配有廣東話旁白、大型操作區和可重試提示。</p><div class="support-badge-row" aria-label="ID 分齡生活遊戲內容"><span class="support-badge">直接選關</span><span class="support-badge">大型操作</span><span class="support-badge">廣東話旁白</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項新遊戲</span></button>` : '';
+         const idAdvancedDirectCard = activePathway === '2' ? `<button class="game-card id-advanced-direct-card" type="button" data-id-advanced-direct="true" data-tone="blue"><div class="game-visual" aria-hidden="true">🦺</div><h3>新增八項 ID 安全與工作遊戲</h3><p>初小家居安全與制服求助、高小拍卡與圖示導航、初中洗頭與點數付款，或高中碎紙安全與禮品包裝；全程提供慢速旁白、大圖示和溫和重試。</p><div class="support-badge-row" aria-label="ID 安全與工作遊戲內容"><span class="support-badge">直接選關</span><span class="support-badge">安全步驟</span><span class="support-badge">可拖放或點選</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項新增遊戲</span></button>` : '';
         const hiEightDirectCard = activePathway === 'H' ? `<button class="game-card hi-eight-direct-card" type="button" data-hi-eight-direct="true" data-tone="teal"><div class="game-visual" aria-hidden="true">👂</div><h3>八項 HI 分齡視覺聆聽遊戲</h3><p>初小音高與聲調、高小口型與表情、初中降噪與自我倡導，或高中接單與考場輔具；全部音訊皆可選，視覺線索永遠保留。</p><div class="support-badge-row" aria-label="HI 分齡視覺聆聽遊戲內容"><span class="support-badge">直接選關</span><span class="support-badge">視覺優先</span><span class="support-badge">可選音訊</span></div><span class="tag">${stageProfiles[activeStage].label} · 2 項新遊戲</span></button>` : '';
-        $('#gameGrid').innerHTML = asdDirectCard + asdEightDirectCard + adhdDirectCard + idDirectCard + idEightDirectCard + hiEightDirectCard + games.map(game => {
+        $('#gameGrid').innerHTML = asdDirectCard + asdEightDirectCard + adhdDirectCard + idDirectCard + idEightDirectCard + idAdvancedDirectCard + hiEightDirectCard + games.map(game => {
           const badges = activePathway ? renderSupportBadges(game.supports) : '<span class="support-badge">一般活動</span>';
           const label = activePathway ? '本專屬模組類別' : '一般活動類別';
           const directActivity = game.ebdMiActivity ? ` data-ebdmi-track="${game.ebdMiTrack}" data-ebdmi-activity="${game.ebdMiActivity}"` : game.giftedEightActivity ? ` data-gifted-eight-activity="${game.giftedEightActivity}"` : game.gifted2eActivity ? ` data-gifted2e-activity="${game.gifted2eActivity}"` : game.giftedCrossActivity ? ` data-gifted-cross-activity="${game.giftedCrossActivity}"` : game.sliEightActivityKey ? ` data-sli-eight-activity="${game.sliEightActivityKey}"` : game.sliActivityKey ? ` data-sli-activity="${game.sliActivityKey}"` : game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
@@ -514,6 +515,11 @@
           if (card.dataset.idEightDirect) {
             if (!window.ID_EIGHT_GAMES_LAB) { showToast('ID 分齡生活遊戲正在準備中，請稍後再試。'); return; }
             window.ID_EIGHT_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: card });
+            return;
+          }
+          if (card.dataset.idAdvancedDirect) {
+            if (!window.ID_ADVANCED_GAMES_LAB) { showToast('ID 安全與工作遊戲正在準備中，請稍後再試。'); return; }
+            window.ID_ADVANCED_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: card });
             return;
           }
           if (card.dataset.hiEightDirect) {

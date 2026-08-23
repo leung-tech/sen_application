@@ -3,7 +3,7 @@
   "entryUi": "../../index.html",
   "modules": [
     { "id": "SpLD", "entry": "spld/index.html", "stages": { "P1–P3": "spld/p1-p3.html", "P4–P6": "spld/p4-p6.html", "S1–S3": "spld/s1-s3.html", "S4–S6": "spld/s4-s6.html" }, "data": ["spld/spld-stage-data.js", "spld/spld-p1-lab.js", "spld/spld-p4-lab.js", "spld/spld-s1-lab.js", "spld/spld-s4-lab.js"] },
-    { "id": "ID", "entry": "id/index.html", "data": ["id/id-stage-data.js", "id/id-core-lab.js", "id/id-eight-games-lab.js"] },
+    { "id": "ID", "entry": "id/index.html", "data": ["id/id-stage-data.js", "id/id-core-lab.js", "id/id-eight-games-lab.js", "id/id-advanced-games-lab.js"] },
     { "id": "ASD", "entry": "asd/index.html", "data": ["asd/asd-stage-data.js", "asd/asd-core-lab.js", "asd/asd-eight-games-lab.js"] },
     { "id": "ADHD", "entry": "adhd/index.html", "data": ["adhd/adhd-stage-data.js", "adhd/adhd-focus-lab.js"] },
     { "id": "EBD", "entry": "ebd/index.html", "data": ["ebd/ebd-stage-data.js"] },
