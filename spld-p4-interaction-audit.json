@@ -1,0 +1,43 @@
+{
+  "standard": "P4 challenge bank, drag-or-click sentence assembly and staged memory matching",
+  "challenge": {
+    "root": true,
+    "progress": "第 1 / 10 關",
+    "blocks": 3,
+    "slots": 3,
+    "preview": "完成三格後，這裡會出現完整句子。",
+    "dragNote": "拖拉或點選均可。句子會在三格都完成後才顯示。"
+  },
+  "sentenceDrop": {
+    "supported": true,
+    "placed": "研究小組",
+    "feedback": "✓ 放好了「研究小組」。接著看下一格。"
+  },
+  "memoryBefore": {
+    "cards": 4,
+    "disabled": 4,
+    "hidden": true,
+    "studyButton": "👀 翻開全部詞語卡"
+  },
+  "memoryStudy": {
+    "revealed": true,
+    "stillDisabled": 4,
+    "startButton": "我記好了，開始配對"
+  },
+  "memoryMatch": {
+    "hiddenAgain": true,
+    "enabledCards": 4,
+    "studyButtonGone": true
+  },
+  "style": {
+    "gap": "16px",
+    "feedbackRole": "status",
+    "feedbackLive": "polite"
+  },
+  "reducedMotion": {
+    "slotTransition": "1e-05s",
+    "blockTransition": "1e-05s"
+  },
+  "failureCount": 0,
+  "failures": []
+}
