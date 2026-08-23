@@ -37,4 +37,4 @@
 
 ## 公開驗證紀錄
 
-公開與本機稽核覆蓋四個學段、EBD／MI 各四項，共 **32 個直接選關**。稽核包括三步教師帶讀、動態狀態語意、進度列、低壓支持、拖拉或點選互動、Tab／Shift+Tab 焦點循環、Escape、焦點回復以及 375px 手機版。結果詳見 [`ebd-mi-p1-lab-audit.json`](ebd-mi-p1-lab-audit.json)。
+公開 GitHub Pages 與本機稽核覆蓋四個學段、EBD／MI 各四項，共 **32 個直接選關**。稽核包括三步教師帶讀、動態狀態語意、進度列、低壓支持、拖拉或點選互動、Tab／Shift+Tab 焦點循環、Escape、焦點回復以及 375px 手機版；公開版本結果為 **`failureCount: 0`**。結果詳見 [`ebd-mi-p1-lab-audit.json`](ebd-mi-p1-lab-audit.json)。
