@@ -125,7 +125,7 @@ try {
   })()`);
 
   const failures = [];
-  if (!challenge.root || !challenge.progress.includes('/ 10') || challenge.blocks !== 3 || challenge.slots !== 3 || !challenge.preview.includes('完成三格後') || !challenge.dragNote.includes('拖拉或點選')) failures.push('句型重組挑戰難度未載入完整題庫或拖拉操作說明。');
+  if (!challenge.root || !challenge.progress.includes('/ 10') || challenge.blocks !== 3 || challenge.slots !== 3 || !challenge.preview.includes('完成三格後') || (!challenge.dragNote.includes('拖拉或點選') && !challenge.dragNote.includes('手指拖動'))) failures.push('句型重組挑戰難度未載入完整題庫或拖拉操作說明。');
   if (!sentenceDrop.supported || !sentenceDrop.expected || sentenceDrop.placed !== sentenceDrop.expected || !sentenceDrop.feedback) failures.push('句型積木拖拉至句法位置的互動或回饋不完整。');
   if (memoryBefore.cards !== 4 || memoryBefore.disabled !== 4 || !memoryBefore.hidden || !memoryBefore.studyButton.includes('翻開全部')) failures.push('翻卡遊戲未從全部遮蓋的記憶準備步驟開始。');
   if (!memoryStudy.revealed || memoryStudy.stillDisabled !== 4 || !memoryStudy.startButton.includes('我記好了')) failures.push('翻卡遊戲的全部翻開記憶步驟不完整。');
