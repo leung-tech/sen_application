@@ -72,16 +72,16 @@
         { level: 'advanced', subject: '導師', verb: '安排', object: '小組討論的時間', hint: '導師是安排的人；安排的是小組討論的時間。' },
         { level: 'advanced', subject: '家長', verb: '支持', object: '子女培養閱讀習慣', hint: '家長作出支持；支持的是子女培養閱讀習慣。' },
         { level: 'advanced', subject: '學校', verb: '推行', object: '環保回收計畫', hint: '學校是推行者；推行的是環保回收計畫。' },
-        { level: 'challenge', subject: '研究小組', verb: '分析', object: '調查所得的數據', hint: '誰在做分析？研究小組；分析甚麼？調查所得的數據。' },
         { level: 'challenge', subject: '作者', verb: '提出', object: '明確的論點', hint: '作者是主語；提出的是希望讀者接受的論點。' },
         { level: 'challenge', subject: '學生', verb: '比較', object: '兩種解題策略', hint: '學生做比較；比較的是兩種解題策略。' },
-        { level: 'challenge', subject: '班級', verb: '制定', object: '實踐環保的計畫', hint: '班級是做計畫的人；制定的是一個實踐環保的計畫。' },
         { level: 'challenge', subject: '圖表', verb: '顯示', object: '閱讀習慣的變化', hint: '圖表是主語；它顯示的是閱讀習慣的變化。' },
+        { level: 'challenge', subject: '班級', verb: '制定', object: '實踐環保的計畫', hint: '班級是做計畫的人；制定的是一個實踐環保的計畫。' },
         { level: 'challenge', subject: '義工', verb: '協助', object: '社區活動的安排', hint: '義工做協助；協助的是社區活動的安排。' },
-        { level: 'challenge', subject: '小組', verb: '檢視', object: '報告的論據是否足夠', hint: '小組是主語；檢視的是報告的論據是否足夠。' },
-        { level: 'challenge', subject: '導師', verb: '引導', object: '學生修訂論證結構', hint: '導師做引導；引導的內容是學生修訂論證結構。' },
         { level: 'challenge', subject: '校方', verb: '蒐集', object: '師生對活動的意見', hint: '校方是蒐集者；蒐集的是師生對活動的意見。' },
-        { level: 'challenge', subject: '團隊', verb: '評估', object: '活動推行的成效', hint: '團隊做評估；評估的是活動推行的成效。' }
+        { level: 'challenge', subject: '研究小組', verb: '分析', object: '調查所得的數據', hint: '誰在做分析？研究小組；分析甚麼？調查所得的數據。' },
+        { level: 'challenge', subject: '團隊', verb: '評估', object: '活動推行的成效', hint: '團隊做評估；評估的是活動推行的成效。' },
+        { level: 'challenge', subject: '導師', verb: '引導', object: '學生修訂論證結構', hint: '導師做引導；引導的內容是學生修訂論證結構。' },
+        { level: 'challenge', subject: '小組', verb: '檢視', object: '報告的論據是否足夠', hint: '小組是主語；檢視的是報告的論據是否足夠。' }
       ]
     },
     collocation: {
