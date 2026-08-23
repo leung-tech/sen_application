@@ -1,0 +1,473 @@
+{
+  "standard": "SLI ten direct-entry games, ready screen, interaction, drag, keyboard, semantics and 375px mobile audit",
+  "baseUrl": "file:///home/ubuntu/sen_application/index.html",
+  "menus": [
+    {
+      "stage": "lower",
+      "moduleLoaded": true,
+      "title": "SLI 理解與表達｜初小 · P1–P3",
+      "guide": "可直接選擇 3 項聲音覺察、詞彙分類及基本句型練習。每項均有教師帶讀準備頁、粵語朗讀、看提示、先停一停、換練習及隨時離開；結果只供課堂回顧，不作診斷。",
+      "cards": [
+        "sound",
+        "portal",
+        "factory"
+      ]
+    },
+    {
+      "stage": "upper",
+      "moduleLoaded": true,
+      "title": "SLI 理解與表達｜高小 · P4–P6",
+      "guide": "可直接選擇 3 項故事敘事、情緒語用及多步指示練習。每項均有教師帶讀準備頁、粵語朗讀、看提示、先停一停、換練習及隨時離開；結果只供課堂回顧，不作診斷。",
+      "cards": [
+        "timeline",
+        "emotion",
+        "courier"
+      ]
+    },
+    {
+      "stage": "junior",
+      "moduleLoaded": true,
+      "title": "SLI 理解與表達｜初中 · S1–S3",
+      "guide": "可直接選擇 2 項潛台詞理解及理據組織練習。每項均有教師帶讀準備頁、粵語朗讀、看提示、先停一停、換練習及隨時離開；結果只供課堂回顧，不作診斷。",
+      "cards": [
+        "subtext",
+        "debate"
+      ]
+    },
+    {
+      "stage": "senior",
+      "moduleLoaded": true,
+      "title": "SLI 理解與表達｜高中 · S4–S6",
+      "guide": "可直接選擇 2 項面試表達及服務應變練習。每項均有教師帶讀準備頁、粵語朗讀、看提示、先停一停、換練習及隨時離開；結果只供課堂回顧，不作診斷。",
+      "cards": [
+        "interview",
+        "resolve"
+      ]
+    }
+  ],
+  "games": [
+    {
+      "stage": "lower",
+      "game": "sound",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "label": "SLI 理解與表達訓練室",
+        "start": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "lowPressure": true,
+        "check": {
+          "choices": 3
+        }
+      },
+      "interaction": {
+        "drag": false,
+        "feedback": "✓ 🌱 長出一片新葉。 你聽到了相近聲音。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "portal",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "label": "SLI 理解與表達訓練室",
+        "start": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "lowPressure": true,
+        "check": {
+          "sourceDraggable": true,
+          "targets": 3
+        }
+      },
+      "interaction": {
+        "drag": true,
+        "feedback": "✓ 這是一個清楚而可做到的選擇。"
+      }
+    },
+    {
+      "stage": "lower",
+      "game": "factory",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "label": "SLI 理解與表達訓練室",
+        "start": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "lowPressure": true,
+        "check": {
+          "pieces": 3,
+          "draggable": true,
+          "slots": 3
+        }
+      },
+      "interaction": {
+        "drag": true,
+        "feedback": "↗ 先找角色「小貓」，再想牠在哪裏和在做甚麼。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "timeline",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "label": "SLI 理解與表達訓練室",
+        "start": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "lowPressure": true,
+        "check": {
+          "pieces": 3,
+          "draggable": true,
+          "slots": 3
+        }
+      },
+      "interaction": {
+        "drag": true,
+        "feedback": "↗ 先想一想：她先準備出門，還是先在巴士上發現問題？"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "emotion",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "label": "SLI 理解與表達訓練室",
+        "start": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "lowPressure": true,
+        "check": {
+          "choices": 3
+        }
+      },
+      "interaction": {
+        "drag": false,
+        "feedback": "↗ 她可能感到失望；先關心和提出小幫忙。"
+      }
+    },
+    {
+      "stage": "upper",
+      "game": "courier",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "label": "SLI 理解與表達訓練室",
+        "start": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "lowPressure": true,
+        "check": {
+          "pieces": 5,
+          "draggable": true,
+          "slots": 3
+        }
+      },
+      "interaction": {
+        "drag": true,
+        "feedback": "↗ 先找餐點大小；再找「加」和「不要」後面的材料。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "subtext",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "label": "SLI 理解與表達訓練室",
+        "start": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "lowPressure": true,
+        "check": {
+          "choices": 3
+        }
+      },
+      "interaction": {
+        "drag": false,
+        "feedback": "↗ 先比較說話內容與實際情況是否一致。"
+      }
+    },
+    {
+      "stage": "junior",
+      "game": "debate",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "label": "SLI 理解與表達訓練室",
+        "start": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "lowPressure": true,
+        "check": {
+          "pieces": 4,
+          "draggable": true,
+          "slots": 2
+        }
+      },
+      "interaction": {
+        "drag": true,
+        "feedback": "↗ 先找和上課專心有關的理由。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "interview",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "label": "SLI 理解與表達訓練室",
+        "start": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "lowPressure": true,
+        "check": {
+          "pieces": 3,
+          "draggable": true,
+          "slots": 3
+        }
+      },
+      "interaction": {
+        "drag": true,
+        "feedback": "↗ 先說做過甚麼，再說自己怎樣做和帶來甚麼結果。"
+      }
+    },
+    {
+      "stage": "senior",
+      "game": "resolve",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "label": "SLI 理解與表達訓練室",
+        "start": "✓ 我準備好了，開始第一回合",
+        "steps": 3,
+        "status": "現在是準備時間，尚未開始出題或錄音。",
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "now": "1",
+          "min": "1",
+          "max": "3"
+        },
+        "lowPressure": true,
+        "check": {
+          "pieces": 3,
+          "draggable": true,
+          "slots": 3
+        }
+      },
+      "interaction": {
+        "drag": true,
+        "feedback": "↗ 先說明你聽到的問題，再道歉和提出可做的處理。"
+      }
+    }
+  ],
+  "keyboard": {
+    "tabWrap": true,
+    "shiftWrap": true,
+    "closed": true,
+    "restored": true
+  },
+  "mobile": {
+    "overflow": false,
+    "dialogWidth": 375,
+    "controls": 9,
+    "narrow": [],
+    "pieces": [
+      {
+        "width": 313,
+        "height": 62,
+        "draggable": true
+      },
+      {
+        "width": 313,
+        "height": 62,
+        "draggable": true
+      },
+      {
+        "width": 313,
+        "height": 62,
+        "draggable": true
+      }
+    ],
+    "slots": [
+      {
+        "width": 313,
+        "height": 84
+      },
+      {
+        "width": 313,
+        "height": 84
+      },
+      {
+        "width": 313,
+        "height": 84
+      }
+    ]
+  },
+  "ax": {
+    "dialogs": 1,
+    "statuses": 3,
+    "progressbars": 1
+  },
+  "failureCount": 0,
+  "failures": []
+}
