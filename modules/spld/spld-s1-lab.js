@@ -226,7 +226,7 @@
   }
 
   function paragraphMarkup(round) {
-    return `<div class="spld-s1-structure"><span>排列方式</span><strong>${round.structure}</strong><small>已排好 ${orderedSegments.length} / ${round.order.length} 句</small></div><p class="spld-s1-prompt">逐句選出最合適的先後次序。已選的句子會依次放到上方。</p><div class="spld-s1-order-slots">${round.order.map((_, index) => `<div class="spld-s1-order-slot ${orderedSegments[index] ? 'filled' : ''}"><span>${index + 1}</span><strong>${orderedSegments[index] || '？'}</strong></div>`).join('')}</div><div class="spld-s1-segment-bank">${segmentOptions.map((segment) => `<button type="button" class="spld-s1-segment ${orderedSegments.includes(segment) ? 'used' : ''}" data-s1-segment="${segment}" ${orderedSegments.includes(segment) ? 'disabled' : ''}>${segment}</button>`).join('')}</div>`;
+    return `<div class="spld-s1-structure"><span>排列方式</span><strong>${round.structure}</strong><small>已排好 ${orderedSegments.length} / ${round.order.length} 句</small></div><p class="spld-s1-prompt">可把句子拖到下一個空格；也可逐句點選。已選的句子會依次放到上方。</p><div class="spld-s1-order-slots">${round.order.map((_, index) => `<div class="spld-s1-order-slot ${orderedSegments[index] ? 'filled' : ''}" data-s1-slot="${index}" data-sen-drop-zone="sequence"><span>${index + 1}</span><strong>${orderedSegments[index] || '？'}</strong></div>`).join('')}</div><div class="spld-s1-segment-bank">${segmentOptions.map((segment) => `<button type="button" class="spld-s1-segment ${orderedSegments.includes(segment) ? 'used' : ''}" data-s1-segment="${segment}" draggable="${!orderedSegments.includes(segment)}" data-sen-drag-source ${orderedSegments.includes(segment) ? 'disabled' : ''}>${segment}</button>`).join('')}</div>`;
   }
 
   function redundancyMarkup(round) {
@@ -302,7 +302,16 @@
     });
     document.querySelector('#spldS1Back')?.addEventListener('click', openMenu);
     if (activeKey === 'paragraph') {
-      document.querySelectorAll('[data-s1-segment]').forEach((button) => button.addEventListener('click', () => chooseSegment(button.dataset.s1Segment, round)));
+      let draggedSegment = null;
+      document.querySelectorAll('[data-s1-segment]').forEach((button) => {
+        button.addEventListener('click', () => chooseSegment(button.dataset.s1Segment, round));
+        button.addEventListener('dragstart', (event) => { draggedSegment = button.dataset.s1Segment; try { event.dataTransfer?.setData('text/plain', draggedSegment); } catch {} });
+        button.addEventListener('dragend', () => { draggedSegment = null; });
+      });
+      document.querySelectorAll('[data-s1-slot]').forEach((slot) => {
+        slot.addEventListener('dragover', (event) => event.preventDefault());
+        slot.addEventListener('drop', (event) => { event.preventDefault(); const segment = event.dataTransfer?.getData('text/plain') || draggedSegment; const nextSlot = orderedSegments.length; if (segment && Number(slot.dataset.s1Slot) === nextSlot) chooseSegment(segment, round); else if (segment) feedback(`請先放到第 ${nextSlot + 1} 格。`, 'try'); draggedSegment = null; });
+      });
       return;
     }
     document.querySelectorAll('.spld-s1-choice').forEach((button) => button.addEventListener('click', () => chooseChoice(button, round)));
