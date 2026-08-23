@@ -1,6 +1,6 @@
 {
   "standard": "SLI ten direct-entry games, ready screen, interaction, drag, keyboard, semantics and 375px mobile audit",
-  "baseUrl": "https://leung-tech.github.io/sen_application/index.html",
+  "baseUrl": "file:///home/ubuntu/sen_application/index.html",
   "menus": [
     {
       "stage": "lower",
@@ -154,7 +154,7 @@
       },
       "interaction": {
         "drag": true,
-        "feedback": "✓ 已放入「小貓」。現在慢慢看下一格。"
+        "feedback": "↗ 先找角色「小貓」，再想牠在哪裏和在做甚麼。"
       }
     },
     {
@@ -192,7 +192,7 @@
       },
       "interaction": {
         "drag": true,
-        "feedback": "✓ 已放入「準備出門」。現在慢慢看下一格。"
+        "feedback": "↗ 先想一想：她先準備出門，還是先在巴士上發現問題？"
       }
     },
     {
@@ -228,7 +228,7 @@
       },
       "interaction": {
         "drag": false,
-        "feedback": "✓ 這是一個清楚而可做到的選擇。"
+        "feedback": "↗ 她可能感到失望；先關心和提出小幫忙。"
       }
     },
     {
@@ -266,7 +266,7 @@
       },
       "interaction": {
         "drag": true,
-        "feedback": "↗ 先找餐點大小；再找「加」和「不要」後面的材料。"
+        "feedback": "✓ 已放入「大批」。現在慢慢看下一格。"
       }
     },
     {
@@ -340,7 +340,7 @@
       },
       "interaction": {
         "drag": true,
-        "feedback": "✓ 已放入「容易分心」。現在慢慢看下一格。"
+        "feedback": "↗ 先找和上課專心有關的理由。"
       }
     },
     {
@@ -416,7 +416,7 @@
       },
       "interaction": {
         "drag": true,
-        "feedback": "✓ 已放入「我明白你說這條魚未熟。」。現在慢慢看下一格。"
+        "feedback": "↗ 先說明你聽到的問題，再道歉和提出可做的處理。"
       }
     }
   ],
