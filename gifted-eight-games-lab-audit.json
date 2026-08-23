@@ -1,0 +1,323 @@
+{
+  "standard": "Giftedness eight-game direct-entry, preparation, safe interactions, keyboard, reduced-motion and 375px audit",
+  "baseUrl": "file:///home/ubuntu/sen_application/index.html",
+  "menus": [
+    {
+      "stage": "lower",
+      "loaded": true,
+      "cards": [
+        "flex-castle",
+        "selective-listening"
+      ],
+      "hiCard": false
+    },
+    {
+      "stage": "upper",
+      "loaded": true,
+      "cards": [
+        "viewpoint-studio",
+        "rule-sandbox"
+      ],
+      "hiCard": false
+    },
+    {
+      "stage": "junior",
+      "loaded": true,
+      "cards": [
+        "perspective-toolkit",
+        "tone-workbench"
+      ],
+      "hiCard": false
+    },
+    {
+      "stage": "senior",
+      "loaded": true,
+      "cards": [
+        "achievement-map",
+        "values-sandbox"
+      ],
+      "hiCard": false
+    }
+  ],
+  "games": [
+    {
+      "stage": "lower",
+      "id": "flex-castle",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "課堂回顧完成 彈性城堡工房你已完成三個可行方案／規律回合。本次課堂可回顧：9 個完成步驟、0 次調整或重試。數字不比較能力，也不代表任何情緒、感官或社交特質。可和教師討論：「哪一種支持方式最幫你慢慢找出下一步？」也可以只選另一項活動。再做一次回到 Giftedness 關卡"
+      }
+    },
+    {
+      "stage": "lower",
+      "id": "selective-listening",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "課堂回顧完成 指揮家的選擇性聆聽台你已完成三個可行方案／規律回合。本次課堂可回顧：3 個完成步驟、0 次調整或重試。數字不比較能力，也不代表任何情緒、感官或社交特質。可和教師討論：「哪一種支持方式最幫你慢慢找出下一步？」也可以只選另一項活動。再做一次回到 Giftedness 關卡"
+      }
+    },
+    {
+      "stage": "upper",
+      "id": "viewpoint-studio",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "課堂回顧完成 宇宙觀點工作室你已完成三個可行方案／規律回合。本次課堂可回顧：3 個完成步驟、0 次調整或重試。數字不比較能力，也不代表任何情緒、感官或社交特質。可和教師討論：「哪一種支持方式最幫你慢慢找出下一步？」也可以只選另一項活動。再做一次回到 Giftedness 關卡"
+      }
+    },
+    {
+      "stage": "upper",
+      "id": "rule-sandbox",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "課堂回顧完成 規則設計沙盒你已完成三個可行方案／規律回合。本次課堂可回顧：3 個完成步驟、0 次調整或重試。數字不比較能力，也不代表任何情緒、感官或社交特質。可和教師討論：「哪一種支持方式最幫你慢慢找出下一步？」也可以只選另一項活動。再做一次回到 Giftedness 關卡"
+      }
+    },
+    {
+      "stage": "junior",
+      "id": "perspective-toolkit",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "課堂回顧完成 情境觀點工具箱你已完成三個可行方案／規律回合。本次課堂可回顧：3 個完成步驟、0 次調整或重試。數字不比較能力，也不代表任何情緒、感官或社交特質。可和教師討論：「哪一種支持方式最幫你慢慢找出下一步？」也可以只選另一項活動。再做一次回到 Giftedness 關卡"
+      }
+    },
+    {
+      "stage": "junior",
+      "id": "tone-workbench",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "課堂回顧完成 說話溫度工作台你已完成三個可行方案／規律回合。本次課堂可回顧：3 個完成步驟、0 次調整或重試。數字不比較能力，也不代表任何情緒、感官或社交特質。可和教師討論：「哪一種支持方式最幫你慢慢找出下一步？」也可以只選另一項活動。再做一次回到 Giftedness 關卡"
+      }
+    },
+    {
+      "stage": "senior",
+      "id": "achievement-map",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "課堂回顧完成 多元成就地圖你已完成三個可行方案／規律回合。本次課堂可回顧：0 個完成步驟、0 次調整或重試。數字不比較能力，也不代表任何情緒、感官或社交特質。可和教師討論：「哪一種支持方式最幫你慢慢找出下一步？」也可以只選另一項活動。再做一次回到 Giftedness 關卡"
+      }
+    },
+    {
+      "stage": "senior",
+      "id": "values-sandbox",
+      "ready": {
+        "dialog": true,
+        "role": "dialog",
+        "modal": "true",
+        "rules": 3,
+        "start": true,
+        "focusInside": true
+      },
+      "initial": {
+        "dialog": true,
+        "status": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "progress": {
+          "role": "progressbar",
+          "min": "0",
+          "max": "100"
+        },
+        "pause": true,
+        "teacher": true,
+        "leave": true
+      },
+      "interaction": {
+        "complete": true,
+        "overflow": false,
+        "text": "課堂回顧完成 哲學價值沙盒你已完成三個可行方案／規律回合。本次課堂可回顧：0 個完成步驟、0 次調整或重試。數字不比較能力，也不代表任何情緒、感官或社交特質。可和教師討論：「哪一種支持方式最幫你慢慢找出下一步？」也可以只選另一項活動。再做一次回到 Giftedness 關卡"
+      }
+    }
+  ],
+  "keyboard": {
+    "tabWrap": true,
+    "shiftWrap": true,
+    "closed": true,
+    "restored": true
+  },
+  "mobile": {
+    "overflow": false,
+    "dialogWidth": 375,
+    "narrow": [],
+    "dragCards": true
+  },
+  "motion": "0s",
+  "failureCount": 0,
+  "failures": []
+}
