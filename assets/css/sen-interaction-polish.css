@@ -32,10 +32,35 @@ button:active:not(:disabled), [role="button"]:active:not([aria-disabled="true"])
 @media (max-width: 520px) {
   .activity-card { padding: 22px 16px; }
   .game-grid, .answer-grid, .spld-choice-grid, .sequence-options, .memory-board { gap: 12px; }
+  /* ASD and all routes: keep the title whole by moving utility controls to a second touch-friendly row. */
+  .topbar { align-items: stretch; flex-direction: column; gap: 10px; }
+  .topbar > div:first-child { min-width: 0; }
+  .topbar h1 { font-size: 28px; line-height: 1.22; }
+  .top-actions { justify-content: flex-end; }
 }
+
+/* ASD fifteen-item lab: a calm visual journey; learners can turn it off at any time. */
+.asd15-journey { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+.asd15-journey li { min-width: 0; height: 8px; border-radius: 999px; background: #e7e5f8; }
+.asd15-journey li span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+.asd15-journey li.done { background: #69a98f; }
+.asd15-journey li.current { background: #7664c4; box-shadow: 0 0 0 3px rgba(118, 100, 196, .15); }
+
+@media (prefers-reduced-motion: no-preference) {
+  #asdFifteenCatalogueHost:not(.asd15-motion-off) .asd15-scene { animation: asd15-scene-arrive 240ms var(--sen-motion-out) both; }
+  #asdFifteenCatalogueHost:not(.asd15-motion-off) .asd15-journey li.current { animation: asd15-current-breathe 1.7s ease-in-out infinite; }
+  #asdFifteenCatalogueHost:not(.asd15-motion-off).asd15-success .asd15-mission { animation: asd15-success-settle 420ms var(--sen-motion-out); }
+}
+
+@keyframes asd15-scene-arrive { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes asd15-current-breathe { 0%, 100% { box-shadow: 0 0 0 3px rgba(118, 100, 196, .15); } 50% { box-shadow: 0 0 0 6px rgba(118, 100, 196, .08); } }
+@keyframes asd15-success-settle { 0% { transform: scale(1); } 45% { transform: scale(1.008); } 100% { transform: scale(1); } }
+
+@media (max-width: 420px) { .asd15-journey { gap: 4px; } }
 
 @media (prefers-reduced-motion: reduce) {
   button, [role="button"] { transition: none; }
   [draggable="true"].sen-dragging, [data-sen-drag-source].sen-dragging { transform: none; }
   [data-sen-drop-zone].sen-drop-placed, .sen-success-flash { animation: none; }
+  #asdFifteenCatalogueHost *, #asdFifteenCatalogueHost *::before, #asdFifteenCatalogueHost *::after { animation: none !important; transition: none !important; }
 }
