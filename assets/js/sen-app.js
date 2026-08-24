@@ -199,6 +199,7 @@
       function getStageGame(game) { if (game.id === 'spld') return { ...game, ...(spldStageTasks[activeStage] || {}) }; if (game.id === 'pathway-gifted') return { ...game, ...(giftedHiTasks.gifted || {}) }; if (game.id === 'pathway-hi') return { ...game, ...(giftedHiTasks.hi || {}) }; if (game.id === 'pathway-id') return { ...game, ...(idStageTasks[activeStage] || {}) }; if (game.id === 'pathway-adhd') return { ...game, ...(adhdStageTasks[activeStage] || {}) }; if (game.id === 'pathway-asd') return { ...game, ...(asdStageTasks[activeStage] || {}) }; if (game.id === 'pathway-ebd') return { ...game, ...(ebdStageTasks[activeStage] || {}) }; return { ...game, ...(stageTasks[activeStage]?.[game.id] || pathwayStageTasks[activeStage]?.[game.id] || {}) }; }
       function getPrimaryPathwayGame() { if (!activePathway) return null; return activePathway === '1' ? getStageGame(spldTraining) : getStageGame(pathwayGameMap[`pathway-${({ '1': 'spld', '2': 'id', '3': 'asd', '4': 'adhd', 'G': 'gifted', 'H': 'hi', 'E': 'ebd', '8': 'sli', '9': 'mi' })[activePathway]}`]); }
       let activeGame = null;
+      let gameReturnFocus = null;
       let ebdMissionKeyHandler = null;
       let hiMissionKeyHandler = null;
       let stageEscapeHandler = null;
@@ -648,7 +649,7 @@
             window.SPLD_S4_LAB?.openActivity(card.dataset.spldS4Activity, card);
             return;
           }
-          startGame(card.dataset.gameId);
+          startGame(card.dataset.gameId, card);
         }));
       }
       function updateTokenBoard() {
@@ -669,16 +670,21 @@
       }
 
       function showDashboard() {
+        const wasGameOpen = !$('#gameView').classList.contains('hidden');
+        const returnFocus = gameReturnFocus;
         clearTimeout(autoAdvanceTimer); clearAdhdTimer();
         $('#gameView').classList.add('hidden');
         $('#dashboardView').classList.remove('hidden');
         activeGame = null;
+        gameReturnFocus = null;
         $$('.side-link').forEach(link => link.classList.toggle('active', link.dataset.nav === 'dashboard'));
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (wasGameOpen && returnFocus?.isConnected) setTimeout(() => returnFocus.focus(), 0);
       }
-      function startGame(id) {
+      function startGame(id, trigger = null) {
         triggerHaptic('tap');
         clearTimeout(autoAdvanceTimer);
+        gameReturnFocus = trigger || document.activeElement;
         activeGame = getStageGame(gameMap[id]);
         if (activeGame?.id === 'pathway-adhd') resetAdhdSession(); else { clearAdhdTimer(); adhdSession = null; }
         if (activeGame?.id === 'pathway-asd') resetAsdProgress(); else asdProgress = null;
@@ -1127,7 +1133,7 @@
         if ($('#startSuggested').dataset.careerPathway === 'true' && window.CAREER_GAMES_LAB) { window.CAREER_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: $('#startSuggested') }); return; }
         if (accessType === 'V' && window.VI_GAMES_LAB) { window.VI_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: $('#startSuggested') }); return; }
         if (accessType === 'P' && window.PD_GAMES_LAB) { window.PD_GAMES_LAB.open({ stage: activeStage, onComplete: recordIdLabResult, trigger: $('#startSuggested') }); return; }
-        startGame($('#startSuggested').dataset.game || 'emotion');
+        startGame($('#startSuggested').dataset.game || 'emotion', $('#startSuggested'));
       });
       $('#backToDashboard').addEventListener('click', showDashboard);
       $$('.pathway-card').forEach(card => card.addEventListener('click', () => selectPathway(card.dataset.type)));
