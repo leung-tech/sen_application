@@ -3,11 +3,11 @@ import { writeFile } from 'node:fs/promises';
 
 const port = 9354;
 const reportPath = '/home/ubuntu/sen_application/adhd-graded-lab-audit.json';
-const baseUrl = 'https://leung-tech.github.io/sen_application/index.html';
+const baseUrl = 'file:///home/ubuntu/sen_application/index.html';
 const stages = ['lower', 'upper', 'junior', 'senior'];
 const games = ['cpt', 'nback', 'flanker', 'switch', 'mot', 'stroop', 'nogo', 'corsi', 'schulte'];
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const chrome = spawn('chromium', ['--headless', '--no-sandbox', '--disable-gpu', `--remote-debugging-port=${port}`, '--user-data-dir=/tmp/adhd-graded-lab-audit', 'about:blank'], { stdio: 'ignore' });
+const chrome = spawn('chromium', ['--headless', '--no-sandbox', '--disable-gpu', '--allow-file-access-from-files', `--remote-debugging-port=${port}`, '--user-data-dir=/tmp/adhd-graded-lab-audit', 'about:blank'], { stdio: 'ignore' });
 
 async function targetUrl() {
   for (let attempt = 0; attempt < 50; attempt += 1) {
@@ -156,7 +156,13 @@ async function keyboardAudit(client) {
   })()`);
   await evaluate(client, `document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));`);
   await sleep(50);
-  const close = await evaluate(client, `({ closed: !document.querySelector('.graded-lab-shell'), restored: document.activeElement?.id === 'adhdGradedLabLaunch' })`);
+  const close = await evaluate(client, `({
+    closed: !document.querySelector('.graded-lab-shell'),
+    restored: Boolean(document.activeElement?.matches('#adhdGradedLabLaunch, [data-game-id="pathway-adhd"], [data-adhd-graded-direct]')),
+    activeId: document.activeElement?.id || '',
+    activeText: document.activeElement?.textContent?.trim().slice(0, 80) || '',
+    activeTag: document.activeElement?.tagName || ''
+  })`);
   return { focusCycle, close };
 }
 
