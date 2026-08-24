@@ -200,6 +200,7 @@
       function getPrimaryPathwayGame() { if (!activePathway) return null; return activePathway === '1' ? getStageGame(spldTraining) : getStageGame(pathwayGameMap[`pathway-${({ '1': 'spld', '2': 'id', '3': 'asd', '4': 'adhd', 'G': 'gifted', 'H': 'hi', 'E': 'ebd', '8': 'sli', '9': 'mi' })[activePathway]}`]); }
       let activeGame = null;
       let ebdMissionKeyHandler = null;
+      let hiMissionKeyHandler = null;
       let stageEscapeHandler = null;
       let roundIndex = 0;
       let completedGames = new Set();
@@ -676,6 +677,7 @@
       function renderStage() {
         if (!activeGame) return;
         if (ebdMissionKeyHandler) { document.removeEventListener('keydown', ebdMissionKeyHandler); ebdMissionKeyHandler = null; }
+        if (hiMissionKeyHandler) { document.removeEventListener('keydown', hiMissionKeyHandler); hiMissionKeyHandler = null; }
         if (stageEscapeHandler) { document.removeEventListener('keydown', stageEscapeHandler); stageEscapeHandler = null; }
         stageEscapeHandler = (event) => { if (event.key === 'Escape') { event.preventDefault(); showDashboard(); } };
         document.addEventListener('keydown', stageEscapeHandler);
@@ -716,7 +718,8 @@
         }
         if (id === 'pathway-hi') {
           const guide = `<aside class="hi-visual-guide" aria-label="視覺溝通卡"><span class="hi-visual-guide-label">視覺溝通卡</span><strong>${round.strategy}</strong><small>用圖示、表情、手勢或文字確認資訊；不確定時可要求再指一次或寫下來。</small></aside>`;
-          return stageFrame(`<span class="hi-band">${round.band}</span><br>${round.prompt}`, `<article class="scenario-context">${round.context}</article>${guide}<div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${escapeHTML(label)}"><span class="big-emoji">${emoji}</span><span class="caption">${escapeHTML(label)}</span></button>`).join('')}</div>`, true, '先看青藍色「視覺溝通卡」，再從圖示或表情線索選擇答案。');
+          const mission = `<div class="ebd-route-board hi-signal-board"><div class="ebd-route-target hi-signal-target" data-hi-route-target tabindex="0" aria-label="視覺訊號任務格。可把一張圖像回應卡拖到這裡，也可以直接點選卡片或按數字鍵一至三。"><span aria-hidden="true">📨</span><b>視覺訊號任務格</b><small>拖放一張圖像回應卡到這裡</small></div><div class="ebd-route-cards hi-signal-cards">${round.choices.map(([emoji, label], index) => `<button class="answer-card ebd-route-card hi-signal-card" type="button" draggable="true" data-sen-drag-source data-answer="${escapeHTML(label)}" aria-label="選項 ${index + 1}：${escapeHTML(label)}。可直接點選或拖到視覺訊號任務格。"><span class="big-emoji">${emoji}</span><span class="caption"><b>${index + 1}</b>　${escapeHTML(label)}</span></button>`).join('')}</div></div>`;
+          return stageFrame(`<span class="hi-band">${round.band}</span><br>${round.prompt}`, `<article class="scenario-context">${round.context}</article>${guide}${mission}`, true, '先看青藍色「視覺溝通卡」，再把一張圖像回應卡送進視覺訊號任務格。');
         }
         if (id === 'pathway-ebd') {
           const regulation = `<aside class="ebd-regulation" aria-label="自我調節卡"><span class="ebd-regulation-label">自我調節卡</span><strong>${round.strategy}</strong><small>先看這張策略卡，再從虛構情境的三張下一步卡選一張。這不是對任何人的行為或情緒評定。</small></aside>`;
@@ -784,6 +787,7 @@
       function bindActivity(id, round) {
         bindCommon(round);
         if (id === 'pathway-ebd') { bindEbdMission(round); return; }
+        if (id === 'pathway-hi') { bindHiMission(round); return; }
         if (id.startsWith('pathway-')) { $$('.answer-card').forEach(button => button.addEventListener('click', () => evaluate(button, button.dataset.answer === round.answer, button.dataset.answer === round.answer ? round.success : round.clue))); return; }
         if (id === 'spld') {
           $('#spldReadPrompt')?.addEventListener('click', () => speak(getSpldReadText(round), .72));
@@ -835,6 +839,34 @@
         if (id === 'turn') { $$('.turn-person').forEach(button => button.addEventListener('click', () => evaluate(button, button.dataset.answer === round.person, button.dataset.answer === round.person ? `對了，現在輪到${round.person}。` : '看看哪一位角色上面有箭頭。'))); }
         if (id === 'memory') { $$('.memory-card').forEach(button => button.addEventListener('click', () => handleMemory(Number(button.dataset.index)))); }
         if (id === 'path') { $$('.path-button').forEach(button => button.addEventListener('click', () => handlePath(button.dataset.direction, round))); renderPath(round); }
+      }
+      function bindHiMission(round) {
+        let draggedCard = null;
+        const target = $('[data-hi-route-target]');
+        const choose = (button) => {
+          if (!button || gameState.locked) return;
+          const correct = button.dataset.answer === round.answer;
+          if (correct && target) {
+            target.classList.add('is-filled');
+            target.innerHTML = `<span aria-hidden="true">✓</span><b>已送入視覺訊號任務格</b><small>${escapeHTML(button.dataset.answer)}</small>`;
+          }
+          evaluate(button, correct, correct ? `已把合適的圖像回應卡送進任務格。${round.success}` : round.clue);
+        };
+        $$('.hi-signal-card').forEach((button) => {
+          button.addEventListener('click', () => choose(button));
+          button.addEventListener('dragstart', (event) => { draggedCard = button; button.classList.add('is-dragging'); event.dataTransfer?.setData('text/plain', button.dataset.answer || ''); target?.classList.add('is-ready'); });
+          button.addEventListener('dragend', () => { button.classList.remove('is-dragging'); target?.classList.remove('is-ready'); draggedCard = null; });
+        });
+        target?.addEventListener('dragover', (event) => { event.preventDefault(); target.classList.add('is-ready'); });
+        target?.addEventListener('dragleave', () => target.classList.remove('is-ready'));
+        target?.addEventListener('drop', (event) => { event.preventDefault(); target.classList.remove('is-ready'); choose(draggedCard); draggedCard = null; });
+        hiMissionKeyHandler = (event) => {
+          if (!/^[1-3]$/.test(event.key)) return;
+          if (!document.body.contains(target) || activeGame?.id !== 'pathway-hi') return;
+          const card = $$('.hi-signal-card')[Number(event.key) - 1];
+          if (card && !card.disabled) { event.preventDefault(); choose(card); }
+        };
+        document.addEventListener('keydown', hiMissionKeyHandler);
       }
       function bindEbdMission(round) {
         let draggedCard = null;
