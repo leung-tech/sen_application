@@ -199,6 +199,8 @@
       function getStageGame(game) { if (game.id === 'spld') return { ...game, ...(spldStageTasks[activeStage] || {}) }; if (game.id === 'pathway-gifted') return { ...game, ...(giftedHiTasks.gifted || {}) }; if (game.id === 'pathway-hi') return { ...game, ...(giftedHiTasks.hi || {}) }; if (game.id === 'pathway-id') return { ...game, ...(idStageTasks[activeStage] || {}) }; if (game.id === 'pathway-adhd') return { ...game, ...(adhdStageTasks[activeStage] || {}) }; if (game.id === 'pathway-asd') return { ...game, ...(asdStageTasks[activeStage] || {}) }; if (game.id === 'pathway-ebd') return { ...game, ...(ebdStageTasks[activeStage] || {}) }; return { ...game, ...(stageTasks[activeStage]?.[game.id] || pathwayStageTasks[activeStage]?.[game.id] || {}) }; }
       function getPrimaryPathwayGame() { if (!activePathway) return null; return activePathway === '1' ? getStageGame(spldTraining) : getStageGame(pathwayGameMap[`pathway-${({ '1': 'spld', '2': 'id', '3': 'asd', '4': 'adhd', 'G': 'gifted', 'H': 'hi', 'E': 'ebd', '8': 'sli', '9': 'mi' })[activePathway]}`]); }
       let activeGame = null;
+      let ebdMissionKeyHandler = null;
+      let stageEscapeHandler = null;
       let roundIndex = 0;
       let completedGames = new Set();
       let tokenCount = 0;
@@ -673,6 +675,10 @@
       function currentRound() { return activeGame.rounds[roundIndex]; }
       function renderStage() {
         if (!activeGame) return;
+        if (ebdMissionKeyHandler) { document.removeEventListener('keydown', ebdMissionKeyHandler); ebdMissionKeyHandler = null; }
+        if (stageEscapeHandler) { document.removeEventListener('keydown', stageEscapeHandler); stageEscapeHandler = null; }
+        stageEscapeHandler = (event) => { if (event.key === 'Escape') { event.preventDefault(); showDashboard(); } };
+        document.addEventListener('keydown', stageEscapeHandler);
         const round = currentRound();
         gameState = { locked: false, selectedSequence: [], fruitCount: 0, pathStep: 0, memoryOpen: [], memoryMatched: [] };
         startAdhdRound();
@@ -713,8 +719,9 @@
           return stageFrame(`<span class="hi-band">${round.band}</span><br>${round.prompt}`, `<article class="scenario-context">${round.context}</article>${guide}<div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${escapeHTML(label)}"><span class="big-emoji">${emoji}</span><span class="caption">${escapeHTML(label)}</span></button>`).join('')}</div>`, true, '先看青藍色「視覺溝通卡」，再從圖示或表情線索選擇答案。');
         }
         if (id === 'pathway-ebd') {
-          const regulation = `<aside class="ebd-regulation" aria-label="自我調節卡"><span class="ebd-regulation-label">自我調節卡</span><strong>${round.strategy}</strong><small>可以先看粉紅色調節卡，再選擇安全而可做到的下一步。</small></aside>`;
-          return stageFrame(`<span class="ebd-band">${round.band}</span><br>${round.prompt}`, `<article class="scenario-context">${round.context}</article>${regulation}<div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${escapeHTML(label)}"><span class="big-emoji">${emoji}</span><span class="caption">${escapeHTML(label)}</span></button>`).join('')}</div>`, true, '先看看粉紅色「自我調節卡」，再選擇安全的下一步。');
+          const regulation = `<aside class="ebd-regulation" aria-label="自我調節卡"><span class="ebd-regulation-label">自我調節卡</span><strong>${round.strategy}</strong><small>先看這張策略卡，再從虛構情境的三張下一步卡選一張。這不是對任何人的行為或情緒評定。</small></aside>`;
+          const mission = `<div class="ebd-route-board"><div class="ebd-route-target" data-ebd-route-target tabindex="0" aria-label="安全下一步任務格。可把一張下一步卡拖到這裡，也可以直接點選卡片或按數字鍵一至三。"><span aria-hidden="true">🧭</span><b>安全下一步</b><small>拖放一張卡到這裡</small></div><div class="ebd-route-cards">${round.choices.map(([emoji, label], index) => `<button class="answer-card ebd-route-card" type="button" draggable="true" data-sen-drag-source data-answer="${escapeHTML(label)}" aria-label="選項 ${index + 1}：${escapeHTML(label)}。可直接點選或拖到安全下一步任務格。"><span class="big-emoji">${emoji}</span><span class="caption"><b>${index + 1}</b>　${escapeHTML(label)}</span></button>`).join('')}</div></div>`;
+          return stageFrame(`<span class="ebd-band">${round.band}</span><br>${round.prompt}`, `<article class="scenario-context">${round.context}</article>${regulation}${mission}`, true, '慢慢選一張安全下一步卡；可點選、拖放或按數字鍵 1 至 3。');
         }
         if (id.startsWith('pathway-')) {
           return stageFrame(round.prompt, `<article class="scenario-context">${round.context}</article><div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${escapeHTML(label)}"><span class="big-emoji">${emoji}</span><span class="caption">${escapeHTML(label)}</span></button>`).join('')}</div>`);
@@ -776,6 +783,7 @@
       }
       function bindActivity(id, round) {
         bindCommon(round);
+        if (id === 'pathway-ebd') { bindEbdMission(round); return; }
         if (id.startsWith('pathway-')) { $$('.answer-card').forEach(button => button.addEventListener('click', () => evaluate(button, button.dataset.answer === round.answer, button.dataset.answer === round.answer ? round.success : round.clue))); return; }
         if (id === 'spld') {
           $('#spldReadPrompt')?.addEventListener('click', () => speak(getSpldReadText(round), .72));
@@ -827,6 +835,34 @@
         if (id === 'turn') { $$('.turn-person').forEach(button => button.addEventListener('click', () => evaluate(button, button.dataset.answer === round.person, button.dataset.answer === round.person ? `對了，現在輪到${round.person}。` : '看看哪一位角色上面有箭頭。'))); }
         if (id === 'memory') { $$('.memory-card').forEach(button => button.addEventListener('click', () => handleMemory(Number(button.dataset.index)))); }
         if (id === 'path') { $$('.path-button').forEach(button => button.addEventListener('click', () => handlePath(button.dataset.direction, round))); renderPath(round); }
+      }
+      function bindEbdMission(round) {
+        let draggedCard = null;
+        const target = $('[data-ebd-route-target]');
+        const choose = (button) => {
+          if (!button || gameState.locked) return;
+          const correct = button.dataset.answer === round.answer;
+          if (correct && target) {
+            target.classList.add('is-filled');
+            target.innerHTML = `<span aria-hidden="true">✓</span><b>已選安全下一步</b><small>${escapeHTML(button.dataset.answer)}</small>`;
+          }
+          evaluate(button, correct, correct ? round.success : round.clue);
+        };
+        $$('.ebd-route-card').forEach((button) => {
+          button.addEventListener('click', () => choose(button));
+          button.addEventListener('dragstart', (event) => { draggedCard = button; try { event.dataTransfer?.setData('text/plain', button.dataset.answer); } catch {} button.classList.add('is-dragging'); target?.classList.add('is-ready'); });
+          button.addEventListener('dragend', () => { button.classList.remove('is-dragging'); target?.classList.remove('is-ready'); draggedCard = null; });
+        });
+        target?.addEventListener('dragover', (event) => { event.preventDefault(); target.classList.add('is-ready'); });
+        target?.addEventListener('dragleave', () => target.classList.remove('is-ready'));
+        target?.addEventListener('drop', (event) => { event.preventDefault(); target.classList.remove('is-ready'); choose(draggedCard); draggedCard = null; });
+        ebdMissionKeyHandler = (event) => {
+          if (!/^[1-3]$/.test(event.key)) return;
+          if (!document.body.contains(target) || activeGame?.id !== 'pathway-ebd') return;
+          const card = $$('.ebd-route-card')[Number(event.key) - 1];
+          if (card && !card.disabled) { event.preventDefault(); choose(card); }
+        };
+        document.addEventListener('keydown', ebdMissionKeyHandler);
       }
       function renderSequenceSlots() { $$('.sequence-slot').forEach((slot, index) => { const entry = gameState.selectedSequence[index]; if (entry) { slot.classList.add('filled'); slot.innerHTML = `<span class="slot-number">${index + 1}</span><span style="font-size:31px">${entry[0]}</span><span>${entry[1]}</span>`; } }); }
       function renderFruit() { const round = currentRound(); const itemEmoji = round.itemEmoji || '🍎'; const itemLabel = round.itemLabel || '蘋果'; $('#fruitBag').innerHTML = Array.from({ length: gameState.fruitCount }, () => `<span>${itemEmoji}</span>`).join(''); $('#fruitCount').textContent = `${gameState.fruitCount} 個${itemLabel}（目標 ${round.count} 個）`; }

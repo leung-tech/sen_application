@@ -161,3 +161,11 @@
     .spld-tracker-lane { height:10px; margin:13px 14px 0; overflow:hidden; border-radius:999px; background:#ebe8ff; }
     .spld-tracker-lane i { display:block; width:38%; height:100%; border-radius:inherit; background:linear-gradient(90deg,#6d5bc8,#77b9dc); }
     .spld-reading-tracker summary:focus-visible { outline:3px solid #146ca6; outline-offset:3px; }
+    /* EBD safety route: optional drag, direct choice and numeric-key alternatives; no speed or personal behaviour score. */
+    .ebd-route-board { display:grid; grid-template-columns:minmax(190px,.72fr) minmax(0,1.28fr); gap:15px; align-items:stretch; margin-top:15px; }
+    .ebd-route-target { min-height:172px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; color:#8f3f5d; text-align:center; border:3px dashed #d77b9a; border-radius:22px; background:linear-gradient(145deg,#fff2f6,#fff8fa); font-weight:900; line-height:1.45; }
+    .ebd-route-target > span { font-size:32px; }.ebd-route-target small { color:#8b6672; font-size:12px; font-weight:760; line-height:1.45; }.ebd-route-target.is-ready { border-color:#1c6ea6; background:#eef8ff; box-shadow:0 0 0 4px rgba(28,110,166,.14); }.ebd-route-target.is-filled { border-style:solid; border-color:#2f947b; background:#effaf5; color:#176851; }
+    .ebd-route-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }.ebd-route-card { min-height:112px; cursor:grab; }.ebd-route-card.is-dragging { opacity:.66; transform:translateY(-3px); }.ebd-route-card .caption b { color:#a13d63; }
+    .ebd-route-target:focus-visible { outline:4px solid #1e5b92; outline-offset:3px; }
+    @media (max-width:640px) { .ebd-route-board,.ebd-route-cards { grid-template-columns:1fr; }.ebd-route-target { min-height:112px; }.ebd-route-card { min-height:76px; } }
+    @media (prefers-reduced-motion:reduce) { .ebd-route-card.is-dragging { transform:none; } }
