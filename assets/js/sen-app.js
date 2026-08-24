@@ -475,7 +475,7 @@
       function renderGameLibrary(filter = activeFilter) {
         let source;
         if (activePathway) {
-          source = activePathway === '1' && activeStage === 'lower' ? [getPrimaryPathwayGame(), ...spldP1StandaloneGames] : activePathway === '1' && activeStage === 'upper' ? [getPrimaryPathwayGame(), ...spldP4StandaloneGames] : activePathway === '1' && activeStage === 'junior' ? [getPrimaryPathwayGame(), ...spldS1StandaloneGames] : activePathway === '1' && activeStage === 'senior' ? [getPrimaryPathwayGame(), ...spldS4StandaloneGames] : activePathway === 'G' && (window.GIFTED_2E_LAB || window.GIFTED_CROSS_SEN_LAB || window.GIFTED_EIGHT_GAMES_LAB || window.GIFTED_ATTACHMENT_ARCADE) ? [...(window.GIFTED_ATTACHMENT_ARCADE?.activityCards(activeStage) || []), ...(window.GIFTED_EIGHT_GAMES_LAB?.activityCards(activeStage) || []), ...(window.GIFTED_2E_LAB?.activityCards(activeStage) || []), ...(window.GIFTED_CROSS_SEN_LAB?.activityCards(activeStage) || [])] : activePathway === '8' && (window.SLI_CORE_LAB || window.SLI_EIGHT_GAMES_LAB) ? [...(window.SLI_CORE_LAB?.activityCards(activeStage) || []), ...(window.SLI_EIGHT_GAMES_LAB?.activityCards(activeStage) || [])] : activePathway === 'E' && window.EBD_MI_CORE_LAB ? window.EBD_MI_CORE_LAB.activityCards('ebd', activeStage) : activePathway === '9' && window.EBD_MI_CORE_LAB ? window.EBD_MI_CORE_LAB.activityCards('mi', activeStage) : [getPrimaryPathwayGame()];
+          source = activePathway === '1' && activeStage === 'lower' ? [getPrimaryPathwayGame(), ...spldP1StandaloneGames, ...(window.SPLD_SHAPE_SOUND_MEANING_LAB?.activityCards(activeStage) || [])] : activePathway === '1' && activeStage === 'upper' ? [getPrimaryPathwayGame(), ...spldP4StandaloneGames, ...(window.SPLD_SHAPE_SOUND_MEANING_LAB?.activityCards(activeStage) || [])] : activePathway === '1' && activeStage === 'junior' ? [getPrimaryPathwayGame(), ...spldS1StandaloneGames, ...(window.SPLD_SHAPE_SOUND_MEANING_LAB?.activityCards(activeStage) || [])] : activePathway === '1' && activeStage === 'senior' ? [getPrimaryPathwayGame(), ...spldS4StandaloneGames, ...(window.SPLD_SHAPE_SOUND_MEANING_LAB?.activityCards(activeStage) || [])] : activePathway === 'G' && (window.GIFTED_2E_LAB || window.GIFTED_CROSS_SEN_LAB || window.GIFTED_EIGHT_GAMES_LAB || window.GIFTED_ATTACHMENT_ARCADE) ? [...(window.GIFTED_ATTACHMENT_ARCADE?.activityCards(activeStage) || []), ...(window.GIFTED_EIGHT_GAMES_LAB?.activityCards(activeStage) || []), ...(window.GIFTED_2E_LAB?.activityCards(activeStage) || []), ...(window.GIFTED_CROSS_SEN_LAB?.activityCards(activeStage) || [])] : activePathway === '8' && (window.SLI_CORE_LAB || window.SLI_EIGHT_GAMES_LAB) ? [...(window.SLI_CORE_LAB?.activityCards(activeStage) || []), ...(window.SLI_EIGHT_GAMES_LAB?.activityCards(activeStage) || [])] : activePathway === 'E' && window.EBD_MI_CORE_LAB ? window.EBD_MI_CORE_LAB.activityCards('ebd', activeStage) : activePathway === '9' && window.EBD_MI_CORE_LAB ? window.EBD_MI_CORE_LAB.activityCards('mi', activeStage) : [getPrimaryPathwayGame()];
         } else {
           source = filter === 'all' ? gameLibrary : filter.startsWith('support-') ? [] : gameLibrary.filter(game => game.category === filter);
         }
@@ -514,7 +514,7 @@
         $('#gameGrid').innerHTML = crossCategoryDirectCard + asdFifteenDirectCard + asdDirectCard + asdEightDirectCard + adhdFifteenDirectCard + adhdDirectCard + idFifteenDirectCard + idDirectCard + idEightDirectCard + idAdvancedDirectCard + sliFifteenDirectCard + miFifteenDirectCard + hiEightDirectCard + viDirectCard + pdDirectCard + games.map(game => {
           const badges = activePathway ? renderSupportBadges(game.supports) : '<span class="support-badge">一般活動</span>';
           const label = activePathway ? '本專屬模組類別' : '一般活動類別';
-          const directActivity = game.ebdMiActivity ? ` data-ebdmi-track="${game.ebdMiTrack}" data-ebdmi-activity="${game.ebdMiActivity}"` : game.giftedAttachmentActivity ? ` data-gifted-attachment-activity="${game.giftedAttachmentActivity}"` : game.giftedEightActivity ? ` data-gifted-eight-activity="${game.giftedEightActivity}"` : game.gifted2eActivity ? ` data-gifted2e-activity="${game.gifted2eActivity}"` : game.giftedCrossActivity ? ` data-gifted-cross-activity="${game.giftedCrossActivity}"` : game.sliEightActivityKey ? ` data-sli-eight-activity="${game.sliEightActivityKey}"` : game.sliActivityKey ? ` data-sli-activity="${game.sliActivityKey}"` : game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
+          const directActivity = game.spldShapeSoundMeaningActivity ? ' data-spld-shape-sound-meaning="true"' : game.ebdMiActivity ? ` data-ebdmi-track="${game.ebdMiTrack}" data-ebdmi-activity="${game.ebdMiActivity}"` : game.giftedAttachmentActivity ? ` data-gifted-attachment-activity="${game.giftedAttachmentActivity}"` : game.giftedEightActivity ? ` data-gifted-eight-activity="${game.giftedEightActivity}"` : game.gifted2eActivity ? ` data-gifted2e-activity="${game.gifted2eActivity}"` : game.giftedCrossActivity ? ` data-gifted-cross-activity="${game.giftedCrossActivity}"` : game.sliEightActivityKey ? ` data-sli-eight-activity="${game.sliEightActivityKey}"` : game.sliActivityKey ? ` data-sli-activity="${game.sliActivityKey}"` : game.lab === 'p4' ? ` data-spld-p4-activity="${game.p4ActivityKey}"` : game.lab === 's1' ? ` data-spld-s1-activity="${game.s1ActivityKey}"` : game.lab === 's4' ? ` data-spld-s4-activity="${game.s4ActivityKey}"` : game.activityKey ? ` data-spld-activity="${game.activityKey}"` : '';
           return `<button class="game-card" type="button" data-game-id="${game.id}"${directActivity} data-tone="${game.tone}"><div class="game-visual" aria-hidden="true">${game.icon}</div><h3>${game.title}</h3><p>${game.description}</p><div class="support-badge-row" aria-label="${label}">${badges}</div><span class="tag">${game.tag}</span></button>`;
         }).join('');
         $$('.game-card').forEach(card => card.addEventListener('click', () => {
@@ -629,6 +629,11 @@
           }
           if (card.dataset.spldActivity) {
             window.SPLD_P1_LAB?.openActivity(card.dataset.spldActivity);
+            return;
+          }
+          if (card.dataset.spldShapeSoundMeaning) {
+            if (!window.SPLD_SHAPE_SOUND_MEANING_LAB) { showToast('SpLD 形音義工房正在準備中，請稍後再試。'); return; }
+            window.SPLD_SHAPE_SOUND_MEANING_LAB.open({ stage: activeStage, trigger: card });
             return;
           }
           if (card.dataset.spldP4Activity) {
@@ -1167,6 +1172,7 @@
       document.addEventListener('spld-p4-lab-complete', (event) => recordSpldLabCompletion(event, '高小讀寫實驗室'));
       document.addEventListener('spld-s1-lab-complete', (event) => recordSpldLabCompletion(event, '初中讀寫實驗室'));
       document.addEventListener('spld-s4-lab-complete', (event) => recordSpldLabCompletion(event, '高中讀寫實驗室'));
+      document.addEventListener('spld-shape-sound-meaning-complete', (event) => recordSpldLabCompletion(event, 'SpLD 形音義工房'));
       renderLessonSession();
 
       // A prepared lesson link may append senType and stageLevel to open the
