@@ -25,4 +25,7 @@ console.table(report);
 if (report.some((row) => row.minRounds < 8 || row.underEight.length)) {
   throw new Error('生涯規劃八題稽核失敗');
 }
+if (!source.includes('id="careerDock"') || !source.includes('draggable="true"') || !source.includes('bindCareerMission')) {
+  throw new Error('職場行動卡任務桌缺少收集盒、可選拖放或事件接線');
+}
 console.log('Career eight-round audit: OK');
