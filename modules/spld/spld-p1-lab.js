@@ -9,7 +9,12 @@
       rounds: [
         { target: '河', guide: '左 + 右', prompt: '把「氵」和「可」砌成「河」。', parts: ['氵', '可', '木'], answer: ['氵', '可'], meaning: '河水的「河」有三點水。', hint: '想一想：河水和水有關，所以左邊是三點水。' },
         { target: '晴', guide: '左 + 右', prompt: '把「日」和「青」砌成「晴」。', parts: ['日', '青', '月'], answer: ['日', '青'], meaning: '晴天的「晴」有日字旁。', hint: '想一想：晴天有太陽，所以左邊是日。' },
-        { target: '媽', guide: '左 + 右', prompt: '把「女」和「馬」砌成「媽」。', parts: ['女', '馬', '木'], answer: ['女', '馬'], meaning: '媽媽的「媽」有女字旁。', hint: '想一想：媽媽是女性家人，所以左邊是女。' }
+        { target: '媽', guide: '左 + 右', prompt: '把「女」和「馬」砌成「媽」。', parts: ['女', '馬', '木'], answer: ['女', '馬'], meaning: '媽媽的「媽」有女字旁。', hint: '想一想：媽媽是女性家人，所以左邊是女。' },
+        { target: '拍', guide: '左 + 右', prompt: '把「扌」和「白」砌成「拍」。', parts: ['扌', '白', '氵'], answer: ['扌', '白'], meaning: '拍手的「拍」有提手旁。', hint: '想一想：拍手要用手，所以左邊是提手旁。' },
+        { target: '花', guide: '上 + 下', prompt: '把「艹」和「化」砌成「花」。', parts: ['艹', '化', '女'], answer: ['艹', '化'], meaning: '花朵的「花」有草字頭。', hint: '想一想：花是植物，先找上面的草字頭。' },
+        { target: '請', guide: '左 + 右', prompt: '把「訁」和「青」砌成「請」。', parts: ['訁', '青', '日'], answer: ['訁', '青'], meaning: '請說的「請」有言字旁。', hint: '想一想：請人幫忙要說話，所以左邊是言字旁。' },
+        { target: '狗', guide: '左 + 右', prompt: '把「犭」和「句」砌成「狗」。', parts: ['犭', '句', '口'], answer: ['犭', '句'], meaning: '小狗的「狗」有反犬旁。', hint: '想一想：狗是動物，先找反犬旁。' },
+        { target: '姐', guide: '左 + 右', prompt: '把「女」和「且」砌成「姐」。', parts: ['女', '且', '目'], answer: ['女', '且'], meaning: '姐姐的「姐」有女字旁。', hint: '想一想：姐姐是女性家人，所以左邊是女。' }
       ]
     },
     spotting: {
@@ -21,7 +26,12 @@
       rounds: [
         { sentence: '天氣很好，今天是＿＿天。', target: '晴', choices: ['晴', '情', '請'], hint: '太陽出來的好天氣是「晴天」；晴字有日字旁。', meaning: '☀️ 有太陽的天氣' },
         { sentence: '小明口渴，想＿＿水。', target: '喝', choices: ['喝', '渴', '竭'], hint: '用嘴巴喝水，所以選有口字旁的「喝」。', meaning: '🥤 用嘴巴喝水' },
-        { sentence: '星期六和星期日是週＿＿。', target: '末', choices: ['未', '末', '朱'], hint: '一星期最後的日子是週末；末字上面一橫較短。', meaning: '📅 一星期最後的日子' }
+        { sentence: '星期六和星期日是週＿＿。', target: '末', choices: ['未', '末', '朱'], hint: '一星期最後的日子是週末；末字上面一橫較短。', meaning: '📅 一星期最後的日子' },
+        { sentence: '我每天都會和＿＿媽說早晨。', target: '媽', choices: ['媽', '馬', '嗎'], hint: '說的是家中的媽媽；選有女字旁的「媽」。', meaning: '👩 女性家人' },
+        { sentence: '小朋友在＿＿邊看見很多水。', target: '河', choices: ['河', '何', '可'], hint: '有很多水流過的地方是河；選有三點水的「河」。', meaning: '🌊 有水流過的地方' },
+        { sentence: '花園裡有一朵紅色的＿＿。', target: '花', choices: ['花', '化', '華'], hint: '植物會開出花朵；選有草字頭的「花」。', meaning: '🌼 植物開出的花朵' },
+        { sentence: '音樂一開始，大家一起＿＿手。', target: '拍', choices: ['拍', '怕', '伯'], hint: '拍手要用手；選有提手旁的「拍」。', meaning: '👏 用手發出聲音' },
+        { sentence: '下雨時，記得帶＿＿出門。', target: '傘', choices: ['傘', '散', '山'], hint: '可以擋雨的是雨傘；選「傘」。', meaning: '☂️ 下雨時的用品' }
       ]
     },
     rhyme: {
@@ -29,7 +39,12 @@
       rounds: [
         { listen: '花', prompt: '聽「花」，找第一個聲音一樣的字。', target: '火', choices: ['火', '馬', '書'], hint: '慢慢讀：花 faa、火 fo，兩個字都以 f 聲開始。', meaning: '👂 先聽第一個聲音', success: '「花」和「火」的第一個聲音一樣。' },
         { listen: '高', prompt: '聽「高」，找第一個聲音一樣的字。', target: '歌', choices: ['歌', '花', '書'], hint: '慢慢讀：高 gou、歌 go，兩個字都以 g 聲開始。', meaning: '👂 先聽第一個聲音', success: '「高」和「歌」的第一個聲音一樣。' },
-        { listen: '米', prompt: '聽「米」，找第一個聲音一樣的字。', target: '馬', choices: ['馬', '花', '書'], hint: '慢慢讀：米 mai、馬 maa，兩個字都以 m 聲開始。', meaning: '👂 先聽第一個聲音', success: '「米」和「馬」的第一個聲音一樣。' }
+        { listen: '米', prompt: '聽「米」，找第一個聲音一樣的字。', target: '馬', choices: ['馬', '花', '書'], hint: '慢慢讀：米 mai、馬 maa，兩個字都以 m 聲開始。', meaning: '👂 先聽第一個聲音', success: '「米」和「馬」的第一個聲音一樣。' },
+        { listen: '書', prompt: '聽「書」，找第一個聲音一樣的字。', target: '水', choices: ['水', '馬', '花'], hint: '慢慢讀：書 syu、水 seoi，兩個字都以 s 聲開始。', meaning: '👂 先聽第一個聲音', success: '「書」和「水」的第一個聲音一樣。' },
+        { listen: '東', prompt: '聽「東」，找第一個聲音一樣的字。', target: '多', choices: ['多', '花', '書'], hint: '慢慢讀：東 dung、多 do，兩個字都以 d 聲開始。', meaning: '👂 先聽第一個聲音', success: '「東」和「多」的第一個聲音一樣。' },
+        { listen: '風', prompt: '聽「風」，找第一個聲音一樣的字。', target: '飛', choices: ['飛', '馬', '書'], hint: '慢慢讀：風 fung、飛 fei，兩個字都以 f 聲開始。', meaning: '👂 先聽第一個聲音', success: '「風」和「飛」的第一個聲音一樣。' },
+        { listen: '手', prompt: '聽「手」，找第一個聲音一樣的字。', target: '山', choices: ['山', '花', '馬'], hint: '慢慢讀：手 sau、山 saan，兩個字都以 s 聲開始。', meaning: '👂 先聽第一個聲音', success: '「手」和「山」的第一個聲音一樣。' },
+        { listen: '口', prompt: '聽「口」，找第一個聲音一樣的字。', target: '海', choices: ['海', '花', '書'], hint: '慢慢讀：口 hau、海 hoi，兩個字都以 h 聲開始。', meaning: '👂 先聽第一個聲音', success: '「口」和「海」的第一個聲音一樣。' }
       ]
     },
     stroke: {
@@ -37,7 +52,12 @@
       rounds: [
         { target: '人', prompt: '按「人」字的筆順，先撇後捺。', steps: ['撇', '捺'], hint: '人字像兩隻腳走路：先由左上向下撇，再由右上向下捺。', meaning: '✍️ 每次只按一筆', success: '你完成了「人」字的筆順。' },
         { target: '口', prompt: '按「口」字的筆順，先豎，再橫折，最後橫。', steps: ['豎', '橫折', '橫'], hint: '先畫左邊直線，再由上面轉到右邊，最後封好底部。', meaning: '✍️ 每次只按一筆', success: '你完成了「口」字的筆順。' },
-        { target: '木', prompt: '按「木」字的筆順，先橫、豎、撇、捺。', steps: ['橫', '豎', '撇', '捺'], hint: '先做十字，再加左邊撇和右邊捺。', meaning: '✍️ 每次只按一筆', success: '你完成了「木」字的筆順。' }
+        { target: '木', prompt: '按「木」字的筆順，先橫、豎、撇、捺。', steps: ['橫', '豎', '撇', '捺'], hint: '先做十字，再加左邊撇和右邊捺。', meaning: '✍️ 每次只按一筆', success: '你完成了「木」字的筆順。' },
+        { target: '大', prompt: '按「大」字的筆順，先橫、撇、捺。', steps: ['橫', '撇', '捺'], hint: '先寫中間的一橫，再向左撇、向右捺。', meaning: '✍️ 每次只按一筆', success: '你完成了「大」字的筆順。' },
+        { target: '日', prompt: '按「日」字的筆順，先豎、橫折、橫、橫。', steps: ['豎', '橫折', '橫', '橫'], hint: '先寫左邊直線，再從上面轉到右邊，最後補兩橫。', meaning: '✍️ 每次只按一筆', success: '你完成了「日」字的筆順。' },
+        { target: '土', prompt: '按「土」字的筆順，先橫、豎、橫。', steps: ['橫', '豎', '橫'], hint: '先寫上面短橫，再寫中間豎，最後寫下面長橫。', meaning: '✍️ 每次只按一筆', success: '你完成了「土」字的筆順。' },
+        { target: '山', prompt: '按「山」字的筆順，先豎、豎折、豎。', steps: ['豎', '豎折', '豎'], hint: '先寫中間直線，再寫左邊轉到底部，最後補右邊直線。', meaning: '✍️ 每次只按一筆', success: '你完成了「山」字的筆順。' },
+        { target: '十', prompt: '按「十」字的筆順，先橫後豎。', steps: ['橫', '豎'], hint: '先畫一條橫線，再從中間向下寫一豎。', meaning: '✍️ 每次只按一筆', success: '你完成了「十」字的筆順。' }
       ]
     },
     triple: {
@@ -58,7 +78,12 @@
       rounds: [
         { character: '拍', picture: '👏', prompt: '「拍」字和手部動作有關，送到哪個部首籃子？', target: '扌', choices: ['扌', '氵', '艹'], hint: '拍手要用手；「拍」字左邊有提手旁扌。', meaning: '✋ 手部動作字', success: '答對了！「拍」有提手旁，和手部動作有關。' },
         { character: '河', picture: '🌊', prompt: '「河」字和水有關，送到哪個部首籃子？', target: '氵', choices: ['氵', '扌', '艹'], hint: '河水是水；「河」字左邊有三點水氵。', meaning: '💧 水相關字', success: '答對了！「河」有三點水，和水有關。' },
-        { character: '花', picture: '🌼', prompt: '「花」字和植物有關，送到哪個部首籃子？', target: '艹', choices: ['艹', '扌', '氵'], hint: '花是植物；「花」字上面有草字頭艹。', meaning: '🌱 植物相關字', success: '答對了！「花」有草字頭，和植物有關。' }
+        { character: '花', picture: '🌼', prompt: '「花」字和植物有關，送到哪個部首籃子？', target: '艹', choices: ['艹', '扌', '氵'], hint: '花是植物；「花」字上面有草字頭艹。', meaning: '🌱 植物相關字', success: '答對了！「花」有草字頭，和植物有關。' },
+        { character: '晴', picture: '☀️', prompt: '「晴」字和太陽有關，送到哪個部首籃子？', target: '日', choices: ['日', '氵', '扌'], hint: '晴天有太陽；「晴」字左邊有日字旁。', meaning: '☀️ 太陽相關字', success: '答對了！「晴」有日字旁，和太陽有關。' },
+        { character: '林', picture: '🌲', prompt: '「林」字和樹木有關，送到哪個部首籃子？', target: '木', choices: ['木', '艹', '女'], hint: '森林裡有很多樹；「林」字由兩個木組成。', meaning: '🌳 樹木相關字', success: '答對了！「林」有木字，和樹木有關。' },
+        { character: '媽', picture: '👩', prompt: '「媽」字和女性家人有關，送到哪個部首籃子？', target: '女', choices: ['女', '扌', '口'], hint: '媽媽是女性家人；「媽」字左邊有女字旁。', meaning: '👩 女性家人字', success: '答對了！「媽」有女字旁。' },
+        { character: '喝', picture: '🥤', prompt: '「喝」字和嘴巴動作有關，送到哪個部首籃子？', target: '口', choices: ['口', '氵', '日'], hint: '喝水要用嘴巴；「喝」字左邊有口字旁。', meaning: '👄 嘴巴動作字', success: '答對了！「喝」有口字旁。' },
+        { character: '狗', picture: '🐶', prompt: '「狗」字和動物有關，送到哪個部首籃子？', target: '犭', choices: ['犭', '艹', '扌'], hint: '小狗是動物；「狗」字左邊有反犬旁。', meaning: '🐾 動物相關字', success: '答對了！「狗」有反犬旁，和動物有關。' }
       ]
     },
     train: {
@@ -179,10 +204,12 @@
     const progress = `<div class="spld-lab-progress"><span>第 ${roundIndex + 1} / ${total} 關</span><div><i style="width:${((roundIndex + 1) / total) * 100}%"></i></div></div>`;
     const tools = `<div class="spld-lab-tools"><button type="button" id="spldLabRead">🔊 朗讀規則</button><button type="button" id="spldLabHint">💡 看提示</button><button type="button" id="spldLabBack">← 換一項練習</button></div>`;
     let activityMarkup = '';
-    const radicalBaskets = { '扌': ['✋', '手部動作'], '氵': ['💧', '水相關'], '艹': ['🌱', '植物相關'] };
+    const radicalBaskets = { '扌': ['✋', '手部動作'], '氵': ['💧', '水相關'], '艹': ['🌱', '植物相關'], '日': ['☀️', '太陽相關'], '木': ['🌳', '樹木相關'], '女': ['👩', '女性家人'], '口': ['👄', '嘴巴動作'], '犭': ['🐾', '動物相關'] };
 
     if (active === activities.assembly) {
-      activityMarkup = `<div class="spld-assembly-guide"><span>目標字</span><strong>${round.target}</strong><small>${round.guide} 結構</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-assembly-slots" aria-label="部件拼盤"><button type="button" class="spld-part-slot" data-slot="0" data-sen-drop-zone="part"><span>左邊</span><strong>${selectedParts[0] || '？'}</strong></button><span class="spld-plus">＋</span><button type="button" class="spld-part-slot" data-slot="1" data-sen-drop-zone="part"><span>右邊</span><strong>${selectedParts[1] || '？'}</strong></button></div><p class="spld-lab-instruction">可把部件拖到左右位置；也可按一個部件，它會放進下一個空格。</p><div class="spld-part-bank">${round.parts.map((part) => `<button type="button" class="spld-part-piece ${selectedParts.includes(part) ? 'used' : ''}" data-part="${part}" draggable="${!selectedParts.includes(part)}" data-sen-drag-source ${selectedParts.includes(part) ? 'disabled' : ''}>${part}</button>`).join('')}</div>`;
+      const slotLabels = round.guide.includes('上') ? ['上面', '下面'] : ['左邊', '右邊'];
+      const placementInstruction = round.guide.includes('上') ? '可把部件拖到上面或下面的位置；也可按一個部件，它會放進下一個空格。' : '可把部件拖到左右位置；也可按一個部件，它會放進下一個空格。';
+      activityMarkup = `<div class="spld-assembly-guide"><span>目標字</span><strong>${round.target}</strong><small>${round.guide} 結構</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-assembly-slots" aria-label="部件拼盤"><button type="button" class="spld-part-slot" data-slot="0" data-sen-drop-zone="part"><span>${slotLabels[0]}</span><strong>${selectedParts[0] || '？'}</strong></button><span class="spld-plus">＋</span><button type="button" class="spld-part-slot" data-slot="1" data-sen-drop-zone="part"><span>${slotLabels[1]}</span><strong>${selectedParts[1] || '？'}</strong></button></div><p class="spld-lab-instruction">${placementInstruction}</p><div class="spld-part-bank">${round.parts.map((part) => `<button type="button" class="spld-part-piece ${selectedParts.includes(part) ? 'used' : ''}" data-part="${part}" draggable="${!selectedParts.includes(part)}" data-sen-drag-source ${selectedParts.includes(part) ? 'disabled' : ''}>${part}</button>`).join('')}</div>`;
     } else if (active === activities.stroke) {
       activityMarkup = `<div class="spld-stroke-target"><span>目標字</span><strong>${round.target}</strong><small>${round.steps.length} 筆</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-stroke-slots">${round.steps.map((_, index) => `<div class="spld-stroke-slot ${selectedStrokes[index] ? 'filled' : ''}"><b>${index + 1}</b><strong>${selectedStrokes[index] || '？'}</strong></div>`).join('')}</div><div class="spld-stroke-options">${strokeOptions.map((step) => `<button type="button" class="spld-stroke-option ${selectedStrokes.includes(step) ? 'used' : ''}" data-stroke="${step}" ${selectedStrokes.includes(step) ? 'disabled' : ''}>${step}</button>`).join('')}</div>`;
     } else if (active === activities.triple) {
