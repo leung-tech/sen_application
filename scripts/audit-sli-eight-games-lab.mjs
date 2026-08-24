@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises';
 
 const port = 9398;
 const reportPath = '/home/ubuntu/sen_application/sli-eight-games-lab-audit.json';
-const baseUrl = process.env.SEN_AUDIT_URL || 'https://leung-tech.github.io/sen_application/index.html';
+const baseUrl = process.env.SEN_AUDIT_URL || 'file:///home/ubuntu/sen_application/index.html';
 const stages = {
   lower: ['tone-park', 'cause-workshop'],
   upper: ['word-net', 'pace-route'],

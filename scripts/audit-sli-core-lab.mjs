@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises';
 
 const port = 9365;
 const reportPath = '/home/ubuntu/sen_application/sli-core-lab-audit.json';
-const baseUrl = process.env.SEN_AUDIT_URL || 'https://leung-tech.github.io/sen_application/index.html';
+const baseUrl = process.env.SEN_AUDIT_URL || 'file:///home/ubuntu/sen_application/index.html';
 const stages = {
   lower: ['sound', 'portal', 'factory'],
   upper: ['timeline', 'emotion', 'courier'],
