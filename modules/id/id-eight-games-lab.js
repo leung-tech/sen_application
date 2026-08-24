@@ -20,14 +20,16 @@
     emergency: { icon: '☎️', title: '緊急求助熱線：119 還是 999？', focus: '高中 · 危機求助與自我保護', description: '在火警或有人暈倒時，練習撥打 999 並說出地址。', prep: ['先看情境，判斷是否需要緊急協助。', '需要消防車或救護車時，慢慢按 9、9、9。', '接通後，先選擇自己的地址資料。'], total: 8 },
   };
 
-  const BUS = [{ color: '紅色', tone: 'red', icon: '🎒' }, { color: '黃色', tone: 'yellow', icon: '🧸' }, { color: '藍色', tone: 'blue', icon: '🎒' }];
-  const OUTFIT = [{ weather: '大雨', sky: '🌧️', answer: '雨傘', choices: ['雨傘', '泳衣', '短袖衫'] }, { weather: '太陽曬', sky: '☀️', answer: '短袖衫', choices: ['厚外套', '短袖衫', '雨傘'] }, { weather: '天氣涼', sky: '☁️', answer: '厚外套', choices: ['泳衣', '厚外套', '雨傘'] }];
-  const SNACK = [{ item: '菠蘿包', icon: '🥖', price: 5, coins: [5] }, { item: '芝士包', icon: '🧀', price: 5, coins: [2, 2, 1] }, { item: '蛋撻', icon: '🥧', price: 10, coins: [5, 5] }];
-  const SIGNS = [{ scene: '紅燈正在閃。現在可以過馬路嗎？', icon: '🚦', answer: '不過馬路，等綠燈', choices: ['不過馬路，等綠燈', '立即衝過馬路'] }, { scene: '想去男廁，應該找哪一個標示？', icon: '🚻', answer: '男廁標示', choices: ['男廁標示', '安全出口標示'] }, { scene: '看見這個「M」標誌，你知道附近有甚麼？', icon: 'Ⓜ️', answer: '港鐵站', choices: ['港鐵站', '巴士維修站'] }];
-  const BURGER = [{ part: '底麵包', icon: '🍞' }, { part: '漢堡扒', icon: '🥩' }, { part: '生菜', icon: '🥬' }, { part: '頂麵包', icon: '🍞' }];
-  const SCHEDULE = [{ time: '08:00', sun: '🌅', answer: '返學', choices: ['返學', '瞓覺', '食晚餐'] }, { time: '18:30', sun: '🌇', answer: '食晚餐', choices: ['瞓覺', '食晚餐', '返學'] }, { time: '21:30', sun: '🌙', answer: '瞓覺', choices: ['食晚餐', '返學', '瞓覺'] }];
-  const STOCK = [{ item: '紙包奶', icon: '🥛', shelf: 'drink' }, { item: '洗潔精', icon: '🧴', shelf: 'clean' }, { item: '汽水', icon: '🥤', shelf: 'drink' }];
-  const EMERGENCY = [{ scene: '家裡廚房著火了。', icon: '🔥' }, { scene: '看見有人暈倒，需要救護車。', icon: '🧑‍⚕️' }, { scene: '大廈走廊有濃煙。', icon: '💨' }];
+  const BUS_TARGETS = [{ color: '紅色', tone: 'red' }, { color: '黃色', tone: 'yellow' }, { color: '藍色', tone: 'blue' }, { color: '綠色', tone: 'green' }];
+  const BUS = [{ color: '紅色', icon: '🎒', item: '紅色書包' }, { color: '黃色', icon: '🧸', item: '黃色玩具熊' }, { color: '藍色', icon: '📘', item: '藍色圖書' }, { color: '綠色', icon: '🍏', item: '綠色蘋果' }, { color: '紅色', icon: '🖍️', item: '紅色顏色筆' }, { color: '黃色', icon: '🌼', item: '黃色小花' }, { color: '藍色', icon: '💧', item: '藍色水樽' }, { color: '綠色', icon: '🧤', item: '綠色手套' }];
+  const OUTFIT = [{ weather: '大雨', sky: '🌧️', answer: '雨傘', choices: ['雨傘', '泳衣', '短袖衫'] }, { weather: '太陽曬', sky: '☀️', answer: '短袖衫', choices: ['厚外套', '短袖衫', '雨傘'] }, { weather: '天氣涼', sky: '☁️', answer: '厚外套', choices: ['泳衣', '厚外套', '雨傘'] }, { weather: '寒冷有風', sky: '🌬️', answer: '外套', choices: ['外套', '背心', '雨傘'] }, { weather: '下毛毛雨', sky: '🌦️', answer: '防水外套', choices: ['防水外套', '拖鞋', '太陽帽'] }, { weather: '去沙灘玩水', sky: '🏖️', answer: '泳衣', choices: ['泳衣', '厚頸巾', '雨靴'] }, { weather: '陽光很猛烈', sky: '🌞', answer: '太陽帽', choices: ['太陽帽', '雨褸', '手套'] }, { weather: '地面有水漬', sky: '💦', answer: '防滑鞋', choices: ['防滑鞋', '拖鞋', '薄襪'] }];
+  const SNACK = [{ item: '菠蘿包', icon: '🥖', price: 5 }, { item: '芝士包', icon: '🧀', price: 5 }, { item: '蛋撻', icon: '🥧', price: 10 }, { item: '紙包奶', icon: '🥛', price: 4 }, { item: '雞蛋三文治', icon: '🥪', price: 8 }, { item: '蘋果汁', icon: '🧃', price: 6 }, { item: '火腿包', icon: '🍞', price: 7 }, { item: '魚蛋', icon: '🍢', price: 9 }];
+  const SIGNS = [{ scene: '紅燈正在閃。現在可以過馬路嗎？', icon: '🚦', answer: '不過馬路，等綠燈', choices: ['不過馬路，等綠燈', '立即衝過馬路', '低頭看電話'] }, { scene: '想去男廁，應該找哪一個標示？', icon: '🚻', answer: '男廁標示', choices: ['男廁標示', '安全出口標示', '升降機標示'] }, { scene: '看見這個「M」標誌，你知道附近有甚麼？', icon: 'Ⓜ️', answer: '港鐵站', choices: ['港鐵站', '巴士維修站', '圖書館'] }, { scene: '看見綠色跑步人圖示，這是甚麼地方？', icon: '🚪', answer: '安全出口', choices: ['安全出口', '食物櫃', '遊戲室'] }, { scene: '地上剛拖過很濕，應留意哪個標示？', icon: '⚠️', answer: '小心滑倒', choices: ['小心滑倒', '可以跑步', '可以玩水'] }, { scene: '想乘升降機，應找哪個圖示？', icon: '🛗', answer: '升降機標示', choices: ['升降機標示', '男廁標示', '出口標示'] }, { scene: '手有小傷口，需要找哪個標示？', icon: '⛑️', answer: '急救箱標示', choices: ['急救箱標示', '垃圾箱標示', '巴士標示'] }, { scene: '看到禁止飲食圖示，現在應怎樣做？', icon: '🚫', answer: '先不要吃東西', choices: ['先不要吃東西', '立刻打開零食', '把食物丟地上'] }];
+  const BURGER = [{ part: '底麵包', icon: '🍞' }, { part: '芝士片', icon: '🧀' }, { part: '漢堡扒', icon: '🥩' }, { part: '番茄片', icon: '🍅' }, { part: '生菜', icon: '🥬' }, { part: '醬汁', icon: '🥫' }, { part: '頂麵包', icon: '🍞' }, { part: '放進餐盤', icon: '🍽️' }];
+  const SCHEDULE = [{ time: '07:00', sun: '🌅', answer: '起床刷牙', choices: ['起床刷牙', '瞓覺', '食晚餐'] }, { time: '08:00', sun: '🌅', answer: '返學', choices: ['返學', '睇電視', '瞓覺'] }, { time: '12:30', sun: '☀️', answer: '食午餐', choices: ['食午餐', '沖涼', '瞓覺'] }, { time: '16:00', sun: '🌤️', answer: '做功課', choices: ['做功課', '食早餐', '瞓覺'] }, { time: '18:30', sun: '🌇', answer: '食晚餐', choices: ['瞓覺', '食晚餐', '返學'] }, { time: '19:30', sun: '🌆', answer: '收拾書包', choices: ['收拾書包', '食午餐', '起床'] }, { time: '20:30', sun: '🌙', answer: '沖涼', choices: ['沖涼', '返學', '食早餐'] }, { time: '21:30', sun: '🌙', answer: '瞓覺', choices: ['食晚餐', '返學', '瞓覺'] }];
+  const STOCK = [{ item: '紙包奶', icon: '🥛', shelf: 'drink' }, { item: '洗潔精', icon: '🧴', shelf: 'clean' }, { item: '汽水', icon: '🥤', shelf: 'drink' }, { item: '沐浴露', icon: '🧼', shelf: 'clean' }, { item: '果汁', icon: '🧃', shelf: 'drink' }, { item: '洗衣液', icon: '🫧', shelf: 'clean' }, { item: '樽裝水', icon: '💧', shelf: 'drink' }, { item: '洗手液', icon: '🧴', shelf: 'clean' }];
+  const EMERGENCY = [{ scene: '家裡廚房著火了。', icon: '🔥', answer: '離開危險位置並打 999', choices: ['離開危險位置並打 999', '回去拿玩具', '躲在廚房'] }, { scene: '看見有人暈倒，需要救護車。', icon: '🧑‍⚕️', answer: '找成人協助並打 999', choices: ['找成人協助並打 999', '自己搬動對方', '圍著拍照'] }, { scene: '大廈走廊有濃煙。', icon: '💨', answer: '遠離濃煙並通知成人', choices: ['遠離濃煙並通知成人', '走進濃煙查看', '回房間鎖門'] }, { scene: '在商場和家人走散。', icon: '🏬', answer: '留在原處找職員', choices: ['留在原處找職員', '跟陌生人離開', '跑到停車場'] }, { scene: '有人叫你交出家門密碼。', icon: '🔐', answer: '不要說密碼，找可信任成人', choices: ['不要說密碼，找可信任成人', '立刻說出密碼', '把門匙送人'] }, { scene: '過馬路時看見車輛很快接近。', icon: '🚗', answer: '留在安全位置等候', choices: ['留在安全位置等候', '衝出去比快', '閉眼過路'] }, { scene: '手被熱水輕微燙到。', icon: '♨️', answer: '用流動清水沖並找成人', choices: ['用流動清水沖並找成人', '繼續玩火', '塗上不明藥膏'] }, { scene: '在巴士站感到很不舒服。', icon: '🚌', answer: '坐下並向職員或成人求助', choices: ['坐下並向職員或成人求助', '獨自走去偏僻地方', '忍住不說'] }];
+  Object.assign(GAMES.bus, { rounds: BUS }); Object.assign(GAMES.outfit, { rounds: OUTFIT }); Object.assign(GAMES.snack, { rounds: SNACK }); Object.assign(GAMES.signs, { rounds: SIGNS }); Object.assign(GAMES.burger, { rounds: BURGER }); Object.assign(GAMES.schedule, { rounds: SCHEDULE }); Object.assign(GAMES.stock, { rounds: STOCK }); Object.assign(GAMES.emergency, { rounds: EMERGENCY });
 
   const roundItem = (items) => items[state.round % items.length];
 
@@ -125,7 +127,7 @@
 
   function renderBus() {
     const item = roundItem(BUS);
-    shell(GAMES.bus.title, '請把物件放到相同顏色的校園巴士。', `<div class="id8-task"><p>這是一個 <b>${item.color} ${item.icon}</b>。</p><div id="id8BusItem" class="id8-drag-item" draggable="true"><span>${item.icon}</span><b>${item.color}物件</b></div><div class="id8-bus-row">${BUS.map((bus) => `<button type="button" class="id8-bus ${bus.tone}" data-id8-bus="${bus.color}"><span>🚌</span><b>${bus.color}巴士</b></button>`).join('')}</div></div>`, `現在是一個${item.color}${item.icon}。請找${item.color}巴士。`);
+    shell(GAMES.bus.title, '請把物件放到相同顏色的校園巴士。', `<div class="id8-task"><p>這是一個 <b>${item.item}</b>。</p><div id="id8BusItem" class="id8-drag-item" draggable="true"><span>${item.icon}</span><b>${item.item}</b></div><div class="id8-bus-row">${BUS_TARGETS.map((bus) => `<button type="button" class="id8-bus ${bus.tone}" data-id8-bus="${bus.color}"><span>🚌</span><b>${bus.color}巴士</b></button>`).join('')}</div></div>`, `現在是一個${item.item}。請找${item.color}巴士。`);
     const decide = (color) => color === item.color ? correct(`答對啦！${item.color}物件已上車。`, () => advance(renderBus)) : gentle(`再看看物件和巴士的顏色。`);
     qa('[data-id8-bus]').forEach((button) => button.addEventListener('click', () => decide(button.dataset.id8Bus)));
     dropSetup('#id8BusItem', '[data-id8-bus]', (target) => decide(target.dataset.id8Bus));
@@ -171,14 +173,9 @@
   }
 
   function renderEmergency() {
-    const emergencyStep = state.round % 4; const item = EMERGENCY[Math.floor(state.round / 4) % EMERGENCY.length];
-    if (emergencyStep < 3) {
-      shell(GAMES.emergency.title, `${item.scene} 需要緊急協助時，請慢慢按 9、9、9。`, `<div class="id8-task"><div class="id8-emergency-scene"><span>${item.icon}</span><b>${item.scene}</b><small>需要消防車或救護車時，香港緊急電話是 999。</small></div><div class="id8-dial-display" aria-live="polite">${state.dial || '___'}</div><div class="id8-dial-pad">${['1','2','3','4','5','6','7','8','9'].map((digit) => `<button type="button" data-id8-digit="${digit}">${digit}</button>`).join('')}</div></div>`, `需要緊急協助時，請慢慢按九、九、九。現在請按第${emergencyStep + 1}個九。`);
-      qa('[data-id8-digit]').forEach((button) => button.addEventListener('click', () => { const digit = button.dataset.id8Digit; if (digit !== '9') return gentle('緊急電話是九、九、九。現在請按九。'); state.dial += '9'; correct(`已按第 ${emergencyStep + 1} 個九。`, () => advance(renderEmergency)); }));
-      return;
-    }
-    shell(GAMES.emergency.title, '已接通 999。現在選一個圖示，告訴接線員你的位置。', `<div class="id8-task"><div class="id8-emergency-scene"><span>☎️</span><b>接線員：請問你在哪裡？</b></div><div class="id8-helper-row"><button type="button" data-id8-address="yes"><span>🏠</span><b>我家地址</b><small>先說清楚大廈／屋苑名稱</small></button><button type="button" data-id8-address="no"><span>🎮</span><b>遊戲名稱</b><small>這不是接線員需要的資料</small></button></div></div>`, '已接通九九九。請選擇我家地址，告訴接線員你的位置。');
-    qa('[data-id8-address]').forEach((button) => button.addEventListener('click', () => button.dataset.id8Address === 'yes' ? correct('對了，先說清楚自己的地址。接線員會繼續協助。', () => { state.dial = ''; advance(renderEmergency); }) : gentle('接線員需要知道你在哪裡。請選擇我家地址。')));
+    const item = EMERGENCY[state.round];
+    shell(GAMES.emergency.title, item.scene, `<div class="id8-task"><div class="id8-emergency-scene"><span>${item.icon}</span><b>${item.scene}</b><small>先讓自己留在安全位置，再找可信任成人或職員協助。</small></div><div class="id8-choice-grid">${item.choices.map((choice) => `<button type="button" class="id8-choice" data-id8-emergency="${choice}">${choice}</button>`).join('')}</div></div>`, item.scene);
+    qa('[data-id8-emergency]').forEach((button) => button.addEventListener('click', () => button.dataset.id8Emergency === item.answer ? correct('你選擇了安全而清楚的下一步。', () => advance(renderEmergency)) : gentle('先看看哪一個做法能讓自己留在安全位置並找到協助。')));
   }
 
   function handleKey(event) { if (host && event.key === 'Escape') { event.preventDefault(); close(); } }

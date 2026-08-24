@@ -21,31 +21,33 @@
   };
 
   const HAZARDS = [
-    { icon: '🧸', item: '洋娃娃', danger: false },
-    { icon: '♨️', item: '正在發熱的熱水煲', danger: true },
-    { icon: '🔌', item: '插頭', danger: true }
+    { icon: '🧸', item: '洋娃娃', danger: false }, { icon: '♨️', item: '正在發熱的熱水煲', danger: true },
+    { icon: '🔌', item: '牆上的插頭', danger: true }, { icon: '✂️', item: '打開的剪刀', danger: true },
+    { icon: '🧸', item: '軟綿綿玩具熊', danger: false }, { icon: '🔥', item: '點著的香薰蠟燭', danger: true },
+    { icon: '🌀', item: '正在轉動的風扇', danger: true }, { icon: '📚', item: '合上的圖書', danger: false }
   ];
   const UNIFORMS = [
-    { role: '消防員', icon: '🧑‍🚒', tool: '消防車', toolIcon: '🚒' },
-    { role: '警察', icon: '👮', tool: '警車', toolIcon: '🚓' },
-    { role: '港鐵職員', icon: '🧑‍💼', tool: '港鐵入閘機', toolIcon: '🚇' }
+    { role: '消防員', icon: '🧑‍🚒', tool: '消防車', toolIcon: '🚒' }, { role: '警察', icon: '👮', tool: '警車', toolIcon: '🚓' },
+    { role: '港鐵職員', icon: '🧑‍💼', tool: '港鐵入閘機', toolIcon: '🚇' }, { role: '醫護人員', icon: '🧑‍⚕️', tool: '急救箱', toolIcon: '⛑️' },
+    { role: '郵差', icon: '🧑‍✈️', tool: '郵件袋', toolIcon: '✉️' }, { role: '清潔工友', icon: '🧹', tool: '清潔車', toolIcon: '🛒' },
+    { role: '圖書館職員', icon: '📚', tool: '借書櫃位', toolIcon: '🗂️' }, { role: '保安員', icon: '🛡️', tool: '對講機', toolIcon: '📻' }
   ];
   const MALL = [
     { prompt: '小明想去男廁，應該跟哪個箭頭行？', answer: '男廁', choices: [{ text: '🚹 男廁 →', value: '男廁' }, { text: '🛗 升降機 →', value: '升降機' }, { text: '🍜 食肆 →', value: '食肆' }] },
     { prompt: '小明想離開商場，應該找哪個圖示？', answer: '安全出口', choices: [{ text: '🚪 安全出口 →', value: '安全出口' }, { text: '🚻 洗手間 →', value: '洗手間' }, { text: 'Ⓜ️ 港鐵 →', value: '港鐵' }] },
-    { prompt: '小明想搭港鐵，應該跟哪個圖示？', answer: '港鐵', choices: [{ text: 'Ⓜ️ 港鐵 →', value: '港鐵' }, { text: '🚹 男廁 →', value: '男廁' }, { text: '🍜 食肆 →', value: '食肆' }] }
+    { prompt: '小明想搭港鐵，應該跟哪個圖示？', answer: '港鐵', choices: [{ text: 'Ⓜ️ 港鐵 →', value: '港鐵' }, { text: '🚹 男廁 →', value: '男廁' }, { text: '🍜 食肆 →', value: '食肆' }] },
+    { prompt: '小明想找升降機，應該跟哪個圖示？', answer: '升降機', choices: [{ text: '🛗 升降機 →', value: '升降機' }, { text: '🚪 出口 →', value: '出口' }, { text: '🍜 食肆 →', value: '食肆' }] },
+    { prompt: '小明手有小傷口，應該找哪個圖示？', answer: '急救箱', choices: [{ text: '⛑️ 急救箱 →', value: '急救箱' }, { text: '🚻 洗手間 →', value: '洗手間' }, { text: '🅿️ 停車場 →', value: '停車場' }] },
+    { prompt: '小明想去食肆吃午餐，應該跟哪個圖示？', answer: '食肆', choices: [{ text: '🍜 食肆 →', value: '食肆' }, { text: '🛗 升降機 →', value: '升降機' }, { text: 'Ⓜ️ 港鐵 →', value: '港鐵' }] },
+    { prompt: '聽到緊急鐘聲，小明應找哪個圖示離開？', answer: '安全出口', choices: [{ text: '🚪 安全出口 →', value: '安全出口' }, { text: '🚹 男廁 →', value: '男廁' }, { text: '🍜 食肆 →', value: '食肆' }] },
+    { prompt: '小明想找家人約好的停車位置，應找哪個圖示？', answer: '停車場', choices: [{ text: '🅿️ 停車場 →', value: '停車場' }, { text: '🚻 洗手間 →', value: '洗手間' }, { text: '⛑️ 急救箱 →', value: '急救箱' }] }
   ];
-  const SHAMPOO = [
-    { icon: '💧', text: '梳濕個頭' },
-    { icon: '🫧', text: '倒洗頭水捽泡泡' },
-    { icon: '🚿', text: '用水沖乾淨' },
-    { icon: '🧻', text: '用毛巾抹乾' }
-  ];
-  const TEA = [
-    { order: '蛋撻 $6 ＋ 紙包奶 $4', total: 10 },
-    { order: '菠蘿包 $5 ＋ 凍檸茶 $3', total: 8 },
-    { order: '火腿通粉 $9 ＋ 紙包奶 $4', total: 13 }
-  ];
+  const SHAMPOO = [{ icon: '🚿', text: '用溫水弄濕頭髮' }, { icon: '🫧', text: '倒少量洗頭水在手心' }, { icon: '🫳', text: '輕輕搓出泡泡' }, { icon: '💆', text: '按摩頭皮和頭髮' }, { icon: '🚿', text: '用清水沖走泡泡' }, { icon: '🧴', text: '按需要使用護髮素' }, { icon: '🚿', text: '再沖乾淨護髮素' }, { icon: '🧻', text: '用毛巾抹乾頭髮' }];
+  const TEA = [{ order: '蛋撻 $6 ＋ 紙包奶 $4', total: 10 }, { order: '菠蘿包 $5 ＋ 凍檸茶 $3', total: 8 }, { order: '火腿通粉 $9 ＋ 紙包奶 $4', total: 13 }, { order: '雞蛋三文治 $7 ＋ 熱檸茶 $3', total: 10 }, { order: '腸粉 $8 ＋ 豆漿 $4', total: 12 }, { order: '魚蛋 $9 ＋ 樽裝水 $2', total: 11 }, { order: '芝士包 $5 ＋ 蘋果汁 $6', total: 11 }, { order: '白飯 $6 ＋ 燒賣 $7', total: 13 }];
+  const OCTOPUS = [{ icon:'👛', prompt:'入閘前，第一步應做甚麼？', answer:'從銀包拿出八達通', choices:['從銀包拿出八達通','直接推閘門','把卡交給陌生人'] }, { icon:'🪪', prompt:'拿出八達通後，應貼近哪裏？', answer:'橙色感應器', choices:['橙色感應器','車門玻璃','地面'] }, { icon:'🔊', prompt:'聽到「嘟」聲後代表甚麼？', answer:'閘門可以通過', choices:['閘門可以通過','要立刻跑走','要把卡丟掉'] }, { icon:'🚇', prompt:'閘門未打開時，應怎樣做？', answer:'停在黃線後等候', choices:['停在黃線後等候','推開閘門','跟著別人衝過'] }, { icon:'🚶', prompt:'通過閘門時，最合適的做法是甚麼？', answer:'慢慢向前走', choices:['慢慢向前走','在閘門前跑跳','停在入口玩電話'] }, { icon:'🚌', prompt:'到月台前，應先看甚麼？', answer:'路線與方向標示', choices:['路線與方向標示','旁邊廣告','別人的電話'] }, { icon:'👥', prompt:'列車到站時，應怎樣做？', answer:'先讓乘客下車', choices:['先讓乘客下車','立刻擠進車門','在門口推人'] }, { icon:'🪪', prompt:'出閘後，八達通最適合放在哪裏？', answer:'放回銀包收好', choices:['放回銀包收好','放在地上','交給陌生人'] }];
+  const SHREDDER = [{ icon:'📌', prompt:'文件有釘書釘，第一步是甚麼？', answer:'先拔除釘書釘', choices:['先拔除釘書釘','直接放進碎紙機','用手撕碎'] }, { icon:'📄', prompt:'紙張已沒有釘書釘，應放去哪裏？', answer:'碎紙機入口', choices:['碎紙機入口','水杯裏','椅子底'] }, { icon:'🖐️', prompt:'操作碎紙機時，手應放在哪裏？', answer:'留在安全線外', choices:['留在安全線外','伸進入口','放在按鈕上不動'] }, { icon:'🧣', prompt:'圍巾太長接近碎紙機，應怎樣做？', answer:'先把圍巾收好', choices:['先把圍巾收好','讓圍巾靠近入口','請同學拉著圍巾'] }, { icon:'⚠️', prompt:'碎紙機卡住時，應怎樣做？', answer:'關機並找主管幫忙', choices:['關機並找主管幫忙','伸手進去拉紙','繼續按開始'] }, { icon:'🔌', prompt:'清理碎紙機前，應做甚麼？', answer:'先關機和拔電源', choices:['先關機和拔電源','一邊開機一邊清理','用濕手碰插頭'] }, { icon:'🗑️', prompt:'碎紙完成後，紙屑滿了，怎樣做？', answer:'按指引倒進指定箱', choices:['按指引倒進指定箱','灑在地上','放回入口'] }, { icon:'⏻', prompt:'完成工作離開前，最後應做甚麼？', answer:'確認碎紙機已關閉', choices:['確認碎紙機已關閉','讓機器一直開著','把按鈕全部亂按'] }];
+  const PACK = [{ icon:'🔍', prompt:'包裝前先檢查甚麼？', answer:'盒子有沒有破損', choices:['盒子有沒有破損','同事的電話','窗外天氣'] }, { icon:'🟥', prompt:'第一張包裝紙應放在哪裏？', answer:'盒子正中央', choices:['盒子正中央','地面','垃圾桶'] }, { icon:'📐', prompt:'包裝紙太長時，應怎樣做？', answer:'沿虛線慢慢裁好', choices:['沿虛線慢慢裁好','隨意撕開','不看大小'] }, { icon:'📌', prompt:'封口時，膠紙應貼在哪裏？', answer:'包裝紙接縫位置', choices:['包裝紙接縫位置','商品正面中央','桌子邊緣'] }, { icon:'🏷️', prompt:'條碼貼紙應放在哪裏？', answer:'右下角指定位置', choices:['右下角指定位置','盒子裡面','同事衣服上'] }, { icon:'🧾', prompt:'包裝後要核對甚麼？', answer:'標籤和商品是否相符', choices:['標籤和商品是否相符','有沒有更多遊戲','誰走得最快'] }, { icon:'🎁', prompt:'完成包裝後，應放去哪裏？', answer:'合格品箱', choices:['合格品箱','地面','私人書包'] }, { icon:'🗂️', prompt:'下一件貨品開始前，應怎樣做？', answer:'整理枱面再看下一張工作單', choices:['整理枱面再看下一張工作單','把工具亂放','立刻離開'] }];
+  Object.assign(GAMES.hazard, { rounds: HAZARDS }); Object.assign(GAMES.uniform, { rounds: UNIFORMS }); Object.assign(GAMES.octopus, { rounds: OCTOPUS }); Object.assign(GAMES.mall, { rounds: MALL }); Object.assign(GAMES.shampoo, { rounds: SHAMPOO }); Object.assign(GAMES.tea, { rounds: TEA }); Object.assign(GAMES.shredder, { rounds: SHREDDER }); Object.assign(GAMES.pack, { rounds: PACK });
 
   let host = null;
   let options = null;
@@ -149,17 +151,9 @@ function renderUniform() {
   }
 
 function renderOctopus() {
-    const cycleStep = state.step % 3;
-    if (cycleStep === 0) {
-      frame(GAMES.octopus.title, '第一步：先點銀包，拿出八達通卡。', `<div class="id24-task"><button id="id24Wallet" class="id24-wallet" type="button"><span>👛</span><b>銀包</b><small>點一下拿出八達通</small></button></div>`, '第一步：先點銀包，拿出八達通卡。');
-      q('#id24Wallet')?.addEventListener('click', () => { state.cardOut = true; correct('已從銀包拿出八達通卡。', () => next(renderOctopus)); }); return;
-    }
-    if (cycleStep === 1) {
-      frame(GAMES.octopus.title, '第二步：把八達通卡貼近橙色感應器。', `<div class="id24-task"><div id="id24Card" class="id24-drag card" draggable="true"><span>🪪</span><b>八達通卡</b></div><button id="id24Sensor" class="id24-sensor" type="button"><span>🟧</span><b>橙色感應器</b><small>可把卡拖到這裡，或直接點一下</small></button></div>`, '第二步：把八達通卡貼近橙色感應器。');
-      const tap = () => correct('嘟。閘門已打開。', () => next(renderOctopus)); q('#id24Sensor')?.addEventListener('click', tap); setDrop('#id24Card', '#id24Sensor', tap); return;
-    }
-    frame(GAMES.octopus.title, '第三步：看見閘門打開後，才慢慢行過去。', `<div class="id24-task"><div class="id24-gate open"><span>🚇</span><b>閘門已打開</b></div><button id="id24Walk" class="id24-main" type="button">→ 慢慢行過閘門</button></div>`, '第三步：看見閘門打開後，才慢慢行過去。');
-    q('#id24Walk')?.addEventListener('click', () => correct('你已完成拍卡和入閘步驟。', () => next(renderOctopus)));
+    const item = OCTOPUS[state.step];
+    frame(GAMES.octopus.title, item.prompt, `<div class="id24-task"><div class="id24-object"><span>${item.icon}</span><b>${item.prompt}</b></div><div class="id24-choice">${item.choices.map((choice) => `<button data-id24-octopus="${choice}" type="button">${choice}</button>`).join('')}</div></div>`, item.prompt);
+    qa('[data-id24-octopus]').forEach((button) => button.addEventListener('click', () => button.dataset.id24Octopus === item.answer ? correct('做得好，這是安全又清楚的下一步。', () => next(renderOctopus)) : gentle('先看圖示和提示，選一個安全的小步。')));
   }
 
 function renderMall() {
@@ -181,29 +175,15 @@ function renderTea() {
   }
 
 function renderShredder() {
-    const cycleStep = state.step % 3;
-    if (cycleStep === 0) {
-      frame(GAMES.shredder.title, '第一步：這張紙有釘書釘。先要做甚麼？', `<div class="id24-task"><div class="id24-paper"><span>📄📌</span><b>有釘書釘的文件</b></div><div class="id24-choice"><button data-id24-shred="remove" type="button">🗜️ 先拔除釘書釘</button><button data-id24-shred="feed" type="button">➡️ 直接放入碎紙機</button></div></div>`, '這張紙有釘書釘。先要拔除釘書釘。');
-      qa('[data-id24-shred]').forEach((button) => button.addEventListener('click', () => button.dataset.id24Shred === 'remove' ? correct('做得好，已先拔除釘書釘。', () => next(renderShredder)) : gentle('碎紙機不可以放入釘書釘。先用拔釘器。'))); return;
-    }
-    if (cycleStep === 1) {
-      frame(GAMES.shredder.title, '第二步：手留在安全線外，把安全紙張送到入口。', `<div class="id24-task"><div id="id24SafePaper" class="id24-drag" draggable="true"><span>📄</span><b>已拔釘的廢紙</b></div><button id="id24Shredder" class="id24-shredder" type="button"><span>▰</span><b>碎紙機入口</b><small>只可放安全紙張</small></button><div class="id24-safety">🖐️ 手要留在紅色安全線外</div></div>`, '第二步：手留在安全線外，把安全紙張送到碎紙機入口。');
-      const feed = () => correct('安全紙張已送進碎紙機。', () => next(renderShredder)); q('#id24Shredder')?.addEventListener('click', feed); setDrop('#id24SafePaper', '#id24Shredder', feed); return;
-    }
-    frame(GAMES.shredder.title, '第三步：碎紙完成後，先關機再離開工作位置。', `<div class="id24-task"><div class="id24-safe"><span>✅</span><b>碎紙完成，手仍在安全線外。</b></div><button id="id24SwitchOff" class="id24-main" type="button">⏻ 關閉碎紙機</button></div>`, '第三步：碎紙完成後，先關機再離開工作位置。');
-    q('#id24SwitchOff')?.addEventListener('click', () => correct('已關閉碎紙機。你完成了安全工作步驟。', () => next(renderShredder)));
+    const item = SHREDDER[state.step];
+    frame(GAMES.shredder.title, item.prompt, `<div class="id24-task"><div class="id24-paper"><span>${item.icon}</span><b>${item.prompt}</b></div><div class="id24-choice">${item.choices.map((choice) => `<button data-id24-shred="${choice}" type="button">${choice}</button>`).join('')}</div></div>`, item.prompt);
+    qa('[data-id24-shred]').forEach((button) => button.addEventListener('click', () => button.dataset.id24Shred === item.answer ? correct('你完成了安全的工作小步。', () => next(renderShredder)) : gentle('先選一個能保護自己和同事的安全做法。')));
   }
 
 function renderPack() {
-    const steps = [
-      { source: '紅包裝紙', icon: '🟥', target: '盒子中央', hint: '先把紅包裝紙貼在盒子正中央。' },
-      { source: '條碼貼紙', icon: '🏷️', target: '右下角虛線框', hint: '再把條碼貼紙放在右下角虛線框。' },
-      { source: '完成品', icon: '🎁', target: '合格箱', hint: '最後把完成品放入合格箱。' }
-    ];
-    const packStep = state.step % steps.length;
-    const item = steps[packStep];
-    frame(GAMES.pack.title, `第 ${state.step + 1} 步：${item.hint}`, `<div class="id24-task"><div id="id24PackItem" class="id24-drag" draggable="true"><span>${item.icon}</span><b>${item.source}</b></div><button id="id24PackTarget" class="id24-pack-target step-${state.step}" type="button"><span>${state.step === 2 ? '📦' : '🎁'}</span><b>${item.target}</b><small>可把物件拖到這裡，或直接點一下</small></button><div class="id24-dots"><i></i><i></i><i></i></div></div>`, item.hint);
-    const place = () => correct(`已完成：${item.source}放到${item.target}。`, () => next(renderPack)); q('#id24PackTarget')?.addEventListener('click', place); setDrop('#id24PackItem', '#id24PackTarget', place);
+    const item = PACK[state.step];
+    frame(GAMES.pack.title, item.prompt, `<div class="id24-task"><div class="id24-pack-target"><span>${item.icon}</span><b>${item.prompt}</b></div><div class="id24-choice">${item.choices.map((choice) => `<button data-id24-pack="${choice}" type="button">${choice}</button>`).join('')}</div></div>`, item.prompt);
+    qa('[data-id24-pack]').forEach((button) => button.addEventListener('click', () => button.dataset.id24Pack === item.answer ? correct('包裝工作已完成這一個清楚步驟。', () => next(renderPack)) : gentle('先看工作提示，選出最合適的下一步。')));
   }
 
   function handleKey(event) { if (host && event.key === 'Escape') { event.preventDefault(); close(); } }
