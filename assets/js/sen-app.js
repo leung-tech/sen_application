@@ -233,6 +233,11 @@
       function recordAsdLabResult(result) {
         if (!result) return;
         asdCoreRuns = [...asdCoreRuns, result].slice(-5);
+        const structuredCatalogue = String(result.mode || '').startsWith('asd15-');
+        if (structuredCatalogue) {
+          showToast(`已完成${result.label}：已按自己的節奏完成 ${result.total} 個線索任務，不作社交能力評分。`);
+          return;
+        }
         if (lessonSession.mode) {
           if (result.correct) changeLessonCount('correctAttempts', result.correct);
           if (result.incorrect) changeLessonCount('retries', result.incorrect);
