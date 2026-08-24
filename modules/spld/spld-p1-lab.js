@@ -45,7 +45,12 @@
       rounds: [
         { picture: '🍎', audio: '蘋果', prompt: '看紅色水果圖，聽「蘋果」，選出正確字詞。', target: '蘋果', choices: ['蘋果', '平果', '評果'], hint: '圖中是紅色的水果，讀作「蘋果」。', meaning: '🍎 圖像＋語音＋字詞', success: '圖、聲音和「蘋果」連起來了。' },
         { picture: '📚', audio: '圖書', prompt: '看書本圖，聽「圖書」，選出正確字詞。', target: '圖書', choices: ['圖書', '途書', '圖輸'], hint: '圖書館裡有很多可以閱讀的「圖書」。', meaning: '📚 圖像＋語音＋字詞', success: '圖、聲音和「圖書」連起來了。' },
-        { picture: '☂️', audio: '雨傘', prompt: '看雨傘圖，聽「雨傘」，選出正確字詞。', target: '雨傘', choices: ['雨傘', '雨散', '雨山'], hint: '下雨時用來擋雨的是「雨傘」。', meaning: '☂️ 圖像＋語音＋字詞', success: '圖、聲音和「雨傘」連起來了。' }
+        { picture: '☂️', audio: '雨傘', prompt: '看雨傘圖，聽「雨傘」，選出正確字詞。', target: '雨傘', choices: ['雨傘', '雨散', '雨山'], hint: '下雨時用來擋雨的是「雨傘」。', meaning: '☂️ 圖像＋語音＋字詞', success: '圖、聲音和「雨傘」連起來了。' },
+        { picture: '🐶', audio: '小狗', prompt: '看小動物圖，聽「小狗」，選出正確字詞。', target: '小狗', choices: ['小狗', '小句', '小勾'], hint: '圖中有四隻腳、會汪汪叫的小動物是「小狗」。', meaning: '🐶 圖像＋語音＋字詞', success: '圖、聲音和「小狗」連起來了。' },
+        { picture: '☀️', audio: '太陽', prompt: '看發光天空圖，聽「太陽」，選出正確字詞。', target: '太陽', choices: ['太陽', '大陽', '太樣'], hint: '白天在天空發光、帶來光和暖的是「太陽」。', meaning: '☀️ 圖像＋語音＋字詞', success: '圖、聲音和「太陽」連起來了。' },
+        { picture: '🚌', audio: '巴士', prompt: '看交通工具圖，聽「巴士」，選出正確字詞。', target: '巴士', choices: ['巴士', '把士', '巴示'], hint: '可以載很多人上學或出門的交通工具是「巴士」。', meaning: '🚌 圖像＋語音＋字詞', success: '圖、聲音和「巴士」連起來了。' },
+        { picture: '🧸', audio: '玩具', prompt: '看玩樂物品圖，聽「玩具」，選出正確字詞。', target: '玩具', choices: ['玩具', '完具', '玩句'], hint: '可以拿來玩、不是上課文具的物品叫「玩具」。', meaning: '🧸 圖像＋語音＋字詞', success: '圖、聲音和「玩具」連起來了。' },
+        { picture: '🥛', audio: '牛奶', prompt: '看飲品圖，聽「牛奶」，選出正確字詞。', target: '牛奶', choices: ['牛奶', '午奶', '牛乃'], hint: '白色、可以喝的飲品是「牛奶」。', meaning: '🥛 圖像＋語音＋字詞', success: '圖、聲音和「牛奶」連起來了。' }
       ]
     },
     radical: {
