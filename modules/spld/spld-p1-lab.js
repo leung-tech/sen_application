@@ -43,9 +43,9 @@
     triple: {
       icon: '🖼️', title: '圖文音三連配對', description: '看圖、聽語音，再選正確的正體字詞。', focus: '形音意多感官連結', accent: 'pink',
       rounds: [
-        { picture: '🍎', audio: '蘋果', prompt: '看圖、聽一聽，選出正確字詞。', target: '蘋果', choices: ['蘋果', '平果', '評果'], hint: '圖中是紅色的水果，讀作「蘋果」。', meaning: '🍎 圖像＋語音＋字詞', success: '圖、聲音和「蘋果」連起來了。' },
-        { picture: '📚', audio: '圖書', prompt: '看圖、聽一聽，選出正確字詞。', target: '圖書', choices: ['圖書', '途書', '圖輸'], hint: '圖書館裡有很多可以閱讀的「圖書」。', meaning: '📚 圖像＋語音＋字詞', success: '圖、聲音和「圖書」連起來了。' },
-        { picture: '☂️', audio: '雨傘', prompt: '看圖、聽一聽，選出正確字詞。', target: '雨傘', choices: ['雨傘', '雨散', '雨山'], hint: '下雨時用來擋雨的是「雨傘」。', meaning: '☂️ 圖像＋語音＋字詞', success: '圖、聲音和「雨傘」連起來了。' }
+        { picture: '🍎', audio: '蘋果', prompt: '看紅色水果圖，聽「蘋果」，選出正確字詞。', target: '蘋果', choices: ['蘋果', '平果', '評果'], hint: '圖中是紅色的水果，讀作「蘋果」。', meaning: '🍎 圖像＋語音＋字詞', success: '圖、聲音和「蘋果」連起來了。' },
+        { picture: '📚', audio: '圖書', prompt: '看書本圖，聽「圖書」，選出正確字詞。', target: '圖書', choices: ['圖書', '途書', '圖輸'], hint: '圖書館裡有很多可以閱讀的「圖書」。', meaning: '📚 圖像＋語音＋字詞', success: '圖、聲音和「圖書」連起來了。' },
+        { picture: '☂️', audio: '雨傘', prompt: '看雨傘圖，聽「雨傘」，選出正確字詞。', target: '雨傘', choices: ['雨傘', '雨散', '雨山'], hint: '下雨時用來擋雨的是「雨傘」。', meaning: '☂️ 圖像＋語音＋字詞', success: '圖、聲音和「雨傘」連起來了。' }
       ]
     },
     radical: {

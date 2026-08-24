@@ -1,0 +1,245 @@
+# 全站題目重複性稽核
+
+**掃描範圍：** 43 個題庫或主前端 JavaScript 檔案（modules、assets/js）。  
+**可分析題幹／情境／指令紀錄：** 1496 項。  
+**判定方式：** 完全重複會比較標準化題幹；近似重複以中文字符雙字組相似度達 0.86 為候選；換序重複會比較同一題幹的選項集合與原有排列。UI 通用按鈕、短提示和含動態插值的樣板字串不列為題目。
+
+> 本工具先提供可重複執行的候選清單。候選題目仍須人工判讀：跨學段為複習目的的相同概念不一定是錯誤；同一活動內完全相同題幹與選項則應優先修正。
+
+## 摘要
+
+| 類型 | 候選群組／配對 | 人工處理原則 |
+| --- | ---: | --- |
+| 題庫來源鏡像（主頁備援與分學段資料） | 30 | 不會在同一學生流程雙重出題；保留作主頁資料備援。 |
+| 學生可見的完全相同題幹／情境 | 0 | 檢查是否位於同一活動、同一學段或只是跨學段刻意複習。 |
+| 同題幹、相同選項集合、只換排列 | 0 | 視為高風險；若同一活動重覆出現，應改題幹、情境或選項。 |
+| 高相似題幹／情境 | 0 | 檢查是否只是同義改寫、不同語境的必要複習，或實質重覆。 |
+
+## 題庫來源鏡像（不列為學生可見重覆）
+### 鏡像 1
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:94 | prompt | 哪一句的詞序正確？ |
+| `modules/spld/spld-stage-data.js`:13 | prompt | 哪一句的詞序正確？ |
+
+### 鏡像 2
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:98 | prompt | 這個指令的第一步是甚麼？ |
+| `modules/spld/spld-stage-data.js`:17 | prompt | 這個指令的第一步是甚麼？ |
+
+### 鏡像 3
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:110 | prompt | 洗手後，下一步是甚麼？ |
+| `modules/id/id-stage-data.js`:6 | prompt | 洗手後，下一步是甚麼？ |
+
+### 鏡像 4
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:124 | prompt | 找出下一個數字：2、6、12、20、？ |
+| `modules/gifted-hi/gifted-hi-stage-data.js`:5 | prompt | 找出下一個數字：2、6、12、20、？ |
+
+### 鏡像 5
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:139 | prompt | 老師說：「請拿水樽。」要找哪一樣？ |
+| `modules/sli/sli-stage-data.js`:5 | prompt | 老師說：「請拿水樽。」要找哪一樣？ |
+
+### 鏡像 6
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:140 | prompt | 「先寫姓名，再交工作紙」的第一步是甚麼？ |
+| `modules/sli/sli-stage-data.js`:6 | prompt | 「先寫姓名，再交工作紙」的第一步是甚麼？ |
+
+### 鏡像 7
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:141 | prompt | 想請同學再說一次，可以怎樣說？ |
+| `modules/sli/sli-stage-data.js`:7 | prompt | 想請同學再說一次，可以怎樣說？ |
+
+### 鏡像 8
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:144 | prompt | 你想喝水，可以選哪張卡？ |
+| `modules/mi/mi-stage-data.js`:5 | prompt | 你想喝水，可以選哪張卡？ |
+
+### 鏡像 9
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:145 | prompt | 你要去洗手間，可以怎樣表達？ |
+| `modules/mi/mi-stage-data.js`:6 | prompt | 你要去洗手間，可以怎樣表達？ |
+
+### 鏡像 10
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:146 | prompt | 你覺得不舒服，可以選哪張卡？ |
+| `modules/mi/mi-stage-data.js`:7 | prompt | 你覺得不舒服，可以選哪張卡？ |
+
+### 鏡像 11
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:153 | prompt | 不小心碰到同學，可以怎樣說？ |
+| `modules/asd/asd-stage-data.js`:12 | prompt | 不小心碰到同學，可以怎樣說？ |
+
+### 鏡像 12
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:154 | prompt | 要溫習十分鐘，怎樣開始？ |
+| `modules/adhd/adhd-stage-data.js`:30 | prompt | 要溫習十分鐘，怎樣開始？ |
+
+### 鏡像 13
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:155 | prompt | 老師說：「交功課前，先寫姓名。」先做甚麼？ |
+| `modules/sli/sli-stage-data.js`:10 | prompt | 老師說：「交功課前，先寫姓名。」先做甚麼？ |
+
+### 鏡像 14
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:155 | prompt | 「請把圖書放回書架」要處理甚麼？ |
+| `modules/sli/sli-stage-data.js`:10 | prompt | 「請把圖書放回書架」要處理甚麼？ |
+
+### 鏡像 15
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:155 | prompt | 要確認自己聽懂了，可以怎樣說？ |
+| `modules/sli/sli-stage-data.js`:10 | prompt | 要確認自己聽懂了，可以怎樣說？ |
+
+### 鏡像 16
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:156 | prompt | 到操場活動前，你需要哪張卡？ |
+| `modules/mi/mi-stage-data.js`:10 | prompt | 到操場活動前，你需要哪張卡？ |
+
+### 鏡像 17
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:156 | prompt | 想請同學幫忙拿物品，可以選哪張卡？ |
+| `modules/mi/mi-stage-data.js`:10 | prompt | 想請同學幫忙拿物品，可以選哪張卡？ |
+
+### 鏡像 18
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:156 | prompt | 活動結束後，你想表達甚麼？ |
+| `modules/mi/mi-stage-data.js`:10 | prompt | 活動結束後，你想表達甚麼？ |
+
+### 鏡像 19
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:163 | prompt | 同學說：「下課後去圖書館，你想一起嗎？」他在問甚麼？ |
+| `modules/sli/sli-stage-data.js`:11 | prompt | 同學說：「下課後去圖書館，你想一起嗎？」他在問甚麼？ |
+
+### 鏡像 20
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:163 | prompt | 公告說「請保留收據」，重點是甚麼？ |
+| `modules/sli/sli-stage-data.js`:11 | prompt | 公告說「請保留收據」，重點是甚麼？ |
+
+### 鏡像 21
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:163 | prompt | 你想確認集合地點，可以怎樣問？ |
+| `modules/sli/sli-stage-data.js`:11 | prompt | 你想確認集合地點，可以怎樣問？ |
+
+### 鏡像 22
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:164 | prompt | 外出時感到不舒服，選哪張卡最能表達需要？ |
+| `modules/mi/mi-stage-data.js`:11 | prompt | 外出時感到不舒服，選哪張卡最能表達需要？ |
+
+### 鏡像 23
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:164 | prompt | 小組分工時，你想知道自己做甚麼，可以怎樣說？ |
+| `modules/mi/mi-stage-data.js`:11 | prompt | 小組分工時，你想知道自己做甚麼，可以怎樣說？ |
+
+### 鏡像 24
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:164 | prompt | 你已到達集合點，可以選哪張卡？ |
+| `modules/mi/mi-stage-data.js`:11 | prompt | 你已到達集合點，可以選哪張卡？ |
+
+### 鏡像 25
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:171 | prompt | 主管說：「先登記，再到等候區。」第一步是甚麼？ |
+| `modules/sli/sli-stage-data.js`:12 | prompt | 主管說：「先登記，再到等候區。」第一步是甚麼？ |
+
+### 鏡像 26
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:171 | prompt | 服務員說「請出示工作證」，他需要甚麼？ |
+| `modules/sli/sli-stage-data.js`:12 | prompt | 服務員說「請出示工作證」，他需要甚麼？ |
+
+### 鏡像 27
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:171 | prompt | 想確認下一步，可以怎樣問？ |
+| `modules/sli/sli-stage-data.js`:12 | prompt | 想確認下一步，可以怎樣問？ |
+
+### 鏡像 28
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:172 | prompt | 到實習地點後，選哪張卡向主管報到？ |
+| `modules/mi/mi-stage-data.js`:12 | prompt | 到實習地點後，選哪張卡向主管報到？ |
+
+### 鏡像 29
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:172 | prompt | 覺得聲音太大，需要短暫休息，可以選哪張卡？ |
+| `modules/mi/mi-stage-data.js`:12 | prompt | 覺得聲音太大，需要短暫休息，可以選哪張卡？ |
+
+### 鏡像 30
+
+| 位置 | 欄位 | 文字 |
+| --- | --- | --- |
+| `assets/js/sen-app.js`:172 | prompt | 要請同事再示範一次，可以怎樣說？ |
+| `modules/mi/mi-stage-data.js`:12 | prompt | 要請同事再示範一次，可以怎樣說？ |
+
+## 學生可見的完全相同題幹／情境候選
+
+沒有偵測到學生可見的完全相同題幹／情境。
+
+## 同題幹而只換選項排列候選
+
+沒有偵測到符合條件的換序題目。
+
+## 高相似題幹／情境候選
+
+沒有偵測到達門檻的高相似題幹／情境。
+
+## 人工複核順序
+
+1. 先處理同一活動、同一學段內的完全相同題幹與選項。
+2. 再處理同題幹只換選項順序的回合，確認是否有新的詞語、圖像或情境足以構成不同練習。
+3. 最後評估跨學段的近似題；如保留，應在教學紀錄中說明其為刻意螺旋式複習，並提高語言負荷或情境複雜度。
