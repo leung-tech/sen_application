@@ -114,6 +114,17 @@
     activity.answerPositionStrategy = 'irregular-balanced';
     activity.answerPositionPattern = juniorPatterns[index];
   });
+  const seniorPatterns = [
+    [2,1,0,2,0,1,2,0], [0,1,2,0,2,1,0,2], [1,2,0,1,0,2,1,0],
+    [0,2,1,0,1,2,0,2], [2,0,1,2,0,1,0,1], [1,0,2,1,2,0,1,0],
+    [0,1,2,0,2,1,0,2], [2,1,0,2,0,1,2,0], [1,2,0,1,0,2,1,0],
+    [0,2,1,0,1,2,0,2], [2,0,1,2,0,1,0,1], [1,0,2,1,2,0,1,0],
+    [0,1,2,0,2,1,0,2], [2,1,0,2,0,1,2,0], [1,2,0,1,0,2,1,0]
+  ];
+  senior.forEach((activity, index) => {
+    activity.answerPositionStrategy = 'irregular-balanced';
+    activity.answerPositionPattern = seniorPatterns[index];
+  });
   let host=null, options={}, active=null, roundIndex=0, speechOn=true, motionOn=!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches, returnFocus=null;
   const q=(s)=>host?.querySelector(s), qa=(s)=>host?[...host.querySelectorAll(s)]:[];
   const speak=(text)=>{if(!speechOn||!window.speechSynthesis)return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='zh-HK';u.rate=.74;window.speechSynthesis.speak(u)};
