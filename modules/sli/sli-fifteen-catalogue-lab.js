@@ -72,6 +72,17 @@
     make('interview','💼','面試表達支架','轉銜表達','看面試題，選一個能幫助組織回答的小步。',['先說優勢','給一個例子','說明學到甚麼','確認問題','請求思考時間','用 STAR 結構','總結回應','提出問題'],['一定要完美','不能停頓','只說一個字'],'可先準備一個重點和一個真實例子，不需要追求完美')
   ];
   const STAGES={lower,upper,junior,senior};const LABELS={lower:'初小 · P1–P3',upper:'高小 · P4–P6',junior:'初中 · S1–S3',senior:'高中 · S4–S6'};
+  const lowerPatterns = [
+    [2,0,1,2,1,0,1,0], [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2],
+    [2,1,0,2,0,1,2,0], [1,0,2,1,2,0,1,0], [0,1,2,0,2,1,0,2],
+    [2,0,1,2,0,1,0,1], [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2],
+    [2,1,0,2,0,1,2,0], [1,0,2,1,2,0,1,0], [0,1,2,0,2,1,0,2],
+    [2,0,1,2,0,1,0,1], [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2]
+  ];
+  lower.forEach((activity, index) => {
+    activity.answerPositionStrategy = 'irregular-balanced';
+    activity.answerPositionPattern = lowerPatterns[index];
+  });
   let host=null,settings={},active=null,index=0,correct=0,retry=0,speechOn=true,returnFocus=null,dragging='';
   const q=s=>host?.querySelector(s),qa=s=>host?[...host.querySelectorAll(s)]:[];
   const speak=t=>{if(!speechOn||!window.speechSynthesis)return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='zh-HK';u.rate=.72;window.speechSynthesis.speak(u)};
