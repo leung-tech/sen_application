@@ -85,6 +85,52 @@
           path: { description: '規劃到實習地點或轉乘站的路線', rounds: [{ route: ['直走', '右轉', '直走'], prompt: '跟著地圖到實習地點。', goalEmoji: '💼' }, { route: ['右轉', '直走', '左轉'], prompt: '跟著地圖到轉乘站。', goalEmoji: '🚏' }, { route: ['直走', '左轉', '直走'], prompt: '跟著地圖到社區服務中心。', goalEmoji: '🏢' }] }
         }
       };
+      const LIFE_SKILL_EIGHT = {
+        routine: [
+          { title:'準備上學', cards:[['🧼','洗臉'],['👕','穿好衣服'],['🎒','帶書包']] },
+          { title:'洗手步驟', cards:[['💧','弄濕雙手'],['🫧','搓洗雙手'],['🧻','抹乾雙手']] },
+          { title:'吃點心', cards:[['🪑','坐好'],['🍎','慢慢吃'],['🧹','收拾桌子']] },
+          { title:'出門前', cards:[['🗓️','看天氣'],['🧴','帶水樽'],['🔑','核對物品']] },
+          { title:'到課室後', cards:[['👋','向人問好'],['🎒','放好書包'],['📋','看今天安排']] },
+          { title:'使用洗手間後', cards:[['🚽','沖廁'],['🧼','洗雙手'],['🧻','抹乾雙手']] },
+          { title:'借用物品', cards:[['🗣️','先開口詢問'],['🤲','小心使用'],['🙏','交還並道謝']] },
+          { title:'回家後', cards:[['👟','放好鞋子'],['🧺','整理用品'],['📒','查看明天需要']] }
+        ],
+        signal: [
+          { light:'red', prompt:'紅燈亮了，我們要怎樣做？', answer:'停一停' },
+          { light:'green', prompt:'綠燈亮了，先看看路面安全後？', answer:'可以走' },
+          { light:'red', prompt:'看見地面濕滑告示，先？', answer:'停一停' },
+          { light:'red', prompt:'收到陌生連結要你立即按，先？', answer:'停一停' },
+          { light:'green', prompt:'過路前左右看清楚又聽到安全提示後？', answer:'可以走' },
+          { light:'red', prompt:'看見不熟悉的電器插頭鬆脫，先？', answer:'停一停' },
+          { light:'red', prompt:'有人叫你跟他到沒有人的地方，先？', answer:'停一停' },
+          { light:'green', prompt:'在成人同意、路線清楚和安全下，可以？', answer:'可以走' }
+        ],
+        weather: [
+          { weather:'🌧️', label:'下雨天', answer:'雨傘', choices:[['☂️','雨傘'],['🕶️','太陽眼鏡'],['🩴','拖鞋']] },
+          { weather:'☀️', label:'大太陽', answer:'太陽帽', choices:[['🧣','頸巾'],['🧢','太陽帽'],['☂️','雨傘']] },
+          { weather:'❄️', label:'很冷', answer:'外套', choices:[['🧥','外套'],['🩳','短褲'],['🍦','雪糕']] },
+          { weather:'🌬️', label:'大風天', answer:'外套', choices:[['🧥','外套'],['🩴','拖鞋'],['🕶️','太陽眼鏡']] },
+          { weather:'🥾', label:'遠足日', answer:'行山鞋', choices:[['🥾','行山鞋'],['🩴','拖鞋'],['🧣','頸巾']] },
+          { weather:'🏃', label:'體育課', answer:'運動鞋', choices:[['👟','運動鞋'],['👞','皮鞋'],['☂️','雨傘']] },
+          { weather:'🏊', label:'游泳日', answer:'泳衣', choices:[['🩱','泳衣'],['🧥','外套'],['🎒','書包']] },
+          { weather:'🏢', label:'實習上班', answer:'工作證', choices:[['🪪','工作證'],['🧸','玩具'],['🩳','短褲']] }
+        ],
+        path: [
+          { route:['直走','右轉','直走'], prompt:'跟著地圖到圖書館。', goalEmoji:'📚' },
+          { route:['右轉','直走','左轉'], prompt:'跟著地圖到集合點。', goalEmoji:'📍' },
+          { route:['直走','左轉','直走'], prompt:'跟著地圖到洗手間。', goalEmoji:'🚻' },
+          { route:['右轉','右轉','直走'], prompt:'跟著地圖到巴士站。', goalEmoji:'🚌' },
+          { route:['左轉','直走','右轉'], prompt:'跟著地圖到社區中心。', goalEmoji:'🏢' },
+          { route:['直走','直走','左轉'], prompt:'跟著地圖到求助點。', goalEmoji:'🛟' },
+          { route:['左轉','右轉','直走'], prompt:'跟著地圖到便利店。', goalEmoji:'🏪' },
+          { route:['右轉','直走','直走'], prompt:'跟著地圖回到安全入口。', goalEmoji:'🏠' }
+        ]
+      };
+      const installLifeSkillEight = (target) => Object.entries(LIFE_SKILL_EIGHT).forEach(([id, rounds]) => { const game = Array.isArray(target) ? target.find((item) => item.id === id) : target?.[id]; if (game) game.rounds = rounds.map((round) => ({ ...round, cards: round.cards?.map((card) => [...card]), choices: round.choices?.map((choice) => [...choice]), route: round.route && [...round.route] })); });
+      installLifeSkillEight(gameLibrary);
+      Object.values(stageTasks).forEach(installLifeSkillEight);
+
       const spldTraining = { id: 'spld', category: 'cognition', categoryName: '初小 · SpLD 讀寫訓練', tone: 'purple', icon: '字', title: '初小讀寫基礎練習', description: '12 關語音、字形、詞語與短文理解基礎練習', tag: 'P1–P3 · 基礎 12 關', supports: ['1'], rounds: [
         { id: 'P1-SPLD-01', band: 'P1 · 語音覺識', prompt: '哪個字和「花」的第一個聲音一樣？', choices: ['火', '馬', '書'], answer: '火', instruction: '請聽一聽「花」，找出開頭聲音一樣的字。', clue: '慢慢讀：「花」是 faa；「火」是 fo。兩個字開頭都有 f 聲。', success: '答對了！你聽到相同的開頭聲音。' },
         { id: 'P1-SPLD-02', band: 'P1 · 部件辨識', prompt: '「晴」字的左邊是哪個部件？', context: '目標字：<strong>晴</strong>', choices: ['日', '月', '目'], answer: '日', instruction: '請看「晴」字，找出它左邊的部件。', clue: '把「晴」分開看：左邊像太陽，是「日」字旁。', success: '做得好！你找到「晴」的日字旁。' },
