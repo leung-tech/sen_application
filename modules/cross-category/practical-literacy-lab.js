@@ -95,6 +95,10 @@
     }
   };
 
+  PACKS.finance.answerPositionPatterns = { lower: [2, 0, 1, 2, 1, 0, 2, 0] };
+  PACKS.body.answerPositionPatterns = { lower: [1, 2, 0, 1, 0, 2, 1, 0] };
+  PACKS.community.answerPositionPatterns = { lower: [0, 2, 1, 0, 1, 2, 0, 2] };
+
   let host = null; let currentKey = null; let currentStage = 'lower'; let index = 0; let speechOn = false; let restoreFocus = null;
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -102,7 +106,7 @@
   const pack = () => PACKS[currentKey];
   const guide = () => pack()?.stageGuides?.[currentStage] || { cue: '', support: '' };
   const speak = (text) => { if (!speechOn || !window.speechSynthesis || !text) return; window.speechSynthesis.cancel(); const utterance = new SpeechSynthesisUtterance(String(text)); utterance.lang = 'zh-HK'; utterance.rate = .78; window.speechSynthesis.speak(utterance); };
-  const roundsFor = (key, stage = 'lower') => (PACKS[key]?.cards || []).map(([title, scene, answer, distractors, hint], position) => { const choices = [...distractors]; choices.splice(position % 3, 0, answer); const stageGuide = PACKS[key]?.stageGuides?.[stage] || PACKS[key]?.stageGuides?.lower || {}; return { id: `practical-${key}-${stage}-${position + 1}`, title, scene: `${stageGuide.cue}，${scene}`, prompt: '哪一個下一步較安全、清楚而可行？', choices, answer, hint: `${hint} ${stageGuide.support}`.trim() }; });
+  const roundsFor = (key, stage = 'lower') => (PACKS[key]?.cards || []).map(([title, scene, answer, distractors, hint], position) => { const choices = [...distractors]; const pattern = PACKS[key]?.answerPositionPatterns?.[stage]; const target = Number.isInteger(pattern?.[position % pattern.length]) ? pattern[position % pattern.length] : position % 3; choices.splice(target, 0, answer); const stageGuide = PACKS[key]?.stageGuides?.[stage] || PACKS[key]?.stageGuides?.lower || {}; return { id: `practical-${key}-${stage}-${position + 1}`, title, scene: `${stageGuide.cue}，${scene}`, prompt: '哪一個下一步較安全、清楚而可行？', choices, answer, hint: `${hint} ${stageGuide.support}`.trim() }; });
   const say = (text, kind = '') => { const node = $('#practicalStatus', host); if (node) { node.textContent = text; node.className = `practical-status ${kind}`; } };
   const close = () => { window.speechSynthesis?.cancel(); document.removeEventListener('keydown', onKey, true); host?.remove(); host = null; if (restoreFocus?.isConnected) requestAnimationFrame(() => restoreFocus.focus()); };
 
@@ -122,6 +126,6 @@
   function finish() { shell(`${header()}<main class="practical-finish"><span>✓</span><h3>${esc(pack().finishTitle)}</h3><p>${esc(pack().finishMessage)}</p><div class="practical-actions"><button type="button" data-practical-replay="true">↺ 再看一次</button><button class="main" type="button" data-practical-close="true">← 返回活動庫</button></div></main><p id="practicalStatus" class="practical-status ok" role="status" aria-live="polite">可以先休息，或選另一個活動。</p>${tools()}`); $('[data-practical-replay]', host)?.addEventListener('click', () => { index = 0; ready(); }); $('[data-practical-close]', host)?.addEventListener('click', close); bindTools(); requestAnimationFrame(() => $('[data-practical-close]', host)?.focus()); }
   function onKey(event) { if (!host) return; if (event.key === 'Escape') { event.preventDefault(); close(); } else if (/^[1-3]$/.test(event.key) && $('[data-practical-choice]', host)) { event.preventDefault(); $$('[data-practical-choice]', host)[Number(event.key) - 1]?.click(); } }
   function open(key, options = {}) { if (!PACKS[key]) return; close(); currentKey = key; currentStage = STAGES[options.stage] ? options.stage : 'lower'; index = 0; speechOn = false; restoreFocus = options.trigger || document.activeElement; styles(); host = document.createElement('div'); host.className = 'practical-host'; document.body.appendChild(host); document.addEventListener('keydown', onKey, true); ready(); }
-  function activityCards(stage = 'lower') { return Object.entries(PACKS).filter(([, data]) => !data.stages || data.stages.includes(stage)).map(([key, data]) => ({ id: `practical-${key}-${stage}`, icon: data.icon, title: data.title, description: data.short, tag: `${STAGES[stage]?.label || STAGES.lower.label} · 8 個虛構情境`, tone: data.tone, supports: ['all'], practicalPack: key, phase: data.phase, badges: data.badges, rounds: roundsFor(key, stage) })); }
+  function activityCards(stage = 'lower') { return Object.entries(PACKS).filter(([, data]) => !data.stages || data.stages.includes(stage)).map(([key, data]) => { const answerPositionPattern = data.answerPositionPatterns?.[stage]; return { id: `practical-${key}-${stage}`, icon: data.icon, title: data.title, description: data.short, tag: `${STAGES[stage]?.label || STAGES.lower.label} · 8 個虛構情境`, tone: data.tone, supports: ['all'], practicalPack: key, phase: data.phase, badges: data.badges, answerPositionStrategy: answerPositionPattern ? 'irregular-balanced' : undefined, answerPositionPattern, rounds: roundsFor(key, stage) }; }); }
   window.PRACTICAL_LITERACY_LAB = { activityCards, open, roundsFor, packs: () => Object.keys(PACKS), packInfo: (key) => PACKS[key] || null, availableStages: (key) => PACKS[key]?.stages || Object.keys(STAGES) };
 })();
