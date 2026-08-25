@@ -68,10 +68,10 @@
     }
   };
 
-  TOPICS.digital.answerPositionPatterns = { lower: [2, 0, 1, 2, 1, 0, 2, 0], upper: [1, 0, 2, 1, 2, 0, 1, 0] };
-  TOPICS.change.answerPositionPatterns = { lower: [1, 2, 0, 1, 0, 2, 1, 0], upper: [0, 2, 1, 0, 1, 2, 0, 2] };
-  TOPICS.advocate.answerPositionPatterns = { lower: [0, 2, 1, 0, 1, 2, 0, 2], upper: [2, 0, 1, 2, 1, 0, 2, 0] };
-  TOPICS.repair.answerPositionPatterns = { lower: [2, 1, 0, 2, 0, 1, 2, 0], upper: [1, 2, 0, 1, 0, 2, 1, 0] };
+  TOPICS.digital.answerPositionPatterns = { lower: [2, 0, 1, 2, 1, 0, 2, 0], upper: [1, 0, 2, 1, 2, 0, 1, 0], junior: [0, 2, 1, 0, 1, 2, 0, 2] };
+  TOPICS.change.answerPositionPatterns = { lower: [1, 2, 0, 1, 0, 2, 1, 0], upper: [0, 2, 1, 0, 1, 2, 0, 2], junior: [2, 1, 0, 2, 0, 1, 2, 0] };
+  TOPICS.advocate.answerPositionPatterns = { lower: [0, 2, 1, 0, 1, 2, 0, 2], upper: [2, 0, 1, 2, 1, 0, 2, 0], junior: [1, 0, 2, 1, 2, 0, 1, 0] };
+  TOPICS.repair.answerPositionPatterns = { lower: [2, 1, 0, 2, 0, 1, 2, 0], upper: [1, 2, 0, 1, 0, 2, 1, 0], junior: [2, 0, 1, 2, 1, 0, 2, 0] };
 
   let host = null; let currentTopic = null; let currentStage = 'lower'; let index = 0; let speechOn = false; let trigger = null; let returnFocus = null;
   const $ = (selector, root = document) => root.querySelector(selector);
