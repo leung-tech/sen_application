@@ -12,7 +12,7 @@ const stages = {
 };
 const sequenceGames = new Set(['cause-workshop', 'discussion-scaffold']);
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const chrome = spawn('chromium', ['--headless', '--no-sandbox', '--disable-gpu', `--remote-debugging-port=${port}`, '--user-data-dir=/tmp/sli-eight-audit', 'about:blank'], { stdio: 'ignore' });
+const chrome = spawn('chromium', ['--headless', '--no-sandbox', '--disable-gpu', `--remote-debugging-port=${port}`, `--user-data-dir=/tmp/sli-eight-audit-${Date.now()}`, 'about:blank'], { stdio: 'ignore' });
 
 async function targetUrl() {
   for (let attempt = 0; attempt < 50; attempt += 1) {
@@ -45,9 +45,9 @@ async function evaluate(client, expression) {
 
 async function openStage(client, stage) {
   await client.call('Page.navigate', { url: `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}sliEightAudit=${Date.now()}&stage=${stage}` });
-  await sleep(900);
+  await sleep(1500);
   await evaluate(client, `(() => { document.querySelector('.pathway-card[data-type="8"]')?.click(); document.querySelector(${JSON.stringify(`.level-button[data-stage="${stage}"]`)})?.click(); })()`);
-  await sleep(100);
+  await sleep(180);
 }
 
 async function menuAudit(client, stage) {
@@ -58,9 +58,9 @@ async function menuAudit(client, stage) {
 async function gameAudit(client, stage, game) {
   await openStage(client, stage);
   await evaluate(client, `document.querySelector(${JSON.stringify(`[data-sli-eight-activity="${game}"]`)})?.click()`);
-  await sleep(70);
+  await sleep(140);
   const ready = await evaluate(client, `(() => { const dialog=document.querySelector('.sli8-shell'); const lab=document.querySelector('.sli8-lab'); return {dialog:Boolean(dialog),role:dialog?.getAttribute('role')||'',modal:dialog?.getAttribute('aria-modal')||'',steps:lab?.querySelectorAll('.sli8-ready li').length||0,start:document.querySelector('#sli8ReadyStart')?.textContent.trim()||'',status:document.querySelector('#sli8Feedback')?.textContent.trim()||'',focusInside:Boolean(dialog?.contains(document.activeElement))}; })()`);
-  await evaluate(client, `document.querySelector('#sli8ReadyStart')?.click()`); await sleep(70);
+  await evaluate(client, `document.querySelector('#sli8ReadyStart')?.click()`); await sleep(140);
   const initial = await evaluate(client, `(() => { const dialog=document.querySelector('.sli8-lab'); const status=document.querySelector('#sli8Feedback'); const progress=dialog?.querySelector('[role="progressbar"]'); const sequence=${JSON.stringify(sequenceGames.has(game))}; return {dialog:Boolean(dialog),status:{role:status?.getAttribute('role')||'',live:status?.getAttribute('aria-live')||'',atomic:status?.getAttribute('aria-atomic')||''},progress:{role:progress?.getAttribute('role')||'',now:progress?.getAttribute('aria-valuenow')||'',min:progress?.getAttribute('aria-valuemin')||'',max:progress?.getAttribute('aria-valuemax')||''},support:['sli8Rule','sli8Read','sli8Break'].every((id)=>Boolean(document.getElementById(id))),sequence:sequence?{pieces:[...document.querySelectorAll('[data-sli8-piece]')].map((item)=>({draggable:item.draggable,width:Math.round(item.getBoundingClientRect().width),height:Math.round(item.getBoundingClientRect().height)})),slots:document.querySelectorAll('[data-sli8-slot]').length}:{choices:document.querySelectorAll('[data-sli8-choice]').length},noMicrophone:!document.querySelector('#sli8Record, #sli8Playback, .sli8-record')}; })()`);
   const interaction = await evaluate(client, `(() => { const sequence=${JSON.stringify(sequenceGames.has(game))}; let drag=false; if(sequence){const piece=document.querySelector('[data-sli8-piece]');const slot=document.querySelector('[data-sli8-slot="0"]');const dt=new DataTransfer();piece?.dispatchEvent(new DragEvent('dragstart',{bubbles:true,dataTransfer:dt}));slot?.dispatchEvent(new DragEvent('dragover',{bubbles:true,cancelable:true,dataTransfer:dt}));drag=slot?.classList.contains('drop-target')||false;slot?.dispatchEvent(new DragEvent('drop',{bubbles:true,cancelable:true,dataTransfer:dt}));}else document.querySelector('[data-sli8-choice]')?.click();return {drag,feedback:document.querySelector('#sli8Feedback')?.textContent.trim()||''}; })()`);
   return { stage, game, ready, initial, interaction };

@@ -238,17 +238,15 @@
 
 
   function renderMenu() {
-    stopRecorder();
     const viewStage = state?.stage || settings?.stage || 'lower';
     state = { game: null, stage: viewStage, index: 0, correct: 0, retry: 0, selected: [], rounds: [] };
-    const cards = activityCards(viewStage).map((activity) => `<button type="button" class="sli8-card" data-sli8-game="${activity.sliEightActivityKey}"><span aria-hidden="true">${activity.icon}</span><strong>${activity.title}</strong><small>${activity.focus}</small><p>${activity.description}</p><em>${stageLabel(viewStage)} · 3 回合</em></button>`).join('');
+    const cards = activityCards(viewStage).map((activity) => `<button type="button" class="sli8-card" data-sli8-game="${activity.sliEightActivityKey}"><span aria-hidden="true">${activity.icon}</span><strong>${activity.title}</strong><small>${activity.focus}</small><p>${activity.description}</p><em>${stageLabel(viewStage)} · ${activity.rounds.length} 回合</em></button>`).join('');
     shell(`${heading('選擇一項 SLI 課堂練習', '每項均可先由教師帶讀。學生可選朗讀、看提示、指卡、拖拉／點選替代或直接離開。', stageLabel(viewStage))}<div class="sli8-grid">${cards}</div><p class="sli8-rule">說話和分享均為可選；本網站不會請求咪高峰權限、錄音或分析聲音。活動結果只供本節課堂回顧，不代表構音、聲調、流暢度、聲音或能力。</p><div id="sli8Feedback" class="sli8-feedback" role="status" aria-live="polite" aria-atomic="true">請選一項活動，開始前會先出現三步規則。</div>`);
     qa('[data-sli8-game]').forEach((button) => button.addEventListener('click', () => renderReady(button.dataset.sli8Game)));
     focusSoon('.sli8-close');
   }
 
   function renderReady(game) {
-    stopRecorder();
     const activity = ACTIVITIES[game];
     if (!activity) { renderMenu(); return; }
     state = { game, index: 0, correct: 0, retry: 0, selected: [], rounds: activity.rounds, preparing: true, stage: state?.stage || settings?.stage || 'lower' };
