@@ -13,6 +13,7 @@
       output.push(selected);
       counts[selected] -= 1;
     }
+    if (output.length > 1 && output.every((position, index) => position === index % 3)) [output[0], output[1]] = [output[1], output[0]];
     return output;
   }
 

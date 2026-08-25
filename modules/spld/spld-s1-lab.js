@@ -1,4 +1,23 @@
 (function () {
+  // 初中 SpLD 答案位置原則：依活動識別碼產生可重現、不規律、無相鄰重複的平衡位置圖樣。
+  function answerPositionPattern(total, key) {
+    let seed = Array.from(key).reduce((value, character) => ((value * 31) + character.charCodeAt(0)) >>> 0, 2166136261);
+    const next = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+    const counts = [0, 0, 0].map((_, position) => Math.floor(total / 3) + (position < total % 3 ? 1 : 0));
+    const output = [];
+    while (output.length < total) {
+      const previous = output.at(-1);
+      const highest = Math.max(...counts.filter((count, position) => position !== previous));
+      const candidates = counts.map((count, position) => ({ count, position })).filter((item) => item.position !== previous && item.count === highest);
+      const selected = candidates[Math.floor(next() * candidates.length)].position;
+      output.push(selected);
+      counts[selected] -= 1;
+    }
+    if (output.length > 1 && output.every((position, index) => position === index % 3)) [output[0], output[1]] = [output[1], output[0]];
+    return output;
+  }
+
+  const IRREGULAR_CHOICE_ACTIVITIES = new Set(['connector', 'redundancy', 'rhetoric', 'idiom', 'mainIdea', 'vocabulary', 'grammar', 'examRadar', 'chartText']);
   const activities = {
     connector: {
       icon: '🔄', title: '關聯詞轉盤', description: '由前後句的關係，選出最合適的轉折、遞進或因果關聯詞。', focus: '篇章邏輯與銜接', accent: 'teal',
@@ -514,7 +533,8 @@
   }
 
   window.SPLD_S1_LAB = {
-    activityCards() {
+    activityCards(stage = 'junior') {
+      if (stage !== 'junior') return [];
       return Object.entries(activities).map(([key, activity]) => ({
         id: `spld-s1-${key}`,
         s1ActivityKey: key,
@@ -527,6 +547,8 @@
         description: activity.description,
         tag: `S1–S3 · ${activity.focus}`,
         supports: ['1'],
+        answerPositionStrategy: IRREGULAR_CHOICE_ACTIVITIES.has(key) ? 'irregular-balanced' : null,
+        answerPositionPattern: IRREGULAR_CHOICE_ACTIVITIES.has(key) ? answerPositionPattern(activity.rounds.length, key) : null,
         rounds: activity.rounds
       }));
     },
