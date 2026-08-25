@@ -4,6 +4,8 @@ window.SPLD_STAGE_TASKS = {
     title: '高小讀寫基礎練習',
     description: '12 關字詞、句子、公告與資料理解暖身練習',
     tag: 'P4–P6 · 基礎 12 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [1,0,2,1,2,0,1,0,2,0,1,2],
     rounds: [
       { id: 'P4-SPLD-01', band: 'P4 · 部件辨識', prompt: '「校」字的左邊是哪個部件？', context: '目標字：<strong>校</strong>', choices: ['木', '女', '日'], answer: '木', instruction: '請看校字，找出它左邊的部件。', clue: '把「校」字分開看，左邊是木字旁。', success: '答對了！你用部件找到了校字。' },
       { id: 'P4-SPLD-02', band: 'P4 · 詞義理解', prompt: '「準時」最接近哪個意思？', context: '老師說：明天請<strong>準時</strong>到禮堂集合。', choices: ['依約定時間到達', '隨時都可以到', '不用出席'], answer: '依約定時間到達', instruction: '請由句子找出準時的意思。', clue: '想一想集合有指定時間，準時就是不早太多，也不遲到。', success: '很好！你理解了準時的意思。' },
@@ -24,6 +26,8 @@ window.SPLD_STAGE_TASKS = {
     title: '初中讀寫闖關',
     description: '12 關校園、社區與同儕資料理解訓練',
     tag: 'S1–S3 · 12 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [2,1,0,2,0,1,2,0,1,2,1,0],
     rounds: [
       { id: 'S1-SPLD-01', band: 'S1 · 時間資料', prompt: '活動在甚麼時候集合？', context: '活動通知：請同學在<strong>三時十五分</strong>到禮堂集合。', choices: ['三時十五分', '二時十五分', '四時十五分'], answer: '三時十五分', instruction: '請從通知找出集合時間。', clue: '找集合兩個字附近的時間數字。', success: '答對了！你從通知找到集合時間。' },
       { id: 'S1-SPLD-02', band: 'S1 · 通知目的', prompt: '為甚麼要保留收據？', context: '社區活動提示：付款後請<strong>保留收據</strong>，有需要時出示。', choices: ['日後核對或出示', '立刻丟掉', '用來買食物'], answer: '日後核對或出示', instruction: '請選出保留收據的原因。', clue: '句子後半說有需要時出示；收據要先放好。', success: '很好！你理解了通知的目的。' },
@@ -44,6 +48,8 @@ window.SPLD_STAGE_TASKS = {
     title: '高中讀寫闖關',
     description: '12 關實習、社區與職前資料理解訓練',
     tag: 'S4–S6 · 12 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [0,2,1,0,1,2,0,2,1,0,1,2],
     rounds: [
       { id: 'S4-SPLD-01', band: 'S4 · 職場通知', prompt: '甚麼時候要到服務台報到？', context: '實習通知：第一天請於<strong>九時正</strong>到服務台報到。', choices: ['九時正', '十時正', '八時正'], answer: '九時正', instruction: '請從實習通知找出報到時間。', clue: '找於字後面、服務台前面的時間。', success: '答對了！你找到實習的報到時間。' },
       { id: 'S4-SPLD-02', band: 'S4 · 表格欄位', prompt: '「緊急聯絡人」一欄要填寫甚麼？', context: '登記表需要留下有需要時可以聯絡的大人資料。', choices: ['可聯絡的大人', '喜歡的食物', '最愛的遊戲'], answer: '可聯絡的大人', instruction: '請選出緊急聯絡人的意思。', clue: '緊急時要找一位能幫忙的大人，所以要留下可聯絡的人。', success: '很好！你理解了表格欄位的用途。' },
