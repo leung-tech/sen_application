@@ -33,6 +33,9 @@
       ]
     }
   };
+  TRACKS.cognition.answerPositionStrategy = 'irregular-balanced';
+  TRACKS.cognition.answerPositionPattern = [2, 0, 1, 2, 1, 0, 1, 0];
+  TRACKS.cognition.cards.forEach((card) => { card.answer = card.choices[card.answer]; });
 
   let host = null;
   let config = null;
@@ -117,7 +120,7 @@
 
   function choose(index) {
     const card = current();
-    if (index !== card.answer) {
+    if (card.choices[index] !== card.answer) {
       status('↗ 可以再比較：哪一個下一步較能照顧安全、需要或學習流程？', 'try');
       return;
     }
@@ -179,5 +182,9 @@
     ready();
   }
 
-  window.CROSS_CATEGORY_STRATEGY_LAB = { open, cards(track) { return TRACKS[track]?.cards || []; } };
+  window.CROSS_CATEGORY_STRATEGY_LAB = {
+    open,
+    cards(track) { return TRACKS[track]?.cards || []; },
+    activityCards() { return [{ id: 'cross-category-cognition', answerPositionStrategy: TRACKS.cognition.answerPositionStrategy, answerPositionPattern: TRACKS.cognition.answerPositionPattern, rounds: TRACKS.cognition.cards }]; }
+  };
 })();
