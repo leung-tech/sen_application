@@ -36,9 +36,16 @@ try {
   await client.call('Page.navigate', { url: pageUrl });
   await sleep(1800);
   const response = await client.call('Runtime.evaluate', { expression: `(() => {
-    const sets = [];
+    const sets = []; const coverage = []; const STAGES = ['lower', 'upper', 'junior', 'senior'];
     const add = (name, rounds) => { if (Array.isArray(rounds) && rounds.length) sets.push({ name, rounds }); };
     const addStages = (name, source) => Object.entries(source || {}).forEach(([stage, value]) => add(name + ' · ' + stage, value?.rounds));
+    const tagList = (cards) => [...new Set((cards || []).flatMap((card) => [card.tag, card.categoryName, card.focus].filter(Boolean).map((tag) => String(tag))))];
+    const addCoverage = (area, stage, cards, source, sharedAcrossStages = false) => {
+      const activities = (cards || []).filter((card) => Array.isArray(card?.rounds) && card.rounds.length);
+      if (!activities.length) return;
+      coverage.push({ area, stage, activities: activities.length, rounds: activities.reduce((sum, card) => sum + card.rounds.length, 0), tags: tagList(activities), source, sharedAcrossStages });
+    };
+    const addCardStages = (area, provider, source) => STAGES.forEach((stage) => { try { addCoverage(area, stage, provider?.activityCards?.(stage) || [], source); } catch {} });
     addStages('SpLD 基礎訓練', window.SPLD_STAGE_TASKS);
     addStages('ID', window.idStageTraining);
     addStages('ASD', window.ASD_STAGE_TASKS);
@@ -47,6 +54,24 @@ try {
     addStages('Giftedness／HI', window.GIFTED_HI_STAGE_TASKS);
     ['SLI', 'MI'].forEach((name) => { const source = window.SEN_PATHWAY_MODULES?.[name]; add(name + ' · 直接選關', source?.card?.rounds); addStages(name, source?.stages); });
     [['SpLD 初小實驗室', window.SPLD_P1_LAB], ['SpLD 高小實驗室', window.SPLD_P4_LAB], ['SpLD 初中實驗室', window.SPLD_S1_LAB], ['SpLD 高中實驗室', window.SPLD_S4_LAB], ['ADHD 專注實驗室', window.ADHD_FOCUS_LAB]].forEach(([name, lab]) => { try { (lab?.activityCards?.() || []).forEach((card) => add(name + ' · ' + card.title, card.rounds)); } catch {} });
+    const general = window.SEN_CONTENT_AUDIT_SOURCE;
+    STAGES.forEach((stage) => {
+      const grouped = (general?.stages?.[stage] || []).reduce((result, card) => { (result[card.categoryName || card.category || '一般活動'] ||= []).push(card); return result; }, {});
+      Object.entries(grouped).forEach(([area, cards]) => addCoverage(area, stage, cards, 'sen-app general stage data'));
+    });
+    addCardStages('MI 情緒與求助', window.MI_FIFTEEN_CATALOGUE_LAB, 'MI fifteen catalogue');
+    addCardStages('SLI 理解與表達', window.SLI_FIFTEEN_CATALOGUE_LAB, 'SLI fifteen catalogue');
+    addCardStages('SLI 核心語言支架', window.SLI_CORE_LAB, 'SLI core lab');
+    addCardStages('SLI 八項語言遊戲', window.SLI_EIGHT_GAMES_LAB, 'SLI eight games');
+    addCardStages('Giftedness 八項探究', window.GIFTED_EIGHT_GAMES_LAB, 'Gifted eight games');
+    addCardStages('Giftedness 2e 調適', window.GIFTED_2E_LAB, 'Gifted 2e lab');
+    addCardStages('Giftedness 依附與關係', window.GIFTED_ATTACHMENT_ARCADE, 'Gifted attachment lab');
+    addCardStages('Giftedness 跨 SEN 探究', window.GIFTED_CROSS_SEN_LAB, 'Gifted cross-SEN lab');
+    addCardStages('HI 視覺化溝通', window.HI_EIGHT_GAMES_LAB, 'HI eight games');
+    addCardStages('VI 無障礙學習', window.VI_GAMES_LAB, 'VI games');
+    addCardStages('PD 無障礙學習', window.PD_GAMES_LAB, 'PD games');
+    addCardStages('生涯規劃', window.CAREER_GAMES_LAB, 'Career games');
+    ['emotion', 'cognition'].forEach((track) => STAGES.forEach((stage) => addCoverage(track === 'emotion' ? '情緒社交策略' : '認知學習策略', stage, (window.CROSS_CATEGORY_STRATEGY_LAB?.cards?.(track) || []).map((card) => ({ ...card, rounds: [card], tag: track === 'emotion' ? '跨類別 SEL 策略' : '跨類別學習策略' })), 'cross-category shared strategy cards', true)));
     const normalizeChoice = (choice) => Array.isArray(choice) ? String(choice.at(-1) ?? '') : String(choice ?? '');
     const report = sets.map(({ name, rounds }) => {
       const issues = []; const seen = new Map();
@@ -74,7 +99,12 @@ try {
       });
       return { name, rounds: rounds.length, issues };
     });
-    return { setCount: report.length, roundCount: report.reduce((sum, set) => sum + set.rounds, 0), issueCount: report.reduce((sum, set) => sum + set.issues.length, 0), sets: report };
+    const coverageSummary = coverage.reduce((summary, entry) => {
+      const key = entry.area + ' · ' + entry.stage;
+      summary[key] = { activities: entry.activities, rounds: entry.rounds, tags: entry.tags, source: entry.source, sharedAcrossStages: entry.sharedAcrossStages };
+      return summary;
+    }, {});
+    return { setCount: report.length, roundCount: report.reduce((sum, set) => sum + set.rounds, 0), issueCount: report.reduce((sum, set) => sum + set.issues.length, 0), sets: report, coverageMatrix: coverage, coverageSummary };
   })()`, returnByValue: true });
   await writeFile(outputPath, JSON.stringify(response.result.value, null, 2));
   console.log(JSON.stringify(response.result.value, null, 2));

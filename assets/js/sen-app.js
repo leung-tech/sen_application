@@ -1237,4 +1237,13 @@
       const requestedStage = quickStartStages[quickStartParams.get('stageLevel')];
       if (requestedStage) selectStage(requestedStage);
       if (requestedPathway) selectPathway(requestedPathway);
+
+      // Audit-only bridge: expose the already-loaded general activities by stage
+      // without changing public UI data or creating any learner record.
+      if (quickStartParams.get('senAudit') === 'content') {
+        window.SEN_CONTENT_AUDIT_SOURCE = {
+          stages: Object.fromEntries(Object.keys(stageProfiles).map((stage) => [stage, gameLibrary.map((game) => ({ ...game, ...(stage === 'lower' ? {} : (stageTasks[stage]?.[game.id] || {})) }))])),
+          stageLabels: Object.fromEntries(Object.entries(stageProfiles).map(([stage, profile]) => [stage, profile.label]))
+        };
+      }
     })();

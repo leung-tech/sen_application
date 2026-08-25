@@ -5,46 +5,46 @@
       {
         key: 'flex-castle', icon: '🏰', title: '彈性城堡工房',
         description: '使用現有的功能卡建造可使用的城堡；可保留、調整或換一種可行設計。',
-        tag: 'Giftedness · 初小 P1–P3 · 3 回合'
+        tag: 'Giftedness · 初小 P1–P3 · 8 回合'
       },
       {
         key: 'selective-listening', icon: '🎼', title: '指揮家的選擇性聆聽台',
         description: '先選一條你想跟隨的節奏線索，再慢慢辨認規律；聲音和動態均可關閉。',
-        tag: 'Giftedness · 初小 P1–P3 · 3 回合'
+        tag: 'Giftedness · 初小 P1–P3 · 8 回合'
       }
     ],
     upper: [
       {
         key: 'viewpoint-studio', icon: '🪐', title: '宇宙觀點工作室',
         description: '閱讀不同角色以圖像、短句或條列提供的資料，找出可支持下一步理解的提問。',
-        tag: 'Giftedness · 高小 P4–P6 · 3 回合'
+        tag: 'Giftedness · 高小 P4–P6 · 8 回合'
       },
       {
         key: 'rule-sandbox', icon: '🧭', title: '規則設計沙盒',
         description: '比較規則草案對不同使用者的影響，再提出可修訂、可試行的下一步。',
-        tag: 'Giftedness · 高小 P4–P6 · 3 回合'
+        tag: 'Giftedness · 高小 P4–P6 · 8 回合'
       }
     ], junior: [
       {
         key: 'perspective-toolkit', icon: '🧰', title: '情境觀點工具箱',
         description: '整理虛構角色的可確定資料、未知處與支持選項；可以選「需要更多資料」。',
-        tag: 'Giftedness · 初中 S1–S3 · 3 回合'
+        tag: 'Giftedness · 初中 S1–S3 · 8 回合'
       },
       {
         key: 'tone-workbench', icon: '🗣️', title: '說話溫度工作台',
         description: '把清楚的觀察、可修訂建議和尊重收尾組成訊息；不評定人格或社交能力。',
-        tag: 'Giftedness · 初中 S1–S3 · 3 回合'
+        tag: 'Giftedness · 初中 S1–S3 · 8 回合'
       }
     ], senior: [
       {
         key: 'achievement-map', icon: '🗺️', title: '多元成就地圖',
         description: '從虛構角色的學習、創作、關係和休息投入中選擇想保留的故事線索；不涉及分數或排名。',
-        tag: 'Giftedness · 高中 S4–S6 · 3 回合'
+        tag: 'Giftedness · 高中 S4–S6 · 8 回合'
       },
       {
         key: 'values-sandbox', icon: '🌌', title: '哲學價值沙盒',
         description: '在虛構社區方案中選取、略過或拒絕價值卡，提出下一個想探索的問題；沒有正確人生答案。',
-        tag: 'Giftedness · 高中 S4–S6 · 3 回合'
+        tag: 'Giftedness · 高中 S4–S6 · 8 回合'
       }
     ]
   };
@@ -302,13 +302,14 @@
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const stageLabel = (stage) => ({ lower: '初小 P1–P3', upper: '高小 P4–P6', junior: '初中 S1–S3', senior: '高中 S4–S6' })[stage] || 'Giftedness 課堂練習';
   const currentActivity = () => Object.values(activities).flat().find((item) => item.key === activeKey);
-  const rounds = () => ({ 'flex-castle': castleRounds, 'selective-listening': listeningRounds, 'viewpoint-studio': viewpointRounds, 'rule-sandbox': ruleRounds, 'perspective-toolkit': perspectiveRounds, 'tone-workbench': toneRounds, 'achievement-map': achievementRounds, 'values-sandbox': valuesRounds })[activeKey] || listeningRounds;
+  const roundsFor = (key) => ({ 'flex-castle': castleRounds, 'selective-listening': listeningRounds, 'viewpoint-studio': viewpointRounds, 'rule-sandbox': ruleRounds, 'perspective-toolkit': perspectiveRounds, 'tone-workbench': toneRounds, 'achievement-map': achievementRounds, 'values-sandbox': valuesRounds })[key] || listeningRounds;
+  const rounds = () => roundsFor(activeKey);
   const isCastle = () => activeKey === 'flex-castle';
 
   function activityCards(stage) {
     return (activities[stage] || []).map((item) => ({
       id: `gifted-eight-${item.key}`, icon: item.icon, title: item.title,
-      description: item.description, tag: item.tag, tone: 'purple', supports: ['G'], giftedEightActivity: item.key
+      description: item.description, tag: item.tag, rounds: roundsFor(item.key), tone: 'purple', supports: ['G'], giftedEightActivity: item.key
     }));
   }
 
