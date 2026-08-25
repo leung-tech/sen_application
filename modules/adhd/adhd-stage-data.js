@@ -64,6 +64,8 @@ window.ADHD_STAGE_TASKS = {
     title: '高中專注闖關',
     description: '10 關實習、時間管理與獨立任務策略',
     tag: 'S4–S6 · 10 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [1, 0, 2, 1, 2, 0, 2, 1, 0, 1],
     rounds: [
       { id: 'S4-ADHD-01', band: '開始鍵 · 1', prompt: '到實習地點後，第一步是甚麼？', context: '你已安全到達服務台。', choices: [['📋', '看今天的工作清單'], ['📱', '先看社交媒體'], ['🎵', '先選背景音樂']], answer: '看今天的工作清單', instruction: '請選出到實習地點後的開始步驟。', clue: '工作清單會告訴你今天最先要做甚麼。', success: '答對了！你用工作清單按下開始鍵。' },
       { id: 'S4-ADHD-02', band: '今天一件事 · 2', prompt: '現在最應先處理哪一項？', context: '你要確認工作證、回覆不急訊息和選背景音樂。', choices: [['🪪', '確認工作證'], ['💬', '回覆不急訊息'], ['🎵', '選背景音樂']], answer: '確認工作證', instruction: '請選出出發或上班前最重要的一項。', clue: '先做遲了就很難補救的事情；工作證是入場和身份需要。', success: '很好！你先處理最重要的項目。' },
