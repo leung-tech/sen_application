@@ -66,7 +66,7 @@ try {
       choices: [...document.querySelectorAll('[data-choice]')].map((button) => button.dataset.choice || '')
     }))()`);
     rounds.push(round);
-    await evaluate(client, `document.querySelector('[data-choice]')?.click()`);
+    await evaluate(client, `(() => { const target=window.SPLD_P1_LAB?.activityCards('lower').find((activity)=>activity.id==='spld-p1-triple')?.rounds[${index}]?.target; [...document.querySelectorAll('[data-choice]')].find((button)=>button.dataset.choice===target)?.click(); })()`);
     await sleep(1200);
   }
   const finished = await evaluate(client, `document.querySelector('.spld-lab-result h2')?.textContent.trim() || ''`);

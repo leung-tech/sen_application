@@ -3,6 +3,8 @@
 
   const STAGES = ['lower', 'upper', 'junior', 'senior'];
   const seen = new WeakSet();
+  const balanceSeen = new WeakSet();
+  const BALANCED_PROVIDERS = /^(SPLD|ASD|ADHD)_/;
 
   function copyRound(round, number) {
     if (!round || typeof round !== 'object' || Array.isArray(round)) return round;
@@ -39,13 +41,43 @@
     });
   }
 
+  function choiceValue(choice) { return Array.isArray(choice) ? choice.at(-1) : choice; }
+
+  function balanceRound(round, index) {
+    const answer = round?.answer ?? round?.target;
+    if (!round || !Array.isArray(round.choices) || round.choices.length !== 3 || Array.isArray(answer) || !['string', 'number'].includes(typeof answer)) return;
+    const current = round.choices.findIndex((choice) => String(choiceValue(choice)) === String(answer));
+    if (current < 0) return;
+    const target = index % round.choices.length;
+    if (current === target) return;
+    const [correct] = round.choices.splice(current, 1);
+    round.choices.splice(target, 0, correct);
+  }
+
+  function balanceAnswers(value) {
+    if (!value || typeof value !== 'object' || balanceSeen.has(value)) return;
+    balanceSeen.add(value);
+    if (Array.isArray(value)) { value.forEach(balanceAnswers); return; }
+    Object.entries(value).forEach(([key, child]) => {
+      if (key === 'rounds' && Array.isArray(child)) child.forEach(balanceRound);
+      else balanceAnswers(child);
+    });
+  }
+
+  function balanceProvider(provider) {
+    if (!provider || typeof provider.activityCards !== 'function') return;
+    STAGES.forEach((stage) => { try { balanceAnswers(provider.activityCards(stage)); } catch (_) {} });
+  }
+
   function normaliseAll() {
     Object.entries(window).forEach(([name, value]) => {
       if (name.endsWith('_STAGE_TASKS') || name === 'SEN_PATHWAY_MODULES') normalise(value);
       if (name.endsWith('_LAB') || name.endsWith('_GAMES_LAB')) normaliseProvider(value);
+      if (BALANCED_PROVIDERS.test(name) && name.endsWith('_STAGE_TASKS')) balanceAnswers(value);
+      if (BALANCED_PROVIDERS.test(name) && (name.endsWith('_LAB') || name.endsWith('_GAMES_LAB'))) balanceProvider(value);
     });
   }
 
   normaliseAll();
-  window.SEN_EIGHT_ROUND_AUDIT = { normaliseAll, normalise, extendRounds };
+  window.SEN_EIGHT_ROUND_AUDIT = { normaliseAll, normalise, extendRounds, balanceAnswers, balanceRound };
 })();
