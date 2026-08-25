@@ -1,6 +1,8 @@
 const GIFTED_HI_STAGE_TASKS = {
   gifted: {
     description: '10 關規律、條件推論、證據判讀與多步解難挑戰',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [1,0,2,1,2,0,1,0,2,0],
     rounds: [
       { id: 'G-01', band: '規律推理 · 1', prompt: '找出下一個數字：2、6、12、20、？', context: '每一步增加的數量比前一步多 2。', choices: [['🔢', '30'], ['🔢', '28'], ['🔢', '32']], answer: '30', instruction: '請找出數字規律的下一項。', clue: '先看增加了多少：+4、+6、+8，下一次會加多少？', success: '答對了！你找到了遞增規律。', strategy: '把相鄰數字相減，先找出「變化的規律」。' },
       { id: 'G-02', band: '分類規則 · 2', prompt: '哪一項不符合其他三項的隱藏規則？', context: '12、18、24 都可以被同一個數字整除。', choices: [['🧮', '30'], ['🧮', '27'], ['🧮', '36']], answer: '27', instruction: '請找出不屬於同一規則的數字。', clue: '12、18、24、30、36 都可以被 6 整除。', success: '很好！你用共同規則找出了例外。', strategy: '先說出共同特徵，再檢查每一項是否都符合。' },
