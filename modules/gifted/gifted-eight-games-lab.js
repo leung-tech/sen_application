@@ -238,6 +238,65 @@
     }
   ];
 
+  // 每項均加入五個內容不同的原生回合；不以題次、選項排列或循環複製補足。
+  castleRounds.push(
+    { title:'安靜閱讀塔', prompt:'城堡要有一個可安靜閱讀的角落。把功能卡放到最相符的位置。', cards:[['遮光簾','閱讀窗旁'],['低聲提示牌','閱讀入口'],['書本架','牆邊']], hint:'先想想每一張卡怎樣幫助人使用空間。' },
+    { title:'輪椅可用花園', prompt:'花園要讓使用不同方式移動的訪客都能進入。把功能卡放到合適位置。', cards:[['平緩斜道','花園入口'],['較闊通道','中央小徑'],['觸覺路牌','分岔位置']], hint:'選擇能讓方向和移動都更清楚的安排。' },
+    { title:'夜間安全燈', prompt:'傍晚有活動。把功能卡放到能幫助大家安全使用城堡的位置。', cards:[['感應燈','入口位置'],['反光邊線','台階旁'],['集合標示','廣場中央']], hint:'看看卡片怎樣幫助看見路線和集合位置。' },
+    { title:'雨水收集站', prompt:'城堡想收集雨水照顧植物。把功能卡放到最有用的位置。', cards:[['雨水桶','屋簷下'],['導水槽','屋頂邊'],['澆灌壺','花圃旁']], hint:'先看雨水從哪裡來，再想怎樣安全使用。' },
+    { title:'節日分享廳', prompt:'不同小組要展示作品。把功能卡放到能讓大家容易參觀的位置。', cards:[['作品標籤','展板旁'],['輪候線','入口前'],['休息椅','大廳一角']], hint:'可同時想想方向、輪候和休息需要。' }
+  );
+  listeningRounds.push(
+    { title:'三拍停頓', visual:'★　★　★　○　★　★　★　○　？', prompt:'只跟隨星形與空心圓的節奏，下一個應該是甚麼？', answer:'★', choices:['○','★','△'], hint:'每三個星形後面有一個空心圓。' },
+    { title:'左右拍子', visual:'←　→　→　←　→　→　？', prompt:'只跟隨左右箭咀的規律，下一個應該是甚麼？', answer:'←', choices:['→','←','↗'], hint:'每組是一個向左，再兩個向右。' },
+    { title:'顏色節奏', visual:'●　■　▲　●　■　▲　？', prompt:'只看圖形順序，下一個應該是甚麼？', answer:'●', choices:['▲','■','●'], hint:'圓、方、三角形重複出現。' },
+    { title:'長短訊號', visual:'━　·　·　━　·　·　？', prompt:'只跟隨長線和短點的順序，下一個應該是甚麼？', answer:'━', choices:['·','━','○'], hint:'每組是一條長線，再兩個短點。' },
+    { title:'階梯圖案', visual:'①　②　③　①　②　③　？', prompt:'只跟隨數字符號的順序，下一個應該是甚麼？', answer:'①', choices:['②','③','①'], hint:'完成一、二、三後會回到一。' }
+  );
+  viewpointRounds.push(
+    { title:'海底研究站', scenario:'虛構海底研究站要同時安排觀察、能源和訪客路線。', reports:['🐠 觀察組：需要安靜看魚群。','🔋 工程組：電池只夠部分裝置使用。','🧭 導覽組：訪客需要清楚路線。'], answer:'先問：哪一組裝置最需要能源，以及怎樣保留安靜觀察路線？', choices:['只保留最吸引人的裝置。','先問：哪一組裝置最需要能源，以及怎樣保留安靜觀察路線？','要求訪客自己猜路線。'], hint:'找能同時連結能源、觀察和方向的問題。' },
+    { title:'浮島交通計劃', scenario:'虛構浮島學生要到不同學習站，交通工具數量有限。', reports:['🚲 學生：希望路線不太繞。','♿ 支援員：需要保留可使用的平緩路段。','⏰ 管理員：不同站有不同開始時間。'], answer:'先問：可否按開始時間與可使用路段安排兩條清楚路線？', choices:['只安排最快的一條路線。','先問：可否按開始時間與可使用路段安排兩條清楚路線？','取消所有外出活動。'], hint:'看看哪個問題把時間和不同移動需要一起考慮。' },
+    { title:'校園能源展', scenario:'虛構班級要展示太陽能、節能和使用數據。', reports:['☀️ 科學組：有太陽能模型。','📉 數據組：有每月用電圖。','🎨 設計組：希望觀眾容易比較改變。'], answer:'先問：可否用同一張前後比較板連結模型、數據和節能做法？', choices:['只展示最漂亮的模型。','先問：可否用同一張前後比較板連結模型、數據和節能做法？','把資料分開而不標示關係。'], hint:'找能令不同資料互相說明的方法。' },
+    { title:'社區口述歷史', scenario:'虛構社區要收集長者、青年和店主的故事。', reports:['👴 長者：重視舊地點記憶。','🧑 青年：希望可用短片分享。','🏪 店主：希望知道故事會怎樣使用。'], answer:'先問：可否用清楚同意卡，讓不同人選文字、聲音或短片分享方式？', choices:['只收集一種人的故事。','先問：可否用清楚同意卡，讓不同人選文字、聲音或短片分享方式？','先公開所有資料再說。'], hint:'尊重選擇也可讓不同資料被連結。' },
+    { title:'校園午膳角', scenario:'虛構校園想改善午膳角的排隊、休息和清潔。', reports:['🍱 學生：想少等一點。','🧹 工友：需要清楚收拾位置。','🪑 支援組：有人需要較安靜座位。'], answer:'先問：可否用分流標示、收拾站和安靜座位同時試行？', choices:['只增加更多規則。','先問：可否用分流標示、收拾站和安靜座位同時試行？','讓每個人自行處理。'], hint:'找能同時回應不同使用情境的問題。' }
+  );
+
+  ruleRounds.push(
+    {title:'河岸共享平台',scenario:'虛構河岸平台要讓釣魚、觀鳥和散步的人一起使用。',needs:['觀鳥者需要安靜位置。','散步者需要清楚通道。','管理員需要容易清潔。'],answer:'先畫出通道、安靜觀察區和清潔點，試行後再收集意見。',choices:['先畫出通道、安靜觀察區和清潔點，試行後再收集意見。','只讓一種人使用。','不提供任何標示。'],hint:'可行規則要回應不同需要，也能修訂。'},
+    {title:'午間器材借用',scenario:'虛構校園的球具很受歡迎。',needs:['學生需要知道可借時間。','教師需要知道誰負責交還。','有人需要較輕器材。'],answer:'先用可見借用卡、交還位置和器材選項試行一週。',choices:['先用可見借用卡、交還位置和器材選項試行一週。','先到先得且不記錄。','只借給固定小組。'],hint:'清楚流程可讓更多人知道怎樣參與。'},
+    {title:'社區修理角',scenario:'虛構社區想開放修理單車和小家電的角落。',needs:['使用者需要安全提示。','義工需要預約時間。','旁邊住戶需要控制噪音。'],answer:'先設安全檢查、預約時段和安靜時段，再檢視結果。',choices:['先設安全檢查、預約時段和安靜時段，再檢視結果。','任何時候都可自行操作。','只保留最吵的工具。'],hint:'試行方案應有安全、時間和回看方法。'},
+    {title:'校園共享雨具',scenario:'虛構校園想提供共享雨具。',needs:['學生需要容易取用。','工友需要知道如何歸還。','學校需要減少遺失。'],answer:'先用借還卡、清楚雨具架和一週試行紀錄調整流程。',choices:['先用借還卡、清楚雨具架和一週試行紀錄調整流程。','把雨具全部鎖起來。','不說明歸還方式。'],hint:'找有清楚步驟和修訂空間的方案。'},
+    {title:'圖書館錄音室',scenario:'虛構圖書館想加入短錄音室。',needs:['使用者希望預約。','閱讀者需要安靜。','職員需要看見設備狀態。'],answer:'先設預約卡、隔音時段和設備檢查表，再收集使用意見。',choices:['先設預約卡、隔音時段和設備檢查表，再收集使用意見。','讓任何人長時間佔用。','取消閱讀區。'],hint:'比較方案是否兼顧不同使用者和試行方法。'}
+  );
+  perspectiveRounds.push(
+    {title:'遺失的訪問紀錄',scenario:'虛構角色找不到訪問紀錄檔案。',facts:['可確定：資料夾內沒有檔案。','未知：是否改名或存在另一個位置。','可支持：查看共享紀錄並問管理員。'],answer:'先查看共享紀錄，再用中性句詢問檔案是否改名或移位。',choices:['先查看共享紀錄，再用中性句詢問檔案是否改名或移位。','直接指責同伴。','不再查看資料。'],hint:'先分清楚已知和未知。'},
+    {title:'沒收到小組邀請',scenario:'虛構角色暫時沒有收到小組會議連結。',facts:['可確定：目前收件匣沒有連結。','未知：是否仍未發出或發到另一個帳戶。','可支持：查看日程並禮貌確認。'],answer:'先查看日程，再禮貌確認會議連結和時間。',choices:['先查看日程，再禮貌確認會議連結和時間。','假定大家不想合作。','立刻退出小組。'],hint:'用可核對資料開始。'},
+    {title:'展覽標籤不清楚',scenario:'虛構角色看到展覽標籤容易令人誤解。',facts:['可確定：標籤沒有說明資料來源。','未知：觀眾實際如何理解。','可支持：請一人試讀並提出修訂。'],answer:'請一位試讀者說出理解，再修訂一個最不清楚的句子。',choices:['請一位試讀者說出理解，再修訂一個最不清楚的句子。','認定觀眾不會閱讀。','把所有標籤刪掉。'],hint:'一小步檢查能減少猜測。'},
+    {title:'合作工具改版',scenario:'虛構角色發現常用合作工具版面改變。',facts:['可確定：按鈕位置不同。','未知：舊功能是否仍存在。','可支持：看更新說明或問一位同伴。'],answer:'先看更新說明，再找一項舊功能的替代位置。',choices:['先看更新說明，再找一項舊功能的替代位置。','說改版一定不能用。','不作任何查找。'],hint:'保留未知處，再選可查核下一步。'},
+    {title:'收到簡短回覆',scenario:'虛構角色收到只有「遲些再談」的短訊。',facts:['可確定：對方暫時不能討論。','未知：對方忙碌、需要時間或有其他安排。','可支持：稍後用清楚問題確認。'],answer:'先記下要談的重點，稍後再用一個清楚問題確認時間。',choices:['先記下要談的重點，稍後再用一個清楚問題確認時間。','立刻連續追問。','假定對方故意忽略。'],hint:'短訊未必提供完整資料。'}
+  );
+  toneRounds.push(
+    {title:'投影片文字太多',draft:'你這張投影片太亂。',answer:'我看到這頁有很多重點；我們可否先圈出三個最重要的，再安排其餘資料？',choices:['我看到這頁有很多重點；我們可否先圈出三個最重要的，再安排其餘資料？','這頁完全不能看。','你根本不懂做簡報。'],hint:'指出可見資料，再提出可試的一步。'},
+    {title:'活動物資未核對',draft:'你又沒有檢查物資。',answer:'我看到物資表還有兩項未勾選；我們可否一起核對後再決定誰補上？',choices:['我看到物資表還有兩項未勾選；我們可否一起核對後再決定誰補上？','你總是做錯。','不要再碰物資。'],hint:'把評價換成可核對資料。'},
+    {title:'報告引用不足',draft:'你的報告沒有根據。',answer:'我想知道這段資料來自哪裡；我們可否補上一個來源再一起核對？',choices:['我想知道這段資料來自哪裡；我們可否補上一個來源再一起核對？','這份報告很差。','你一定是亂寫。'],hint:'清楚詢問可檢查的資料。'},
+    {title:'排練節奏不同',draft:'你說得太慢，浪費大家時間。',answer:'我看到這段比預定時間長；你想先一起找一個可刪減的例子，還是先調整時間表？',choices:['我看到這段比預定時間長；你想先一起找一個可刪減的例子，還是先調整時間表？','你拖累了大家。','以後不要發言。'],hint:'保留選擇能讓合作繼續。'},
+    {title:'圖表標示不足',draft:'這張圖根本看不懂。',answer:'我看到圖表沒有單位標示；我們可否先加上單位，再請一位同學試讀？',choices:['我看到圖表沒有單位標示；我們可否先加上單位，再請一位同學試讀？','誰會畫這種圖？','直接丟掉。'],hint:'指出具體可修訂的位置。'}
+  );
+  achievementRounds.push(
+    {title:'學期中段',scenario:'虛構角色正在安排測驗、小組創作和休息。',cards:['學習線索：把一個難題拆成兩個小步。','創作線索：保留一段自由試作時間。','休息線索：安排短暫離開螢幕。'],prompt:'選一至兩張想保留在多元投入地圖的卡；也可以略過。'},
+    {title:'義工活動後',scenario:'虛構角色完成社區義工活動，想整理投入和下一步。',cards:['關係線索：記下合作中一件有效做法。','生活線索：安排補充體力的休息。','學習線索：寫下一個仍想了解的需要。'],prompt:'選一至兩張想保留在多元投入地圖的卡；也可以略過。'},
+    {title:'創作卡關時',scenario:'虛構角色的作品尚未完成，想兼顧嘗試和照顧自己。',cards:['創作線索：換一種素材試作十分鐘。','支持線索：請一位可信任的人看一小部分。','休息線索：先離開作品再回來。'],prompt:'選一至兩張想保留在多元投入地圖的卡；也可以略過。'},
+    {title:'新學期開始',scenario:'虛構角色要安排新課、興趣和人際連結。',cards:['規劃線索：先寫下第一週最重要的一件事。','好奇線索：保留一個想探索的問題。','關係線索：找一位可以互相提醒的人。'],prompt:'選一至兩張想保留在多元投入地圖的卡；也可以略過。'},
+    {title:'完成比賽後',scenario:'虛構角色剛完成一場比賽，想回顧投入而不是只看結果。',cards:['學習線索：寫下一個下次想試的策略。','關係線索：感謝一位曾支持的人。','生活線索：安排回復精神的活動。'],prompt:'選一至兩張想保留在多元投入地圖的卡；也可以略過。'}
+  );
+  valuesRounds.push(
+    {title:'校園花園計劃',scenario:'虛構校園想把空地改成花園。不同人關心學習、休息、保育和共同使用。',values:['求知','關係','安全','創造'],question:'你想先探索哪一項價值如何影響花園方案？也可以略過或拒絕價值卡。'},
+    {title:'共享單車站',scenario:'虛構社區想設共享單車站，需要考慮方便、保養、通道和選擇。',values:['自由','安全','連結','穩定'],question:'你想先探索哪一項價值如何影響共享單車站方案？也可以略過或拒絕價值卡。'},
+    {title:'社區故事節',scenario:'虛構社區要辦故事節，想讓不同年齡的人可參與和選擇分享方式。',values:['關係','創造','自由','求知'],question:'你想先探索哪一項價值如何影響故事節方案？也可以略過或拒絕價值卡。'},
+    {title:'安靜公共角',scenario:'虛構圖書館想設一個安靜公共角，使用者有不同休息和活動需要。',values:['安全','穩定','自由','助人'],question:'你想先探索哪一項價值如何影響安靜公共角方案？也可以略過或拒絕價值卡。'},
+    {title:'校園修理日',scenario:'虛構學校想辦修理日，讓人修補物品、學習技能和減少浪費。',values:['助人','求知','創造','關係'],question:'你想先探索哪一項價值如何影響修理日方案？也可以略過或拒絕價值卡。'}
+  );
+  Object.values(activities).flat().forEach((activity) => { activity.tag = activity.tag.replace('3 回合', '8 回合'); });
   let shell; let trigger; let onComplete; let activeStage; let activeKey; let state;
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -280,7 +339,7 @@
 
   function ready() {
     const activity = currentActivity();
-    shell.innerHTML = dialog(`${top()}<main class="g8-ready"><p class="g8-kicker">Giftedness · 非診斷性教師帶領</p><h2 class="g8-title" id="g8Title">${activity.title} · 準備頁</h2><p class="g8-lead">這是三回合的高認知課堂練習。你可選支持方式、慢慢完成或隨時改變主意；結果只作本節回顧，不代表情緒、感官、社交或能力。</p><div class="g8-rules"><article class="g8-rule"><strong>1. 先選舒服方式</strong>可使用靜態提示、可選朗讀或教師示範；不需要忍受不舒服刺激。</article><article class="g8-rule"><strong>2. 尋找可行方案</strong>這裡比較功能、理由和不同選擇，沒有完美作品、倒數、扣分或敗局。</article><article class="g8-rule"><strong>3. 可以停下</strong>可看提示、先停一停、請教師一起看、轉換活動或隨時離開。</article></div>${activeKey === 'selective-listening' ? settings() : ''}<div class="g8-actions"><button type="button" class="g8-secondary" data-action="read-ready">🔊 朗讀規則</button><button type="button" class="g8-primary" id="g8ReadyStart" data-action="start">我準備好了</button></div></main>`);
+    shell.innerHTML = dialog(`${top()}<main class="g8-ready"><p class="g8-kicker">Giftedness · 非診斷性教師帶領</p><h2 class="g8-title" id="g8Title">${activity.title} · 準備頁</h2><p class="g8-lead">這是八回合的高認知課堂練習。你可選支持方式、慢慢完成或隨時改變主意；結果只作本節回顧，不代表情緒、感官、社交或能力。</p><div class="g8-rules"><article class="g8-rule"><strong>1. 先選舒服方式</strong>可使用靜態提示、可選朗讀或教師示範；不需要忍受不舒服刺激。</article><article class="g8-rule"><strong>2. 尋找可行方案</strong>這裡比較功能、理由和不同選擇，沒有完美作品、倒數、扣分或敗局。</article><article class="g8-rule"><strong>3. 可以停下</strong>可看提示、先停一停、請教師一起看、轉換活動或隨時離開。</article></div>${activeKey === 'selective-listening' ? settings() : ''}<div class="g8-actions"><button type="button" class="g8-secondary" data-action="read-ready">🔊 朗讀規則</button><button type="button" class="g8-primary" id="g8ReadyStart" data-action="start">我準備好了</button></div></main>`);
     bind(); $('#g8ReadyStart', shell).focus();
   }
 
@@ -350,7 +409,7 @@
   }
 
   function render() { if (isCastle()) renderCastle(); else if (activeKey === 'selective-listening') renderListening(); else if (activeKey === 'viewpoint-studio') renderViewpointStudio(); else if (activeKey === 'rule-sandbox') renderRuleSandbox(); else if (activeKey === 'perspective-toolkit') renderPerspectiveToolkit(); else if (activeKey === 'tone-workbench') renderToneWorkbench(); else if (activeKey === 'achievement-map') renderAchievementMap(); else renderValuesSandbox(); }
-  function finish() { const activity = currentActivity(); shell.innerHTML = dialog(`${top()}<main class="g8-finish"><p class="g8-kicker">課堂回顧</p><h2 class="g8-title" id="g8Title">完成 ${activity.title}</h2><div class="g8-finish-card"><strong>你已完成三個可行方案／規律回合。</strong><br>本次課堂可回顧：${state.correct} 個完成步驟、${state.retries} 次調整或重試。數字不比較能力，也不代表任何情緒、感官或社交特質。</div><p class="g8-note">可和教師討論：「哪一種支持方式最幫你慢慢找出下一步？」也可以只選另一項活動。</p><div class="g8-actions"><button type="button" class="g8-secondary" data-action="restart">再做一次</button><button type="button" class="g8-primary" data-action="complete">回到 Giftedness 關卡</button></div></main>`); bind(); $('[data-action="complete"]', shell).focus(); }
+  function finish() { const activity = currentActivity(); shell.innerHTML = dialog(`${top()}<main class="g8-finish"><p class="g8-kicker">課堂回顧</p><h2 class="g8-title" id="g8Title">完成 ${activity.title}</h2><div class="g8-finish-card"><strong>你已完成八個可行方案／規律回合。</strong><br>本次課堂可回顧：${state.correct} 個完成步驟、${state.retries} 次調整或重試。數字不比較能力，也不代表任何情緒、感官或社交特質。</div><p class="g8-note">可和教師討論：「哪一種支持方式最幫你慢慢找出下一步？」也可以只選另一項活動。</p><div class="g8-actions"><button type="button" class="g8-secondary" data-action="restart">再做一次</button><button type="button" class="g8-primary" data-action="complete">回到 Giftedness 關卡</button></div></main>`); bind(); $('[data-action="complete"]', shell).focus(); }
 
   function bind() {
     $$('[data-action]', shell).forEach((button) => button.addEventListener('click', () => {
