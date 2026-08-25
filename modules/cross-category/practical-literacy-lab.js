@@ -95,9 +95,9 @@
     }
   };
 
-  PACKS.finance.answerPositionPatterns = { lower: [2, 0, 1, 2, 1, 0, 2, 0], upper: [1, 0, 2, 1, 2, 0, 1, 0], junior: [0, 2, 1, 0, 1, 2, 0, 2] };
-  PACKS.body.answerPositionPatterns = { lower: [1, 2, 0, 1, 0, 2, 1, 0], upper: [0, 2, 1, 0, 1, 2, 0, 2], junior: [2, 1, 0, 2, 0, 1, 2, 0] };
-  PACKS.study.answerPositionPatterns = { upper: [2, 0, 1, 2, 1, 0, 2, 0], junior: [1, 0, 2, 1, 2, 0, 1, 0] };
+  PACKS.finance.answerPositionPatterns = { lower: [2, 0, 1, 2, 1, 0, 2, 0], upper: [1, 0, 2, 1, 2, 0, 1, 0], junior: [0, 2, 1, 0, 1, 2, 0, 2], senior: [2, 1, 0, 2, 0, 1, 2, 0] };
+  PACKS.body.answerPositionPatterns = { lower: [1, 2, 0, 1, 0, 2, 1, 0], upper: [0, 2, 1, 0, 1, 2, 0, 2], junior: [2, 1, 0, 2, 0, 1, 2, 0], senior: [0, 1, 2, 0, 2, 1, 0, 2] };
+  PACKS.study.answerPositionPatterns = { upper: [2, 0, 1, 2, 1, 0, 2, 0], junior: [1, 0, 2, 1, 2, 0, 1, 0], senior: [1, 2, 0, 1, 0, 2, 1, 0] };
   PACKS.community.answerPositionPatterns = { lower: [0, 2, 1, 0, 1, 2, 0, 2], upper: [1, 2, 0, 1, 0, 2, 1, 0], junior: [2, 0, 1, 2, 1, 0, 2, 0] };
 
   let host = null; let currentKey = null; let currentStage = 'lower'; let index = 0; let speechOn = false; let restoreFocus = null;
