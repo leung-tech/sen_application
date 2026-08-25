@@ -23,8 +23,8 @@
       { key: 'shield', icon: '🛡️', title: '小組研習的「溝通盾牌」', focus: '自我倡導對白', description: '遇到說話太快或背向說話時，練習提出清晰、禮貌的支援需要。', steps: 8, answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [1, 0, 2, 1, 2, 0, 1, 0] }
     ],
     senior: [
-      { key: 'takeaway', icon: '🍜', title: '繁忙茶餐廳：外賣接單王', focus: '高噪環境關鍵詞', description: '閱讀訂單字幕與視覺噪音線索，逐步輸入食物、飲品要求及送貨樓層。', steps: 8 },
-      { key: 'dse', icon: '🎧', title: 'DSE 聆聽試：無障礙考場模擬', focus: '輔具預檢與求助', description: '完成設備檢查，遇到訊號問題時練習即時舉手求助。', steps: 8 }
+      { key: 'takeaway', icon: '🍜', title: '繁忙茶餐廳：外賣接單王', focus: '高噪環境關鍵詞', description: '閱讀訂單字幕與視覺噪音線索，逐步輸入食物、飲品要求及送貨樓層。', steps: 8, answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [2, 0, 1, 2, 1, 0, 1, 0] },
+      { key: 'dse', icon: '🎧', title: 'DSE 聆聽試：無障礙考場模擬', focus: '輔具預檢與求助', description: '完成設備檢查，遇到訊號問題時練習即時舉手求助。', steps: 8, answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [0, 2, 1, 0, 1, 2, 0, 2] }
     ]
   };
   const ROUND_BANKS = {
