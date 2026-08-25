@@ -15,8 +15,8 @@
       { key: 'visualizer', icon: '🚨', title: '環境提示視覺站', focus: '環境提示與安全行動', description: '把門鈴、警報、車輛與課室提示轉成圖示、文字和可選震動節奏示意；不需要先聽見聲音。', steps: 8, answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [2, 0, 1, 2, 1, 0, 2, 0] }
     ],
     upper: [
-      { key: 'lips', icon: '🕵️', title: '神探唇讀術：校園密碼', focus: '口型與字卡提示', description: '先看清楚的嘴型圖與發音線索，再選出同學或老師的訊息。', steps: 8 },
-      { key: 'expression', icon: '🙂', title: '表情與聲音的「連連看」', focus: '語氣與臉部線索', description: '用文字、語氣描述和表情一起理解完整溝通訊息。', steps: 8 }
+      { key: 'lips', icon: '🕵️', title: '神探唇讀術：校園密碼', focus: '口型與字卡提示', description: '先看清楚的嘴型圖與發音線索，再選出同學或老師的訊息。', steps: 8, answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [1, 0, 2, 1, 2, 0, 1, 0] },
+      { key: 'expression', icon: '🙂', title: '表情與聲音的「連連看」', focus: '語氣與臉部線索', description: '用文字、語氣描述和表情一起理解完整溝通訊息。', steps: 8, answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [2, 0, 1, 2, 1, 0, 2, 0] }
     ],
     junior: [
       { key: 'noise', icon: '📡', title: '「課室開學：降噪大作戰」', focus: '信噪比與 FM 系統', description: '在視覺化嘈雜課室中，先開啟 FM 輔具，再找出班長提及的用品。', steps: 8 },
