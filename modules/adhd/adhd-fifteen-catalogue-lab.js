@@ -93,6 +93,17 @@
     activity.answerPositionStrategy = 'irregular-balanced';
     activity.answerPositionPattern = lowerPatterns[index];
   });
+  const upperPatterns = [
+    [1,0,2,1,2,0,1,0], [0,2,1,0,1,2,0,2], [2,1,0,2,0,1,2,0],
+    [1,0,2,1,2,0,1,0], [0,1,2,0,2,1,0,2], [2,0,1,2,0,1,0,1],
+    [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2], [2,1,0,2,0,1,2,0],
+    [1,0,2,1,2,0,1,0], [0,1,2,0,2,1,0,2], [2,0,1,2,0,1,0,1],
+    [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2], [2,1,0,2,0,1,2,0]
+  ];
+  upper.forEach((activity, index) => {
+    activity.answerPositionStrategy = 'irregular-balanced';
+    activity.answerPositionPattern = upperPatterns[index];
+  });
   let host=null,options={},active=null,index=0,speechOn=true,returnFocus=null;
   const q=s=>host?.querySelector(s),qa=s=>host?[...host.querySelectorAll(s)]:[];
   const speak=t=>{if(!speechOn||!window.speechSynthesis)return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='zh-HK';u.rate=.75;window.speechSynthesis.speak(u)};
