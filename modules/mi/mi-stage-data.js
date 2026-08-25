@@ -44,4 +44,6 @@ window.SEN_PATHWAY_MODULES = window.SEN_PATHWAY_MODULES || {};
   window.SEN_PATHWAY_MODULES.MI = { card: { id:'pathway-mi', type:'9', category:'life', categoryName:'9 MI · 溝通與選擇', tone:'purple', icon:'🗂️', title:'我的選擇卡', description:'用清楚選擇卡表達需要與求助', tag:'功能性溝通', supports:['9'], answerPositionStrategy:'irregular-balanced', answerPositionPattern:[1,0,2,0,1,2,0,1], rounds: lower }, stages: { upper:{ description:'以選擇卡表達校園需要與安排', rounds:upper }, junior:{ description:'在外出與小組活動中使用功能性溝通選擇卡', rounds:junior }, senior:{ description:'用功能性選擇卡表達職場、社區與調節需要', rounds:senior } } };
   window.SEN_PATHWAY_MODULES.MI.stages.upper.answerPositionStrategy = 'irregular-balanced';
   window.SEN_PATHWAY_MODULES.MI.stages.upper.answerPositionPattern = [2, 0, 1, 0, 2, 1, 0, 2];
+  window.SEN_PATHWAY_MODULES.MI.stages.junior.answerPositionStrategy = 'irregular-balanced';
+  window.SEN_PATHWAY_MODULES.MI.stages.junior.answerPositionPattern = [1, 0, 2, 1, 0, 2, 0, 1];
 }());
