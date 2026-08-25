@@ -35,7 +35,7 @@
         { id: 'dwell', icon: '⌨️', title: '虛擬鍵盤速遞員', focus: '停留選取與眼動輸入替代', prep: ['游標停留在字鍵 1.5 秒即可輸入。', '也可用 Tab 選取後按 Enter。', '完成短句即可過關。'], type: 'dwell', rounds: [{}, {}, {}] }
       ],
       senior: [
-        { id: 'home', icon: '🏠', title: '智能家居科技大師', focus: '環境調適與簡單自動化', prep: ['先看生活需要。', '選擇合適的智能家居指令。', '不用寫程式，只需組合邏輯卡。'], type: 'choice', rounds: [{ prompt: '室溫高於 26 度，最合適的設定是？', answer: '自動開啟冷氣', choices: ['自動關閉所有燈', '自動開啟冷氣'] }, { prompt: '想在晚上安全入睡，可以設定？', answer: '語音關燈及拉窗簾', choices: ['把遙控器放遠', '語音關燈及拉窗簾'] }, { prompt: '雙手無力想開門，較合適的是？', answer: '使用智能門鎖語音控制', choices: ['強行拉門', '使用智能門鎖語音控制'] }] },
+        { id: 'home', icon: '🏠', title: '智能家居科技大師', focus: '環境調適與簡單自動化', prep: ['先看生活需要。', '選擇合適的智能家居指令。', '不用寫程式，只需組合邏輯卡。'], type: 'choice', answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [1, 0, 1, 0, 1, 0, 1, 0], rounds: [{ prompt: '室溫高於 26 度，最合適的設定是？', answer: '自動開啟冷氣', choices: ['自動關閉所有燈', '自動開啟冷氣'] }, { prompt: '想在晚上安全入睡，可以設定？', answer: '語音關燈及拉窗簾', choices: ['把遙控器放遠', '語音關燈及拉窗簾'] }, { prompt: '雙手無力想開門，較合適的是？', answer: '使用智能門鎖語音控制', choices: ['強行拉門', '使用智能門鎖語音控制'] }] },
         { id: 'office', icon: '💻', title: '線上辦公室：網頁設計師實習記', focus: '快捷鍵與職前數碼工作', prep: ['使用 Tab 在工具間移動。', '按 Ctrl+C、Ctrl+V 複製與貼上。', '只需最少的按鍵完成排版。'], type: 'office', rounds: [{}, {}, {}] }
       ]
     }
