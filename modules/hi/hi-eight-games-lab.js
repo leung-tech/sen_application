@@ -12,7 +12,7 @@
     lower: [
       { key: 'rainbow', icon: '🌈', title: '聲波彩虹橋', focus: '高音與低音辨識', description: '按一下才播放聲音，再用星星或雲朵配對音高；每一步都有色彩線索。', steps: 8 },
       { key: 'tones', icon: '🎢', title: '廣東話聲調「過山車」', focus: '視覺化聲調曲線', description: '把平穩或向上走的音高線，配對到清楚的文字和軌道圖。', steps: 8 },
-      { key: 'visualizer', icon: '🚨', title: '環境提示視覺站', focus: '環境提示與安全行動', description: '把門鈴、警報、車輛與課室提示轉成圖示、文字和可選震動節奏示意；不需要先聽見聲音。', steps: 8 }
+      { key: 'visualizer', icon: '🚨', title: '環境提示視覺站', focus: '環境提示與安全行動', description: '把門鈴、警報、車輛與課室提示轉成圖示、文字和可選震動節奏示意；不需要先聽見聲音。', steps: 8, answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [2, 0, 1, 2, 1, 0, 2, 0] }
     ],
     upper: [
       { key: 'lips', icon: '🕵️', title: '神探唇讀術：校園密碼', focus: '口型與字卡提示', description: '先看清楚的嘴型圖與發音線索，再選出同學或老師的訊息。', steps: 8 },

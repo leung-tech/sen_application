@@ -16,6 +16,8 @@ const GIFTED_HI_STAGE_TASKS = {
   },
   hi: {
     description: '10 關視覺線索、需要圖卡與情緒表情識別訓練',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [1, 0, 2, 1, 2, 0, 1, 0, 2, 0],
     rounds: [
       { id: 'HI-01', band: '看活動圖示 · 1', prompt: '視覺時間表顯示「書本」圖示後是「鉛筆」圖示，下一步最可能是甚麼？', context: '圖示順序是：📚 閱讀 → ✏️ 寫字 → 🧺 收拾。', choices: [['✏️', '準備寫字'], ['🏀', '到操場'], ['🛏️', '睡覺']], answer: '準備寫字', instruction: '請根據圖示找出下一步。', clue: '先看目前的圖示，再看它右邊的下一張圖。', success: '答對了！你從視覺時間表找到下一步。', strategy: '看圖示順序：現在做甚麼？下一張圖是甚麼？' },
       { id: 'HI-02', band: '表情線索 · 2', prompt: '眉毛微微向下、嘴角向下的人，最可能感到甚麼？', context: '看表情時，可以同時看眼睛、眉毛和嘴巴。', choices: [['😟', '擔心'], ['😄', '開心'], ['😴', '很睏']], answer: '擔心', instruction: '請選出與臉部線索相符的感受。', clue: '擔心時，眉毛和嘴角常會向下。', success: '很好！你看到了臉部的情緒線索。', strategy: '先看眉毛與嘴巴的位置，再為表情找感受名字。' },
