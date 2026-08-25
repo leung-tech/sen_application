@@ -1,6 +1,8 @@
 window.ASD_STAGE_TASKS = {
   lower: {
     categoryName: '3 ASD · 社交互動', title: '初小社交互動闖關', description: '10 關加入活動、輪候、界線與求助練習', tag: 'P1–P3 · 10 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [2, 0, 1, 0, 2, 1, 0, 2, 1, 0],
     rounds: [
       { id: 'P1-ASD-01', band: '加入活動 · 1', prompt: '想和同學玩積木，可以怎樣說？', context: '兩位同學正在一起砌積木。', strategy: '先用一個有禮貌的問句，等對方回答。', choices: [['🗣️', '我可以一起玩嗎？'], ['🧱', '直接拿走積木'], ['📣', '你們一定要讓我玩']], answer: '我可以一起玩嗎？', instruction: '請選出想加入活動時可以說的話。', clue: '問句可以讓同學有時間回應。', success: '做得好！你用清楚問句加入活動。' },
       { id: 'P1-ASD-02', band: '開始對話 · 2', prompt: '見到同學，想開始說話可以怎樣做？', context: '小美正坐在閱讀角看圖書。', strategy: '先問好，再問一個簡單、和情境有關的問題。', choices: [['👋', '早晨，你在看甚麼書？'], ['📣', '你一定要跟我說話'], ['🧸', '把她的書拿走']], answer: '早晨，你在看甚麼書？', instruction: '請選出開始對話的合適句子。', clue: '可以先問好，再留意對方正在做甚麼。', success: '很好！這是一個友善的對話開始。' },
