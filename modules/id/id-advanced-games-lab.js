@@ -48,6 +48,16 @@
   const SHREDDER = [{ icon:'📌', prompt:'文件有釘書釘，第一步是甚麼？', answer:'先拔除釘書釘', choices:['先拔除釘書釘','直接放進碎紙機','用手撕碎'] }, { icon:'📄', prompt:'紙張已沒有釘書釘，應放去哪裏？', answer:'碎紙機入口', choices:['碎紙機入口','水杯裏','椅子底'] }, { icon:'🖐️', prompt:'操作碎紙機時，手應放在哪裏？', answer:'留在安全線外', choices:['留在安全線外','伸進入口','放在按鈕上不動'] }, { icon:'🧣', prompt:'圍巾太長接近碎紙機，應怎樣做？', answer:'先把圍巾收好', choices:['先把圍巾收好','讓圍巾靠近入口','請同學拉著圍巾'] }, { icon:'⚠️', prompt:'碎紙機卡住時，應怎樣做？', answer:'關機並找主管幫忙', choices:['關機並找主管幫忙','伸手進去拉紙','繼續按開始'] }, { icon:'🔌', prompt:'清理碎紙機前，應做甚麼？', answer:'先關機和拔電源', choices:['先關機和拔電源','一邊開機一邊清理','用濕手碰插頭'] }, { icon:'🗑️', prompt:'碎紙完成後，紙屑滿了，怎樣做？', answer:'按指引倒進指定箱', choices:['按指引倒進指定箱','灑在地上','放回入口'] }, { icon:'⏻', prompt:'完成工作離開前，最後應做甚麼？', answer:'確認碎紙機已關閉', choices:['確認碎紙機已關閉','讓機器一直開著','把按鈕全部亂按'] }];
   const PACK = [{ icon:'🔍', prompt:'包裝前先檢查甚麼？', answer:'盒子有沒有破損', choices:['盒子有沒有破損','同事的電話','窗外天氣'] }, { icon:'🟥', prompt:'第一張包裝紙應放在哪裏？', answer:'盒子正中央', choices:['盒子正中央','地面','垃圾桶'] }, { icon:'📐', prompt:'包裝紙太長時，應怎樣做？', answer:'沿虛線慢慢裁好', choices:['沿虛線慢慢裁好','隨意撕開','不看大小'] }, { icon:'📌', prompt:'封口時，膠紙應貼在哪裏？', answer:'包裝紙接縫位置', choices:['包裝紙接縫位置','商品正面中央','桌子邊緣'] }, { icon:'🏷️', prompt:'條碼貼紙應放在哪裏？', answer:'右下角指定位置', choices:['右下角指定位置','盒子裡面','同事衣服上'] }, { icon:'🧾', prompt:'包裝後要核對甚麼？', answer:'標籤和商品是否相符', choices:['標籤和商品是否相符','有沒有更多遊戲','誰走得最快'] }, { icon:'🎁', prompt:'完成包裝後，應放去哪裏？', answer:'合格品箱', choices:['合格品箱','地面','私人書包'] }, { icon:'🗂️', prompt:'下一件貨品開始前，應怎樣做？', answer:'整理枱面再看下一張工作單', choices:['整理枱面再看下一張工作單','把工具亂放','立刻離開'] }];
   Object.assign(GAMES.hazard, { rounds: HAZARDS }); Object.assign(GAMES.uniform, { rounds: UNIFORMS }); Object.assign(GAMES.octopus, { rounds: OCTOPUS }); Object.assign(GAMES.mall, { rounds: MALL }); Object.assign(GAMES.shampoo, { rounds: SHAMPOO }); Object.assign(GAMES.tea, { rounds: TEA }); Object.assign(GAMES.shredder, { rounds: SHREDDER }); Object.assign(GAMES.pack, { rounds: PACK });
+  const ANSWER_POSITION_PATTERNS = {
+    octopus: [1,0,2,1,2,0,1,0],
+    mall: [2,1,0,2,0,1,2,0],
+    shredder: [0,2,1,0,1,2,0,2],
+    pack: [2,0,1,2,0,1,0,1]
+  };
+  Object.entries(ANSWER_POSITION_PATTERNS).forEach(([key, pattern]) => {
+    GAMES[key].answerPositionStrategy = 'irregular-balanced';
+    GAMES[key].answerPositionPattern = pattern;
+  });
 
   let host = null;
   let options = null;
