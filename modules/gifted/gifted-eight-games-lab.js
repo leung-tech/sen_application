@@ -311,7 +311,9 @@
       const answerPositionPatterns = {
         'lower:selective-listening': [2, 0, 1, 2, 1, 0, 1, 0],
         'upper:viewpoint-studio': [1, 2, 0, 1, 0, 2, 0, 1],
-        'upper:rule-sandbox': [2, 0, 1, 2, 1, 0, 2, 0]
+        'upper:rule-sandbox': [2, 0, 1, 2, 1, 0, 2, 0],
+        'junior:perspective-toolkit': [0, 2, 1, 0, 1, 2, 1, 0],
+        'junior:tone-workbench': [1, 0, 2, 1, 0, 2, 0, 1]
       };
       const answerPositionPattern = answerPositionPatterns[`${stage}:${item.key}`];
       const answerPosition = answerPositionPattern
