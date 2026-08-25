@@ -307,10 +307,16 @@
   const isCastle = () => activeKey === 'flex-castle';
 
   function activityCards(stage) {
-    return (activities[stage] || []).map((item) => ({
-      id: `gifted-eight-${item.key}`, icon: item.icon, title: item.title,
-      description: item.description, tag: item.tag, rounds: roundsFor(item.key), tone: 'purple', supports: ['G'], giftedEightActivity: item.key
-    }));
+    return (activities[stage] || []).map((item) => {
+      const answerPosition = stage === 'lower' && item.key === 'selective-listening'
+        ? { answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [2, 0, 1, 2, 1, 0, 1, 0] }
+        : {};
+      return {
+        id: `gifted-eight-${item.key}`, icon: item.icon, title: item.title,
+        description: item.description, tag: item.tag, rounds: roundsFor(item.key), tone: 'purple', supports: ['G'], giftedEightActivity: item.key,
+        ...answerPosition
+      };
+    });
   }
 
   function styles() {
