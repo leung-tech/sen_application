@@ -48,6 +48,14 @@
       round.choices = round.choices.map((label, index) => ({ value: String(index + 1), label }));
     });
   }
+  const viSpeedGame = GAMES.V.junior.find((game) => game.id === 'speed');
+  if (viSpeedGame) {
+    viSpeedGame.answerPositionStrategy = 'irregular-balanced';
+    viSpeedGame.answerPositionPattern = [2, 0, 1, 2, 1, 0, 1, 0];
+    viSpeedGame.rounds.forEach((round) => {
+      round.choices = round.choices.map((label, index) => ({ value: String(index + 1), label }));
+    });
+  }
   function extendToEight(game) {
     const base = game.rounds.map((round) => ({ ...round }));
     while (game.rounds.length < 8) game.rounds.push({ ...base[game.rounds.length % base.length] });
