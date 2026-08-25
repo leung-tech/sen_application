@@ -140,13 +140,15 @@
   const fourColumnPatterns = [
     [3,1,0,2,3,0,1,2], [2,0,3,1,2,1,0,3], [1,3,0,2,1,0,3,2]
   ];
-  lower.forEach((activity, index) => {
+  const applyPositionPatterns = (activities, offset = 0) => activities.forEach((activity, index) => {
     const width = activity.rounds[0]?.choices?.length || 0;
     const patterns = width === 3 ? threeColumnPatterns : width === 4 ? fourColumnPatterns : [];
     if (!patterns.length) return;
     activity.answerPositionStrategy = 'irregular-balanced';
-    activity.answerPositionPattern = patterns[index % patterns.length];
+    activity.answerPositionPattern = patterns[(index + offset) % patterns.length];
   });
+  applyPositionPatterns(lower);
+  applyPositionPatterns(upper, 1);
   let host = null; let options = {}; let active = null; let roundIndex = 0; let returnFocus = null; let speechOn = true; let solved = [];
   const q = (selector) => host?.querySelector(selector); const qa = (selector) => host ? [...host.querySelectorAll(selector)] : [];
   const speak = (text) => { if (!speechOn || !window.speechSynthesis) return; window.speechSynthesis.cancel(); const utterance = new SpeechSynthesisUtterance(text); utterance.lang = 'zh-HK'; utterance.rate = 0.74; window.speechSynthesis.speak(utterance); };
