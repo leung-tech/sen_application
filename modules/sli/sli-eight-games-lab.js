@@ -1,8 +1,8 @@
 (() => {
   const ACTIVITIES = {
     'tone-park': {
-      stage: ['lower'], icon: '🎼', title: '聲調聽辨魔法樂園', focus: '粵語聲調聽辨與詞語覺察', description: '聽教師或朗讀按鈕的字詞，找出相近聲調線索；可選錄音重聽，不會自動評定讀音。',
-      prep: ['先按「朗讀目標」或由教師慢慢示範字詞。', '只比較這一回合的聲調線索，不用急著回答。', '可以只聽、指卡、跟教師一起說或自選錄音重聽；網站不會判定讀音。'],
+      stage: ['lower'], icon: '🎼', title: '聲調聽辨魔法樂園', focus: '粵語聲調聽辨與詞語覺察', description: '聽教師或朗讀按鈕的字詞，找出相近聲調線索；不會錄音或自動評定讀音。',
+      prep: ['先按「朗讀目標」或由教師慢慢示範字詞。', '只比較這一回合的聲調線索，不用急著回答。', '可以只聽、指卡或跟教師一起說；網站不會錄音或判定讀音。'],
       rounds: [
         { target: '詩 si1', contour: '高平聲線', prompt: '哪一張卡和「詩」有相近的高平聲線？', choices: ['書 syu1', '時 si4', '市 si5'], answer: '書 syu1', hint: '先由教師讀三張卡；可留意「詩」和「書」的聲線都較平穩而高。' },
         { target: '時 si4', contour: '平穩而較低的聲線', prompt: '哪一張卡和「時」有相近的聲調線索？', choices: ['池 ci4', '試 si3', '史 si2'], answer: '池 ci4', hint: '不用看哪個字較熟；先一起聽「時」和三個選項的聲線。' },
@@ -28,8 +28,8 @@
       ]
     },
     'pace-route': {
-      stage: ['upper'], icon: '📮', title: '慢速訊息遞送', focus: '說話前準備與自選回放', description: '在虛構傳訊情境選擇舒服的準備方式；可選錄音回放，不評定說話快慢、停頓或流暢度。',
-      prep: ['先看要傳遞的短訊息，想一想自己想用哪種方法準備。', '可以選句卡、先想一句、停一停、請教師示範或只聽範例。', '錄音和回放完全可選；網站不分析或評定聲音、速度、停頓或流暢度。'],
+      stage: ['upper'], icon: '📮', title: '慢速訊息遞送', focus: '說話前準備與自選支援', description: '在虛構傳訊情境選擇舒服的準備方式；不評定說話快慢、停頓或流暢度。',
+      prep: ['先看要傳遞的短訊息，想一想自己想用哪種方法準備。', '可以選句卡、先想一句、停一停、請教師示範或只聽範例。', '網站不錄音，也不分析或評定聲音、速度、停頓或流暢度。'],
       rounds: [
         { message: '「請你收件。」', prompt: '傳遞易碎物品前，你想先選哪一個舒服方法？', choices: ['先看句卡，再慢慢說一遍', '立即連續說很多次', '必須一次說得完全一樣'], answer: '先看句卡，再慢慢說一遍', example: '請你收件。', hint: '這不是速度挑戰；先用一個自己覺得可行的小方法。', success: '你選了一個可按自己節奏使用的方法。' },
         { message: '「我想確認明天的集合時間。」', prompt: '傳訊前不太肯定內容時，哪一個做法可幫自己準備？', choices: ['先圈出關鍵詞，再說或按句卡', '假裝已經明白', '必須不可以停頓'], answer: '先圈出關鍵詞，再說或按句卡', example: '我想確認明天的集合時間。', hint: '可以先找「確認」「明天」「集合時間」三個重點。', success: '你選了可讓訊息更清楚的準備方式。' },
@@ -55,8 +55,8 @@
       ]
     },
     'discussion-scaffold': {
-      stage: ['senior'], icon: '🧩', title: '討論骨架工作台', focus: '立場、理據、例子與總結組織', description: '用結構卡整理 DSE 或會議題目的想法；可使用句卡、打字、口說或自選本機錄音回放。',
-      prep: ['先讀討論題目，不需要立刻口頭回答。', '每次先放一張結構卡：立場、理據、例子／回應或總結。', '可只用句卡、自己改寫、請教師一起看，或自選錄音回放；活動沒有倒數。'],
+      stage: ['senior'], icon: '🧩', title: '討論骨架工作台', focus: '立場、理據、例子與總結組織', description: '用結構卡整理 DSE 或會議題目的想法；可使用句卡、打字或口說。',
+      prep: ['先讀討論題目，不需要立刻口頭回答。', '每次先放一張結構卡：立場、理據、例子／回應或總結。', '可只用句卡、自己改寫或請教師一起看；活動沒有倒數，也不會錄音。'],
       rounds: [
         { topic: '中學生應否接受 AI 協助寫作？', prompt: '把一個可討論的觀點按「立場—理據—例子／回應—總結」組合。', answer: ['我的立場：可在教師指引下使用 AI 協助初稿。', '理據：可幫助整理初步想法。', '例子／回應：仍要核對資料和用自己的語言修改。', '總結：使用時需要清楚規則和個人判斷。'], choices: ['總結：使用時需要清楚規則和個人判斷。', '例子／回應：仍要核對資料和用自己的語言修改。', '理據：可幫助整理初步想法。', '我的立場：可在教師指引下使用 AI 協助初稿。'], labels: ['我的立場', '理據', '例子／回應', '總結'], hint: '先說你這一回合想討論的立場，再補一個原因、例子或回應，最後收束重點。', success: '你把一個有起點、理由和收束的觀點組織好了。' },
         { topic: '學校應否保留安靜閱讀時間？', prompt: '把「保留安靜閱讀時間」的立場、理據、例子和總結按順序組合。', answer: ['我的立場：應保留每週安靜閱讀時間。', '理據：不同學生需要固定時間慢慢閱讀。', '例子／回應：可提供不同難度和紙本／電子選擇。', '總結：彈性安排可讓更多學生參與。'], choices: ['理據：不同學生需要固定時間慢慢閱讀。', '總結：彈性安排可讓更多學生參與。', '我的立場：應保留每週安靜閱讀時間。', '例子／回應：可提供不同難度和紙本／電子選擇。'], labels: ['我的立場', '理據', '例子／回應', '總結'], hint: '不用追求一個「最強」答案；先令每一張卡在結構中有清楚作用。', success: '你把立場、理由、例子和總結連成了一段完整想法。' },
@@ -64,8 +64,8 @@
       ]
     },
     'voice-use': {
-      stage: ['senior'], icon: '🎙️', title: '主持聲音使用提示室', focus: '主持前準備、休息與求助句', description: '在虛構主持情境中選擇一般準備、適時休息和清楚求助方法；可選錄音回放，不評定聲音或健康。',
-      prep: ['先看主持情境，選一個自己覺得可行的準備方式。', '可以使用短講稿、分段讀、喝水、停一停、使用咪高峰或和同伴分工。', '錄音與回放完全可選；網站不量度音量、音高、聲線或「聲帶健康」。'],
+      stage: ['senior'], icon: '🎙️', title: '主持聲音使用提示室', focus: '主持前準備、休息與求助句', description: '在虛構主持情境中選擇一般準備、適時休息和清楚求助方法；不評定聲音或健康。',
+      prep: ['先看主持情境，選一個自己覺得可行的準備方式。', '可以使用短講稿、分段讀、喝水、停一停、使用咪高峰或和同伴分工。', '網站不錄音，不量度音量、音高、聲線或「聲帶健康」。'],
       rounds: [
         { situation: '你要在早會讀一段兩句的校園提示。', prompt: '開始前，哪一個做法最能讓你按自己的需要準備？', choices: ['先把講稿分成兩小句，和教師確認閱讀方式', '必須一次讀完而且不能停', '一定要把聲量提高到最大'], answer: '先把講稿分成兩小句，和教師確認閱讀方式', example: '早晨，請大家準時到禮堂集合。', hint: '可以把較長內容拆成較小部分，並和教師商量合適的支援。', success: '你選了一個可調整、可得到支持的準備方式。' },
         { situation: '主持排練中，你覺得想先休息一下。', prompt: '哪一句可以清楚說出你的需要？', choices: ['我想先喝水和休息一分鐘，之後再繼續。', '我一定要不停讀完。', '我不能告訴任何人我的需要。'], answer: '我想先喝水和休息一分鐘，之後再繼續。', example: '我想先喝水和休息一分鐘，之後再繼續。', hint: '使用短而清楚的求助句，能讓同伴或教師知道下一步。', success: '你清楚說出了可實行的休息需要。' },
@@ -141,9 +141,6 @@
   let settings = null;
   let returnFocus = null;
   let keyHandler = null;
-  let recorder = null;
-  let recordingStream = null;
-  let recordedUrl = '';
 
   const q = (selector) => host?.querySelector(selector);
   const qa = (selector) => host ? [...host.querySelectorAll(selector)] : [];
@@ -169,20 +166,10 @@
     node.textContent = text;
   }
 
-  function stopRecorder() {
-    if (recorder?.state === 'recording') recorder.stop();
-    recordingStream?.getTracks?.().forEach((track) => track.stop());
-    recordingStream = null;
-    recorder = null;
-  }
-
   function close() {
-    stopRecorder();
     window.speechSynthesis?.cancel();
     document.removeEventListener('keydown', keyHandler);
     keyHandler = null;
-    if (recordedUrl) URL.revokeObjectURL(recordedUrl);
-    recordedUrl = '';
     host?.remove();
     host = null;
     if (returnFocus?.isConnected) returnFocus.focus();
@@ -249,43 +236,13 @@
     else speak('可先選一項練習，開始前都有三步規則。');
   }
 
-  function recordMarkup(example) {
-    return `<div class="sli8-record"><strong>可選錄音回放</strong><p>可讀「${example}」或說自己的版本；錄音只留在這部裝置，不會上傳、分析或評定。</p><div><button type="button" id="sli8Record">🎙️ 開始錄音</button><button type="button" id="sli8Playback" disabled>▶ 重聽我的錄音</button></div></div>`;
-  }
-
-  function bindRecord(example) {
-    q('#sli8Record')?.addEventListener('click', async () => {
-      if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) { feedback('這部裝置未提供錄音功能；可改用教師代讀、指卡或只聽朗讀。', 'hint'); return; }
-      if (recorder?.state === 'recording') { recorder.stop(); q('#sli8Record').textContent = '🎙️ 開始錄音'; return; }
-      try {
-        recordingStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        const chunks = [];
-        recorder = new MediaRecorder(recordingStream);
-        recorder.ondataavailable = (event) => { if (event.data.size) chunks.push(event.data); };
-        recorder.onstop = () => {
-          recordingStream?.getTracks?.().forEach((track) => track.stop());
-          recordingStream = null;
-          if (recordedUrl) URL.revokeObjectURL(recordedUrl);
-          recordedUrl = URL.createObjectURL(new Blob(chunks, { type: recorder.mimeType || 'audio/webm' }));
-          q('#sli8Playback').disabled = false;
-          feedback(`已完成「${example}」的自選錄音。可以重聽，也可以直接繼續；不會自動評定。`, 'hint');
-        };
-        recorder.start();
-        q('#sli8Record').textContent = '■ 停止錄音';
-        feedback(`正在錄音。可慢慢讀「${example}」，完成後按停止錄音。`, 'hint');
-      } catch { feedback('未能使用咪高峰；可繼續用朗讀、指卡或教師示範。', 'hint'); }
-    });
-    q('#sli8Playback')?.addEventListener('click', () => {
-      if (recordedUrl) new Audio(recordedUrl).play().catch(() => feedback('未能播放錄音；可請教師重讀範例。', 'hint'));
-    });
-  }
 
   function renderMenu() {
     stopRecorder();
     const viewStage = state?.stage || settings?.stage || 'lower';
     state = { game: null, stage: viewStage, index: 0, correct: 0, retry: 0, selected: [], rounds: [] };
     const cards = activityCards(viewStage).map((activity) => `<button type="button" class="sli8-card" data-sli8-game="${activity.sliEightActivityKey}"><span aria-hidden="true">${activity.icon}</span><strong>${activity.title}</strong><small>${activity.focus}</small><p>${activity.description}</p><em>${stageLabel(viewStage)} · 3 回合</em></button>`).join('');
-    shell(`${heading('選擇一項 SLI 課堂練習', '每項均可先由教師帶讀。學生可選朗讀、看提示、指卡、拖拉／點選替代、錄音回放或直接離開。', stageLabel(viewStage))}<div class="sli8-grid">${cards}</div><p class="sli8-rule">錄音、說話和分享均為可選。活動結果只供本節課堂回顧，不代表構音、聲調、流暢度、聲音或能力。</p><div id="sli8Feedback" class="sli8-feedback" role="status" aria-live="polite" aria-atomic="true">請選一項活動，開始前會先出現三步規則。</div>`);
+    shell(`${heading('選擇一項 SLI 課堂練習', '每項均可先由教師帶讀。學生可選朗讀、看提示、指卡、拖拉／點選替代或直接離開。', stageLabel(viewStage))}<div class="sli8-grid">${cards}</div><p class="sli8-rule">說話和分享均為可選；本網站不會請求咪高峰權限、錄音或分析聲音。活動結果只供本節課堂回顧，不代表構音、聲調、流暢度、聲音或能力。</p><div id="sli8Feedback" class="sli8-feedback" role="status" aria-live="polite" aria-atomic="true">請選一項活動，開始前會先出現三步規則。</div>`);
     qa('[data-sli8-game]').forEach((button) => button.addEventListener('click', () => renderReady(button.dataset.sli8Game)));
     focusSoon('.sli8-close');
   }
@@ -295,7 +252,7 @@
     const activity = ACTIVITIES[game];
     if (!activity) { renderMenu(); return; }
     state = { game, index: 0, correct: 0, retry: 0, selected: [], rounds: activity.rounds, preparing: true, stage: state?.stage || settings?.stage || 'lower' };
-    shell(`${heading(`${activity.title} · 準備頁`, '未按「我準備好了」前，不會出題、請求咪高峰權限、開始錄音或播放回饋聲。', `${stageLabel()} · 一起準備`)}<section class="sli8-ready"><div aria-hidden="true">${activity.icon}</div><div><p>先一起讀三步</p><h3>準備好了才開始</h3><ol>${activity.prep.map((item) => `<li>${item}</li>`).join('')}</ol><small>學生可用點頭、指卡、手勢、按按鈕或說「我準備好了」表示可以開始。</small></div></section><div class="sli8-actions"><button type="button" id="sli8ReadyBack" class="sli8-secondary">← 換一項練習</button><button type="button" id="sli8ReadyStart" class="sli8-primary">✓ 我準備好了，開始第一回合</button></div><div id="sli8Feedback" class="sli8-feedback" role="status" aria-live="polite" aria-atomic="true">現在是準備時間，尚未開始出題或錄音。</div>`);
+    shell(`${heading(`${activity.title} · 準備頁`, '未按「我準備好了」前，不會出題或播放回饋聲；本網站不會請求咪高峰權限或錄音。', `${stageLabel()} · 一起準備`)}<section class="sli8-ready"><div aria-hidden="true">${activity.icon}</div><div><p>先一起讀三步</p><h3>準備好了才開始</h3><ol>${activity.prep.map((item) => `<li>${item}</li>`).join('')}</ol><small>學生可用點頭、指卡、手勢、按按鈕或說「我準備好了」表示可以開始。</small></div></section><div class="sli8-actions"><button type="button" id="sli8ReadyBack" class="sli8-secondary">← 換一項練習</button><button type="button" id="sli8ReadyStart" class="sli8-primary">✓ 我準備好了，開始第一回合</button></div><div id="sli8Feedback" class="sli8-feedback" role="status" aria-live="polite" aria-atomic="true">現在是準備時間，尚未開始出題。</div>`);
     q('#sli8ReadyBack')?.addEventListener('click', renderMenu);
     q('#sli8ReadyStart')?.addEventListener('click', () => { state.preparing = false; renderRound(); });
     focusSoon('#sli8ReadyStart');
@@ -314,21 +271,21 @@
     const round = state.rounds[state.index];
     let play = '';
     if (state.game === 'tone-park') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>目標字：${round.target}</strong><p>聲調線索：${round.contour}</p><button type="button" id="sli8Model">🔊 朗讀目標和選項</button></div></article><p class="sli8-rule">${round.prompt}。請先聽教師或朗讀按鈕；這是聽辨練習，不會自動判定學生讀音。</p>${choiceMarkup(round.choices)}${recordMarkup(round.target)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>目標字：${round.target}</strong><p>聲調線索：${round.contour}</p><button type="button" id="sli8Model">🔊 朗讀目標和選項</button></div></article><p class="sli8-rule">${round.prompt}。請先聽教師或朗讀按鈕；這是聽辨練習，不會自動判定學生讀音或錄音。</p>${choiceMarkup(round.choices)}`;
     } else if (state.game === 'cause-workshop') {
       play = `<article class="sli8-cause"><span aria-hidden="true">🔗</span><div><strong>原因：${round.cause}</strong><p>結果：${round.result}</p></div></article><p class="sli8-rule">${round.prompt}。可拖拉積木，也可每次點一下積木；不知道時可聽提示或請教師一起做。</p>${sequenceMarkup(round)}`;
     } else if (state.game === 'word-net') {
       play = `<article class="sli8-tone"><span aria-hidden="true">${round.silhouette}</span><div><strong>深海線索庫</strong><p>${round.clues.map((clue, index) => `${index + 1}. ${clue}`).join('　')}</p><button type="button" id="sli8Model">🔊 朗讀三條線索</button></div></article><p class="sli8-rule">${round.prompt}。可以再聽或再看線索；本活動不計反應時間。</p>${choiceMarkup(round.choices)}`;
     } else if (state.game === 'pace-route') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>今次訊息：${round.message}</strong><p>可選一種自己覺得舒服的準備方法。</p><button type="button" id="sli8Model">🔊 朗讀短訊息</button></div></article><p class="sli8-rule">${round.prompt}。不需要追求快或完全一樣；可選句卡、教師示範、錄音回放或只聽範例。</p>${choiceMarkup(round.choices)}${recordMarkup(round.example)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>今次訊息：${round.message}</strong><p>可選一種自己覺得舒服的準備方法。</p><button type="button" id="sli8Model">🔊 朗讀短訊息</button></div></article><p class="sli8-rule">${round.prompt}。不需要追求快或完全一樣；可選句卡、教師示範或只聽範例。</p>${choiceMarkup(round.choices)}`;
     } else if (state.game === 'idiom-decoder') {
       play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>線索句：${round.phrase}</strong><p>${round.context}</p><button type="button" id="sli8Model">🔊 朗讀句子和情境</button></div></article><p class="sli8-rule">${round.prompt}。可以先看情境，再比較不同意思；這是語言理解練習，不是人格或能力判斷。</p>${choiceMarkup(round.choices)}`;
     } else if (state.game === 'repair-station') {
       play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>虛構聊天情境</strong><p class="sli8-chat">${round.chat.replace(/\n/g, '<br>')}</p><button type="button" id="sli8Model">🔊 朗讀對話</button></div></article><p class="sli8-rule">${round.prompt}。不同人可以有不同感受；先選一個可澄清或共同處理事情的句子。</p>${choiceMarkup(round.choices)}`;
     } else if (state.game === 'discussion-scaffold') {
-      play = `<article class="sli8-cause"><span aria-hidden="true">${activity.icon}</span><div><strong>討論題目：${round.topic}</strong><p>可用句卡，也可先和教師討論自己的版本。</p></div></article><p class="sli8-rule">${round.prompt}。可拖拉或點選句卡；不設倒數，也不需要口頭錄音才可完成。</p>${sequenceMarkup(round)}${recordMarkup('我的立場是……因為……')}`;
+      play = `<article class="sli8-cause"><span aria-hidden="true">${activity.icon}</span><div><strong>討論題目：${round.topic}</strong><p>可用句卡，也可先和教師討論自己的版本。</p></div></article><p class="sli8-rule">${round.prompt}。可拖拉或點選句卡；不設倒數，也不需要口頭說話才可完成。</p>${sequenceMarkup(round)}`;
     } else if (state.game === 'voice-use') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>虛構主持情境</strong><p>${round.situation}</p><button type="button" id="sli8Model">🔊 朗讀情境</button></div></article><p class="sli8-rule">${round.prompt}。這是一般主持準備與溝通提示，不會評定聲音、音量、音高或健康。</p>${choiceMarkup(round.choices)}${recordMarkup(round.example)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>虛構主持情境</strong><p>${round.situation}</p><button type="button" id="sli8Model">🔊 朗讀情境</button></div></article><p class="sli8-rule">${round.prompt}。這是一般主持準備與溝通提示，不會錄音或評定聲音、音量、音高或健康。</p>${choiceMarkup(round.choices)}`;
     }
     shell(`${heading(activity.title, activity.description, `${stageLabel()} · ${state.index + 1} / ${state.rounds.length}`)}${progress()}<section class="sli8-play">${play}</section><div id="sli8Feedback" class="sli8-feedback" role="status" aria-live="polite" aria-atomic="true">${round.hint}</div>`);
     bindRound(round);
@@ -374,7 +331,6 @@
     if (state.game === 'tone-park') {
       q('#sli8Model')?.addEventListener('click', () => speak(`目標字是 ${round.target}。請一起比較：${round.choices.join('，')}。`));
       qa('[data-sli8-choice]').forEach((button) => button.addEventListener('click', () => chooseSimple(button.dataset.sli8Choice, round)));
-      bindRecord(round.target);
       return;
     }
     if (state.game === 'word-net') {
@@ -385,7 +341,6 @@
     if (state.game === 'pace-route') {
       q('#sli8Model')?.addEventListener('click', () => speak(round.message));
       qa('[data-sli8-choice]').forEach((button) => button.addEventListener('click', () => chooseSimple(button.dataset.sli8Choice, round)));
-      bindRecord(round.example);
       return;
     }
     if (state.game === 'idiom-decoder') {
@@ -400,13 +355,11 @@
     }
     if (state.game === 'discussion-scaffold') {
       bindSequence(round);
-      bindRecord('我的立場是……因為……');
       return;
     }
     if (state.game === 'voice-use') {
       q('#sli8Model')?.addEventListener('click', () => speak(round.situation));
       qa('[data-sli8-choice]').forEach((button) => button.addEventListener('click', () => chooseSimple(button.dataset.sli8Choice, round)));
-      bindRecord(round.example);
       return;
     }
     if (state.game === 'cause-workshop') bindSequence(round);
@@ -420,7 +373,6 @@
   }
 
   function finish() {
-    stopRecorder();
     const activity = active();
     settings?.onComplete?.({ label: `${activity.title} · ${stageLabel()}`, mode: `sli-eight-${state.game}`, total: state.rounds.length, correct: state.correct, incorrect: state.retry, completedAt: new Date().toLocaleString('zh-HK') });
     shell(`${heading('本次 SLI 課堂練習回顧', '可休息、重玩較短內容或選另一項活動。結果只供本節課堂回顧，不作比較、診斷或治療紀錄。', `完成 · ${stageLabel()}`)}<section class="sli8-summary"><div><span>完成回合</span><strong>${state.rounds.length} / ${state.rounds.length}</strong></div><div><span>正確嘗試</span><strong>${state.correct}</strong></div><div><span>溫和重試</span><strong>${state.retry}</strong></div></section><p class="sli8-rule">每一次重聽、指卡、說出需要、慢慢組句或請教師一起看，都是可被看見的努力。</p><div class="sli8-actions"><button type="button" id="sli8Restart" class="sli8-secondary">↺ 再玩這一項</button><button type="button" id="sli8Menu" class="sli8-primary">選另一項練習</button></div><div id="sli8Feedback" class="sli8-feedback" role="status" aria-live="polite" aria-atomic="true">本次練習完成，可以先休息一下。</div>`);

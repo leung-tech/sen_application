@@ -161,9 +161,6 @@
   let options = null;
   let returnFocus = null;
   let keyHandler = null;
-  let recorder = null;
-  let recordingStream = null;
-  let recordedUrl = '';
   let audioContext = null;
   let timers = [];
   const preferences = { sound: true, visual: true };
@@ -220,14 +217,8 @@
     if (tone === 'ok' && rewardKind !== 'none') reward(rewardKind || 'correct');
   }
 
-  function stopRecorder() {
-    if (recorder?.state === 'recording') recorder.stop();
-    recordingStream?.getTracks?.().forEach((track) => track.stop());
-    recordingStream = null; recorder = null;
-  }
-
   function close() {
-    clearTimers(); stopRecorder(); window.speechSynthesis?.cancel();
+    clearTimers(); window.speechSynthesis?.cancel();
     document.removeEventListener('keydown', keyHandler); keyHandler = null;
     host?.remove(); host = null;
     if (returnFocus?.isConnected) returnFocus.focus();
@@ -284,7 +275,7 @@
   }
 
   function renderMenu() {
-    clearTimers(); stopRecorder(); state = { game: null, stars: 0, index: 0, rounds: [] };
+    clearTimers(); state = { game: null, stars: 0, index: 0, rounds: [] };
     const cards = activityCards(stage).map((game) => `<button class="sli-game-card" type="button" data-sli-game="${game.sliActivityKey}"><span aria-hidden="true">${game.icon}</span><strong>${game.title}</strong><small>${game.focus}</small><p>${game.description}</p><em>${stageLabel()} 直接選關</em></button>`).join('');
     shell(`${top('選擇一項言語練習', '每項開始前都可先一起讀規則。可以慢慢讀、請教師代讀、使用提示、換練習或隨時離開。', stageLabel())}<div class="sli-game-grid">${cards}</div><aside class="sli-low-pressure"><strong>低壓參與</strong><span>學生可指一指、按句卡、聽粵語朗讀或先與教師一起完成第一步；不要求一次完成所有回合。</span></aside>`);
     qa('[data-sli-game]').forEach((button) => button.addEventListener('click', () => renderReady(button.dataset.sliGame)));
@@ -292,9 +283,9 @@
   }
 
   function renderReady(game) {
-    clearTimers(); stopRecorder(); const activity = ACTIVITIES[game]; if (!activity) { renderMenu(); return; }
+    clearTimers(); const activity = ACTIVITIES[game]; if (!activity) { renderMenu(); return; }
     state = { game, stars: 0, index: 0, correct: 0, incorrect: 0, preparing: true, rounds: activity.rounds, selected: [] };
-    shell(`${top(`${activity.title} · 準備頁`, '請先由教師帶讀。未按「我準備好了」前，不會出題、開始錄音或播放回饋聲。', `${stageLabel()} · 一起準備`)}<section class="sli-ready" aria-labelledby="sliReadyTitle"><div class="sli-ready-icon" aria-hidden="true">${activity.icon}</div><div><p>先一起讀三步</p><h3 id="sliReadyTitle">準備好了才開始</h3><ol>${activity.prep.map((step) => `<li>${step}</li>`).join('')}</ol><small>學生可以用點頭、指一指、手勢、按按鈕或說「我準備好了」表示可以開始。</small></div></section><div class="sli-actions"><button id="sliReadyBack" class="sli-secondary" type="button">← 換一項練習</button><button id="sliReadyStart" class="sli-primary" type="button">✓ 我準備好了，開始第一回合</button></div><div id="sliFeedback" class="sli-feedback" role="status" aria-live="polite" aria-atomic="true">現在是準備時間，尚未開始出題或錄音。</div>`);
+    shell(`${top(`${activity.title} · 準備頁`, '請先由教師帶讀。未按「我準備好了」前，不會出題或播放回饋聲；本網站不會請求咪高峰權限或錄音。', `${stageLabel()} · 一起準備`)}<section class="sli-ready" aria-labelledby="sliReadyTitle"><div class="sli-ready-icon" aria-hidden="true">${activity.icon}</div><div><p>先一起讀三步</p><h3 id="sliReadyTitle">準備好了才開始</h3><ol>${activity.prep.map((step) => `<li>${step}</li>`).join('')}</ol><small>學生可以用點頭、指一指、手勢、按按鈕或說「我準備好了」表示可以開始。</small></div></section><div class="sli-actions"><button id="sliReadyBack" class="sli-secondary" type="button">← 換一項練習</button><button id="sliReadyStart" class="sli-primary" type="button">✓ 我準備好了，開始第一回合</button></div><div id="sliFeedback" class="sli-feedback" role="status" aria-live="polite" aria-atomic="true">現在是準備時間，尚未開始出題。</div>`);
     q('#sliReadyBack')?.addEventListener('click', renderMenu); q('#sliReadyStart')?.addEventListener('click', begin); focusSoon('#sliReadyStart');
   }
 
@@ -327,7 +318,7 @@
   }
 
   function soundMarkup(round) {
-    return `<div class="sli-magic-island" aria-label="聲音魔法島"><span aria-hidden="true">🏝️</span><div><strong>目標字：${round.target}</strong><small>一起聽「${round.target}」的第一個聲音。</small></div><span class="sli-growth" id="sliGrowth" aria-hidden="true">🌱</span></div><p class="sli-rule">這是聽音和練習的遊戲，不會替學生自動判定發音是否正確。</p>${choiceMarkup(round.choices)}<div class="sli-voice-tools"><button id="sliPracticeVoice" type="button">🎙️ 練習錄音（只留在這部裝置）</button><button id="sliPlayRecording" type="button" disabled>▶ 重聽我的錄音</button><small>可以只聽、指圖或跟教師一起說，不需要錄音。</small></div>`;
+    return `<div class="sli-magic-island" aria-label="聲音魔法島"><span aria-hidden="true">🏝️</span><div><strong>目標字：${round.target}</strong><small>一起聽「${round.target}」的第一個聲音。</small></div><span class="sli-growth" id="sliGrowth" aria-hidden="true">🌱</span></div><p class="sli-rule">這是聽音和練習的遊戲，不會替學生自動判定發音是否正確。</p>${choiceMarkup(round.choices)}<div class="sli-voice-tools"><strong>不用開啟咪高峰</strong><small>可以只聽、指圖、看句卡或跟教師一起說；本網站不錄音、不上傳，也不分析聲音。</small></div>`;
   }
 
   function sequenceView(round, label, caption) {
@@ -374,22 +365,8 @@
     else feedback(`✓ 已放入「${piece}」。現在慢慢看下一格。`, 'ok');
   }
 
-  function bindVoicePractice(round) {
-    q('#sliPracticeVoice')?.addEventListener('click', async () => {
-      if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) { feedback('這部裝置未提供錄音功能；可改用朗讀按鈕或與教師一起練習。', 'hint', 'none'); return; }
-      if (recorder?.state === 'recording') { recorder.stop(); q('#sliPracticeVoice').textContent = '🎙️ 練習錄音（只留在這部裝置）'; return; }
-      try {
-        recordingStream = await navigator.mediaDevices.getUserMedia({ audio: true }); const chunks = [];
-        recorder = new MediaRecorder(recordingStream); recorder.ondataavailable = (event) => { if (event.data.size) chunks.push(event.data); };
-        recorder.onstop = () => { recordingStream?.getTracks().forEach((track) => track.stop()); recordingStream = null; recordedUrl && URL.revokeObjectURL(recordedUrl); recordedUrl = URL.createObjectURL(new Blob(chunks, { type: recorder.mimeType || 'audio/webm' })); q('#sliPlayRecording').disabled = false; feedback(`已完成「${round.target}」的練習錄音。可重聽自己的版本；不會上傳或自動評分。`, 'hint', 'none'); };
-        recorder.start(); q('#sliPracticeVoice').textContent = '■ 停止錄音'; feedback(`正在錄音。可以慢慢讀「${round.target}」；完成後按停止錄音。`, 'hint', 'none');
-      } catch { feedback('未能使用咪高峰。你仍可用朗讀按鈕、指圖或和教師一起讀。', 'hint', 'none'); }
-    });
-    q('#sliPlayRecording')?.addEventListener('click', () => { if (recordedUrl) new Audio(recordedUrl).play().catch(() => feedback('未能播放錄音；可改為請教師朗讀目標字。', 'hint', 'none')); });
-  }
-
   function bindRound(round) {
-    if (state.game === 'sound') { qa('[data-sli-choice]').forEach((button) => button.addEventListener('click', () => chooseSimple(button.dataset.sliChoice, round))); bindVoicePractice(round); return; }
+    if (state.game === 'sound') { qa('[data-sli-choice]').forEach((button) => button.addEventListener('click', () => chooseSimple(button.dataset.sliChoice, round))); return; }
     if (state.game === 'portal') {
       const item = q('[data-sli-portal-item]');
       item?.addEventListener('dragstart', (event) => { state.dragging = round.name; event.dataTransfer?.setData('text/plain', round.name); event.dataTransfer.effectAllowed = 'move'; item.classList.add('dragging'); });
