@@ -44,6 +44,8 @@ window.ADHD_STAGE_TASKS = {
     title: '初中專注闖關',
     description: '10 關多步任務、同儕協作與數碼分心策略',
     tag: 'S1–S3 · 10 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [2, 0, 1, 2, 1, 0, 1, 2, 0, 1],
     rounds: [
       { id: 'S1-ADHD-01', band: '開始鍵 · 1', prompt: '小組報告開始時，最適合先做甚麼？', context: '小組要完成資料、海報和排練三部分。', choices: [['📋', '先選一個小任務'], ['🎲', '同時做全部'], ['📱', '先看短片']], answer: '先選一個小任務', instruction: '請選出開始多步任務的方法。', clue: '大任務先分小；選一個可以立刻開始的小任務。', success: '答對了！你把大任務變成可開始的一步。' },
       { id: 'S1-ADHD-02', band: '今天一件事 · 2', prompt: '有三項任務時，先做哪一項？', context: '明天交工作紙；下星期才排練；今天可以看影片。', choices: [['📝', '明天要交的工作紙'], ['🎤', '下星期的排練'], ['🎬', '看影片']], answer: '明天要交的工作紙', instruction: '請選出限期最近的任務。', clue: '先找最近的期限；明天比下星期更早。', success: '很好！你選到最優先的任務。' },
