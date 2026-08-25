@@ -41,5 +41,5 @@ window.SEN_PATHWAY_MODULES = window.SEN_PATHWAY_MODULES || {};
     card('你做完一項工作，想確認下一步，可以怎樣說？','讓主管知道進度並尋求下一個指示。',[['✅','我完成了，下一步是甚麼？'],['🏃','我自己亂走'],['📣','我不再做了']],'我完成了，下一步是甚麼？','請選出完成後確認下一步的短句。','找有完成和下一步意思的卡。','做得好！你主動確認了工作安排。'),
     card('你感到不舒服或擔心，想找支持，可以選哪張卡？','先告訴身旁可信任的主管或成人。',[['🛟','我需要找人談一談'],['🎲','我需要玩遊戲'],['🏃','我想快跑']],'我需要找人談一談','請選出需要支持時的短句。','找有找人談談意思的卡。','很好！你知道可以主動找支持。')
   ];
-  window.SEN_PATHWAY_MODULES.MI = { card: { id:'pathway-mi', type:'9', category:'life', categoryName:'9 MI · 溝通與選擇', tone:'purple', icon:'🗂️', title:'我的選擇卡', description:'用清楚選擇卡表達需要與求助', tag:'功能性溝通', supports:['9'], rounds: lower }, stages: { upper:{ description:'以選擇卡表達校園需要與安排', rounds:upper }, junior:{ description:'在外出與小組活動中使用功能性溝通選擇卡', rounds:junior }, senior:{ description:'用功能性選擇卡表達職場、社區與調節需要', rounds:senior } } };
+  window.SEN_PATHWAY_MODULES.MI = { card: { id:'pathway-mi', type:'9', category:'life', categoryName:'9 MI · 溝通與選擇', tone:'purple', icon:'🗂️', title:'我的選擇卡', description:'用清楚選擇卡表達需要與求助', tag:'功能性溝通', supports:['9'], answerPositionStrategy:'irregular-balanced', answerPositionPattern:[1,0,2,0,1,2,0,1], rounds: lower }, stages: { upper:{ description:'以選擇卡表達校園需要與安排', rounds:upper }, junior:{ description:'在外出與小組活動中使用功能性溝通選擇卡', rounds:junior }, senior:{ description:'用功能性選擇卡表達職場、社區與調節需要', rounds:senior } } };
 }());
