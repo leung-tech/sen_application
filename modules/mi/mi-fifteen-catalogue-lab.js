@@ -81,6 +81,17 @@
     ]
   };
 
+  const lowerPatterns = [
+    [2,0,1,2,1,0,1,0], [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2],
+    [2,1,0,2,0,1,2,0], [1,0,2,1,2,0,1,0], [0,1,2,0,2,1,0,2],
+    [2,0,1,2,0,1,0,1], [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2],
+    [2,1,0,2,0,1,2,0], [1,0,2,1,2,0,1,0], [0,1,2,0,2,1,0,2],
+    [2,0,1,2,0,1,0,1], [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2]
+  ];
+  cards.lower.forEach((activity, index) => {
+    activity.answerPositionStrategy = 'irregular-balanced';
+    activity.answerPositionPattern = lowerPatterns[index];
+  });
   let host, settings = {}, active, index = 0, correct = 0, retries = 0, speechOn = true, returnFocus;
   const q = (selector) => host?.querySelector(selector);
   const qa = (selector) => [...(host?.querySelectorAll(selector) || [])];
