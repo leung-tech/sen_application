@@ -12,6 +12,8 @@ window.SEN_PATHWAY_MODULES.SLI = {
     senior: { description: '理解職場指令、確認資料及使用清楚服務語句', rounds: [{ prompt: '主管說：「先登記，再到等候區。」第一步是甚麼？', context: '這是一個有先後次序的服務指令。', choices: [['📝', '先登記'], ['🪑', '到等候區'], ['🚌', '乘巴士']], answer: '先登記', instruction: '請選出指令中的第一步。', clue: '留意「先」字後面的行動。', success: '答對了！你理解了指令的次序。' }, { prompt: '服務員說「請出示工作證」，他需要甚麼？', context: '找出句子中的重要物品。', choices: [['🪪', '工作證'], ['🎧', '耳機'], ['🧣', '頸巾']], answer: '工作證', instruction: '請選出服務員要求的物品。', clue: '慢慢重聽「出示」後面的名稱。', success: '很好！你找到了關鍵物品。' }, { prompt: '想確認下一步，可以怎樣問？', context: '你已完成登記，但不清楚要去哪裏。', choices: [['🗣️', '請問我現在要到哪裏？'], ['📣', '我完全不知道'], ['🚪', '我先自己離開']], answer: '請問我現在要到哪裏？', instruction: '請選出確認下一步的問題。', clue: '問題要清楚問「現在」和「哪裏」。', success: '做得好！你用清楚問題取得資料。' }] }
   }
 };
+window.SEN_PATHWAY_MODULES.SLI.stages.senior.answerPositionStrategy = 'irregular-balanced';
+window.SEN_PATHWAY_MODULES.SLI.stages.senior.answerPositionPattern = [0, 2, 1, 0, 1, 2, 0, 1];
 (() => {
   const pathway = window.SEN_PATHWAY_MODULES.SLI;
   const card = (prompt, context, choices, answer, instruction, clue, success) => ({ prompt, context, choices, answer, instruction, clue, success });
