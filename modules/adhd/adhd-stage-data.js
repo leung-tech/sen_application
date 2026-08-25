@@ -4,6 +4,8 @@ window.ADHD_STAGE_TASKS = {
     title: '初小專注闖關',
     description: '10 關開始任務、回到焦點與完成小步驟訓練',
     tag: 'P1–P3 · 10 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [1, 2, 0, 1, 0, 2, 0, 1, 2, 0],
     rounds: [
       { id: 'P1-ADHD-01', band: '開始鍵 · 1', prompt: '剛打開工作紙，第一步是甚麼？', context: '桌上已有工作紙和鉛筆。', choices: [['✍️', '先寫姓名'], ['🎮', '先玩遊戲'], ['🚪', '先離開座位']], answer: '先寫姓名', instruction: '請選出開始工作時最小的一步。', clue: '先做一件只需幾秒就完成的事：寫姓名。', success: '答對了！你按下了開始鍵。' },
       { id: 'P1-ADHD-02', band: '今天一件事 · 2', prompt: '老師說先完成哪一件事？', context: '老師剛剛指著工作紙的第一題。', choices: [['📝', '完成第一題'], ['🧸', '找玩具'], ['🏃', '在課室跑']], answer: '完成第一題', instruction: '請選出老師現在指定的任務。', clue: '不用想全部事情；先做老師剛剛說的第一題。', success: '很好！你把注意力放在眼前一件事。' },
