@@ -4,7 +4,7 @@
   const STAGES = ['lower', 'upper', 'junior', 'senior'];
   const seen = new WeakSet();
   const balanceSeen = new WeakSet();
-  const BALANCED_PROVIDERS = /^(SPLD|ASD|ADHD)_/;
+  const BALANCED_PROVIDERS = /^(SPLD|ASD|ADHD|MI|SLI|CAREER|CROSS_CATEGORY|EBD_MI)_/;
 
   function copyRound(round, number) {
     if (!round || typeof round !== 'object' || Array.isArray(round)) return round;
@@ -45,7 +45,7 @@
 
   function balanceRound(round, index) {
     const answer = round?.answer ?? round?.target;
-    if (!round || !Array.isArray(round.choices) || round.choices.length !== 3 || Array.isArray(answer) || !['string', 'number'].includes(typeof answer)) return;
+    if (!round || !Array.isArray(round.choices) || round.choices.length < 2 || Array.isArray(answer) || !['string', 'number'].includes(typeof answer)) return;
     const current = round.choices.findIndex((choice) => String(choiceValue(choice)) === String(answer));
     if (current < 0) return;
     const target = index % round.choices.length;
