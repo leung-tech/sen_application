@@ -308,8 +308,14 @@
 
   function activityCards(stage) {
     return (activities[stage] || []).map((item) => {
-      const answerPosition = stage === 'lower' && item.key === 'selective-listening'
-        ? { answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [2, 0, 1, 2, 1, 0, 1, 0] }
+      const answerPositionPatterns = {
+        'lower:selective-listening': [2, 0, 1, 2, 1, 0, 1, 0],
+        'upper:viewpoint-studio': [1, 2, 0, 1, 0, 2, 0, 1],
+        'upper:rule-sandbox': [2, 0, 1, 2, 1, 0, 2, 0]
+      };
+      const answerPositionPattern = answerPositionPatterns[`${stage}:${item.key}`];
+      const answerPosition = answerPositionPattern
+        ? { answerPositionStrategy: 'irregular-balanced', answerPositionPattern }
         : {};
       return {
         id: `gifted-eight-${item.key}`, icon: item.icon, title: item.title,
