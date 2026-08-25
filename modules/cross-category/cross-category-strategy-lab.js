@@ -33,9 +33,11 @@
       ]
     }
   };
+  TRACKS.emotion.answerPositionStrategy = 'irregular-balanced';
+  TRACKS.emotion.answerPositionPattern = [1, 2, 0, 1, 0, 2, 1, 0];
   TRACKS.cognition.answerPositionStrategy = 'irregular-balanced';
   TRACKS.cognition.answerPositionPattern = [2, 0, 1, 2, 1, 0, 1, 0];
-  TRACKS.cognition.cards.forEach((card) => { card.answer = card.choices[card.answer]; });
+  Object.values(TRACKS).forEach((track) => track.cards.forEach((card) => { card.answer = card.choices[card.answer]; }));
 
   let host = null;
   let config = null;
@@ -185,6 +187,6 @@
   window.CROSS_CATEGORY_STRATEGY_LAB = {
     open,
     cards(track) { return TRACKS[track]?.cards || []; },
-    activityCards() { return [{ id: 'cross-category-cognition', answerPositionStrategy: TRACKS.cognition.answerPositionStrategy, answerPositionPattern: TRACKS.cognition.answerPositionPattern, rounds: TRACKS.cognition.cards }]; }
+    activityCards() { return ['emotion', 'cognition'].map((track) => ({ id: `cross-category-${track}`, answerPositionStrategy: TRACKS[track].answerPositionStrategy, answerPositionPattern: TRACKS[track].answerPositionPattern, rounds: TRACKS[track].cards })); }
   };
 })();
