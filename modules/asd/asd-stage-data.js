@@ -52,6 +52,8 @@ window.ASD_STAGE_TASKS = {
   },
   senior: {
     categoryName: '3 ASD · 社交互動', title: '高中社交互動闖關', description: '10 關實習、服務場合、界線與職前溝通練習', tag: 'S4–S6 · 10 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [2, 1, 0, 2, 0, 1, 0, 2, 1, 0],
     rounds: [
       { id: 'S4-ASD-01', band: '加入活動 · 1', prompt: '到實習地點，想加入工作流程可以怎樣說？', context: '主管正在安排每人的工作位置。', strategy: '先說明自己已到達，再詢問可以從哪一項開始。', choices: [['🗣️', '早晨，我已到達，請問我先做哪一項？'], ['📣', '我現在要做最容易的工作'], ['🚶', '自己隨意開始']], answer: '早晨，我已到達，請問我先做哪一項？', instruction: '請選出開始實習工作的合適說法。', clue: '問好、報到、問下一步是清楚開始。', success: '答對了！你以清楚方式加入工作。' },
       { id: 'S4-ASD-02', band: '開始對話 · 2', prompt: '第一次見到同事，怎樣開始簡短對話？', context: '他正在整理工作用品。', strategy: '先問好，再以工作情境提出簡單問題。', choices: [['👋', '你好，我是今天來實習的，需要幫忙嗎？'], ['📣', '你要做我的朋友'], ['🧰', '直接拿走他的工具']], answer: '你好，我是今天來實習的，需要幫忙嗎？', instruction: '請選出和同事開始對話的方式。', clue: '簡短問好加工作問題，能尊重工作場合。', success: '很好！你用合適方式開始職場互動。' },
