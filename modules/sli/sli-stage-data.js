@@ -1,7 +1,7 @@
 // SLI 題庫模組：可獨立交由 Gemini 修改。
 window.SEN_PATHWAY_MODULES = window.SEN_PATHWAY_MODULES || {};
 window.SEN_PATHWAY_MODULES.SLI = {
-  card: { id: 'pathway-sli', type: '8', category: 'cognition', categoryName: '8 SLI · 理解與表達', tone: 'pink', icon: '👂', title: '關鍵詞小耳朵', description: '聽清關鍵詞，再選出重要資料', tag: '理解指令', supports: ['8'], rounds: [
+  card: { id: 'pathway-sli', type: '8', category: 'cognition', categoryName: '8 SLI · 理解與表達', tone: 'pink', icon: '👂', title: '關鍵詞小耳朵', description: '聽清關鍵詞，再選出重要資料', tag: '理解指令', supports: ['8'], answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [1, 0, 2, 0, 1, 2, 0, 1], rounds: [
           { prompt: '老師說：「請拿水樽。」要找哪一樣？', context: '慢慢聽一次，找出「水樽」這個關鍵詞。', choices: [['🧴', '水樽'], ['📚', '圖書'], ['👟', '鞋']], answer: '水樽', instruction: '請找出老師說的物品。', clue: '再聽一聽句子中最後的物品名稱。', success: '答對了！你聽到了關鍵詞。' },
           { prompt: '「先寫姓名，再交工作紙」的第一步是甚麼？', context: '句子有兩個行動，要先找「先」字後面的內容。', choices: [['✍️', '寫姓名'], ['📥', '交工作紙'], ['🎒', '收拾書包']], answer: '寫姓名', instruction: '請選出兩步指令中的第一步。', clue: '留意「先」這個提示字。', success: '很好！你找到了第一個行動。' },
           { prompt: '想請同學再說一次，可以怎樣說？', context: '你剛才聽不清楚同學的說話。', choices: [['🗣️', '請你慢慢再說一次'], ['🙈', '我完全不理你'], ['📣', '你說得太差']], answer: '請你慢慢再說一次', instruction: '請選出聽不清楚時的清楚說法。', clue: '可以直接而有禮貌地說出自己的需要。', success: '做得好！你知道怎樣請人重複說話。' }
