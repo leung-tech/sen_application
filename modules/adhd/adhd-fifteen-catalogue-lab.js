@@ -82,6 +82,17 @@
     make('metaCoach','🧭','元認知自我教練','自主修復','連續卡關時，選一個能幫助重新開始的問題',['我現在卡哪裏？','可否換策略？','是否需要提示？','先做簡單部分？','要不要休息？','我試過甚麼？','下一個小步是甚麼？','誰可以幫我？'],['我一定要自己捱','重複同一做法','一直責怪自己'],'卡關時問自己好問題，就是自我教練')
   ];
   const STAGES={lower,upper,junior,senior}; const labels={lower:'初小 · P1–P3',upper:'高小 · P4–P6',junior:'初中 · S1–S3',senior:'高中 · S4–S6'};
+  const lowerPatterns = [
+    [2,0,1,2,1,0,1,0], [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2],
+    [2,1,0,2,0,1,2,0], [1,0,2,1,2,0,1,0], [0,1,2,0,2,1,0,2],
+    [2,0,1,2,0,1,0,1], [1,2,0,1,2,0,2,0], [2,0,1,2,1,0,1,0],
+    [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2], [2,1,0,2,0,1,2,0],
+    [1,0,2,1,2,0,1,0], [0,1,2,0,2,1,0,2], [2,0,1,2,0,1,0,1]
+  ];
+  lower.forEach((activity, index) => {
+    activity.answerPositionStrategy = 'irregular-balanced';
+    activity.answerPositionPattern = lowerPatterns[index];
+  });
   let host=null,options={},active=null,index=0,speechOn=true,returnFocus=null;
   const q=s=>host?.querySelector(s),qa=s=>host?[...host.querySelectorAll(s)]:[];
   const speak=t=>{if(!speechOn||!window.speechSynthesis)return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='zh-HK';u.rate=.75;window.speechSynthesis.speak(u)};
