@@ -46,4 +46,6 @@ window.SEN_PATHWAY_MODULES = window.SEN_PATHWAY_MODULES || {};
   window.SEN_PATHWAY_MODULES.MI.stages.upper.answerPositionPattern = [2, 0, 1, 0, 2, 1, 0, 2];
   window.SEN_PATHWAY_MODULES.MI.stages.junior.answerPositionStrategy = 'irregular-balanced';
   window.SEN_PATHWAY_MODULES.MI.stages.junior.answerPositionPattern = [1, 0, 2, 1, 0, 2, 0, 1];
+  window.SEN_PATHWAY_MODULES.MI.stages.senior.answerPositionStrategy = 'irregular-balanced';
+  window.SEN_PATHWAY_MODULES.MI.stages.senior.answerPositionPattern = [0, 2, 1, 0, 1, 2, 0, 1];
 }());
