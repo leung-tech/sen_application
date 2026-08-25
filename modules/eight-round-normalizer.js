@@ -4,7 +4,6 @@
   const STAGES = ['lower', 'upper', 'junior', 'senior'];
   const seen = new WeakSet();
   const balanceSeen = new WeakSet();
-  const BALANCED_PROVIDERS = /^(SPLD|ASD|ADHD|MI|SLI|CAREER|CROSS_CATEGORY|EBD_MI)_/;
 
   function copyRound(round, number) {
     if (!round || typeof round !== 'object' || Array.isArray(round)) return round;
@@ -50,8 +49,10 @@
     if (current < 0) return;
     const target = index % round.choices.length;
     if (current === target) return;
-    const [correct] = round.choices.splice(current, 1);
-    round.choices.splice(target, 0, correct);
+    const choices = [...round.choices];
+    const [correct] = choices.splice(current, 1);
+    choices.splice(target, 0, correct);
+    round.choices = choices;
   }
 
   function balanceAnswers(value) {
@@ -73,8 +74,8 @@
     Object.entries(window).forEach(([name, value]) => {
       if (name.endsWith('_STAGE_TASKS') || name === 'SEN_PATHWAY_MODULES') normalise(value);
       if (name.endsWith('_LAB') || name.endsWith('_GAMES_LAB')) normaliseProvider(value);
-      if (BALANCED_PROVIDERS.test(name) && name.endsWith('_STAGE_TASKS')) balanceAnswers(value);
-      if (BALANCED_PROVIDERS.test(name) && (name.endsWith('_LAB') || name.endsWith('_GAMES_LAB'))) balanceProvider(value);
+      if (name.endsWith('_STAGE_TASKS') || name === 'SEN_PATHWAY_MODULES') balanceAnswers(value);
+      if (name.endsWith('_LAB') || name.endsWith('_GAMES_LAB')) balanceProvider(value);
     });
   }
 
