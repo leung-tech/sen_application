@@ -134,6 +134,12 @@
     while (game.rounds.length < 8 && extras.length) game.rounds.push({ ...extras[game.rounds.length - (game.type === 'interview' ? 4 : 3)] });
   }
   Object.values(GAMES).flat().forEach(extendToEight);
+  GAMES.lower.forEach((game) => {
+    if (['forest', 'shop', 'punctual', 'tokens'].includes(game.id)) {
+      game.answerPositionStrategy = 'irregular-balanced';
+      game.answerPositionPattern = [1, 0, 1, 0, 1, 0, 1, 0];
+    }
+  });
 
   let host = null, config = null, state = null, returnFocus = null;
   const q = (s) => host?.querySelector(s); const qa = (s) => host ? [...host.querySelectorAll(s)] : [];
