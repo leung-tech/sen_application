@@ -52,6 +52,8 @@ const idStageTraining = {
   },
   senior: {
     description: '10 關職前自理、社區服務與成熟社交應對練習',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [2, 0, 1, 2, 1, 0, 1, 2, 0, 1],
     rounds: [
       { id: 'S4-ID-1', band: '上班準備 · 1', prompt: '實習前一晚，應先確認甚麼？', context: '你明天上午九時到咖啡店實習。', choices: [['🗓️', '上班時間、制服和交通路線'], ['🎮', '遊戲更新'], ['🛏️', '枕頭位置']], answer: '上班時間、制服和交通路線', instruction: '請選出實習前的準備。', clue: '想一想準時到達所需要的資料與物品。', success: '做得好！你為實習作好了準備。' },
       { id: 'S4-ID-2', band: '工作衛生 · 2', prompt: '處理食物前，應先做甚麼？', context: '職員請你協助把麵包放上托盤。', choices: [['🫧', '按指引洗淨雙手'], ['📱', '先看電話'], ['🏃', '走到外面']], answer: '按指引洗淨雙手', instruction: '請選出處理食物前的步驟。', clue: '食物工作前，雙手清潔很重要。', success: '很好！你遵守了工作衛生流程。' },
