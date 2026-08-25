@@ -72,18 +72,66 @@
     ] }
   );
 
+  const ORIGINAL_EXTRAS = {
+    match: [
+      { trait:'我喜歡幫人聽清楚需要', answer:'河馬客戶服務員', choices:['河馬客戶服務員','猴子設計師'] },
+      { trait:'我會慢慢整理物品', answer:'大象倉務助理', choices:['大象倉務助理','長頸鹿消防員'] },
+      { trait:'我喜歡照顧植物', answer:'兔子園藝員', choices:['猴子設計師','兔子園藝員'] },
+      { trait:'我留意安全細節', answer:'長頸鹿消防員', choices:['河馬司機','長頸鹿消防員'] },
+      { trait:'我喜歡把事情說清楚', answer:'河馬客戶服務員', choices:['河馬客戶服務員','大象圖書管理員'] }
+    ],
+    choice: [
+      { prompt:'遇到不清楚的工作安排，較合適先做甚麼？', answer:'先看資料並向合適的人確認', choices:['先看資料並向合適的人確認','隨意猜下一步'] },
+      { prompt:'看見同事正在忙碌，但你有一個問題，可以？', answer:'先記下問題，等合適時候簡短詢問', choices:['不停打斷同事','先記下問題，等合適時候簡短詢問'] },
+      { prompt:'完成一小部分工作後，較有幫助的是？', answer:'核對完成部分並說明下一步', choices:['核對完成部分並說明下一步','不看任何資料便離開'] },
+      { prompt:'面對新的任務工具時，可以怎樣開始？', answer:'先看安全和使用指示，再做第一小步', choices:['立刻亂按所有按鈕','先看安全和使用指示，再做第一小步'] },
+      { prompt:'覺得壓力開始增加時，哪個選擇較可行？', answer:'先停一停、使用支持，再回到一個小步', choices:['先停一停、使用支持，再回到一個小步','逼自己一次做完'] }
+    ],
+    sequence: [
+      { label:'看見工具沒有放好', answer:'先放回指定安全位置', choices:['先放回指定安全位置','把工具留在通道'] },
+      { label:'開始使用新設備前', answer:'先閱讀圖示和安全提示', choices:['直接跳過提示','先閱讀圖示和安全提示'] },
+      { label:'完成一批工作後', answer:'核對數量和標籤', choices:['核對數量和標籤','不作任何核對'] },
+      { label:'不確定下一步時', answer:'舉手或找合適成人確認', choices:['舉手或找合適成人確認','強行繼續操作'] },
+      { label:'地面有東西阻路', answer:'先停下並通知合適人員', choices:['先停下並通知合適人員','假裝沒有看見'] }
+    ],
+    values: [
+      { value:'自主', prompt:'別人催你立刻決定未來方向，先可以怎樣？', answer:'說我想先了解資料再選擇。', choices:['說我想先了解資料再選擇。','逼自己馬上決定'] },
+      { value:'健康', prompt:'為了完成目標而感到很累時，可以？', answer:'安排休息並找支持再調整計劃。', choices:['安排休息並找支持再調整計劃。','完全不理身體需要'] },
+      { value:'貢獻', prompt:'想用長處幫助別人時，可以先？', answer:'找一個小服務任務慢慢嘗試。', choices:['否定自己的小長處','找一個小服務任務慢慢嘗試。'] },
+      { value:'好奇心', prompt:'對新職業感到好奇但資料不多時，可以？', answer:'和成人一起查看可靠介紹和體驗機會。', choices:['相信任何陌生訊息','和成人一起查看可靠介紹和體驗機會。'] },
+      { value:'平衡', prompt:'興趣、家人意見和現實安排不同時，可以？', answer:'列出各方需要並找可討論的小步。', choices:['只用責罵處理','列出各方需要並找可討論的小步。'] }
+    ],
+    pathways: [
+      { score:'9 分', prompt:'想多了解基礎和實作並行的學習方式，可以？', answer:'與成人一起比較基礎課程和職訓資料', choices:['與成人一起比較基礎課程和職訓資料','認定自己沒有任何選擇'] },
+      { score:'18 分', prompt:'對某個範疇有興趣但未決定，可先？', answer:'查看課程內容、支援和參觀資訊', choices:['只看分數高低','查看課程內容、支援和參觀資訊'] },
+      { score:'22 分', prompt:'想把興趣變成下一步探索，可以？', answer:'做一份小比較表並找人討論', choices:['做一份小比較表並找人討論','立刻否定所有可能'] },
+      { score:'26 分', prompt:'有幾條可行出路時，較穩妥的是？', answer:'按價值、支援和實際資料慢慢比較', choices:['按價值、支援和實際資料慢慢比較','只跟隨別人的決定'] },
+      { score:'不同結果', prompt:'成績公布後仍不清楚方向，可以？', answer:'保留選項並預約可信任的升學或職涯支持', choices:['保留選項並預約可信任的升學或職涯支持','急著宣告一條路都沒有'] }
+    ],
+    interview: [
+      { step:'P 立場／優勢', prompt:'面試問你如何與人合作，先說一個相關長處。', answer:'P 立場／優勢' },
+      { step:'R 原因', prompt:'介紹細心這個長處後，再說它為何有用。', answer:'R 原因' },
+      { step:'E 例子', prompt:'談到準時時，用一個準備工作證的例子支持。', answer:'E 例子' },
+      { step:'P 重申', prompt:'分享完例子後，重申你能如何協助工作。', answer:'P 重申' }
+    ],
+    routine: [
+      { time:'07:35', icon:'🚌', label:'查看交通安排', prompt:'出門前發現巴士資料有變，可以？', answer:'查看替代路線並告知合適成人', choices:['隨意走另一條路','查看替代路線並告知合適成人'], ifThen:'如果交通安排變了，我可以先看圖卡或向成人確認。', feedback:'你把突發改變變成了可處理的小步。' },
+      { time:'07:45', icon:'🏬', label:'到達與報到', prompt:'到達實習地點後，第一個可做的小步？', answer:'到指定位置報到並確認開始時間', choices:['在門外一直等','到指定位置報到並確認開始時間'], ifThen:'如果我不清楚入口，可以看指示牌或詢問工作人員。', feedback:'你用報到讓下一步更清楚。' },
+      { time:'08:00', icon:'📝', label:'看第一項工作', prompt:'收到工作清單但有一項看不懂，可以？', answer:'圈出不清楚位置並請人慢慢說明', choices:['假裝完全明白','圈出不清楚位置並請人慢慢說明'], ifThen:'如果我聽得太快，可以請對方寫下或再說一次。', feedback:'你主動確認，令工作更容易開始。' },
+      { time:'08:15', icon:'🥤', label:'短暫調節', prompt:'覺得肩膀緊緊但仍想繼續工作，可以？', answer:'喝一口水、慢呼吸，再回到一小步', choices:['立刻大叫離開','喝一口水、慢呼吸，再回到一小步'], ifThen:'如果壓力變大，我可以按需要找成人支持。', feedback:'你選擇了照顧自己再回到任務。' },
+      { time:'08:30', icon:'✅', label:'完成後核對', prompt:'完成第一項工作後，較合適的是？', answer:'核對清單並詢問下一步', choices:['核對清單並詢問下一步','直接不告而別'], ifThen:'如果我不清楚是否完成，可以展示清單請人確認。', feedback:'你清楚交代了完成和下一步。' }
+    ],
+    tokens: [
+      { prompt:'把已洗好的杯放到指定位置，可以？', answer:'把杯放到乾淨收納架', choices:['把杯放到乾淨收納架','把杯放在地上'] },
+      { prompt:'寄出信件前，應先？', answer:'核對收件資料和郵票位置', choices:['直接亂貼膠紙','核對收件資料和郵票位置'] },
+      { prompt:'把乾淨抹布分類時，可以？', answer:'按顏色或標籤放好', choices:['把所有抹布混在一起','按顏色或標籤放好'] },
+      { prompt:'準備小盆栽時，第一個合適小步？', answer:'把泥土放進花盆', choices:['把泥土倒在桌外','把泥土放進花盆'] },
+      { prompt:'同事交來一份小清單後，可以？', answer:'逐項完成並作記號', choices:['逐項完成並作記號','完全不看清單'] }
+    ]
+  };
   function extendToEight(game) {
-    const base = game.rounds.map((round) => ({ ...round }));
-    while (game.rounds.length < 8) {
-      const source = base[game.rounds.length % base.length];
-      const number = game.rounds.length + 1;
-      const extra = { ...source };
-      if (extra.prompt) extra.prompt = `溫習小題 ${number}：${extra.prompt}`;
-      if (extra.trait) extra.trait = `${extra.trait}（再看一次）`;
-      if (extra.label) extra.label = `${extra.label} · 溫習`;
-      if (extra.step) extra.prompt = `第二輪 PREP 練習：${source.prompt}`;
-      game.rounds.push(extra);
-    }
+    const extras = ORIGINAL_EXTRAS[game.type] || [];
+    while (game.rounds.length < 8 && extras.length) game.rounds.push({ ...extras[game.rounds.length - (game.type === 'interview' ? 4 : 3)] });
   }
   Object.values(GAMES).flat().forEach(extendToEight);
 
