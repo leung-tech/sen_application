@@ -77,7 +77,7 @@ try {
     }));
     (window.PRACTICAL_LITERACY_LAB?.packs?.() || []).forEach((pack) => STAGES.forEach((stage) => {
       const card = (window.PRACTICAL_LITERACY_LAB?.activityCards?.(stage) || []).filter((item) => item.practicalPack === pack);
-      addCoverage('P2 跨類別 · ' + (card[0]?.title || pack), stage, card, 'practical literacy lab');
+      addCoverage((card[0]?.phase || 'P2') + ' 跨類別 · ' + (card[0]?.title || pack), stage, card, 'practical literacy lab');
     }));
     ['emotion', 'cognition'].forEach((track) => STAGES.forEach((stage) => addCoverage(track === 'emotion' ? '情緒社交策略' : '認知學習策略', stage, (window.CROSS_CATEGORY_STRATEGY_LAB?.cards?.(track) || []).map((card) => ({ ...card, rounds: [card], tag: track === 'emotion' ? '跨類別 SEL 策略' : '跨類別學習策略' })), 'cross-category shared strategy cards', true)));
     const normalizeChoice = (choice) => Array.isArray(choice) ? String(choice.at(-1) ?? '') : String(choice ?? '');
