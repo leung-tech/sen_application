@@ -52,6 +52,8 @@ window.EBD_STAGE_TASKS = {
   },
   senior: {
     categoryName: 'EBD · 情緒與調節', title: '高中情緒調節闖關', description: '10 關實習壓力、情緒管理與重回工作練習', tag: 'S4–S6 · 10 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [1, 0, 2, 1, 2, 0, 1, 0, 2, 0],
     rounds: [
       { id: 'S4-EBD-01', band: '平靜訊號 · 1', prompt: '實習前你已整理好用品，呼吸平穩且能清楚說出第一步，這表示甚麼？', context: '你正在等候主管分配工作。', strategy: '辨認可工作的平穩狀態，有助你知道自己準備好了。', choices: [['😌', '我已準備好並較平靜'], ['😡', '我正在爆發'], ['😰', '我無法開始']], answer: '我已準備好並較平靜', instruction: '請選出這些訊號代表的狀態。', clue: '整理用品、呼吸平穩和想法清楚，都是準備好的訊號。', success: '很好！你辨認到自己已進入可工作的狀態。' },
       { id: 'S4-EBD-02', band: '早期訊號 · 2', prompt: '主管臨時改工作，你開始冒汗、想馬上離開，最重要先知道甚麼？', context: '你還未清楚新的安排。', strategy: '把早期壓力訊號當作提醒：先暫停、確認資料，而不是立即離開。', choices: [['🔔', '我開始有壓力，需要先確認下一步'], ['✅', '我完全不受影響'], ['📣', '我要馬上發脾氣']], answer: '我開始有壓力，需要先確認下一步', instruction: '請選出看見早期壓力訊號後的想法。', clue: '冒汗和想逃離可能是壓力提醒，不必立刻行動。', success: '答對了！你把壓力訊號轉成確認下一步的提醒。' },
