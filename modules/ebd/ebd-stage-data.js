@@ -35,6 +35,8 @@ window.EBD_STAGE_TASKS = {
   },
   junior: {
     categoryName: 'EBD · 情緒與調節', title: '初中情緒調節闖關', description: '10 關壓力識別、衝突管理與安全重回任務練習', tag: 'S1–S3 · 10 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [2, 0, 1, 2, 1, 0, 1, 2, 0, 1],
     rounds: [
       { id: 'S1-EBD-01', band: '平靜訊號 · 1', prompt: '完成小組簡報後，呼吸穩定、想法清楚，這最接近甚麼狀態？', context: '你剛收到同學的正面回應。', strategy: '認出平靜時的身體和思考狀態，日後較易把自己帶回來。', choices: [['😌', '平靜而清楚'], ['😡', '強烈生氣'], ['😰', '快要失控']], answer: '平靜而清楚', instruction: '請選出這些訊號代表的狀態。', clue: '呼吸穩定、想法清楚通常表示情緒較平衡。', success: '很好！你辨認到自己的平穩狀態。' },
       { id: 'S1-EBD-02', band: '早期訊號 · 2', prompt: '群組訊息不斷跳出，你開始煩躁並想立刻回覆，這提示甚麼？', context: '你正在溫習明天的測驗。', strategy: '把煩躁看作需要調整環境或節奏的早期提醒。', choices: [['🔔', '我開始分心和煩躁，需要停一停'], ['✅', '我更容易專心'], ['📣', '我應立刻責怪群組']], answer: '我開始分心和煩躁，需要停一停', instruction: '請選出看見早期壓力訊號後的想法。', clue: '煩躁和想立刻回覆，是可以先調整的訊號。', success: '答對了！你及早發現了分心壓力。' },
