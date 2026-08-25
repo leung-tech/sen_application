@@ -35,6 +35,8 @@ const idStageTraining = {
   },
   junior: {
     description: '10 關社區生活、公共交通與同儕應對練習',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [1, 2, 0, 1, 0, 2, 0, 1, 2, 0],
     rounds: [
       { id: 'S1-ID-1', band: '行程準備 · 1', prompt: '出發到社區中心前，先要核對甚麼？', context: '你與同學約好下午到社區中心參加活動。', choices: [['📍', '時間、地址和八達通'], ['🎮', '遊戲排名'], ['🛏️', '枕頭顏色']], answer: '時間、地址和八達通', instruction: '請選出出發前的實用檢查。', clue: '行程需要知道何時、去哪裏和怎樣付款。', success: '做得好！你完成了出發前的準備。' },
       { id: 'S1-ID-2', band: '服藥確認 · 2', prompt: '不確定是否已服用自己的藥物，應怎樣做？', context: '你看見藥盒，但不記得早上有沒有服用。', choices: [['📋', '查看紀錄並問照顧者'], ['💊', '自行再吃一次'], ['🗑️', '把藥丟掉']], answer: '查看紀錄並問照顧者', instruction: '請選出安全確認藥物的方法。', clue: '不確定時，不自行猜測；先核對和求助。', success: '很好！你作出了安全的健康選擇。' },
