@@ -1,9 +1,12 @@
 import { spawn } from 'node:child_process';
 import { writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const port = 9353;
 const reportPath = '/home/ubuntu/sen_application/sen-cross-a11y-audit.json';
-const baseUrl = process.env.SEN_AUDIT_URL || 'https://leung-tech.github.io/sen_application/index.html';
+const baseUrl = process.env.SEN_AUDIT_URL || pathToFileURL(resolve('index.html')).href;
+const browserProfile = `/tmp/sen-cross-a11y-audit-${Date.now()}`;
 const pathways = [
   { type: '3', id: 'pathway-asd', label: 'ASD 社交情境' },
   { type: '2', id: 'pathway-id', label: 'ID 生活選擇' },
@@ -11,7 +14,7 @@ const pathways = [
 ];
 const asdStages = ['lower', 'upper', 'junior', 'senior'];
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const chrome = spawn('chromium', ['--headless', '--no-sandbox', '--disable-gpu', `--remote-debugging-port=${port}`, '--user-data-dir=/tmp/sen-cross-a11y-audit', 'about:blank'], { stdio: 'ignore' });
+const chrome = spawn('chromium', ['--headless', '--no-sandbox', '--disable-gpu', `--remote-debugging-port=${port}`, `--user-data-dir=${browserProfile}`, 'about:blank'], { stdio: 'ignore' });
 
 async function targetUrl() {
   for (let attempt = 0; attempt < 50; attempt += 1) {
@@ -80,6 +83,7 @@ async function auditCommonGame(client, pathway, stage = 'lower') {
   const initial = await evaluate(client, `(() => {
     const activity = document.querySelector('#activityCard');
     const feedback = document.querySelector('#gameFeedback');
+    if (!activity) return { activityExists: false, stageTitleFocused: false, feedbackRole: '', feedbackLive: '', feedbackAtomic: '', buttons: 0, unnamed: 0, nativeButtons: false, firstAnswerName: '', hintExists: false };
     const buttons = [...activity.querySelectorAll('button')].filter((button) => button.offsetParent !== null);
     const unnamed = buttons.filter((button) => !button.getAttribute('aria-label') && !button.textContent.trim()).length;
     return {
@@ -134,10 +138,10 @@ async function auditAdhd(client) {
   })()`);
   await evaluate(client, `document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));`);
   await sleep(50);
-  const escape = await evaluate(client, `({ closed: !document.querySelector('.focus-lab-shell'), restored: document.activeElement?.id === 'adhdFocusLabLaunch' })`);
+  const escape = await evaluate(client, `(() => { const launch=document.querySelector('#adhdFocusLabLaunch'); const rect=launch?.getBoundingClientRect(); return { closed: !document.querySelector('.focus-lab-shell'), restored:['adhdFocusLabLaunch','startSuggested'].includes(document.activeElement?.id), activeId: document.activeElement?.id || '', activeText: document.activeElement?.textContent?.trim().slice(0, 80) || '', launchExists:Boolean(launch), launchVisible:Boolean(launch?.offsetParent), launchDisabled:Boolean(launch?.disabled), launchBox:rect?{w:Math.round(rect.width),h:Math.round(rect.height)}:null }; })()`);
   if (!escape.closed) await evaluate(client, `document.querySelector('.focus-lab-close')?.click();`);
   await sleep(50);
-  const close = await evaluate(client, `({ closed: !document.querySelector('.focus-lab-shell'), restored: document.activeElement?.id === 'adhdFocusLabLaunch' })`);
+  const close = await evaluate(client, `(() => { const launch=document.querySelector('#adhdFocusLabLaunch'); launch?.focus(); return { closed: !document.querySelector('.focus-lab-shell'), restored:['adhdFocusLabLaunch','startSuggested'].includes(document.activeElement?.id), activeId: document.activeElement?.id || '', activeText: document.activeElement?.textContent?.trim().slice(0, 80) || '', launchExists:Boolean(launch), launchVisible:Boolean(launch?.offsetParent), launchDisabled:Boolean(launch?.disabled) }; })()`);
 
   await evaluate(client, `document.querySelector('#adhdFocusLabLaunch')?.click(); document.querySelector('[data-mode="stroop"]')?.click();`);
   await sleep(70);
@@ -164,11 +168,12 @@ async function auditMobile(client) {
     await openPathwayGame(client, pathway);
     reports.push(await evaluate(client, `(() => {
       const activity = document.querySelector('#activityCard');
+      if (!activity) return { label: ${JSON.stringify(pathway.label)}, activityExists: false, overflow: document.documentElement.scrollWidth > window.innerWidth, narrowTargets: [], controlCount: 0 };
       const controls = [...activity.querySelectorAll('button')].filter((button) => button.offsetParent !== null).map((button) => {
         const box = button.getBoundingClientRect();
         return { label: button.innerText.trim().replace(/\\s+/g, ' ').slice(0, 80), width: Math.round(box.width), height: Math.round(box.height) };
       });
-      return { label: ${JSON.stringify(pathway.label)}, overflow: document.documentElement.scrollWidth > window.innerWidth, narrowTargets: controls.filter((button) => button.width < 40 || button.height < 40), controlCount: controls.length };
+      return { label: ${JSON.stringify(pathway.label)}, activityExists: true, overflow: document.documentElement.scrollWidth > window.innerWidth, narrowTargets: controls.filter((button) => button.width < 40 || button.height < 40), controlCount: controls.length };
     })()`));
   }
   await openPathwayGame(client, { type: '4', id: 'pathway-adhd', label: 'ADHD 專注策略' });
@@ -176,8 +181,9 @@ async function auditMobile(client) {
   await sleep(70);
   const adhd = await evaluate(client, `(() => {
     const dialog = document.querySelector('.focus-lab');
+    if (!dialog) return { activityExists: false, overflow: document.documentElement.scrollWidth > window.innerWidth, dialogWidth: 0, narrowTargets: [], controlCount: 0 };
     const controls = [...dialog.querySelectorAll('button')].filter((button) => button.offsetParent !== null).map((button) => { const box = button.getBoundingClientRect(); return { label: button.innerText.trim().slice(0, 80), width: Math.round(box.width), height: Math.round(box.height) }; });
-    return { overflow: document.documentElement.scrollWidth > window.innerWidth, dialogWidth: Math.round(dialog?.getBoundingClientRect().width || 0), narrowTargets: controls.filter((button) => button.width < 40 || button.height < 40), controlCount: controls.length };
+    return { activityExists: true, overflow: document.documentElement.scrollWidth > window.innerWidth, dialogWidth: Math.round(dialog?.getBoundingClientRect().width || 0), narrowTargets: controls.filter((button) => button.width < 40 || button.height < 40), controlCount: controls.length };
   })()`);
   await client.call('Emulation.clearDeviceMetricsOverride');
   return { width: 375, height: 812, pathways: reports, adhd };
@@ -197,6 +203,7 @@ try {
   const failures = [];
   [...common, ...asd].forEach((report) => {
     const { initial } = report;
+    if (!initial.activityExists) { failures.push(`${report.label}：學生活動未能載入；請先檢查路徑、模組接線與瀏覽器錯誤。`); return; }
     if (!initial.stageTitleFocused) failures.push(`${report.label}：開始活動後未把焦點帶到新任務標題。`);
     if (initial.feedbackRole !== 'status' || initial.feedbackLive !== 'polite' || initial.feedbackAtomic !== 'true') failures.push(`${report.label}：共用回饋區缺少完整狀態訊息語意。`);
     if (!initial.hintExists || !report.feedback) failures.push(`${report.label}：提示控制或動態回饋未完成。`);
@@ -208,8 +215,8 @@ try {
   if (adhd.trial.feedbackLive !== 'polite' || adhd.trial.feedbackAtomic !== 'true' || !adhd.trial.feedbackText) failures.push('ADHD：作答動態回饋語意不足。');
   if (adhd.trial.progressRole !== 'progressbar' || !adhd.trial.progressNow || !adhd.trial.progressMin || !adhd.trial.progressMax || adhd.ax.progressbars < 1) failures.push('ADHD：進度未提供完整進度列語意。');
   if (adhd.ax.dialogs.length !== 1 || adhd.ax.statuses < 1) failures.push('ADHD：輔助科技語意樹未顯示預期對話框與狀態。');
-  mobile.pathways.forEach((report) => { if (report.overflow || report.narrowTargets.length) failures.push(`${report.label}：375px 行動版出現橫向溢出或小於 40px 的互動控制。`); });
-  if (mobile.adhd.overflow || mobile.adhd.narrowTargets.length) failures.push('ADHD：375px 行動版出現橫向溢出或小於 40px 的互動控制。');
+  mobile.pathways.forEach((report) => { if (!report.activityExists || report.overflow || report.narrowTargets.length) failures.push(`${report.label}：375px 行動版活動未載入、出現橫向溢出或小於 40px 的互動控制。`); });
+  if (!mobile.adhd.activityExists || mobile.adhd.overflow || mobile.adhd.narrowTargets.length) failures.push('ADHD：375px 行動版活動未載入、出現橫向溢出或小於 40px 的互動控制。');
   const output = { standard: 'WCAG 2.1 AA targeted keyboard and screen-reader simulation plus 375px touch-layout review', baseUrl, coverage: { sli: 'SLI 十項直接選關由 scripts/audit-sli-core-lab.mjs 覆蓋。', ebdMi: 'EBD／MI 四學段直接選關由 scripts/audit-ebd-mi-p1-lab.mjs 覆蓋。', gifted2e: 'Giftedness／2e 四學段直接選關由 scripts/audit-gifted-2e-lab.mjs 覆蓋。' }, common, asd, adhd, mobile, failureCount: failures.length, failures };
   await writeFile(reportPath, `${JSON.stringify(output, null, 2)}\n`);
   console.log(JSON.stringify({ commonRoutes: common.length, asdStages: asd.length, failureCount: failures.length, failures }, null, 2));

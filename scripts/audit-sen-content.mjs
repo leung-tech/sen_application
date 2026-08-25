@@ -64,7 +64,8 @@ try {
         if (!hint) issues.push(label + '：缺少提示');
         if (!isLab && !context) issues.push(label + '：缺少語境');
         if (!isLab && !instruction) issues.push(label + '：缺少作答指示');
-        if (choices.length && new Set(choices).size !== choices.length) issues.push(label + '：選項重覆');
+        const orderedSteps = Array.isArray(round.steps);
+        if (choices.length && !orderedSteps && new Set(choices).size !== choices.length) issues.push(label + '：選項重覆');
         if (!isLab && choices.length < 2) issues.push(label + '：選項少於兩個');
         if (!rawAnswer.length) issues.push(label + '：缺少答案或目標');
         if (choices.length && rawAnswer.some((answer) => !choices.includes(answer))) issues.push(label + '：答案未對應可選項');

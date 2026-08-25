@@ -128,14 +128,14 @@
     sentenceTrain: {
       icon: '📝', title: '句子重組小火車', description: '比較三個短句，選出詞序清楚的一句。', focus: '句法意識與句子理解', accent: 'amber',
       rounds: [
-        { sentence: '哪一句的詞序最清楚？', target: '小明在操場跑步。', choices: ['小明在操場跑步。', '操場小明跑步在。', '跑步小明在操場。'], hint: '先找誰：小明；再找在哪裏：操場；最後是做甚麼：跑步。', meaning: '🚂 誰＋在哪裏＋做甚麼', success: '答對了！句子列車排得很清楚。' },
-        { sentence: '哪一句的詞序最清楚？', target: '姐姐在房間看書。', choices: ['姐姐在房間看書。', '房間姐姐看書在。', '看書姐姐房間在。'], hint: '姐姐是誰，房間是地點，看書是動作。', meaning: '🚂 誰＋在哪裏＋做甚麼', success: '答對了！句子列車排得很清楚。' },
-        { sentence: '哪一句的詞序最清楚？', target: '爸爸在廚房煮飯。', choices: ['爸爸在廚房煮飯。', '煮飯爸爸廚房在。', '廚房煮飯在爸爸。'], hint: '爸爸做煮飯這個動作，地點在廚房。', meaning: '🚂 誰＋在哪裏＋做甚麼', success: '答對了！句子列車排得很清楚。' },
-        { sentence: '哪一句的詞序最清楚？', target: '小美帶雨傘上學。', choices: ['小美帶雨傘上學。', '雨傘小美上學帶。', '上學帶小美雨傘。'], hint: '先找小美，再找她帶甚麼和要去哪裏。', meaning: '🚂 誰＋帶甚麼＋做甚麼', success: '答對了！句子列車排得很清楚。' },
-        { sentence: '哪一句的詞序最清楚？', target: '老師請同學安靜排隊。', choices: ['老師請同學安靜排隊。', '同學老師排隊安靜請。', '安靜老師請排隊同學。'], hint: '老師是提出要求的人，同學是要做事的人。', meaning: '🚂 誰＋請誰＋做甚麼', success: '答對了！句子列車排得很清楚。' },
-        { sentence: '哪一句的詞序最清楚？', target: '我們一起整理課本。', choices: ['我們一起整理課本。', '課本一起我們整理。', '整理我們課本一起。'], hint: '我們是做事的人，整理是動作，課本是物品。', meaning: '🚂 誰＋做甚麼＋甚麼', success: '答對了！句子列車排得很清楚。' },
-        { sentence: '哪一句的詞序最清楚？', target: '弟弟喜歡吃蘋果。', choices: ['弟弟喜歡吃蘋果。', '蘋果弟弟吃喜歡。', '喜歡蘋果弟弟吃。'], hint: '弟弟是人物，吃是動作，蘋果是食物。', meaning: '🚂 誰＋做甚麼＋甚麼', success: '答對了！句子列車排得很清楚。' },
-        { sentence: '哪一句的詞序最清楚？', target: '媽媽幫我找水樽。', choices: ['媽媽幫我找水樽。', '水樽媽媽我找幫。', '幫水樽媽媽找我。'], hint: '媽媽是幫忙的人，水樽是要找的物品。', meaning: '🚂 誰＋幫誰＋做甚麼', success: '答對了！句子列車排得很清楚。' }
+        { sentence: '把「小明、操場、跑步」排成最清楚的句子。', target: '小明在操場跑步。', choices: ['小明在操場跑步。', '操場小明跑步在。', '跑步小明在操場。'], hint: '先找誰：小明；再找在哪裏：操場；最後是做甚麼：跑步。', meaning: '🚂 誰＋在哪裏＋做甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '姐姐在哪裏做甚麼？選一列意思清楚的車廂。', target: '姐姐在房間看書。', choices: ['姐姐在房間看書。', '房間姐姐看書在。', '看書姐姐房間在。'], hint: '姐姐是誰，房間是地點，看書是動作。', meaning: '🚂 誰＋在哪裏＋做甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '找出能清楚說明爸爸煮飯地點的一句。', target: '爸爸在廚房煮飯。', choices: ['爸爸在廚房煮飯。', '煮飯爸爸廚房在。', '廚房煮飯在爸爸。'], hint: '爸爸做煮飯這個動作，地點在廚房。', meaning: '🚂 誰＋在哪裏＋做甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '小美上學前帶了甚麼？選排列正確的句子。', target: '小美帶雨傘上學。', choices: ['小美帶雨傘上學。', '雨傘小美上學帶。', '上學帶小美雨傘。'], hint: '先找小美，再找她帶甚麼和要去哪裏。', meaning: '🚂 誰＋帶甚麼＋做甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '老師向同學提出了哪個清楚要求？', target: '老師請同學安靜排隊。', choices: ['老師請同學安靜排隊。', '同學老師排隊安靜請。', '安靜老師請排隊同學。'], hint: '老師是提出要求的人，同學是要做事的人。', meaning: '🚂 誰＋請誰＋做甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '把一起做的課堂工作排成一句順暢的話。', target: '我們一起整理課本。', choices: ['我們一起整理課本。', '課本一起我們整理。', '整理我們課本一起。'], hint: '我們是做事的人，整理是動作，課本是物品。', meaning: '🚂 誰＋做甚麼＋甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '弟弟最喜歡的食物是甚麼？選詞序正確的一句。', target: '弟弟喜歡吃蘋果。', choices: ['弟弟喜歡吃蘋果。', '蘋果弟弟吃喜歡。', '喜歡蘋果弟弟吃。'], hint: '弟弟是人物，吃是動作，蘋果是食物。', meaning: '🚂 誰＋做甚麼＋甚麼', success: '答對了！句子列車排得很清楚。' },
+        { sentence: '媽媽正在協助我找甚麼？選最清楚的句子。', target: '媽媽幫我找水樽。', choices: ['媽媽幫我找水樽。', '水樽媽媽我找幫。', '幫水樽媽媽找我。'], hint: '媽媽是幫忙的人，水樽是要找的物品。', meaning: '🚂 誰＋幫誰＋做甚麼', success: '答對了！句子列車排得很清楚。' }
       ]
     }
   };
@@ -165,6 +165,10 @@
       [output[index], output[nextIndex]] = [output[nextIndex], output[index]];
     }
     return output;
+  }
+
+  function makeStrokeOptions(steps) {
+    return shuffleSteps(steps.map((label, index) => ({ id: `${label}-${index + 1}`, label })));
   }
 
   function closeLab() {
@@ -211,7 +215,7 @@
       const placementInstruction = round.guide.includes('上') ? '可把部件拖到上面或下面的位置；也可按一個部件，它會放進下一個空格。' : '可把部件拖到左右位置；也可按一個部件，它會放進下一個空格。';
       activityMarkup = `<div class="spld-assembly-guide"><span>目標字</span><strong>${round.target}</strong><small>${round.guide} 結構</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-assembly-slots" aria-label="部件拼盤"><button type="button" class="spld-part-slot" data-slot="0" data-sen-drop-zone="part"><span>${slotLabels[0]}</span><strong>${selectedParts[0] || '？'}</strong></button><span class="spld-plus">＋</span><button type="button" class="spld-part-slot" data-slot="1" data-sen-drop-zone="part"><span>${slotLabels[1]}</span><strong>${selectedParts[1] || '？'}</strong></button></div><p class="spld-lab-instruction">${placementInstruction}</p><div class="spld-part-bank">${round.parts.map((part) => `<button type="button" class="spld-part-piece ${selectedParts.includes(part) ? 'used' : ''}" data-part="${part}" draggable="${!selectedParts.includes(part)}" data-sen-drag-source ${selectedParts.includes(part) ? 'disabled' : ''}>${part}</button>`).join('')}</div>`;
     } else if (active === activities.stroke) {
-      activityMarkup = `<div class="spld-stroke-target"><span>目標字</span><strong>${round.target}</strong><small>${round.steps.length} 筆</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-stroke-slots">${round.steps.map((_, index) => `<div class="spld-stroke-slot ${selectedStrokes[index] ? 'filled' : ''}"><b>${index + 1}</b><strong>${selectedStrokes[index] || '？'}</strong></div>`).join('')}</div><div class="spld-stroke-options">${strokeOptions.map((step) => `<button type="button" class="spld-stroke-option ${selectedStrokes.includes(step) ? 'used' : ''}" data-stroke="${step}" ${selectedStrokes.includes(step) ? 'disabled' : ''}>${step}</button>`).join('')}</div>`;
+      activityMarkup = `<div class="spld-stroke-target"><span>目標字</span><strong>${round.target}</strong><small>${round.steps.length} 筆</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-stroke-slots">${round.steps.map((_, index) => `<div class="spld-stroke-slot ${selectedStrokes[index] ? 'filled' : ''}"><b>${index + 1}</b><strong>${selectedStrokes[index]?.label || '？'}</strong></div>`).join('')}</div><div class="spld-stroke-options">${strokeOptions.map((step) => { const used = selectedStrokes.some((selected) => selected.id === step.id); return `<button type="button" class="spld-stroke-option ${used ? 'used' : ''}" data-stroke="${step.id}" ${used ? 'disabled' : ''} aria-label="選擇第 ${step.id.split('-').at(-1)} 個「${step.label}」筆劃">${step.label}</button>`; }).join('')}</div>`;
     } else if (active === activities.triple) {
       activityMarkup = `<div class="spld-triple-scene"><span class="spld-triple-picture" aria-label="圖片提示">${round.picture}</span><button type="button" class="spld-triple-listen" id="spldTripleListen">🔊 聽字詞</button><small>${round.meaning}</small></div><p class="spld-lab-prompt">${round.prompt}</p><div class="spld-spotting-choices">${round.choices.map((choice, index) => `<button type="button" class="spld-spotting-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
     } else if (active === activities.rhyme) {
@@ -298,11 +302,13 @@
     }
   }
 
-  function chooseStroke(stroke) {
+  function chooseStroke(strokeId) {
+    const stroke = strokeOptions.find((option) => option.id === strokeId);
+    if (!stroke || selectedStrokes.some((selected) => selected.id === stroke.id)) return;
     selectedStrokes.push(stroke);
     const round = currentRound();
     if (selectedStrokes.length === round.steps.length) {
-      if (selectedStrokes.every((step, index) => step === round.steps[index])) {
+      if (selectedStrokes.every((step, index) => step.label === round.steps[index])) {
         result.correct += 1;
         feedback(`✓ ${round.success}`, 'success');
         speak(`答對了。${round.success}`);
@@ -323,7 +329,7 @@
       roundIndex += 1;
       selectedParts = ['', ''];
       selectedStrokes = [];
-      strokeOptions = active === activities.stroke ? shuffleSteps(currentRound().steps) : [];
+      strokeOptions = active === activities.stroke ? makeStrokeOptions(currentRound().steps) : [];
       renderRound();
     } else {
       finish();
@@ -346,7 +352,7 @@
     roundIndex = 0;
     selectedParts = ['', ''];
     selectedStrokes = [];
-    strokeOptions = active === activities.stroke ? shuffleSteps(active.rounds[0].steps) : [];
+    strokeOptions = active === activities.stroke ? makeStrokeOptions(active.rounds[0].steps) : [];
     result = { correct: 0, retries: 0, hints: 0 };
     completed = false;
     renderRound();

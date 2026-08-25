@@ -37,6 +37,7 @@
   let autoTimer = null;
   let nextTimer = null;
   let returnFocus = null;
+  let returnFocusSelector = '';
 
   function clearTimers() {
     window.clearTimeout(autoTimer);
@@ -235,18 +236,26 @@
     clearTimers();
     document.removeEventListener('keydown', handleKeyboard);
     const focusTarget = returnFocus;
+    const focusSelector = returnFocusSelector;
     host?.remove();
     host = null;
     state = null;
     returnFocus = null;
-    if (restoreFocus && focusTarget?.isConnected) window.requestAnimationFrame(() => focusTarget.focus());
+    returnFocusSelector = '';
+    if (restoreFocus) window.setTimeout(() => {
+      if (focusTarget?.isConnected && focusTarget.offsetParent) { focusTarget.focus(); return; }
+      const fallbackFocusTarget = [focusSelector, '#adhdFocusLabLaunch', '#startSuggested']
+        .filter(Boolean).map((selector) => document.querySelector(selector)).find((element) => element?.isConnected && element.offsetParent);
+      fallbackFocusTarget?.focus();
+    }, 0);
   }
 
   window.ADHD_FOCUS_LAB = {
     open(nextOptions = {}) {
       close({ restoreFocus: false });
       options = nextOptions;
-      returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      returnFocus = nextOptions.trigger instanceof HTMLElement ? nextOptions.trigger : (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+      returnFocusSelector = nextOptions.returnFocusSelector || (returnFocus?.id ? `#${returnFocus.id}` : '#adhdFocusLabLaunch');
       injectStyles();
       host = document.createElement('div');
       host.id = 'adhdFocusLabRoot';
