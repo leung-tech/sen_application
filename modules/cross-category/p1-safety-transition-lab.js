@@ -68,6 +68,11 @@
     }
   };
 
+  TOPICS.digital.answerPositionPatterns = { lower: [2, 0, 1, 2, 1, 0, 2, 0] };
+  TOPICS.change.answerPositionPatterns = { lower: [1, 2, 0, 1, 0, 2, 1, 0] };
+  TOPICS.advocate.answerPositionPatterns = { lower: [0, 2, 1, 0, 1, 2, 0, 2] };
+  TOPICS.repair.answerPositionPatterns = { lower: [2, 1, 0, 2, 0, 1, 2, 0] };
+
   let host = null; let currentTopic = null; let currentStage = 'lower'; let index = 0; let speechOn = false; let trigger = null; let returnFocus = null;
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -75,7 +80,7 @@
   const topicKeys = () => Object.keys(TOPICS);
   const topic = () => TOPICS[currentTopic];
   const roundsFor = (key, stage = 'lower') => TOPICS[key].cards.map(([title, scene, answer, distractors, hint], position) => {
-    const choices = [...distractors]; choices.splice(position % 3, 0, answer);
+    const choices = [...distractors]; const pattern = TOPICS[key]?.answerPositionPatterns?.[stage]; const target = Number.isInteger(pattern?.[position % pattern.length]) ? pattern[position % pattern.length] : position % 3; choices.splice(target, 0, answer);
     return { id: `p1-${key}-${stage}-${position + 1}`, title, scene: `${STAGES[stage].cue[key]}，${scene}`, prompt: `哪一個下一步較安全、尊重自己和別人？`, choices, answer, hint: `${hint} ${STAGES[stage].support}`, category: TOPICS[key].category };
   });
   const speak = (text) => { if (!speechOn || !window.speechSynthesis || !text) return; window.speechSynthesis.cancel(); const utterance = new SpeechSynthesisUtterance(String(text)); utterance.lang = 'zh-HK'; utterance.rate = .78; window.speechSynthesis.speak(utterance); };
@@ -120,7 +125,7 @@
   }
   function onKey(event) { if (!host) return; if (event.key === 'Escape') { event.preventDefault(); close(); return; } if (/^[1-3]$/.test(event.key) && $('[data-p1-choice]', host)) { event.preventDefault(); $$('[data-p1-choice]', host)[Number(event.key) - 1]?.click(); } }
   function openTopic(key, options = {}) { if (!TOPICS[key]) return; close(); currentTopic = key; currentStage = STAGES[options.stage] ? options.stage : 'lower'; index = 0; speechOn = false; trigger = options.trigger || null; returnFocus = trigger || document.activeElement; ensureStyles(); host = document.createElement('div'); host.className = 'p1-host'; document.body.appendChild(host); document.addEventListener('keydown', onKey, true); ready(); }
-  function activityCards(stage = 'lower') { return topicKeys().map((key) => { const data = TOPICS[key]; return { id: `p1-${key}-${stage}`, icon: data.icon, title: data.title, description: data.short, tag: `${STAGES[stage]?.label || STAGES.lower.label} · 8 個虛構情境`, tone: data.tone, supports: ['all'], p1Topic: key, rounds: roundsFor(key, stage) }; }); }
+  function activityCards(stage = 'lower') { return topicKeys().map((key) => { const data = TOPICS[key]; const answerPositionPattern = data.answerPositionPatterns?.[stage]; return { id: `p1-${key}-${stage}`, icon: data.icon, title: data.title, description: data.short, tag: `${STAGES[stage]?.label || STAGES.lower.label} · 8 個虛構情境`, tone: data.tone, supports: ['all'], p1Topic: key, answerPositionStrategy: answerPositionPattern ? 'irregular-balanced' : undefined, answerPositionPattern, rounds: roundsFor(key, stage) }; }); }
 
   window.P1_SAFETY_TRANSITION_LAB = { activityCards, openTopic, roundsFor, topics: () => topicKeys() };
 })();
