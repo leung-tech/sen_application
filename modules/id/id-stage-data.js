@@ -18,6 +18,8 @@ const idStageTraining = {
   },
   upper: {
     description: '10 關校園生活、實用購物與同儕應對練習',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [2, 1, 0, 2, 0, 1, 0, 2, 1, 0],
     rounds: [
       { id: 'P4-ID-1', band: '上課準備 · 1', prompt: '課室換堂前，哪一樣最有用？', context: '下一課是英文，你已知道要到另一個課室。', choices: [['🗓️', '看時間表和帶課本'], ['🎮', '先玩遊戲'], ['🛏️', '帶枕頭']], answer: '看時間表和帶課本', instruction: '請選出換堂前的實用準備。', clue: '先看下一課是甚麼，再準備對應物品。', success: '做得好！你有計劃地準備換堂。' },
       { id: 'P4-ID-2', band: '個人衛生 · 2', prompt: '午飯前，要先做甚麼？', context: '你剛完成小息活動，準備吃午餐。', choices: [['🫧', '洗淨雙手'], ['⚽', '再踢球'], ['📱', '玩電話']], answer: '洗淨雙手', instruction: '請選出午飯前照顧衛生的做法。', clue: '吃東西前，先讓雙手保持清潔。', success: '很好！你記得照顧個人衛生。' },
