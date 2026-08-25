@@ -35,6 +35,8 @@ window.ASD_STAGE_TASKS = {
   },
   junior: {
     categoryName: '3 ASD · 社交互動', title: '初中社交互動闖關', description: '10 關同儕協作、群組溝通、界線與修復練習', tag: 'S1–S3 · 10 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [0, 2, 1, 0, 1, 2, 0, 2, 1, 0],
     rounds: [
       { id: 'S1-ASD-01', band: '加入活動 · 1', prompt: '同學正討論比賽隊伍，想參加可以怎樣說？', context: '他們正在分配不同的工作角色。', strategy: '簡短說明你想參與，並詢問可協助的部分。', choices: [['🙋', '我想參加，可以幫哪一部分？'], ['📣', '我一定要做隊長'], ['🚶', '直接坐下不說話']], answer: '我想參加，可以幫哪一部分？', instruction: '請選出加入小組的清楚說法。', clue: '先表達想參加，再問如何協助。', success: '答對了！你用合作方式加入小組。' },
       { id: 'S1-ASD-02', band: '開始對話 · 2', prompt: '想和同學談一談功課，可以怎樣開始？', context: '你們都剛完成同一份工作紙。', strategy: '從共同經歷選一個具體話題開始。', choices: [['📝', '剛才第三題你怎樣想？'], ['📣', '你必須和我聊天'], ['📱', '給我你的所有帳號']], answer: '剛才第三題你怎樣想？', instruction: '請選出以共同功課開始對話的句子。', clue: '共同做過的事情是安全而自然的話題。', success: '很好！你從共同經驗開始對話。' },
