@@ -40,7 +40,11 @@
     });
   }
 
-  function choiceValue(choice) { return Array.isArray(choice) ? choice.at(-1) : choice; }
+  function choiceValue(choice) {
+    if (Array.isArray(choice)) return choice.at(-1);
+    if (choice && typeof choice === 'object') return choice.value ?? choice.answer ?? choice.label;
+    return choice;
+  }
 
   function balanceRound(round, index, positionPattern = null) {
     const answer = round?.answer ?? round?.target;
