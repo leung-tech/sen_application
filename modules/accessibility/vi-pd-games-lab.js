@@ -31,7 +31,7 @@
         { id: 'wheel', icon: '♿', title: '輪椅特工的校園障礙賽', focus: '無障礙路徑規劃與求助', prep: ['看地圖上的樓梯、升降機和斜道。', '選可通行的路線。', '卡住時可按吹哨子求助。'], type: 'choice', answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [1, 0, 1, 0, 1, 0, 1, 0], rounds: [{ prompt: '去三樓電腦室，應選哪條路？', answer: '斜道再乘升降機', choices: ['普通樓梯', '斜道再乘升降機'] }, { prompt: '路邊沒有斜道，輪椅卡住了，可以怎樣做？', answer: '吹哨子求助', choices: ['硬推上石壆', '吹哨子求助'] }, { prompt: '校園有升降機標示，下一步是？', answer: '跟標示前往升降機', choices: ['繼續走上樓梯', '跟標示前往升降機'] }] }
       ],
       junior: [
-        { id: 'city', icon: '🏙️', title: '無障礙城市規劃師', focus: '自我倡導與無障礙權益', prep: ['先辨認環境障礙。', '選擇安全、合理的申訴或求助方式。', '改變設施前先讓負責單位知道。'], type: 'choice', rounds: [{ prompt: '無障礙廁所被鎖上，應選哪張卡？', answer: '通知場地管理處', choices: ['用力破壞門鎖', '通知場地管理處'] }, { prompt: '巴士司機忘記拉下斜板，可以怎樣說？', answer: '請協助放下斜板', choices: ['靜靜離開', '請協助放下斜板'] }, { prompt: '公共設施長期有障礙，可用哪種方式？', answer: '提交清楚申訴', choices: ['責罵路人', '提交清楚申訴'] }] },
+        { id: 'city', icon: '🏙️', title: '無障礙城市規劃師', focus: '自我倡導與無障礙權益', prep: ['先辨認環境障礙。', '選擇安全、合理的申訴或求助方式。', '改變設施前先讓負責單位知道。'], type: 'choice', answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [1, 0, 1, 0, 1, 0, 1, 0], rounds: [{ prompt: '無障礙廁所被鎖上，應選哪張卡？', answer: '通知場地管理處', choices: ['用力破壞門鎖', '通知場地管理處'] }, { prompt: '巴士司機忘記拉下斜板，可以怎樣說？', answer: '請協助放下斜板', choices: ['靜靜離開', '請協助放下斜板'] }, { prompt: '公共設施長期有障礙，可用哪種方式？', answer: '提交清楚申訴', choices: ['責罵路人', '提交清楚申訴'] }] },
         { id: 'dwell', icon: '⌨️', title: '虛擬鍵盤速遞員', focus: '停留選取與眼動輸入替代', prep: ['游標停留在字鍵 1.5 秒即可輸入。', '也可用 Tab 選取後按 Enter。', '完成短句即可過關。'], type: 'dwell', rounds: [{}, {}, {}] }
       ],
       senior: [
