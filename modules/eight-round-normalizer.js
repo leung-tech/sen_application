@@ -74,9 +74,9 @@
 
   function normaliseAll() {
     Object.entries(window).forEach(([name, value]) => {
-      if (name.endsWith('_STAGE_TASKS') || name === 'SEN_PATHWAY_MODULES') normalise(value);
+      if (name.endsWith('_STAGE_TASKS') || name === 'SEN_PATHWAY_MODULES' || name === 'idStageTraining') normalise(value);
       if (name.endsWith('_LAB') || name.endsWith('_GAMES_LAB')) normaliseProvider(value);
-      if (name.endsWith('_STAGE_TASKS') || name === 'SEN_PATHWAY_MODULES') balanceAnswers(value);
+      if (name.endsWith('_STAGE_TASKS') || name === 'SEN_PATHWAY_MODULES' || name === 'idStageTraining') balanceAnswers(value);
       if (name.endsWith('_LAB') || name.endsWith('_GAMES_LAB')) balanceProvider(value);
     });
   }

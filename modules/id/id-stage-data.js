@@ -1,6 +1,8 @@
 const idStageTraining = {
   lower: {
     description: '10 關生活自理、校園安全與友善回應練習',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [1, 0, 2, 0, 1, 2, 0, 1, 2, 0],
     rounds: [
       { id: 'P1-ID-1', band: '整理物品 · 1', prompt: '上課前，先把哪一樣放在桌上？', context: '老師說今天要用功課冊和鉛筆。', choices: [['📘', '功課冊和鉛筆'], ['🧸', '大玩具'], ['🛏️', '枕頭']], answer: '功課冊和鉛筆', instruction: '請選出上課前需要準備的物品。', clue: '想一想老師剛才說要用甚麼。', success: '做得好！你準備好了上課用品。' },
       { id: 'P1-ID-2', band: '洗手流程 · 2', prompt: '洗手後，下一步是甚麼？', context: '你的雙手已經用梘液搓洗乾淨。', choices: [['🧻', '抹乾雙手'], ['👟', '穿鞋'], ['📚', '看圖書']], answer: '抹乾雙手', instruction: '請選出洗手後的下一步。', clue: '手濕濕時，需要先把手弄乾。', success: '很好！你完成了洗手流程。' },
