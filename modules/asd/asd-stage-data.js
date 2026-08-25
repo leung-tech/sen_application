@@ -18,6 +18,8 @@ window.ASD_STAGE_TASKS = {
   },
   upper: {
     categoryName: '3 ASD · 社交互動', title: '高小社交互動闖關', description: '10 關同儕溝通、協作、界線與調節練習', tag: 'P4–P6 · 10 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [1, 0, 2, 1, 0, 2, 0, 1, 2, 0],
     rounds: [
       { id: 'P4-ASD-01', band: '加入活動 · 1', prompt: '同學在玩桌上遊戲，想加入可以怎樣問？', context: '他們剛開始新一局。', strategy: '先問是否還有位置，再等候對方回答。', choices: [['🎲', '下一局我可以一起玩嗎？'], ['🪑', '直接坐下拿棋子'], ['📣', '你們現在要換我玩']], answer: '下一局我可以一起玩嗎？', instruction: '請選出加入遊戲的合適問句。', clue: '說「下一局」表示你願意等候。', success: '答對了！你用尊重回合的方式提出邀請。' },
       { id: 'P4-ASD-02', band: '開始對話 · 2', prompt: '想和新同學開始對話，哪一句合適？', context: '你們剛好一起整理閱讀角。', strategy: '選一個與眼前共同活動有關的簡單問題。', choices: [['📚', '你喜歡看哪一類圖書？'], ['📣', '你要馬上做我朋友'], ['🎮', '你有沒有所有遊戲？']], answer: '你喜歡看哪一類圖書？', instruction: '請選出自然的開始對話方式。', clue: '共同活動和共同物品是開始聊天的好線索。', success: '很好！你用共同話題開始對話。' },
