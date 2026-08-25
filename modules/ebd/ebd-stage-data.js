@@ -1,6 +1,8 @@
 window.EBD_STAGE_TASKS = {
   lower: {
     categoryName: 'EBD · 情緒與調節', title: '初小情緒調節闖關', description: '10 關認識感受、停一停與安全回到活動練習', tag: 'P1–P3 · 10 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [1, 0, 2, 0, 1, 2, 0, 1, 2, 0],
     rounds: [
       { id: 'P1-EBD-01', band: '平靜訊號 · 1', prompt: '身體放鬆、呼吸慢慢時，最接近哪種感覺？', context: '你剛完成呼吸練習，肩膀沒有繃緊。', strategy: '先看身體訊號，再為感覺選一個名字。', choices: [['😌', '平靜'], ['😡', '很生氣'], ['😰', '很擔心']], answer: '平靜', instruction: '請選出身體放鬆時的感覺。', clue: '慢慢呼吸和放鬆肩膀常是平靜的訊號。', success: '做得好！你認出了平靜的身體訊號。' },
       { id: 'P1-EBD-02', band: '早期訊號 · 2', prompt: '握緊拳頭、臉熱熱時，可以先知道甚麼？', context: '你最喜歡的玩具暫時輪到別人玩。', strategy: '早些看見身體變化，就能早些選擇調節方法。', choices: [['🫶', '我開始不舒服了'], ['🎲', '我完全沒有感覺'], ['🏃', '我要立刻跑走']], answer: '我開始不舒服了', instruction: '請選出看見早期不舒服訊號時的想法。', clue: '握拳和臉熱可能提示情緒正在變大。', success: '很好！你注意到情緒剛開始變大的訊號。' },
