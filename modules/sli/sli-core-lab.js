@@ -154,6 +154,16 @@
       {caseText:'客人說：「我想知道洗手間在哪裏。」',answer:['我明白你想找洗手間。','不好意思讓你要等。','我現在指給你看並帶你到附近位置。'],choices:['我現在指給你看並帶你到附近位置。','不好意思讓你要等。','我明白你想找洗手間。'],labels:['確認','道歉','處理'],hint:'先確認需要，再提供實際協助。'}]
   };
   Object.entries(EXTRA_ROUNDS).forEach(([key, rounds]) => ACTIVITIES[key].rounds.push(...rounds));
+  const ANSWER_POSITION_PATTERNS = {
+    sound: [1,0,2,1,2,0,1,0],
+    portal: [2,1,0,2,0,1,2,0],
+    emotion: [0,2,1,0,1,2,0,2],
+    subtext: [2,0,1,2,0,1,0,1]
+  };
+  Object.entries(ANSWER_POSITION_PATTERNS).forEach(([key, pattern]) => {
+    ACTIVITIES[key].answerPositionStrategy = 'irregular-balanced';
+    ACTIVITIES[key].answerPositionPattern = pattern;
+  });
 
   let host = null;
   let stage = 'lower';
@@ -304,8 +314,9 @@
     reward('finish'); q('#sliRestart')?.addEventListener('click', () => renderReady(state.game)); q('#sliMenu')?.addEventListener('click', renderMenu); focusSoon('#sliMenu');
   }
 
-  function choiceMarkup(choices, attribute = 'data-sli-choice') {
-    return `<div class="sli-choice-grid">${shuffle(choices).map((choice) => `<button type="button" class="sli-choice" ${attribute}="${choice}">${choice}</button>`).join('')}</div>`;
+  function choiceMarkup(choices, attribute = 'data-sli-choice', preserveAnswerOrder = false) {
+    const shownChoices = preserveAnswerOrder ? choices : shuffle(choices);
+    return `<div class="sli-choice-grid">${shownChoices.map((choice) => `<button type="button" class="sli-choice" ${attribute}="${choice}">${choice}</button>`).join('')}</div>`;
   }
 
   function sequenceMarkup(round, selected, name) {
@@ -314,11 +325,11 @@
   }
 
   function portalMarkup(round) {
-    return `<div class="sli-portal-item" draggable="true" data-sli-portal-item="${round.name}" aria-label="可拖拉的物件卡：${round.name}"><span aria-hidden="true">${round.item}</span><strong>${round.name}</strong><small>可拖到傳送門，或直接按一個傳送門。</small></div><p class="sli-rule">把「${round.name}」送到正確類別。可以拖拉物件卡，也可以按傳送門。</p><div class="sli-choice-grid sli-portal-grid">${shuffle(round.choices).map((choice) => `<button type="button" class="sli-choice sli-portal" data-sli-portal="${choice}">${choice}</button>`).join('')}</div>`;
+    return `<div class="sli-portal-item" draggable="true" data-sli-portal-item="${round.name}" aria-label="可拖拉的物件卡：${round.name}"><span aria-hidden="true">${round.item}</span><strong>${round.name}</strong><small>可拖到傳送門，或直接按傳送門。</small></div><p class="sli-rule">把「${round.name}」送到正確類別。可以拖拉物件卡，也可以按傳送門。</p><div class="sli-choice-grid sli-portal-grid">${round.choices.map((choice) => `<button type="button" class="sli-choice sli-portal" data-sli-portal="${choice}">${choice}</button>`).join('')}</div>`;
   }
 
   function soundMarkup(round) {
-    return `<div class="sli-magic-island" aria-label="聲音魔法島"><span aria-hidden="true">🏝️</span><div><strong>目標字：${round.target}</strong><small>一起聽「${round.target}」的第一個聲音。</small></div><span class="sli-growth" id="sliGrowth" aria-hidden="true">🌱</span></div><p class="sli-rule">這是聽音和練習的遊戲，不會替學生自動判定發音是否正確。</p>${choiceMarkup(round.choices)}<div class="sli-voice-tools"><strong>不用開啟咪高峰</strong><small>可以只聽、指圖、看句卡或跟教師一起說；本網站不錄音、不上傳，也不分析聲音。</small></div>`;
+    return `<div class="sli-magic-island" aria-label="聲音魔法島"><span aria-hidden="true">🏝️</span><div><strong>目標字：${round.target}</strong><small>一起聽「${round.target}」的第一個聲音。</small></div><span class="sli-growth" id="sliGrowth" aria-hidden="true">🌱</span></div><p class="sli-rule">這是聽音和練習的遊戲，不會替學生自動判定發音是否正確。</p>${choiceMarkup(round.choices, 'data-sli-choice', true)}<div class="sli-voice-tools"><strong>不用開啟咪高峰</strong><small>可以只聽、指圖、看句卡或跟教師一起說；本網站不錄音、不上傳，也不分析聲音。</small></div>`;
   }
 
   function sequenceView(round, label, caption) {
@@ -332,9 +343,9 @@
     else if (state.game === 'portal') body = portalMarkup(round);
     else if (state.game === 'factory') body = sequenceView(round, '句子語塊', round.prompt);
     else if (state.game === 'timeline') body = sequenceView(round, '故事卡', round.story);
-    else if (state.game === 'emotion') body = `<article class="sli-emotion-scene"><span aria-hidden="true">${round.face}</span><p>${round.context}</p><strong>${round.prompt}</strong></article><aside class="sli-teacher-card"><strong>教師引導</strong><p>${round.teacher}</p></aside>${choiceMarkup(round.choices)}`;
+    else if (state.game === 'emotion') body = `<article class="sli-emotion-scene"><span aria-hidden="true">${round.face}</span><p>${round.context}</p><strong>${round.prompt}</strong></article><aside class="sli-teacher-card"><strong>教師引導</strong><p>${round.teacher}</p></aside>${choiceMarkup(round.choices, 'data-sli-choice', true)}`;
     else if (state.game === 'courier') body = sequenceView(round, '指示卡', round.order);
-    else if (state.game === 'subtext') body = `<article class="sli-quote-card"><span>角色說：</span><strong>${round.quote}</strong><p>${round.context}</p><em>${round.prompt}</em></article>${choiceMarkup(round.choices)}`;
+    else if (state.game === 'subtext') body = `<article class="sli-quote-card"><span>角色說：</span><strong>${round.quote}</strong><p>${round.context}</p><em>${round.prompt}</em></article>${choiceMarkup(round.choices, 'data-sli-choice', true)}`;
     else if (state.game === 'debate') body = sequenceView(round, '理據卡', `${round.topic}｜本回合立場：${round.position}`);
     else if (state.game === 'interview') body = sequenceView(round, '面試句卡', round.question);
     else if (state.game === 'resolve') body = sequenceView(round, '應變句卡', round.caseText);
@@ -403,7 +414,7 @@
   }
 
   function activityCards(requestedStage = stage) {
-    return Object.entries(ACTIVITIES).filter(([, activity]) => activity.stage.includes(requestedStage)).map(([id, activity]) => ({ id: `sli-${id}`, sliActivityKey: id, icon: activity.icon, title: activity.title, focus: activity.focus, description: activity.description, tag: `${stageLabelFor(requestedStage)} · 直接選關`, tone: 'pink', supports: ['8'], rounds: activity.rounds }));
+    return Object.entries(ACTIVITIES).filter(([, activity]) => activity.stage.includes(requestedStage)).map(([id, activity]) => ({ id: `sli-${id}`, sliActivityKey: id, icon: activity.icon, title: activity.title, focus: activity.focus, description: activity.description, tag: `${stageLabelFor(requestedStage)} · 直接選關`, tone: 'pink', supports: ['8'], answerPositionStrategy: activity.answerPositionStrategy, answerPositionPattern: activity.answerPositionPattern, rounds: activity.rounds }));
   }
 
   function stageLabelFor(value) { return ({ lower: 'P1–P3', upper: 'P4–P6', junior: 'S1–S3', senior: 'S4–S6' }[value] || 'P1–P3'); }
