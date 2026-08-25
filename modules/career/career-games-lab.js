@@ -140,6 +140,12 @@
       game.answerPositionPattern = [1, 0, 1, 0, 1, 0, 1, 0];
     }
   });
+  GAMES.upper.forEach((game) => {
+    if (['delivery', 'cafe', 'detective', 'courtesy'].includes(game.id)) {
+      game.answerPositionStrategy = 'irregular-balanced';
+      game.answerPositionPattern = [1, 0, 1, 0, 1, 0, 1, 0];
+    }
+  });
 
   let host = null, config = null, state = null, returnFocus = null;
   const q = (s) => host?.querySelector(s); const qa = (s) => host ? [...host.querySelectorAll(s)] : [];
