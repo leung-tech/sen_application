@@ -24,6 +24,8 @@ window.ADHD_STAGE_TASKS = {
     title: '高小專注闖關',
     description: '10 關作業、清單與小組任務專注策略',
     tag: 'P4–P6 · 10 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [0, 2, 1, 0, 1, 2, 0, 2, 1, 0],
     rounds: [
       { id: 'P4-ADHD-01', band: '開始鍵 · 1', prompt: '打開功課冊後，第一步是甚麼？', context: '今天有數學功課要完成。', choices: [['⭕', '圈出要完成的題目'], ['🎮', '打開遊戲'], ['🧹', '先收拾整個課室']], answer: '圈出要完成的題目', instruction: '請選出開始功課的清楚一步。', clue: '先看今天要做甚麼，再圈出指定題目；不用一次想所有題。', success: '答對了！你為任務找到清楚起點。' },
       { id: 'P4-ADHD-02', band: '今天一件事 · 2', prompt: '現在最應先完成哪一件事？', context: '數學功課明天要交；收拾抽屜和遊戲可以遲些做。', choices: [['📘', '明天要交的數學功課'], ['🗄️', '收拾抽屜'], ['🎮', '玩遊戲']], answer: '明天要交的數學功課', instruction: '請選出現在最重要的一項。', clue: '先做有最近限期的事情；明天要交的功課最先。', success: '很好！你選到今天最重要的一件事。' },
