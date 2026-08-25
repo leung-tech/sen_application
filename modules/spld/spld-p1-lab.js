@@ -1,4 +1,16 @@
 (function () {
+  // 初小 SpLD 答案位置原則：每項八關保持左 3／中 3／右 2，但不用左→中→右的可預測循環。
+  const ANSWER_POSITION_PATTERNS = {
+    spotting: [2, 0, 1, 2, 1, 0, 1, 0],
+    rhyme: [1, 2, 0, 1, 0, 2, 0, 1],
+    triple: [0, 2, 1, 2, 0, 1, 0, 1],
+    radical: [1, 0, 2, 1, 0, 2, 0, 1],
+    train: [2, 1, 0, 2, 0, 1, 0, 1],
+    semantic: [1, 2, 0, 1, 0, 2, 1, 0],
+    numberline: [0, 2, 1, 2, 0, 1, 0, 1],
+    sentenceTrain: [2, 0, 1, 0, 2, 1, 0, 1]
+  };
+
   const activities = {
     assembly: {
       icon: '🧩',
@@ -367,7 +379,8 @@
   }
 
   window.SPLD_P1_LAB = {
-    activityCards() {
+    activityCards(stage = 'lower') {
+      if (stage !== 'lower') return [];
       return Object.entries(activities).map(([key, activity]) => ({
         id: `spld-p1-${key}`,
         activityKey: key,
@@ -379,6 +392,8 @@
         description: activity.description,
         tag: `P1–P3 · ${activity.focus}`,
         supports: ['1'],
+        answerPositionStrategy: ANSWER_POSITION_PATTERNS[key] ? 'irregular-balanced' : null,
+        answerPositionPattern: ANSWER_POSITION_PATTERNS[key] || null,
         rounds: activity.rounds
       }));
     },

@@ -42,12 +42,13 @@
 
   function choiceValue(choice) { return Array.isArray(choice) ? choice.at(-1) : choice; }
 
-  function balanceRound(round, index) {
+  function balanceRound(round, index, positionPattern = null) {
     const answer = round?.answer ?? round?.target;
     if (!round || !Array.isArray(round.choices) || round.choices.length < 2 || Array.isArray(answer) || !['string', 'number'].includes(typeof answer)) return;
     const current = round.choices.findIndex((choice) => String(choiceValue(choice)) === String(answer));
     if (current < 0) return;
-    const target = index % round.choices.length;
+    const planned = Array.isArray(positionPattern) ? positionPattern[index % positionPattern.length] : null;
+    const target = Number.isInteger(planned) && planned >= 0 && planned < round.choices.length ? planned : index % round.choices.length;
     if (current === target) return;
     const choices = [...round.choices];
     const [correct] = choices.splice(current, 1);
@@ -55,13 +56,14 @@
     round.choices = choices;
   }
 
-  function balanceAnswers(value) {
+  function balanceAnswers(value, inheritedPattern = null) {
     if (!value || typeof value !== 'object' || balanceSeen.has(value)) return;
     balanceSeen.add(value);
-    if (Array.isArray(value)) { value.forEach(balanceAnswers); return; }
+    if (Array.isArray(value)) { value.forEach((item) => balanceAnswers(item, inheritedPattern)); return; }
+    const positionPattern = Array.isArray(value.answerPositionPattern) ? value.answerPositionPattern : inheritedPattern;
     Object.entries(value).forEach(([key, child]) => {
-      if (key === 'rounds' && Array.isArray(child)) child.forEach(balanceRound);
-      else balanceAnswers(child);
+      if (key === 'rounds' && Array.isArray(child)) child.forEach((round, index) => balanceRound(round, index, positionPattern));
+      else balanceAnswers(child, positionPattern);
     });
   }
 
