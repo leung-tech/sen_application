@@ -30,6 +30,16 @@
   const STOCK = [{ item: '紙包奶', icon: '🥛', shelf: 'drink' }, { item: '洗潔精', icon: '🧴', shelf: 'clean' }, { item: '汽水', icon: '🥤', shelf: 'drink' }, { item: '沐浴露', icon: '🧼', shelf: 'clean' }, { item: '果汁', icon: '🧃', shelf: 'drink' }, { item: '洗衣液', icon: '🫧', shelf: 'clean' }, { item: '樽裝水', icon: '💧', shelf: 'drink' }, { item: '洗手液', icon: '🧴', shelf: 'clean' }];
   const EMERGENCY = [{ scene: '家裡廚房著火了。', icon: '🔥', answer: '離開危險位置並打 999', choices: ['離開危險位置並打 999', '回去拿玩具', '躲在廚房'] }, { scene: '看見有人暈倒，需要救護車。', icon: '🧑‍⚕️', answer: '找成人協助並打 999', choices: ['找成人協助並打 999', '自己搬動對方', '圍著拍照'] }, { scene: '大廈走廊有濃煙。', icon: '💨', answer: '遠離濃煙並通知成人', choices: ['遠離濃煙並通知成人', '走進濃煙查看', '回房間鎖門'] }, { scene: '在商場和家人走散。', icon: '🏬', answer: '留在原處找職員', choices: ['留在原處找職員', '跟陌生人離開', '跑到停車場'] }, { scene: '有人叫你交出家門密碼。', icon: '🔐', answer: '不要說密碼，找可信任成人', choices: ['不要說密碼，找可信任成人', '立刻說出密碼', '把門匙送人'] }, { scene: '過馬路時看見車輛很快接近。', icon: '🚗', answer: '留在安全位置等候', choices: ['留在安全位置等候', '衝出去比快', '閉眼過路'] }, { scene: '手被熱水輕微燙到。', icon: '♨️', answer: '用流動清水沖並找成人', choices: ['用流動清水沖並找成人', '繼續玩火', '塗上不明藥膏'] }, { scene: '在巴士站感到很不舒服。', icon: '🚌', answer: '坐下並向職員或成人求助', choices: ['坐下並向職員或成人求助', '獨自走去偏僻地方', '忍住不說'] }];
   Object.assign(GAMES.bus, { rounds: BUS }); Object.assign(GAMES.outfit, { rounds: OUTFIT }); Object.assign(GAMES.snack, { rounds: SNACK }); Object.assign(GAMES.signs, { rounds: SIGNS }); Object.assign(GAMES.burger, { rounds: BURGER }); Object.assign(GAMES.schedule, { rounds: SCHEDULE }); Object.assign(GAMES.stock, { rounds: STOCK }); Object.assign(GAMES.emergency, { rounds: EMERGENCY });
+  const ANSWER_POSITION_PATTERNS = {
+    outfit: [1,0,2,1,2,0,1,0],
+    signs: [2,1,0,2,0,1,2,0],
+    schedule: [0,2,1,0,1,2,0,2],
+    emergency: [2,0,1,2,0,1,0,1]
+  };
+  Object.entries(ANSWER_POSITION_PATTERNS).forEach(([key, pattern]) => {
+    GAMES[key].answerPositionStrategy = 'irregular-balanced';
+    GAMES[key].answerPositionPattern = pattern;
+  });
 
   const roundItem = (items) => items[state.round % items.length];
 
