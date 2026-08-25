@@ -95,9 +95,10 @@
     }
   };
 
-  PACKS.finance.answerPositionPatterns = { lower: [2, 0, 1, 2, 1, 0, 2, 0] };
-  PACKS.body.answerPositionPatterns = { lower: [1, 2, 0, 1, 0, 2, 1, 0] };
-  PACKS.community.answerPositionPatterns = { lower: [0, 2, 1, 0, 1, 2, 0, 2] };
+  PACKS.finance.answerPositionPatterns = { lower: [2, 0, 1, 2, 1, 0, 2, 0], upper: [1, 0, 2, 1, 2, 0, 1, 0] };
+  PACKS.body.answerPositionPatterns = { lower: [1, 2, 0, 1, 0, 2, 1, 0], upper: [0, 2, 1, 0, 1, 2, 0, 2] };
+  PACKS.study.answerPositionPatterns = { upper: [2, 0, 1, 2, 1, 0, 2, 0] };
+  PACKS.community.answerPositionPatterns = { lower: [0, 2, 1, 0, 1, 2, 0, 2], upper: [1, 2, 0, 1, 0, 2, 1, 0] };
 
   let host = null; let currentKey = null; let currentStage = 'lower'; let index = 0; let speechOn = false; let restoreFocus = null;
   const $ = (selector, root = document) => root.querySelector(selector);
