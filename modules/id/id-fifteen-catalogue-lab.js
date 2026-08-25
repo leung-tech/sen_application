@@ -149,6 +149,7 @@
   });
   applyPositionPatterns(lower);
   applyPositionPatterns(upper, 1);
+  applyPositionPatterns(junior, 2);
   let host = null; let options = {}; let active = null; let roundIndex = 0; let returnFocus = null; let speechOn = true; let solved = [];
   const q = (selector) => host?.querySelector(selector); const qa = (selector) => host ? [...host.querySelectorAll(selector)] : [];
   const speak = (text) => { if (!speechOn || !window.speechSynthesis) return; window.speechSynthesis.cancel(); const utterance = new SpeechSynthesisUtterance(text); utterance.lang = 'zh-HK'; utterance.rate = 0.74; window.speechSynthesis.speak(utterance); };
