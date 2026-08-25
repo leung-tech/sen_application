@@ -81,6 +81,17 @@
     makeActivity('livingCrisis','🆘','獨立生活應變','求助與安全','面對家居或網上突發情況，選一個安全步驟',['先確保安全','關掉危險來源','找管理員或成人','不給個人資料','打官方求助電話','離開危險位置','告訴家人','慢慢說情況'],['自己冒險修理','給詐騙者資料','隱瞞危險'],'危險或不確定時先找可信任的人')
   ];
   const STAGES = { lower, upper, junior, senior }; const labels = { lower:'初小 · P1–P3', upper:'高小 · P4–P6', junior:'初中 · S1–S3', senior:'高中 · S4–S6' };
+  const lowerPatterns = [
+    [2,0,1,2,1,0,1,0], [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2],
+    [2,1,0,2,0,1,2,0], [1,0,2,1,2,0,1,0], [0,1,2,0,2,1,0,2],
+    [2,0,1,2,0,1,0,1], [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2],
+    [2,1,0,2,0,1,2,0], [1,0,2,1,2,0,1,0], [0,1,2,0,2,1,0,2],
+    [2,0,1,2,0,1,0,1], [1,2,0,1,0,2,1,0], [0,2,1,0,1,2,0,2]
+  ];
+  lower.forEach((activity, index) => {
+    activity.answerPositionStrategy = 'irregular-balanced';
+    activity.answerPositionPattern = lowerPatterns[index];
+  });
   let host=null, options={}, active=null, roundIndex=0, speechOn=true, motionOn=!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches, returnFocus=null;
   const q=(s)=>host?.querySelector(s), qa=(s)=>host?[...host.querySelectorAll(s)]:[];
   const speak=(text)=>{if(!speechOn||!window.speechSynthesis)return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='zh-HK';u.rate=.74;window.speechSynthesis.speak(u)};
