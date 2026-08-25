@@ -1,4 +1,22 @@
 (function () {
+  // 高小 SpLD 答案位置原則：以活動識別碼產生可重現、不規律且無相鄰重複的位置圖樣。
+  function answerPositionPattern(total, key) {
+    let seed = Array.from(key).reduce((value, character) => ((value * 31) + character.charCodeAt(0)) >>> 0, 2166136261);
+    const next = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+    const counts = [0, 0, 0].map((_, position) => Math.floor(total / 3) + (position < total % 3 ? 1 : 0));
+    const output = [];
+    while (output.length < total) {
+      const previous = output.at(-1);
+      const highest = Math.max(...counts.filter((count, position) => position !== previous));
+      const candidates = counts.map((count, position) => ({ count, position })).filter((item) => item.position !== previous && item.count === highest);
+      const selected = candidates[Math.floor(next() * candidates.length)].position;
+      output.push(selected);
+      counts[selected] -= 1;
+    }
+    return output;
+  }
+
+  const IRREGULAR_CHOICE_ACTIVITIES = new Set(['morpheme', 'collocation', 'context', 'classifier', 'punctuation', 'keyword', 'fraction', 'mindmap']);
   const activities = {
     morpheme: {
       icon: '🔗',
@@ -685,7 +703,8 @@
   }
 
   window.SPLD_P4_LAB = {
-    activityCards() {
+    activityCards(stage = 'upper') {
+      if (stage !== 'upper') return [];
       return Object.entries(activities).map(([key, activity]) => ({
         id: `spld-p4-${key}`,
         p4ActivityKey: key,
@@ -698,6 +717,8 @@
         description: activity.description,
         tag: `P4–P6 · ${activity.focus}`,
         supports: ['1'],
+        answerPositionStrategy: IRREGULAR_CHOICE_ACTIVITIES.has(key) ? 'irregular-balanced' : null,
+        answerPositionPattern: IRREGULAR_CHOICE_ACTIVITIES.has(key) ? answerPositionPattern(activity.rounds.length, key) : null,
         rounds: activity.rounds
       }));
     },
