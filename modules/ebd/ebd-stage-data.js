@@ -18,6 +18,8 @@ window.EBD_STAGE_TASKS = {
   },
   upper: {
     categoryName: 'EBD · 情緒與調節', title: '高小情緒調節闖關', description: '10 關辨認情緒、調節壓力與重回小組練習', tag: 'P4–P6 · 10 關',
+    answerPositionStrategy: 'irregular-balanced',
+    answerPositionPattern: [0, 2, 1, 0, 1, 2, 0, 2, 1, 0],
     rounds: [
       { id: 'P4-EBD-01', band: '平靜訊號 · 1', prompt: '完成運動後，呼吸慢下來、手掌放鬆，這表示甚麼？', context: '你已喝水並坐在座位休息。', strategy: '把身體訊號和情緒狀態連起來。', choices: [['😌', '我回到平靜'], ['😡', '我正在爆發'], ['😳', '我完全失控']], answer: '我回到平靜', instruction: '請選出這些身體訊號代表的狀態。', clue: '呼吸平穩和肌肉放鬆通常提示身體已回復。', success: '很好！你辨認到自己回到平靜。' },
       { id: 'P4-EBD-02', band: '早期訊號 · 2', prompt: '功課越做越急，開始咬牙和不停擦膠，最重要先知道甚麼？', context: '有一題較難，你很想立刻完成。', strategy: '早期訊號不是失敗，而是提醒自己可以先換策略。', choices: [['🔔', '我開始感到挫折，需要停一停'], ['✅', '我已經很平靜'], ['📣', '我要大聲責怪題目']], answer: '我開始感到挫折，需要停一停', instruction: '請選出看見早期訊號後的合適想法。', clue: '咬牙和急著擦膠可能提示挫折正在增加。', success: '答對了！你早些看見了挫折訊號。' },
