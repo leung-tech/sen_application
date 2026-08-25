@@ -50,6 +50,27 @@
         ['晚間準備與休息', '你連續幾天覺得日間精神不足，想改善晚上準備。', '和照顧者一起看晚間準備與休息安排，記下明天要帶的物品', ['以不明產品強迫自己不睡', '在群組公開自己的私人健康細節'], '可和照顧者一起整理可行的日常安排，不需要獨自處理。'],
         ['實習日能量分配', '在虛構實習日，你想預先安排休息和求助方式。', '出發前與負責人約好可休息或求助的方式，感到需要時及早說出來', ['答應不論怎樣也不休息', '獨自使用不熟悉的健康產品'], '及早說出需要和約好求助方式，可讓安排更清楚。']
       ]
+    },
+    study: {
+      phase: 'P2', icon: '🧰', tone: 'blue', title: '學習工具與考試調適自我管理', short: '讀題、清單、輔具、休息、核對與學校確認', category: '認知學習／自我管理', contextLabel: '虛構學習工具與調適情境', stages: ['upper', 'junior', 'senior'],
+      intro: '這是虛構的學習工具與自我管理情境練習。活動不代表公開試規則，不保證獲得任何調適、輔具或評核安排；不同學習和評核安排應與學校按實際情況確認。',
+      safetyBullets: ['每一題都是虛構學習情境，不需要分享真實成績、診斷、學校帳戶或個人資料。', '可選朗讀、看提示、暫停、重試或隨時離開；完成速度和分數不是能力判斷。', '如不清楚指示、可用輔具、休息方式或評核安排，請先與教師、照顧者或學校相關人員確認。'],
+      readyStatus: '現在是準備時間，沒有倒數、公開試規則判定或能力評分。', playStatus: '可直接點選；鍵盤可按 1、2 或 3。這不是成績、資格或能力評分。', finishTitle: '已查看八個虛構學習工具與自我管理情境', finishMessage: '你可以帶走一個小步：分段讀題、使用清單、澄清指示、按已商量方式休息、交卷前核對和考後反思。不同學習與評核安排，請與學校確認。',
+      badges: ['學習工具', '不保證調適', '與學校確認'], stageGuides: {
+        upper: { cue: '在高小課堂、功課或校內練習中使用學習工具時', support: '可以請成人讀題、一起把工作分成小步，或先看提示。' },
+        junior: { cue: '在初中測驗、專題或溫習安排中管理下一步時', support: '可以先重讀指示、使用清單，再向教師確認不清楚的安排。' },
+        senior: { cue: '在高中評核、溫習或實習學習安排中使用已商量的策略時', support: '可以及早向教師或相關負責人確認可用工具、休息和下一步。' }
+      },
+      cards: [
+        ['讀題前分段', '你看到一條較長的虛構題目，第一眼不確定由哪裡開始。', '先圈出關鍵詞，把問題分成小步再開始', ['一看到長題就隨便猜答案', '因為不明白便不告訴任何人'], '先分段和找關鍵詞，可令下一步更清楚。'],
+        ['視覺清單', '明天有一項校內練習，你想記住準備物品和次序。', '用校方可用的視覺清單寫下物品和小步驟', ['把所有事情只靠最後一刻記憶', '直接抄同學的私人帳戶或檔案'], '清單可以把大任務拆成看得見的小步。'],
+        ['重讀與求澄清', '你重讀虛構工作紙後，仍不清楚一個指示的意思。', '先重讀，再請教師用不同方式說明或給一個例子', ['假裝明白並胡亂完成', '把不明白的部分公開嘲笑'], '澄清指示是學習策略，不是失敗。'],
+        ['選用已商量的輔具', '你發現自己較容易在有清楚閱讀支援時開始工作。', '按已商量的需要使用校方可用工具，或先向教師確認', ['自行承諾每個評核一定可以使用任何工具', '把別人的輔具拿走而不詢問'], '可用工具和安排由學校按實際情況確認。'],
+        ['短暫休息後回來', '你做完一個小部分後覺得專注力下降，想停一停。', '按已同意的方式短暫休息，再回來完成下一小步', ['不通知任何人便離開場所', '逼自己不停做直到很不舒服'], '短暫休息可以是已商量的學習安排之一。'],
+        ['交卷前核對', '在虛構練習結束前，你還有幾分鐘可以看看工作。', '按清單逐題核對有沒有漏答、名字或需要補充的地方', ['急著交出而完全不看', '把一次漏答當成自己沒有能力'], '最後核對是照顧作品的小步，不是追求完美。'],
+        ['考前用品與安排', '明天有一項校內評核或練習，你不確定要帶甚麼和何時到達。', '早一日按學校資訊準備已知用品，不確定時向教師核實', ['相信群組未核實的消息便改變安排', '承諾所有評核都有同一套規則'], '實際用品和安排要以學校提供的資訊為準。'],
+        ['考後反思與確認', '完成一項虛構評核後，你想為下一次學習準備。', '記下一項有效工具，並列出一項下次想問教師或學校確認的事', ['把一次結果當作永久能力結論', '不理會任何可改善的小步'], '反思可以聚焦工具和下一步，而不是標籤自己。']
+      ]
     }
   };
 
@@ -80,6 +101,6 @@
   function finish() { shell(`${header()}<main class="practical-finish"><span>✓</span><h3>${esc(pack().finishTitle)}</h3><p>${esc(pack().finishMessage)}</p><div class="practical-actions"><button type="button" data-practical-replay="true">↺ 再看一次</button><button class="main" type="button" data-practical-close="true">← 返回活動庫</button></div></main><p id="practicalStatus" class="practical-status ok" role="status" aria-live="polite">可以先休息，或選另一個活動。</p>${tools()}`); $('[data-practical-replay]', host)?.addEventListener('click', () => { index = 0; ready(); }); $('[data-practical-close]', host)?.addEventListener('click', close); bindTools(); requestAnimationFrame(() => $('[data-practical-close]', host)?.focus()); }
   function onKey(event) { if (!host) return; if (event.key === 'Escape') { event.preventDefault(); close(); } else if (/^[1-3]$/.test(event.key) && $('[data-practical-choice]', host)) { event.preventDefault(); $$('[data-practical-choice]', host)[Number(event.key) - 1]?.click(); } }
   function open(key, options = {}) { if (!PACKS[key]) return; close(); currentKey = key; currentStage = STAGES[options.stage] ? options.stage : 'lower'; index = 0; speechOn = false; restoreFocus = options.trigger || document.activeElement; styles(); host = document.createElement('div'); host.className = 'practical-host'; document.body.appendChild(host); document.addEventListener('keydown', onKey, true); ready(); }
-  function activityCards(stage = 'lower') { return Object.entries(PACKS).map(([key, data]) => ({ id: `practical-${key}-${stage}`, icon: data.icon, title: data.title, description: data.short, tag: `${STAGES[stage]?.label || STAGES.lower.label} · 8 個虛構情境`, tone: data.tone, supports: ['all'], practicalPack: key, phase: data.phase, badges: data.badges, rounds: roundsFor(key, stage) })); }
-  window.PRACTICAL_LITERACY_LAB = { activityCards, open, roundsFor, packs: () => Object.keys(PACKS), packInfo: (key) => PACKS[key] || null };
+  function activityCards(stage = 'lower') { return Object.entries(PACKS).filter(([, data]) => !data.stages || data.stages.includes(stage)).map(([key, data]) => ({ id: `practical-${key}-${stage}`, icon: data.icon, title: data.title, description: data.short, tag: `${STAGES[stage]?.label || STAGES.lower.label} · 8 個虛構情境`, tone: data.tone, supports: ['all'], practicalPack: key, phase: data.phase, badges: data.badges, rounds: roundsFor(key, stage) })); }
+  window.PRACTICAL_LITERACY_LAB = { activityCards, open, roundsFor, packs: () => Object.keys(PACKS), packInfo: (key) => PACKS[key] || null, availableStages: (key) => PACKS[key]?.stages || Object.keys(STAGES) };
 })();
