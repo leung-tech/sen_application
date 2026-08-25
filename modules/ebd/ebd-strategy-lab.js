@@ -70,7 +70,7 @@
   function onKey(event) { if (!host) return; if (event.key === 'Escape') { event.preventDefault(); close(); return; } if (/^[1-3]$/.test(event.key)) { const button = $(`[data-estrat-option="${Number(event.key) - 1}"]`); if (button) { event.preventDefault(); button.click(); } } }
 
   window.EBD_STRATEGY_LAB = {
-    activityCards(stage = 'lower') { return [{ id: `ebd-strategy-${stage}`, icon: '🤝', title: '雙贏策略桌', description: '以 I-message、暫停與求助卡探索八個虛構衝突情境；不記錄個人行為。', tag: `${STAGE_LABELS[stage] || STAGE_LABELS.lower} · 8 個策略情境`, tone: 'pink', supports: ['E'], ebdStrategyActivity: 'strategy-table' }]; },
+    activityCards(stage = 'lower') { return [{ id: `ebd-strategy-${stage}`, icon: '🤝', title: '雙贏策略桌', description: '以 I-message、暫停與求助卡探索八個虛構衝突情境；不記錄個人行為。', tag: `${STAGE_LABELS[stage] || STAGE_LABELS.lower} · 8 個策略情境`, tone: 'pink', supports: ['E'], ebdStrategyActivity: 'strategy-table', rounds: ROUNDS }]; },
     openActivity(_key, options = {}) { this.open(options); },
     open(options = {}) { close(); ensureStyles(); returnFocus = options.trigger || (document.activeElement instanceof HTMLElement ? document.activeElement : null); state = { stage: options.stage || 'lower', onComplete: options.onComplete, index: 0, choices: [] }; host = document.createElement('div'); host.id = 'ebdStrategyHost'; document.body.appendChild(host); document.addEventListener('keydown', onKey); renderReady(); }
   };
@@ -79,7 +79,7 @@
   if (existingEbdLab && !existingEbdLab.__hasStrategyTable) {
     const baseCards = existingEbdLab.activityCards.bind(existingEbdLab);
     const baseOpen = existingEbdLab.openActivity.bind(existingEbdLab);
-    existingEbdLab.activityCards = (track, stage = 'lower') => track === 'ebd' ? [...baseCards(track, stage), { id: `ebd-strategy-${stage}`, icon: '🤝', title: '雙贏策略桌', description: '以 I-message、暫停與求助卡探索八個虛構衝突情境；不記錄個人行為。', tag: `${STAGE_LABELS[stage] || STAGE_LABELS.lower} · 8 個策略情境`, tone: 'pink', supports: ['E'], ebdMiTrack: 'ebd', ebdMiActivity: 'strategy-table' }] : baseCards(track, stage);
+    existingEbdLab.activityCards = (track, stage = 'lower') => track === 'ebd' ? [...baseCards(track, stage), { id: `ebd-strategy-${stage}`, icon: '🤝', title: '雙贏策略桌', description: '以 I-message、暫停與求助卡探索八個虛構衝突情境；不記錄個人行為。', tag: `${STAGE_LABELS[stage] || STAGE_LABELS.lower} · 8 個策略情境`, tone: 'pink', supports: ['E'], ebdMiTrack: 'ebd', ebdMiActivity: 'strategy-table', rounds: ROUNDS }] : baseCards(track, stage);
     existingEbdLab.openActivity = (track, key, options = {}) => track === 'ebd' && key === 'strategy-table' ? window.EBD_STRATEGY_LAB.open(options) : baseOpen(track, key, options);
     existingEbdLab.__hasStrategyTable = true;
   }
