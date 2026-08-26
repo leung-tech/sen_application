@@ -140,8 +140,8 @@ for (let left = 0; left < records.length; left += 1) {
 const report = [
   '# 全站題目重複性稽核',
   '',
-  `**掃描範圍：** ${sourceFiles.length} 個題庫或主前端 JavaScript 檔案（${sourceRoots.join('、')}）。  `,
-  `**可分析題幹／情境／指令紀錄：** ${records.length} 項。  `,
+  `**掃描範圍：** ${sourceFiles.length} 個題庫或主前端 JavaScript 檔案（${sourceRoots.join('、')}）。`,
+  `**可分析題幹／情境／指令紀錄：** ${records.length} 項。`,
   '**判定方式：** 完全重複會比較標準化題幹；近似重複以中文字符雙字組相似度達 0.86 為候選；換序重複會比較同一題幹的選項集合與原有排列。UI 通用按鈕、短提示和含動態插值的樣板字串不列為題目。',
   '',
   '> 本工具先提供可重複執行的候選清單。候選題目仍須人工判讀：跨學段為複習目的的相同概念不一定是錯誤；同一活動內完全相同題幹與選項則應優先修正。',

@@ -122,7 +122,9 @@ try {
     })()`);
     attempts.push(interaction);
     if (!interaction.found) break;
-    await sleep(1050);
+    // 首頁一般活動答對後以 1350ms 顯示正向回饋再轉關；
+    // 先前 1050ms 會在同一關仍未轉換時重複點擊，誤報完成數沒有更新。
+    await sleep(1450);
     const state = await evaluate(client, snapshotExpression);
     if (!state.gameVisible) break;
   }

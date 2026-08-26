@@ -25,9 +25,7 @@
           { word: '杯', choices: [['🥤', '杯'], ['👟', '鞋'], ['🚌', '巴士']] }, { word: '鞋', choices: [['🍽️', '碗'], ['👟', '鞋'], ['🐶', '小狗']] }, { word: '巴士', choices: [['🚌', '巴士'], ['🛏️', '床'], ['🍌', '香蕉']] }
         ] },
         { id: 'fruit', category: 'cognition', categoryName: '認知學習', tone: 'orange', icon: '🍎', title: '水果小店', description: '慢慢數，剛剛好', tag: '數量概念', supports: ['2', '3', '4', '9'], rounds: [{ count: 2 }, { count: 3 }, { count: 4 }] },
-        { id: 'signal', category: 'life', categoryName: '生活技能', tone: 'red', icon: '🚦', title: '紅綠燈好選擇', description: '看看訊號，再作選擇', tag: '安全規則', supports: ['2', '3', '4', '8', '9'], rounds: [
-          { light: 'red', prompt: '紅燈亮了，我們要怎樣做？', answer: '停一停' }, { light: 'green', prompt: '綠燈亮了，先看看路面安全後？', answer: '可以走' }, { light: 'red', prompt: '過馬路時看見紅燈？', answer: '停一停' }
-        ] },
+        { id: 'signal', category: 'life', categoryName: '生活技能', tone: 'red', icon: '🚦', title: '紅綠燈好選擇', description: '看看訊號，再作選擇', tag: '安全規則', supports: ['2', '3', '4', '8', '9'], rounds: [] },
         { id: 'turn', category: 'emotion', categoryName: '情緒社交', tone: 'teal', icon: '🔄', title: '輪到誰？', description: '看看箭頭，練習輪候', tag: '回合概念', supports: ['2', '3', '4', '8', '9'], rounds: [
           { person: '小明', people: [['🧒', '小明'], ['👧', '小美'], ['🧑', '我']] }, { person: '小美', people: [['🧒', '小明'], ['👧', '小美'], ['🧑', '我']] }, { person: '我', people: [['🧒', '小明'], ['👧', '小美'], ['🧑', '我']] }
         ] },

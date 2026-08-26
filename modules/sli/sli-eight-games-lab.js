@@ -106,10 +106,10 @@
   Object.entries(EXTRA_ROUNDS).forEach(([key, rounds]) => ACTIVITIES[key].rounds.push(...rounds));
   const MORE_ROUNDS = {
     'idiom-decoder': [
-      {phrase:'守株待兔',context:'阿傑一直等別人替他完成報告，自己沒有開始。',prompt:'這句成語最可能提醒甚麼？',choices:['只等運氣而不行動未必可行','一定要找真的兔子','永遠不要請人幫忙'],answer:'只等運氣而不行動未必可行',hint:'看情境中他一直等卻沒有開始。',success:'你用情境理解了成語。'},
-      {phrase:'雪中送炭',context:'同學沒有文具時，你借筆讓他完成工作。',prompt:'這句成語最可能表達甚麼？',choices:['在別人最需要時提供幫助','下雪時一定要燒炭','只可幫熟朋友'],answer:'在別人最需要時提供幫助',hint:'看幫忙的時間正好是對方需要時。',success:'你連起了情境和意思。'},
-      {phrase:'對牛彈琴',context:'你向不熟悉主題的人說很多專門詞，他仍不明白。',prompt:'這句成語最可能提醒甚麼？',choices:['要按聽者需要調整說法','真的要向牛演奏','越多專門詞越好'],answer:'要按聽者需要調整說法',hint:'看對方是否理解內容。',success:'你理解了非字面提醒。'},
-      {phrase:'火上加油',context:'朋友已經生氣，你再用責備語氣回應。',prompt:'這句說話最可能形容甚麼？',choices:['令原來問題變得更激烈','真的要為火加油','一定要立刻離開'],answer:'令原來問題變得更激烈',hint:'比較原來生氣和後來責備的效果。',success:'你看到了情境變化。'},
+      {phrase:'守株待兔',context:'阿傑一直等別人替他完成報告，自己沒有開始。',prompt:'從阿傑沒有開始報告的情境，「守株待兔」提醒甚麼？',choices:['只等運氣而不行動未必可行','一定要找真的兔子','永遠不要請人幫忙'],answer:'只等運氣而不行動未必可行',hint:'看情境中他一直等卻沒有開始。',success:'你用情境理解了成語。'},
+      {phrase:'雪中送炭',context:'同學沒有文具時，你借筆讓他完成工作。',prompt:'從借筆的情境看，「雪中送炭」表達甚麼？',choices:['在別人最需要時提供幫助','下雪時一定要燒炭','只可幫熟朋友'],answer:'在別人最需要時提供幫助',hint:'看幫忙的時間正好是對方需要時。',success:'你連起了情境和意思。'},
+      {phrase:'對牛彈琴',context:'你向不熟悉主題的人說很多專門詞，他仍不明白。',prompt:'從對方聽不明白專門詞的情境，「對牛彈琴」提醒甚麼？',choices:['要按聽者需要調整說法','真的要向牛演奏','越多專門詞越好'],answer:'要按聽者需要調整說法',hint:'看對方是否理解內容。',success:'你理解了非字面提醒。'},
+      {phrase:'火上加油',context:'朋友已經生氣，你再用責備語氣回應。',prompt:'從責備令朋友更生氣的情境，「火上加油」形容甚麼？',choices:['令原來問題變得更激烈','真的要為火加油','一定要立刻離開'],answer:'令原來問題變得更激烈',hint:'比較原來生氣和後來責備的效果。',success:'你看到了情境變化。'},
       {phrase:'「他是隊伍的橋樑。」',context:'小組意見不同時，阿琳幫大家把兩邊想法說清楚。',prompt:'這句隱喻最可能形容阿琳甚麼？',choices:['幫不同人互相理解','她真的是一座橋','她不可以表達意見'],answer:'幫不同人互相理解',hint:'看她在小組帶來的作用。',success:'你用情境理解了隱喻。'}
     ],
     'repair-station': [
@@ -120,11 +120,11 @@
       {chat:'阿樂：我想換座位；同學：為甚麼？',prompt:'哪一句能較清楚說明需要？',choices:['這裏太嘈，我想坐近一點教師。','你不要問我。','我一定要換。'],answer:'這裏太嘈，我想坐近一點教師。',hint:'說出情況和一個可行需要。',success:'你用具體方式說出了需要。'}
     ],
     'discussion-scaffold': [
-      {topic:'學校應否提供更多電子提示？',prompt:'把一個可討論觀點按結構組合。',answer:['我的立場：可提供電子提示作額外選擇。','理據：可讓學生重看重要步驟。','例子／回應：同時保留紙本給有需要的人。','總結：多種提示可讓學生按需要選擇。'],choices:['總結：多種提示可讓學生按需要選擇。','我的立場：可提供電子提示作額外選擇。','理據：可讓學生重看重要步驟。','例子／回應：同時保留紙本給有需要的人。'],labels:['我的立場','理據','例子／回應','總結'],hint:'先立場，再理由、例子和總結。',success:'你組織了一段完整想法。'},
+      {topic:'學校應否提供更多電子提示？',prompt:'把電子提示的立場、理據、回應和總結按順序組合。',answer:['我的立場：可提供電子提示作額外選擇。','理據：可讓學生重看重要步驟。','例子／回應：同時保留紙本給有需要的人。','總結：多種提示可讓學生按需要選擇。'],choices:['總結：多種提示可讓學生按需要選擇。','我的立場：可提供電子提示作額外選擇。','理據：可讓學生重看重要步驟。','例子／回應：同時保留紙本給有需要的人。'],labels:['我的立場','理據','例子／回應','總結'],hint:'先立場，再理由、例子和總結。',success:'你組織了一段完整想法。'},
       {topic:'校園活動應否有安靜休息區？',prompt:'把立場、理據、例子和總結按順序組合。',answer:['我的立場：活動可設安靜休息區。','理據：有人需要短暫調節再參與。','例子／回應：可由教師安排清楚位置和規則。','總結：休息區可兼顧參與和需要。'],choices:['理據：有人需要短暫調節再參與。','總結：休息區可兼顧參與和需要。','我的立場：活動可設安靜休息區。','例子／回應：可由教師安排清楚位置和規則。'],labels:['我的立場','理據','例子／回應','總結'],hint:'每張卡都有不同結構作用。',success:'你把觀點說得有條理。'},
-      {topic:'中學生應否學習基本急救知識？',prompt:'把一個可討論觀點按結構組合。',answer:['我的立場：應學習基本急救知識。','理據：遇到意外時可知道先找支援。','例子／回應：實習要跟從合資格成人指導。','總結：知識可幫助作出較安全下一步。'],choices:['總結：知識可幫助作出較安全下一步。','理據：遇到意外時可知道先找支援。','例子／回應：實習要跟從合資格成人指導。','我的立場：應學習基本急救知識。'],labels:['我的立場','理據','例子／回應','總結'],hint:'先清楚立場，再補理由和限制。',success:'你完成了有結構的意見。'},
-      {topic:'班級旅行應否預先收集無障礙需要？',prompt:'把一個可討論觀點按結構組合。',answer:['我的立場：應預先收集需要。','理據：可安排較合適路線和支持。','例子／回應：資料只由合適人員按需要使用。','總結：提早準備可令參與更安心。'],choices:['例子／回應：資料只由合適人員按需要使用。','我的立場：應預先收集需要。','總結：提早準備可令參與更安心。','理據：可安排較合適路線和支持。'],labels:['我的立場','理據','例子／回應','總結'],hint:'同時看到好處和私隱考慮。',success:'你有條理地安排了想法。'},
-      {topic:'學校應否安排同儕互助閱讀？',prompt:'把一個可討論觀點按結構組合。',answer:['我的立場：可安排自願同儕互助閱讀。','理據：學生可用不同方法互相理解內容。','例子／回應：要尊重不想參與的人。','總結：自願和彈性安排較合適。'],choices:['理據：學生可用不同方法互相理解內容。','我的立場：可安排自願同儕互助閱讀。','例子／回應：要尊重不想參與的人。','總結：自願和彈性安排較合適。'],labels:['我的立場','理據','例子／回應','總結'],hint:'立場後要有理由、回應和收束。',success:'你完成了一段完整觀點。'}
+      {topic:'中學生應否學習基本急救知識？',prompt:'把基本急救知識的立場、理據、安全限制和總結按順序組合。',answer:['我的立場：應學習基本急救知識。','理據：遇到意外時可知道先找支援。','例子／回應：實習要跟從合資格成人指導。','總結：知識可幫助作出較安全下一步。'],choices:['總結：知識可幫助作出較安全下一步。','理據：遇到意外時可知道先找支援。','例子／回應：實習要跟從合資格成人指導。','我的立場：應學習基本急救知識。'],labels:['我的立場','理據','例子／回應','總結'],hint:'先清楚立場，再補理由和限制。',success:'你完成了有結構的意見。'},
+      {topic:'班級旅行應否預先收集無障礙需要？',prompt:'把旅行需要收集的立場、理據、私隱回應和總結按順序組合。',answer:['我的立場：應預先收集需要。','理據：可安排較合適路線和支持。','例子／回應：資料只由合適人員按需要使用。','總結：提早準備可令參與更安心。'],choices:['例子／回應：資料只由合適人員按需要使用。','我的立場：應預先收集需要。','總結：提早準備可令參與更安心。','理據：可安排較合適路線和支持。'],labels:['我的立場','理據','例子／回應','總結'],hint:'同時看到好處和私隱考慮。',success:'你有條理地安排了想法。'},
+      {topic:'學校應否安排同儕互助閱讀？',prompt:'把同儕閱讀的立場、理據、參與界線和總結按順序組合。',answer:['我的立場：可安排自願同儕互助閱讀。','理據：學生可用不同方法互相理解內容。','例子／回應：要尊重不想參與的人。','總結：自願和彈性安排較合適。'],choices:['理據：學生可用不同方法互相理解內容。','我的立場：可安排自願同儕互助閱讀。','例子／回應：要尊重不想參與的人。','總結：自願和彈性安排較合適。'],labels:['我的立場','理據','例子／回應','總結'],hint:'立場後要有理由、回應和收束。',success:'你完成了一段完整觀點。'}
     ],
     'voice-use': [
       {situation:'你要在班會讀出一條簡短通知。',prompt:'開始前哪個方法可以讓自己按需要準備？',choices:['先圈出關鍵詞，再和教師試讀。','一定要一次讀完不能停。','一定要用最大聲量。'],answer:'先圈出關鍵詞，再和教師試讀。',example:'請同學明天帶回條。',hint:'可把內容拆小並請教師支持。',success:'你選了可調整的準備方式。'},
@@ -201,7 +201,7 @@
   }
 
   function supportBar() {
-    return `<aside class="sli8-support" aria-label="低壓支持工具"><div><strong>低壓參與</strong><span>可聽、看、指卡、和教師一起做、先停一停或離開；不作診斷或比較。</span></div><div class="sli8-tools"><button type="button" id="sli8Rule">👁 看規則</button><button type="button" id="sli8Read">🔊 朗讀本頁</button><button type="button" id="sli8Break">☁ 先停一停</button></div><div id="sli8SupportNote" class="sli8-support-note" role="status" aria-live="polite" aria-atomic="true" hidden></div></aside>`;
+    return `<aside class="sli8-support" aria-label="低壓支持工具"><div><strong>低壓參與</strong><span>可聽、看、指卡、和教師一起做、先停一停或離開；不作診斷或比較。</span></div><div class="sli8-tools"><button type="button" id="sli8Rule">👁 看規則</button><button type="button" id="sli8Read">🔊 朗讀本頁</button><button type="button" id="sli8Hint">💡 看提示</button><button type="button" id="sli8Break">☁ 先停一停</button></div><div id="sli8SupportNote" class="sli8-support-note" role="status" aria-live="polite" aria-atomic="true" hidden></div></aside>`;
   }
 
   function shell(body) {
@@ -230,6 +230,12 @@
       showSupport(rule ? '已標示眼前規則。現在只做一小步。' : '每項開始前可先看三步規則。');
     });
     q('#sli8Read')?.addEventListener('click', readPage);
+    q('#sli8Hint')?.addEventListener('click', () => {
+      const round = state?.rounds?.[state.index];
+      if (state?.preparing || !round?.hint) { showSupport('開始一回合後，如需要可在這裡看提示。'); return; }
+      showSupport(`💡 ${round.hint}`);
+      speak(round.hint);
+    });
     q('#sli8Break')?.addEventListener('click', () => showSupport('可以先停一停，不會扣分。準備好後可重新開始、換一項或隨時離開。', true));
   }
 
@@ -246,7 +252,7 @@
     const activity = active();
     const round = state?.rounds?.[state.index];
     if (state?.preparing) speak(`${activity.title}。${activity.prep.join('。')}`);
-    else if (round) speak(`${round.prompt}。${round.hint || ''}`);
+    else if (round) speak(round.prompt);
     else speak('可先選一項練習，開始前都有三步規則。');
   }
 
@@ -284,23 +290,23 @@
     const round = state.rounds[state.index];
     let play = '';
     if (state.game === 'tone-park') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>目標字：${round.target}</strong><p>聲調線索：${round.contour}</p><button type="button" id="sli8Model">🔊 朗讀目標和選項</button></div></article><p class="sli8-rule">${round.prompt}。請先聽教師或朗讀按鈕；這是聽辨練習，不會自動判定學生讀音或錄音。</p>${choiceMarkup(round.choices, round.answer)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>目標字：${round.target}</strong><p>聲調線索：${round.contour}</p><button type="button" id="sli8Model">🔊 朗讀目標和選項</button></div></article><p class="sli8-rule">${round.prompt.replace(/[。！？]$/, '')}。請先聽教師或朗讀按鈕；這是聽辨練習，不會自動判定學生讀音或錄音。</p>${choiceMarkup(round.choices, round.answer)}`;
     } else if (state.game === 'cause-workshop') {
-      play = `<article class="sli8-cause"><span aria-hidden="true">🔗</span><div><strong>原因：${round.cause}</strong><p>結果：${round.result}</p></div></article><p class="sli8-rule">${round.prompt}。可拖拉積木，也可每次點一下積木；不知道時可聽提示或請教師一起做。</p>${sequenceMarkup(round)}`;
+      play = `<article class="sli8-cause"><span aria-hidden="true">🔗</span><div><strong>原因：${round.cause}</strong><p>結果：${round.result}</p></div></article><p class="sli8-rule">${round.prompt.replace(/[。！？]$/, '')}。可拖拉積木，也可每次點一下積木；不知道時可聽提示或請教師一起做。</p>${sequenceMarkup(round)}`;
     } else if (state.game === 'word-net') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${round.silhouette}</span><div><strong>深海線索庫</strong><p>${round.clues.map((clue, index) => `${index + 1}. ${clue}`).join('　')}</p><button type="button" id="sli8Model">🔊 朗讀三條線索</button></div></article><p class="sli8-rule">${round.prompt}。可以再聽或再看線索；本活動不計反應時間。</p>${choiceMarkup(round.choices, round.answer)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${round.silhouette}</span><div><strong>深海線索庫</strong><p>${round.clues.map((clue, index) => `${index + 1}. ${clue}`).join('　')}</p><button type="button" id="sli8Model">🔊 朗讀三條線索</button></div></article><p class="sli8-rule">${round.prompt.replace(/[。！？]$/, '')}。可以再聽或再看線索；本活動不計反應時間。</p>${choiceMarkup(round.choices, round.answer)}`;
     } else if (state.game === 'pace-route') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>今次訊息：${round.message}</strong><p>可選一種自己覺得舒服的準備方法。</p><button type="button" id="sli8Model">🔊 朗讀短訊息</button></div></article><p class="sli8-rule">${round.prompt}。不需要追求快或完全一樣；可選句卡、教師示範或只聽範例。</p>${choiceMarkup(round.choices, round.answer)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>今次訊息：${round.message}</strong><p>可選一種自己覺得舒服的準備方法。</p><button type="button" id="sli8Model">🔊 朗讀短訊息</button></div></article><p class="sli8-rule">${round.prompt.replace(/[。！？]$/, '')}。不需要追求快或完全一樣；可選句卡、教師示範或只聽範例。</p>${choiceMarkup(round.choices, round.answer)}`;
     } else if (state.game === 'idiom-decoder') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>線索句：${round.phrase}</strong><p>${round.context}</p><button type="button" id="sli8Model">🔊 朗讀句子和情境</button></div></article><p class="sli8-rule">${round.prompt}。可以先看情境，再比較不同意思；這是語言理解練習，不是人格或能力判斷。</p>${choiceMarkup(round.choices, round.answer)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>線索句：${round.phrase}</strong><p>${round.context}</p><button type="button" id="sli8Model">🔊 朗讀句子和情境</button></div></article><p class="sli8-rule">${round.prompt.replace(/[。！？]$/, '')}。可以先看情境，再比較不同意思；這是語言理解練習，不是人格或能力判斷。</p>${choiceMarkup(round.choices, round.answer)}`;
     } else if (state.game === 'repair-station') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>虛構聊天情境</strong><p class="sli8-chat">${round.chat.replace(/\n/g, '<br>')}</p><button type="button" id="sli8Model">🔊 朗讀對話</button></div></article><p class="sli8-rule">${round.prompt}。不同人可以有不同感受；先選一個可澄清或共同處理事情的句子。</p>${choiceMarkup(round.choices, round.answer)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>虛構聊天情境</strong><p class="sli8-chat">${round.chat.replace(/\n/g, '<br>')}</p><button type="button" id="sli8Model">🔊 朗讀對話</button></div></article><p class="sli8-rule">${round.prompt.replace(/[。！？]$/, '')}。不同人可以有不同感受；先選一個可澄清或共同處理事情的句子。</p>${choiceMarkup(round.choices, round.answer)}`;
     } else if (state.game === 'discussion-scaffold') {
-      play = `<article class="sli8-cause"><span aria-hidden="true">${activity.icon}</span><div><strong>討論題目：${round.topic}</strong><p>可用句卡，也可先和教師討論自己的版本。</p></div></article><p class="sli8-rule">${round.prompt}。可拖拉或點選句卡；不設倒數，也不需要口頭說話才可完成。</p>${sequenceMarkup(round)}`;
+      play = `<article class="sli8-cause"><span aria-hidden="true">${activity.icon}</span><div><strong>討論題目：${round.topic}</strong><p>可用句卡，也可先和教師討論自己的版本。</p></div></article><p class="sli8-rule">${round.prompt.replace(/[。！？]$/, '')}。可拖拉或點選句卡；不設倒數，也不需要口頭說話才可完成。</p>${sequenceMarkup(round)}`;
     } else if (state.game === 'voice-use') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>虛構主持情境</strong><p>${round.situation}</p><button type="button" id="sli8Model">🔊 朗讀情境</button></div></article><p class="sli8-rule">${round.prompt}。這是一般主持準備與溝通提示，不會錄音或評定聲音、音量、音高或健康。</p>${choiceMarkup(round.choices, round.answer)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>虛構主持情境</strong><p>${round.situation}</p><button type="button" id="sli8Model">🔊 朗讀情境</button></div></article><p class="sli8-rule">${round.prompt.replace(/[。！？]$/, '')}。這是一般主持準備與溝通提示，不會錄音或評定聲音、音量、音高或健康。</p>${choiceMarkup(round.choices, round.answer)}`;
     }
-    shell(`${heading(activity.title, activity.description, `${stageLabel()} · ${state.index + 1} / ${state.rounds.length}`)}${progress()}<section class="sli8-play">${play}</section><div id="sli8Feedback" class="sli8-feedback" role="status" aria-live="polite" aria-atomic="true">${round.hint}</div>`);
+    shell(`${heading(activity.title, activity.description, `${stageLabel()} · ${state.index + 1} / ${state.rounds.length}`)}${progress()}<section class="sli8-play">${play}</section><div id="sli8Feedback" class="sli8-feedback" role="status" aria-live="polite" aria-atomic="true">慢慢看題目和線索；需要時可按「看提示」或請教師一起讀。</div>`);
     bindRound(round);
     focusSoon(['tone-park', 'word-net', 'pace-route', 'idiom-decoder', 'repair-station', 'voice-use'].includes(state.game) ? '#sli8Model' : '.sli8-piece');
   }
