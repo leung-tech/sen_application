@@ -46,6 +46,13 @@
   const q = (selector) => host?.querySelector(selector);
   const qa = (selector) => host ? [...host.querySelectorAll(selector)] : [];
   const current = () => TRACKS[config.track].cards[state.index];
+  function orderedChoices(track, card) {
+    const choices = [...card.choices];
+    const position = track.answerPositionPattern?.[state.index % track.answerPositionPattern.length];
+    if (!Number.isInteger(position) || position < 0 || position >= choices.length) return choices;
+    const others = choices.filter((choice) => choice !== card.answer);
+    return choices.map((choice, index) => index === position ? card.answer : others.shift());
+  }
 
   function speak(text) {
     if (!state?.speech || !window.speechSynthesis || !text) return;
@@ -92,8 +99,9 @@
     const track = TRACKS[config.track];
     const card = current();
     const progress = Math.min(state.index + 1, track.cards.length);
-    shell(`${head(track)}<div class="cross-progress"><i style="width:${(state.index / track.cards.length) * 100}%"></i><span>策略卡 ${progress} / ${track.cards.length} · 可慢慢完成</span></div><main class="cross-work"><article class="cross-scene"><span aria-hidden="true">${card.icon}</span><div><small>虛構情境</small><h3>${card.title}</h3><p>${card.scene}</p></div></article><section class="cross-task-board" aria-label="策略卡任務桌"><div><span>任務桌</span><h3>把一張策略卡放到「下一步收集盒」</h3><p>${card.prompt}</p></div><button id="crossDock" class="cross-dock" type="button" aria-label="下一步收集盒：可直接選擇策略卡，或把策略卡拖放到這裡"><b aria-hidden="true">🧭</b><strong>下一步收集盒</strong><small>可拖放；不想拖放時直接點選。</small></button></section><div class="cross-choices" aria-label="可選策略卡">${card.choices.map((choice, index) => `<button type="button" draggable="true" data-cross-choice="${index}"><b>${index + 1}</b><span>${choice}</span></button>`).join('')}</div></main><div id="crossStatus" class="cross-status" role="status" aria-live="polite">可直接選一張策略卡，或把卡放到收集盒；這不是個人表現評分。</div>${tools()}`);
-    qa('[data-cross-choice]').forEach((button) => button.addEventListener('click', () => choose(Number(button.dataset.crossChoice))));
+    const visibleChoices = orderedChoices(track, card);
+    shell(`${head(track)}<div class="cross-progress"><i style="width:${(state.index / track.cards.length) * 100}%"></i><span>策略卡 ${progress} / ${track.cards.length} · 可慢慢完成</span></div><main class="cross-work"><article class="cross-scene"><span aria-hidden="true">${card.icon}</span><div><small>虛構情境</small><h3>${card.title}</h3><p>${card.scene}</p></div></article><section class="cross-task-board" aria-label="策略卡任務桌"><div><span>任務桌</span><h3>把一張策略卡放到「下一步收集盒」</h3><p>${card.prompt}</p></div><button id="crossDock" class="cross-dock" type="button" aria-label="下一步收集盒：可直接選擇策略卡，或把策略卡拖放到這裡"><b aria-hidden="true">🧭</b><strong>下一步收集盒</strong><small>可拖放；不想拖放時直接點選。</small></button></section><div class="cross-choices" aria-label="可選策略卡">${visibleChoices.map((choice, index) => `<button type="button" draggable="true" data-cross-choice="${choice}"><b>${index + 1}</b><span>${choice}</span></button>`).join('')}</div></main><div id="crossStatus" class="cross-status" role="status" aria-live="polite">可直接選一張策略卡，或把卡放到收集盒；這不是個人表現評分。</div>${tools()}`);
+    qa('[data-cross-choice]').forEach((button) => button.addEventListener('click', () => choose(button.dataset.crossChoice)));
     bindMissionBoard();
     bindTools();
     requestAnimationFrame(() => q('[data-cross-choice]')?.focus());
@@ -107,8 +115,8 @@
     dock.addEventListener('drop', (event) => {
       event.preventDefault();
       dock.classList.remove('is-over');
-      const index = Number(event.dataTransfer?.getData('text/plain'));
-      if (Number.isInteger(index)) choose(index);
+      const choice = event.dataTransfer?.getData('text/plain');
+      if (choice) choose(choice);
     });
     qa('[data-cross-choice]').forEach((button) => {
       button.addEventListener('dragstart', (event) => {
@@ -120,9 +128,9 @@
     });
   }
 
-  function choose(index) {
+  function choose(choice) {
     const card = current();
-    if (card.choices[index] !== card.answer) {
+    if (choice !== card.answer) {
       status('↗ 可以再比較：哪一個下一步較能照顧安全、需要或學習流程？', 'try');
       return;
     }

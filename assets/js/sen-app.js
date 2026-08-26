@@ -131,6 +131,71 @@
       installLifeSkillEight(gameLibrary);
       Object.values(stageTasks).forEach(installLifeSkillEight);
 
+      const GENERAL_EXTRA_CONTENT = {
+        lower: {
+          emotion: [['🙂', '還可以'], ['😣', '不舒服'], ['😌', '平靜'], ['😳', '害羞'], ['😴', '很累']],
+          colour: [['🍓', '士多啤梨', 'red', '紅色'], ['🌽', '粟米', 'yellow', '黃色'], ['🐳', '藍色鯨魚卡', 'blue', '藍色'], ['🍒', '車厘子', 'red', '紅色'], ['⭐', '黃色星星', 'yellow', '黃色']],
+          listen: [['書', '📚'], ['水樽', '🧴'], ['雨傘', '☂️'], ['帽', '🧢'], ['球', '⚽']],
+          fruit: [[1, '🍊', '橙'], [5, '🍇', '提子'], [6, '🍓', '士多啤梨'], [3, '🍌', '香蕉'], [7, '🍎', '蘋果']],
+          turn: ['小美', '我', '小明', '小美', '我'],
+          memory: [['🐱', '🚗'], ['🌈', '⭐'], ['🍞', '🥛'], ['⚽', '🎈'], ['🧸', '🚲']]
+        },
+        upper: {
+          emotion: [['😳', '尷尬'], ['😟', '擔心'], ['😊', '自豪'], ['😣', '不舒服'], ['😌', '平靜']],
+          colour: [['📕', '紅色圖書館還書袋', 'red', '紅色'], ['🧃', '黃色郊遊水樽卡', 'yellow', '黃色'], ['🗂️', '藍色小組文件夾', 'blue', '藍色'], ['🖍️', '紅色標記筆', 'red', '紅色'], ['🏷️', '黃色活動標籤', 'yellow', '黃色']],
+          listen: [['時間表', '🗓️'], ['鉛筆盒', '✏️'], ['雨衣', '🧥'], ['便條', '📝'], ['集合卡', '📍']],
+          fruit: [[4, '🍐', '梨'], [6, '🍎', '蘋果'], [8, '🥤', '飲品'], [9, '🍌', '香蕉'], [12, '🍊', '橙']],
+          turn: ['小美', '小明', '我', '小美', '小明'],
+          memory: [['🚌', '📚'], ['🧴', '🧢'], ['📒', '✏️'], ['🍎', '🥪'], ['🏆', '🎨']]
+        },
+        junior: {
+          emotion: [['😟', '擔心'], ['😠', '生氣'], ['🙂', '還可以'], ['😌', '放鬆'], ['😞', '受挫']],
+          colour: [['🗂️', '紅色截止日期文件夾', 'red', '紅色'], ['📘', '藍色閱讀筆記', 'blue', '藍色'], ['🧾', '黃色活動收據夾', 'yellow', '黃色'], ['📌', '紅色重要提示卡', 'red', '紅色'], ['🗒️', '黃色待辦清單', 'yellow', '黃色']],
+          listen: [['車票', '🎫'], ['學生證', '🪪'], ['集合表', '📋'], ['水樽', '🧴'], ['筆記簿', '📓']],
+          fruit: [[5, '🥪', '三文治'], [7, '🥤', '飲品'], [9, '🍎', '蘋果'], [10, '🍌', '香蕉'], [12, '🍊', '橙']],
+          turn: ['紀錄員', '組長', '我', '紀錄員', '組長'],
+          memory: [['🎫', '🚌'], ['📍', '⏰'], ['🪪', '📋'], ['💳', '🧴'], ['📚', '✂️']]
+        },
+        senior: {
+          emotion: [['😟', '擔心'], ['😠', '生氣'], ['🙂', '還可以'], ['😌', '放鬆'], ['😳', '尷尬']],
+          colour: [['📕', '紅色緊急提示卡', 'red', '紅色'], ['💼', '藍色實習文件夾', 'blue', '藍色'], ['🧾', '黃色收據文件套', 'yellow', '黃色'], ['📌', '紅色到期提醒', 'red', '紅色'], ['🗒️', '黃色工作清單', 'yellow', '黃色']],
+          listen: [['報到時間', '⏰'], ['交通卡', '💳'], ['工作證', '🪪'], ['地址卡', '📍'], ['安全指引', '🦺']],
+          fruit: [[4, '🥪', '三文治'], [7, '🥛', '飲品'], [8, '🍎', '水果'], [10, '🍌', '香蕉'], [12, '🍊', '橙']],
+          turn: ['同事', '主管', '我', '同事', '主管'],
+          memory: [['💼', '⏰'], ['🪪', '🚌'], ['🧤', '🧹'], ['📋', '🖊️'], ['🏢', '📍']]
+        }
+      };
+      const GENERAL_POSITION_PATTERNS = {
+        emotion: [[1, 2, 0, 1, 0, 2, 1, 0], [2, 0, 1, 2, 1, 0, 2, 0], [0, 2, 1, 0, 1, 2, 0, 2], [1, 0, 2, 1, 2, 0, 1, 0]],
+        colour: [[2, 0, 1, 2, 1, 0, 2, 0], [1, 2, 0, 1, 0, 2, 1, 0], [0, 1, 2, 0, 2, 1, 0, 2], [2, 1, 0, 2, 0, 1, 2, 0]],
+        listen: [[2, 0, 1, 2, 1, 0, 2, 0], [1, 2, 0, 1, 0, 2, 1, 0], [0, 1, 2, 0, 2, 1, 0, 2], [2, 1, 0, 2, 0, 1, 2, 0]],
+        turn: [[1, 0, 2, 1, 2, 0, 1, 0], [0, 2, 1, 0, 1, 2, 0, 2], [2, 0, 1, 2, 1, 0, 2, 0], [1, 2, 0, 1, 0, 2, 1, 0]],
+        weather: [[2, 0, 1, 2, 1, 0, 2, 0], [1, 0, 2, 1, 2, 0, 1, 0], [0, 2, 1, 0, 1, 2, 0, 2], [2, 1, 0, 2, 0, 1, 2, 0]],
+        signal: [[1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1]]
+      };
+      const generalStageIndex = (stage) => ['lower', 'upper', 'junior', 'senior'].indexOf(stage);
+      const generalPeople = (stage) => stage === 'junior' ? [['🧑‍🏫', '組長'], ['🧑‍💻', '紀錄員'], ['🧑', '我']] : stage === 'senior' ? [['🧑‍💼', '主管'], ['🧑‍🔧', '同事'], ['🧑', '我']] : [['🧒', '小明'], ['👧', '小美'], ['🧑', '我']];
+      function choiceSet(answer, pool, offset = 0) { const others = pool.filter((item) => item[1] !== answer).slice(offset % Math.max(1, pool.length - 1), (offset % Math.max(1, pool.length - 1)) + 2); while (others.length < 2) others.push(...pool.filter((item) => item[1] !== answer).slice(0, 2 - others.length)); return [[...pool.find((item) => item[1] === answer)], ...others.map((item) => [...item])]; }
+      function addGeneralExtras(target, stage) {
+        const extras = GENERAL_EXTRA_CONTENT[stage]; const stageIndex = generalStageIndex(stage);
+        ['emotion', 'colour', 'listen', 'fruit', 'turn', 'memory'].forEach((id) => {
+          const game = Array.isArray(target) ? target.find((item) => item.id === id) : target?.[id]; if (!game || !extras?.[id]) return;
+          if (id === 'emotion') { const pool = [...game.rounds.map((round) => [round.target, round.word]), ...extras.emotion]; game.rounds.push(...extras.emotion.map(([target, word], index) => ({ target, word, choices: choiceSet(word, pool, index + 1), answer: word }))); }
+          if (id === 'colour') game.rounds.push(...extras.colour.map(([item, name, color, label]) => ({ item, name, color, label })));
+          if (id === 'listen') { const pool = [...game.rounds.map((round) => [round.choices.find((choice) => choice[1] === round.word)?.[0] || '📝', round.word]), ...extras.listen.map(([word, emoji]) => [emoji, word])]; game.rounds.push(...extras.listen.map(([word, emoji], index) => ({ word, listenText: `請找出${word}。`, choices: choiceSet(word, pool, index + 2) }))); }
+          if (id === 'fruit') game.rounds.push(...extras.fruit.map(([count, itemEmoji, itemLabel]) => ({ count, itemEmoji, itemLabel })));
+          if (id === 'turn') game.rounds.push(...extras.turn.map((person) => ({ person, people: generalPeople(stage), answer: person })));
+          if (id === 'memory') game.rounds.push(...extras.memory.map(([first, second]) => ({ cards: [first, first, second, second] })));
+          if (GENERAL_POSITION_PATTERNS[id]) { game.answerPositionStrategy = 'irregular-balanced'; game.answerPositionPattern = GENERAL_POSITION_PATTERNS[id][stageIndex]; }
+          if (id === 'turn') game.rounds.forEach((round) => { round.answer = round.person; });
+          if (id === 'listen') game.rounds.forEach((round) => { round.answer = round.word; });
+          if (['emotion', 'listen', 'weather'].includes(id)) game.rounds.forEach((round, index) => { const pattern = game.answerPositionPattern; const answerIndex = round.choices?.findIndex((choice) => choice[1] === round.answer); const position = pattern?.[index % pattern.length]; if (answerIndex >= 0 && Number.isInteger(position) && position >= 0 && position < round.choices.length) { const choices = [...round.choices]; const [correct] = choices.splice(answerIndex, 1); choices.splice(position, 0, correct); round.choices = choices; } });
+        });
+        ['weather', 'signal'].forEach((id) => { const game = Array.isArray(target) ? target.find((item) => item.id === id) : target?.[id]; if (game) { game.answerPositionStrategy = id === 'signal' ? 'binary-alternating' : 'irregular-balanced'; game.answerPositionPattern = GENERAL_POSITION_PATTERNS[id][stageIndex]; if (id === 'weather') game.rounds.forEach((round, index) => { const answerIndex = round.choices.findIndex((choice) => choice[1] === round.answer); const position = game.answerPositionPattern[index]; if (answerIndex >= 0) { const choices = [...round.choices]; const [correct] = choices.splice(answerIndex, 1); choices.splice(position, 0, correct); round.choices = choices; } }); } });
+      }
+      addGeneralExtras(gameLibrary, 'lower');
+      Object.entries(stageTasks).forEach(([stage, tasks]) => addGeneralExtras(tasks, stage));
+
       const spldTraining = { id: 'spld', category: 'cognition', categoryName: '初小 · SpLD 讀寫訓練', tone: 'purple', icon: '字', title: '初小讀寫基礎練習', description: '12 關語音、字形、詞語與短文理解基礎練習', tag: 'P1–P3 · 基礎 12 關', supports: ['1'], rounds: [
         { id: 'P1-SPLD-01', band: 'P1 · 語音覺識', prompt: '哪個字和「花」的第一個聲音一樣？', choices: ['火', '馬', '書'], answer: '火', instruction: '請聽一聽「花」，找出開頭聲音一樣的字。', clue: '慢慢讀：「花」是 faa；「火」是 fo。兩個字開頭都有 f 聲。', success: '答對了！你聽到相同的開頭聲音。' },
         { id: 'P1-SPLD-02', band: 'P1 · 部件辨識', prompt: '「晴」字的左邊是哪個部件？', context: '目標字：<strong>晴</strong>', choices: ['日', '月', '目'], answer: '日', instruction: '請看「晴」字，找出它左邊的部件。', clue: '把「晴」分開看：左邊像太陽，是「日」字旁。', success: '做得好！你找到「晴」的日字旁。' },
@@ -834,35 +899,39 @@
           return stageFrame(`<span class="spld-band">${round.band}</span><br>${round.prompt}`, `${reading}${tracker}<div class="spld-focus">讀寫焦點：${round.band}</div>${controls}${visual}${hint}<div class="spld-choice-grid">${round.choices.map(choice => `<button class="spld-answer" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div>`, true, '先看紫色視覺步驟，再慢讀關鍵詞和選項。');
         }
         if (id === 'emotion') {
-          return stageFrame(`找出和這張一樣的心情：<span class="sr-only">${round.word}</span>`, `<div class="match-target" aria-label="目標表情 ${round.word}">${round.target}</div><div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
+          return stageFrame(`找出和這張一樣的心情：<span class="sr-only">${round.word}</span>`, `<div class="match-target" aria-label="目標表情 ${round.word}">${round.target}</div><div class="answer-grid">${orderedRoundChoices(round).map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
         }
         if (id === 'colour') {
-          return stageFrame(`把「${round.name}」放到${round.label}盒。`, `<div class="sort-scene"><div class="sort-item" draggable="true" data-sort-item data-sen-drag-source tabindex="0" aria-label="${round.name}，可拖到顏色盒，也可直接按顏色盒">${round.item}</div><div class="basket-row"><button class="basket red" type="button" data-colour="red" data-sen-drop-zone="colour"><span class="basket-emoji">🧺</span>紅色盒</button><button class="basket yellow" type="button" data-colour="yellow" data-sen-drop-zone="colour"><span class="basket-emoji">🧺</span>黃色盒</button><button class="basket blue" type="button" data-colour="blue" data-sen-drop-zone="colour"><span class="basket-emoji">🧺</span>藍色盒</button></div></div>`);
+          const colourChoices = orderedRoundChoices({ choices: [['🧺', 'red'], ['🧺', 'yellow'], ['🧺', 'blue']], answer: round.color });
+          const colourLabels = { red: '紅色盒', yellow: '黃色盒', blue: '藍色盒' };
+          return stageFrame(`把「${round.name}」放到${round.label}盒。`, `<div class="sort-scene"><div class="sort-item" draggable="true" data-sort-item data-sen-drag-source tabindex="0" aria-label="${round.name}，可拖到顏色盒，也可直接按顏色盒">${round.item}</div><div class="basket-row">${colourChoices.map(([, colour]) => `<button class="basket ${colour}" type="button" data-colour="${colour}" data-sen-drop-zone="colour"><span class="basket-emoji">🧺</span>${colourLabels[colour]}</button>`).join('')}</div></div>`);
         }
         if (id === 'routine') {
-          return stageFrame(`把「${round.title}」的三個步驟放進小火車。`, `<div class="sequence-board"><div class="sequence-slots" id="sequenceSlots">${[1, 2, 3].map(index => `<div class="sequence-slot" data-sequence-slot="${index - 1}" data-sen-drop-zone="routine"><span class="slot-number">${index}</span><span>第 ${index} 步</span></div>`).join('')}</div><div class="sequence-options" id="sequenceOptions">${shuffle(round.cards).map(([emoji, label], index) => `<button class="sequence-card" type="button" data-index="${index}" data-emoji="${emoji}" data-label="${label}" draggable="true" data-sen-drag-source><span>${emoji}</span>${label}</button>`).join('')}</div></div>`);
+          const order = [[1, 2, 0], [2, 0, 1], [1, 0, 2], [2, 1, 0], [0, 2, 1], [1, 2, 0], [2, 0, 1], [1, 0, 2]][roundIndex % 8]; const visibleCards = order.map((cardIndex) => round.cards[cardIndex]);
+          return stageFrame(`把「${round.title}」的三個步驟放進小火車。`, `<div class="sequence-board"><div class="sequence-slots" id="sequenceSlots">${[1, 2, 3].map(index => `<div class="sequence-slot" data-sequence-slot="${index - 1}" data-sen-drop-zone="routine"><span class="slot-number">${index}</span><span>第 ${index} 步</span></div>`).join('')}</div><div class="sequence-options" id="sequenceOptions">${visibleCards.map(([emoji, label], index) => `<button class="sequence-card" type="button" data-index="${index}" data-emoji="${emoji}" data-label="${label}" draggable="true" data-sen-drag-source><span>${emoji}</span>${label}</button>`).join('')}</div></div>`);
         }
         if (id === 'listen') {
-          return stageFrame(round.listenText || '按喇叭聽一聽，再點選正確圖片。', `<button class="listen-orb" id="listenButton" type="button" aria-label="播放詞語">🔊</button><div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
+          return stageFrame(round.listenText || '按喇叭聽一聽，再點選正確圖片。', `<button class="listen-orb" id="listenButton" type="button" aria-label="播放詞語">🔊</button><div class="answer-grid">${orderedRoundChoices({ ...round, answer: round.word }).map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
         }
         if (id === 'fruit') {
           const itemEmoji = round.itemEmoji || '🍎'; const itemLabel = round.itemLabel || '蘋果';
           return stageFrame(`購物清單：請拿 <strong>${round.count}</strong> 個${itemLabel}。每次拿一個，慢慢數。`, `<div class="counter-layout"><button class="fruit-button" id="fruitButton" type="button" aria-label="加入一個${itemLabel}">${itemEmoji}</button><div class="bag-panel"><div class="bag" id="fruitBag"></div><div class="count-number" id="fruitCount">0 個${itemLabel}</div><div class="count-actions"><button class="minus-button" id="minusFruit" type="button">− 拿走一個</button><button class="done-button" id="checkFruit" type="button">剛剛好</button></div></div></div>`);
         }
         if (id === 'signal') {
-          const active = round.light;
-          return stageFrame(round.prompt, `<div class="signal" aria-label="${active === 'red' ? '紅燈' : '綠燈'}"><div class="signal-light ${active === 'red' ? 'active red' : ''}"></div><div class="signal-light ${active === 'green' ? 'active green' : ''}"></div></div><div class="choice-pill-row"><button class="choice-pill stop" type="button" data-answer="停一停"><b>✋</b>停一停</button><button class="choice-pill go" type="button" data-answer="可以走"><b>▶</b>可以走</button></div>`);
+          const active = round.light; const visibleChoices = orderedRoundChoices({ choices: [['✋', '停一停'], ['▶', '可以走']], answer: round.answer });
+          return stageFrame(round.prompt, `<div class="signal" aria-label="${active === 'red' ? '紅燈' : '綠燈'}"><div class="signal-light ${active === 'red' ? 'active red' : ''}"></div><div class="signal-light ${active === 'green' ? 'active green' : ''}"></div></div><div class="choice-pill-row">${visibleChoices.map(([icon, label]) => `<button class="choice-pill ${label === '停一停' ? 'stop' : 'go'}" type="button" data-answer="${label}"><b>${icon}</b>${label}</button>`).join('')}</div>`);
         }
         if (id === 'turn') {
-          return stageFrame(`玩具正傳給誰？請找出「${round.person}」。`, `<div class="turn-stage">${round.people.map(([emoji, name]) => `<button class="turn-person ${name === round.person ? 'focused' : ''}" type="button" data-answer="${name}"><span class="avatar">${emoji}</span>${name}<span class="turn-arrow">↑ 輪到你</span></button>`).join('')}</div>`);
+          const visiblePeople = orderedRoundChoices({ choices: round.people, answer: round.person });
+          return stageFrame(`玩具正傳給誰？請找出「${round.person}」。`, `<div class="turn-stage">${visiblePeople.map(([emoji, name]) => `<button class="turn-person ${name === round.person ? 'focused' : ''}" type="button" data-answer="${name}"><span class="avatar">${emoji}</span>${name}<span class="turn-arrow">↑ 輪到你</span></button>`).join('')}</div>`);
         }
         if (id === 'memory') {
-          const cards = shuffle(round.cards.map((emoji, index) => ({ emoji, key: `${emoji}-${index}` })));
+          const order = [[0, 2, 1, 3], [2, 0, 3, 1], [1, 3, 0, 2], [3, 1, 2, 0], [0, 3, 1, 2], [2, 1, 3, 0], [1, 0, 2, 3], [3, 2, 0, 1]][roundIndex % 8]; const source = round.cards.map((emoji, index) => ({ emoji, key: `${emoji}-${index}` })); const cards = order.map((cardIndex) => source[cardIndex]);
           gameState.memoryCards = cards;
           return stageFrame('翻開兩張一樣的寶盒卡。', `<div class="memory-board" id="memoryBoard">${cards.map((card, index) => `<button class="memory-card" type="button" data-index="${index}" aria-label="寶盒卡 ${index + 1}">?</button>`).join('')}</div>`);
         }
         if (id === 'weather') {
-          return stageFrame(`今天是「${round.label}」，帶甚麼最合適？`, `<div class="weather-display" aria-label="${round.label}">${round.weather}</div><div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
+          return stageFrame(`今天是「${round.label}」，帶甚麼最合適？`, `<div class="weather-display" aria-label="${round.label}">${round.weather}</div><div class="answer-grid">${orderedRoundChoices(round).map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);
         }
         if (id === 'path') {
           return stageFrame(round.prompt || '跟著小路選方向，帶小朋友平安回家。', `<div class="path-board" id="pathBoard"></div><div class="path-buttons"><button class="path-button" type="button" data-direction="左轉"><span>←</span>左轉</button><button class="path-button" type="button" data-direction="直走"><span>↑</span>直走</button><button class="path-button" type="button" data-direction="右轉"><span>→</span>右轉</button></div>`);
@@ -926,7 +995,7 @@
           $$('[data-sequence-slot]').forEach((slot) => { slot.addEventListener('dragover', (event) => event.preventDefault()); slot.addEventListener('drop', (event) => { event.preventDefault(); const next = gameState.selectedSequence.length; if (Number(slot.dataset.sequenceSlot) !== next) { $('#gameFeedback').className = 'feedback try'; $('#gameFeedback').textContent = `先放到第 ${next + 1} 步。`; return; } if (draggedCard) chooseSequence(draggedCard); draggedCard = null; }); });
         }
         if (id === 'fruit') {
-          $('#fruitButton').addEventListener('click', () => { if (gameState.locked) return; gameState.fruitCount = Math.min(6, gameState.fruitCount + 1); renderFruit(); makeTone(540, .07, .015); });
+          $('#fruitButton').addEventListener('click', () => { if (gameState.locked) return; gameState.fruitCount = Math.min(round.count, gameState.fruitCount + 1); renderFruit(); makeTone(540, .07, .015); });
           $('#minusFruit').addEventListener('click', () => { if (gameState.locked) return; gameState.fruitCount = Math.max(0, gameState.fruitCount - 1); renderFruit(); });
           $('#checkFruit').addEventListener('click', () => { evaluate($('#checkFruit'), gameState.fruitCount === round.count, gameState.fruitCount === round.count ? '剛剛好！你數得很仔細。' : `再數一次，現在有 ${gameState.fruitCount} 個。`); });
           renderFruit();
