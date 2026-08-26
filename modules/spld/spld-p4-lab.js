@@ -5,6 +5,9 @@
     const next = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
     const counts = [0, 0, 0].map((_, position) => Math.floor(total / 3) + (position < total % 3 ? 1 : 0));
     const output = [];
+    const initialPositions = { morpheme: 1, collocation: 2, context: 0, classifier: 1, punctuation: 2, keyword: 0, fraction: 2, mindmap: 1 };
+    const preferredFirst = initialPositions[key.split('-')[0]];
+    if (Number.isInteger(preferredFirst) && counts[preferredFirst] > 0) { output.push(preferredFirst); counts[preferredFirst] -= 1; }
     while (output.length < total) {
       const previous = output.at(-1);
       const highest = Math.max(...counts.filter((count, position) => position !== previous));
@@ -13,7 +16,7 @@
       output.push(selected);
       counts[selected] -= 1;
     }
-    if (output.length > 1 && output.every((position, index) => position === index % 3)) [output[0], output[1]] = [output[1], output[0]];
+    if (output.length >= 3 && output.slice(0, 3).every((position, index) => position === index)) [output[1], output[2]] = [output[2], output[1]];
     return output;
   }
 
@@ -374,7 +377,7 @@
   }
 
   function morphemeMarkup(round) {
-    return `<div class="spld-p4-chain"><div class="spld-p4-core"><span>核心語素</span><strong>${round.core}</strong></div><span class="spld-p4-arrow">→</span><div class="spld-p4-category"><span>意思類別</span><strong>${round.category}</strong></div></div><p class="spld-p4-prompt">${round.prompt}</p><p class="spld-p4-meaning">詞彙網絡：${round.meaning}</p><div class="spld-p4-choice-grid">${round.choices.map((choice, index) => `<button type="button" class="spld-p4-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
+    return `<div class="spld-p4-chain"><div class="spld-p4-core"><span>核心語素</span><strong>${round.core}</strong></div><span class="spld-p4-arrow">→</span><div class="spld-p4-category"><span>意思類別</span><strong>${round.category}</strong></div></div><p class="spld-p4-prompt">${round.prompt}</p><p class="spld-p4-meaning">詞彙網絡：${round.meaning}</p><div class="spld-p4-choice-grid">${visibleChoices(round.choices, round.answer).map((choice, index) => `<button type="button" class="spld-p4-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
   }
 
   function sentenceMarkup(round) {
@@ -384,19 +387,31 @@
   }
 
   function collocationMarkup(round) {
-    return `<div class="spld-p4-collocation-scene"><span>動詞</span><strong>${round.verb}</strong><em>＋</em><b>？</b></div><p class="spld-p4-prompt">「${round.verb}」最適合配哪一個詞語？</p><p class="spld-p4-meaning">把常一起出現的詞語配好，讀起來會更自然。</p>${choiceGridMarkup(round.choices)}`;
+    return `<div class="spld-p4-collocation-scene"><span>動詞</span><strong>${round.verb}</strong><em>＋</em><b>？</b></div><p class="spld-p4-prompt">「${round.verb}」最適合配哪一個詞語？</p><p class="spld-p4-meaning">把常一起出現的詞語配好，讀起來會更自然。</p>${choiceGridMarkup(round.choices, round.target)}`;
   }
 
   function contextMarkup(round) {
-    return `<div class="spld-p4-context-scene"><span>${round.picture}</span><p>${round.sentence.replace('＿＿', '<strong>＿＿</strong>')}</p></div><p class="spld-p4-prompt">根據前後句和圖像，選出最合適的關鍵詞。</p>${choiceGridMarkup(round.choices)}`;
+    return `<div class="spld-p4-context-scene"><span>${round.picture}</span><p>${round.sentence.replace('＿＿', '<strong>＿＿</strong>')}</p></div><p class="spld-p4-prompt">根據前後句和圖像，選出最合適的關鍵詞。</p>${choiceGridMarkup(round.choices, round.target)}`;
   }
 
   function classifierMarkup(round) {
-    return `<div class="spld-p4-classifier-scene"><span>${round.picture}</span><strong>一＿＿${round.noun}</strong></div><p class="spld-p4-prompt">「${round.noun}」應該用哪一個精確量詞？</p><p class="spld-p4-meaning">慢慢把量詞和名詞一起讀一遍。</p>${choiceGridMarkup(round.choices)}`;
+    return `<div class="spld-p4-classifier-scene"><span>${round.picture}</span><strong>一＿＿${round.noun}</strong></div><p class="spld-p4-prompt">「${round.noun}」應該用哪一個精確量詞？</p><p class="spld-p4-meaning">慢慢把量詞和名詞一起讀一遍。</p>${choiceGridMarkup(round.choices, round.target)}`;
   }
 
-  function choiceGridMarkup(choices) {
-    return `<section class="spld-p4-mission-board" aria-label="詞彙任務台"><div class="spld-p4-choice-dock" data-p4-choice-dock role="img" aria-label="任務格。可把策略卡拖到這裏，或直接點選策略卡。"><span>🎯</span><strong>任務格</strong><small>把最合適的詞卡送進來</small></div><p>可拖放策略卡；不想拖放時，直接點選亦可。</p><div class="spld-p4-choice-grid">${choices.map((choice, index) => `<button type="button" class="spld-p4-choice" data-choice="${choice}" draggable="true"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div></section>`;
+  function visibleChoices(choices, answer) {
+    const source = [...choices];
+    if (!IRREGULAR_CHOICE_ACTIVITIES.has(activeKey) || !answer || source.length !== 3) return source;
+    const targetPosition = answerPositionPattern(currentRounds().length, `${activeKey}-${selectedDifficulty}`)[roundIndex];
+    const answerIndex = source.indexOf(answer);
+    if (answerIndex < 0 || targetPosition === undefined) return source;
+    const output = Array(source.length); output[targetPosition] = answer;
+    let sourceIndex = 0;
+    for (let position = 0; position < output.length; position += 1) { if (position === targetPosition) continue; while (sourceIndex === answerIndex) sourceIndex += 1; output[position] = source[sourceIndex]; sourceIndex += 1; }
+    return output;
+  }
+
+  function choiceGridMarkup(choices, answer) {
+    return `<section class="spld-p4-mission-board" aria-label="詞彙任務台"><div class="spld-p4-choice-dock" data-p4-choice-dock role="img" aria-label="任務格。可把策略卡拖到這裏，或直接點選策略卡。"><span>🎯</span><strong>任務格</strong><small>把最合適的詞卡送進來</small></div><p>可拖放策略卡；不想拖放時，直接點選亦可。</p><div class="spld-p4-choice-grid">${visibleChoices(choices, answer).map((choice, index) => `<button type="button" class="spld-p4-choice" data-choice="${choice}" draggable="true"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div></section>`;
   }
 
   function prepareMemoryCards(round) {

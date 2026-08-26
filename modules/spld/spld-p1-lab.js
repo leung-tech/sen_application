@@ -1,5 +1,5 @@
 (function () {
-  // 初小 SpLD 答案位置原則：每項八關保持左 3／中 3／右 2，但不用左→中→右的可預測循環。
+  // 初小 SpLD 畫面層答案位置原則：每項八關保持左 3／中 3／右 2，但不用左→中→右的可預測循環。
   const ANSWER_POSITION_PATTERNS = {
     spotting: [2, 0, 1, 2, 1, 0, 1, 0],
     rhyme: [1, 2, 0, 1, 0, 2, 0, 1],
@@ -8,8 +8,15 @@
     train: [2, 1, 0, 2, 0, 1, 0, 1],
     semantic: [1, 2, 0, 1, 0, 2, 1, 0],
     numberline: [0, 2, 1, 2, 0, 1, 0, 1],
-    sentenceTrain: [2, 0, 1, 0, 2, 1, 0, 1]
+    sentenceTrain: [2, 0, 1, 0, 2, 1, 0, 1],
+    rhyme: [1, 0, 2, 1, 2, 0, 1, 0]
   };
+  // 部件拼盤是雙部件任務，以下順序表示每一關「部件列」顯示原資料的哪一項。
+  // 它避免兩個正確部件總是佔據最左兩格，並保持每關可重現。
+  const ASSEMBLY_PART_ORDERS = [
+    [0, 2, 1], [2, 0, 1], [0, 1, 2], [2, 0, 1],
+    [0, 2, 1], [0, 1, 2], [2, 0, 1], [0, 2, 1]
+  ];
 
   const activities = {
     assembly: {
@@ -192,6 +199,29 @@
     return active.rounds[roundIndex];
   }
 
+  function displayedChoices(round) {
+    const choices = [...(round.choices || [])];
+    const pattern = ANSWER_POSITION_PATTERNS[active && Object.keys(activities).find((key) => activities[key] === active)];
+    const targetPosition = pattern?.[roundIndex];
+    const targetIndex = choices.indexOf(round.target);
+    if (targetPosition === undefined || targetIndex < 0 || targetPosition >= choices.length) return choices;
+    const ordered = Array(choices.length);
+    ordered[targetPosition] = round.target;
+    let sourceIndex = 0;
+    for (let index = 0; index < ordered.length; index += 1) {
+      if (index === targetPosition) continue;
+      while (sourceIndex === targetIndex) sourceIndex += 1;
+      ordered[index] = choices[sourceIndex];
+      sourceIndex += 1;
+    }
+    return ordered;
+  }
+
+  function displayedAssemblyParts(round) {
+    const order = ASSEMBLY_PART_ORDERS[roundIndex] || [0, 1, 2];
+    return order.map((index) => round.parts[index]);
+  }
+
   function labShell(content) {
     return `<div class="spld-p1-lab-backdrop" role="presentation"><section class="spld-p1-lab" role="dialog" aria-modal="true" aria-label="初小讀寫實驗室"><button class="spld-lab-close" type="button" aria-label="關閉初小讀寫實驗室">×</button>${content}</section></div>`;
   }
@@ -224,18 +254,18 @@
 
     if (active === activities.assembly) {
       const slotLabels = round.guide.includes('上') ? ['上面', '下面'] : ['左邊', '右邊'];
-      const placementInstruction = round.guide.includes('上') ? '可把部件拖到上面或下面的位置；也可按一個部件，它會放進下一個空格。' : '可把部件拖到左右位置；也可按一個部件，它會放進下一個空格。';
-      activityMarkup = `<div class="spld-assembly-guide"><span>目標字</span><strong>${round.target}</strong><small>${round.guide} 結構</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-assembly-slots" aria-label="部件拼盤"><button type="button" class="spld-part-slot" data-slot="0" data-sen-drop-zone="part"><span>${slotLabels[0]}</span><strong>${selectedParts[0] || '？'}</strong></button><span class="spld-plus">＋</span><button type="button" class="spld-part-slot" data-slot="1" data-sen-drop-zone="part"><span>${slotLabels[1]}</span><strong>${selectedParts[1] || '？'}</strong></button></div><p class="spld-lab-instruction">${placementInstruction}</p><div class="spld-part-bank">${round.parts.map((part) => `<button type="button" class="spld-part-piece ${selectedParts.includes(part) ? 'used' : ''}" data-part="${part}" draggable="${!selectedParts.includes(part)}" data-sen-drag-source ${selectedParts.includes(part) ? 'disabled' : ''}>${part}</button>`).join('')}</div>`;
+      const placementInstruction = round.guide.includes('上') ? '可把部件拖到上面或下面的位置；也可按一個部件，它會放到合適的位置。' : '可把部件拖到左右位置；也可按一個部件，它會放到合適的位置。';
+      activityMarkup = `<div class="spld-assembly-guide"><span>目標字</span><strong>${round.target}</strong><small>${round.guide} 結構</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-assembly-slots" aria-label="部件拼盤"><button type="button" class="spld-part-slot" data-slot="0" data-sen-drop-zone="part"><span>${slotLabels[0]}</span><strong>${selectedParts[0] || '？'}</strong></button><span class="spld-plus">＋</span><button type="button" class="spld-part-slot" data-slot="1" data-sen-drop-zone="part"><span>${slotLabels[1]}</span><strong>${selectedParts[1] || '？'}</strong></button></div><p class="spld-lab-instruction">${placementInstruction}</p><div class="spld-part-bank">${displayedAssemblyParts(round).map((part) => `<button type="button" class="spld-part-piece ${selectedParts.includes(part) ? 'used' : ''}" data-part="${part}" draggable="${!selectedParts.includes(part)}" data-sen-drag-source ${selectedParts.includes(part) ? 'disabled' : ''}>${part}</button>`).join('')}</div>`;
     } else if (active === activities.stroke) {
       activityMarkup = `<div class="spld-stroke-target"><span>目標字</span><strong>${round.target}</strong><small>${round.steps.length} 筆</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-stroke-slots">${round.steps.map((_, index) => `<div class="spld-stroke-slot ${selectedStrokes[index] ? 'filled' : ''}"><b>${index + 1}</b><strong>${selectedStrokes[index]?.label || '？'}</strong></div>`).join('')}</div><div class="spld-stroke-options">${strokeOptions.map((step) => { const used = selectedStrokes.some((selected) => selected.id === step.id); return `<button type="button" class="spld-stroke-option ${used ? 'used' : ''}" data-stroke="${step.id}" ${used ? 'disabled' : ''} aria-label="選擇第 ${step.id.split('-').at(-1)} 個「${step.label}」筆劃">${step.label}</button>`; }).join('')}</div>`;
     } else if (active === activities.triple) {
-      activityMarkup = `<div class="spld-triple-scene"><span class="spld-triple-picture" aria-label="圖片提示">${round.picture}</span><button type="button" class="spld-triple-listen" id="spldTripleListen">🔊 聽字詞</button><small>${round.meaning}</small></div><p class="spld-lab-prompt">${round.prompt}</p><div class="spld-spotting-choices">${round.choices.map((choice, index) => `<button type="button" class="spld-spotting-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
+      activityMarkup = `<div class="spld-triple-scene"><span class="spld-triple-picture" aria-label="圖片提示">${round.picture}</span><button type="button" class="spld-triple-listen" id="spldTripleListen">🔊 聽字詞</button><small>${round.meaning}</small></div><p class="spld-lab-prompt">${round.prompt}</p><div class="spld-spotting-choices">${displayedChoices(round).map((choice, index) => `<button type="button" class="spld-spotting-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
     } else if (active === activities.rhyme) {
-      activityMarkup = `<div class="spld-sound-scene"><span>🎧</span><strong>聽一聽：「${round.listen}」</strong><button type="button" id="spldRhymeListen">🔊 再聽一次</button><small>${round.meaning}</small></div><p class="spld-lab-prompt">${round.prompt}</p><div class="spld-spotting-choices">${round.choices.map((choice, index) => `<button type="button" class="spld-spotting-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
+      activityMarkup = `<div class="spld-sound-scene"><span>🎧</span><strong>聽一聽：「${round.listen}」</strong><button type="button" id="spldRhymeListen">🔊 再聽一次</button><small>${round.meaning}</small></div><p class="spld-lab-prompt">${round.prompt}</p><div class="spld-spotting-choices">${displayedChoices(round).map((choice, index) => `<button type="button" class="spld-spotting-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
     } else if (active === activities.radical) {
-      activityMarkup = `<div class="spld-radical-target"><span>${round.picture}</span><strong>${round.character}</strong><small>${round.meaning}</small></div><p class="spld-lab-prompt">${round.prompt}</p><div class="spld-radical-baskets">${round.choices.map((choice) => `<button type="button" class="spld-radical-basket" data-choice="${choice}"><span>${radicalBaskets[choice][0]}</span><strong>${choice}</strong><small>${radicalBaskets[choice][1]}籃子</small></button>`).join('')}</div>`;
+      activityMarkup = `<div class="spld-radical-target"><span>${round.picture}</span><strong>${round.character}</strong><small>${round.meaning}</small></div><p class="spld-lab-prompt">${round.prompt}</p><div class="spld-radical-baskets">${displayedChoices(round).map((choice) => `<button type="button" class="spld-radical-basket" data-choice="${choice}"><span>${radicalBaskets[choice][0]}</span><strong>${choice}</strong><small>${radicalBaskets[choice][1]}籃子</small></button>`).join('')}</div>`;
     } else {
-      activityMarkup = `<div class="spld-spotting-scene"><p>${round.sentence.replace('＿＿', '<strong class="spld-blank">？</strong>')}</p><small>${round.meaning}</small></div><p class="spld-lab-prompt">找出最適合放進空格的字。</p><div class="spld-spotting-choices">${round.choices.map((choice, index) => `<button type="button" class="spld-spotting-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
+      activityMarkup = `<div class="spld-spotting-scene"><p>${round.sentence.replace('＿＿', '<strong class="spld-blank">？</strong>')}</p><small>${round.meaning}</small></div><p class="spld-lab-prompt">找出最適合放進空格的字。</p><div class="spld-spotting-choices">${displayedChoices(round).map((choice, index) => `<button type="button" class="spld-spotting-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
     }
 
     const inner = `<div class="spld-lab-heading compact"><span class="spld-lab-kicker">${active.title} · ${active.focus}</span><h2>${active.icon} ${active.title}</h2><p>${active.description}</p></div>${progress}<div class="spld-lab-play-area">${activityMarkup}</div><div class="spld-lab-feedback" id="spldLabFeedback">慢慢看一看；不知道時可按提示。</div>${tools}`;
@@ -271,7 +301,12 @@
 
   function choosePart(part, preferredSlot = null) {
     if (selectedParts.includes(part)) return;
-    const slot = Number.isInteger(preferredSlot) && !selectedParts[preferredSlot] ? preferredSlot : selectedParts.findIndex((value) => !value);
+    const correctSlot = currentRound().answer.indexOf(part);
+    const slot = Number.isInteger(preferredSlot) && !selectedParts[preferredSlot]
+      ? preferredSlot
+      : correctSlot !== -1 && !selectedParts[correctSlot]
+        ? correctSlot
+        : selectedParts.findIndex((value) => !value);
     if (slot === -1) return;
     selectedParts[slot] = part;
     if (selectedParts.length === 2 && selectedParts.every(Boolean)) {

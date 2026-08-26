@@ -5,6 +5,9 @@
     const next = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
     const counts = [0, 0, 0].map((_, position) => Math.floor(total / 3) + (position < total % 3 ? 1 : 0));
     const output = [];
+    const initialPositions = { connector: 1, redundancy: 2, rhetoric: 0, idiom: 2, mainIdea: 1, vocabulary: 0, grammar: 1, examRadar: 2, chartText: 0 };
+    const preferredFirst = initialPositions[key];
+    if (Number.isInteger(preferredFirst) && counts[preferredFirst] > 0) { output.push(preferredFirst); counts[preferredFirst] -= 1; }
     while (output.length < total) {
       const previous = output.at(-1);
       const highest = Math.max(...counts.filter((count, position) => position !== previous));
@@ -13,7 +16,7 @@
       output.push(selected);
       counts[selected] -= 1;
     }
-    if (output.length > 1 && output.every((position, index) => position === index % 3)) [output[0], output[1]] = [output[1], output[0]];
+    if (output.length >= 3 && output.slice(0, 3).every((position, index) => position === index)) [output[1], output[2]] = [output[2], output[1]];
     return output;
   }
 
@@ -262,8 +265,18 @@
     return `<div class="spld-s1-tools" aria-label="低壓學習工具"><button type="button" id="spldS1Read" aria-label="朗讀本關題目" aria-pressed="false">🔊 朗讀題目</button><button type="button" id="spldS1Hint" aria-label="顯示解題提示">💡 看提示</button><button type="button" id="spldS1Back" aria-label="返回初中 SpLD 練習選單">← 換一項練習</button></div>`;
   }
 
+  function visibleChoices(choices) {
+    const source = [...choices]; const answer = currentRound()?.answer;
+    if (!IRREGULAR_CHOICE_ACTIVITIES.has(activeKey) || !answer || source.length !== 3) return source;
+    const targetPosition = answerPositionPattern(currentActivity().rounds.length, activeKey)[roundIndex]; const answerIndex = source.indexOf(answer);
+    if (answerIndex < 0 || targetPosition === undefined) return source;
+    const output = Array(source.length); output[targetPosition] = answer; let sourceIndex = 0;
+    for (let position = 0; position < output.length; position += 1) { if (position === targetPosition) continue; while (sourceIndex === answerIndex) sourceIndex += 1; output[position] = source[sourceIndex]; sourceIndex += 1; }
+    return output;
+  }
+
   function choiceGridMarkup(choices) {
-    return `<section class="spld-s1-mission-board" aria-label="閱讀任務控制台"><div class="spld-s1-choice-dock" data-s1-choice-dock role="img" aria-label="解題控制區。可把線索卡拖到這裏，或直接點選線索卡。"><span>🧭</span><div><strong>解題控制區</strong><small>把最符合文本的線索卡送進來</small></div></div><p>可拖放線索卡；不想拖放時，直接點選亦可。</p><div class="spld-s1-choice-grid">${choices.map((choice, index) => `<button type="button" class="spld-s1-choice" data-choice="${choice}" draggable="true" aria-label="選項 ${index + 1}：${choice}"><span aria-hidden="true">${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div></section>`;
+    return `<section class="spld-s1-mission-board" aria-label="閱讀任務控制台"><div class="spld-s1-choice-dock" data-s1-choice-dock role="img" aria-label="解題控制區。可把線索卡拖到這裏，或直接點選線索卡。"><span>🧭</span><div><strong>解題控制區</strong><small>把最符合文本的線索卡送進來</small></div></div><p>可拖放線索卡；不想拖放時，直接點選亦可。</p><div class="spld-s1-choice-grid">${visibleChoices(choices).map((choice, index) => `<button type="button" class="spld-s1-choice" data-choice="${choice}" draggable="true" aria-label="選項 ${index + 1}：${choice}"><span aria-hidden="true">${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div></section>`;
   }
 
   function connectorMarkup(round) {

@@ -5,6 +5,9 @@
     const next = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
     const counts = [0, 0, 0].map((_, position) => Math.floor(total / 3) + (position < total % 3 ? 1 : 0));
     const output = [];
+    const initialPositions = { polysemy: 1, loan: 2, argument: 0, functionWord: 2, academic: 1, surgery: 0, sq3r: 2, synthesis: 1, tone: 0, compare: 1 };
+    const preferredFirst = initialPositions[key];
+    if (Number.isInteger(preferredFirst) && counts[preferredFirst] > 0) { output.push(preferredFirst); counts[preferredFirst] -= 1; }
     while (output.length < total) {
       const previous = output.at(-1);
       const highest = Math.max(...counts.filter((count, position) => position !== previous));
@@ -13,7 +16,7 @@
       output.push(selected);
       counts[selected] -= 1;
     }
-    if (output.length > 1 && output.every((position, index) => position === index % 3)) [output[0], output[1]] = [output[1], output[0]];
+    if (output.length >= 3 && output.slice(0, 3).every((position, index) => position === index)) [output[1], output[2]] = [output[2], output[1]];
     return output;
   }
 
@@ -209,7 +212,8 @@
     document.querySelector('.spld-s4-close')?.addEventListener('click', closeLab);
     document.querySelectorAll('[data-s4-activity]').forEach((button) => button.addEventListener('click', () => startActivity(button.dataset.s4Activity)));
   }
-  function choiceMarkup(round) { return `<section class="spld-s4-mission-board" aria-label="論證與文言工房"><div class="spld-s4-choice-dock" data-s4-choice-dock role="img" aria-label="答案工位。可把解析卡拖到這裏，或直接點選解析卡。"><span>⚗️</span><div><strong>答案工位</strong><small>把最有根據的解析卡送進來</small></div></div><p>可拖放解析卡；不想拖放時，直接點選亦可。</p><div class="spld-s4-choice-grid ${currentActivity().layout === 'long' ? 'long' : ''}">${round.choices.map((choice, index) => `<button type="button" class="spld-s4-choice" data-s4-choice="${choice}" draggable="true" aria-label="選項 ${index + 1}：${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div></section>`; }
+  function visibleChoices(round) { const source = [...round.choices]; if (!IRREGULAR_CHOICE_ACTIVITIES.has(activeKey) || !round.answer || source.length !== 3) return source; const targetPosition = answerPositionPattern(currentActivity().rounds.length, activeKey)[roundIndex]; const answerIndex = source.indexOf(round.answer); if (answerIndex < 0 || targetPosition === undefined) return source; const output = Array(source.length); output[targetPosition] = round.answer; let sourceIndex = 0; for (let position = 0; position < output.length; position += 1) { if (position === targetPosition) continue; while (sourceIndex === answerIndex) sourceIndex += 1; output[position] = source[sourceIndex]; sourceIndex += 1; } return output; }
+  function choiceMarkup(round) { return `<section class="spld-s4-mission-board" aria-label="論證與文言工房"><div class="spld-s4-choice-dock" data-s4-choice-dock role="img" aria-label="答案工位。可把解析卡拖到這裏，或直接點選解析卡。"><span>⚗️</span><div><strong>答案工位</strong><small>把最有根據的解析卡送進來</small></div></div><p>可拖放解析卡；不想拖放時，直接點選亦可。</p><div class="spld-s4-choice-grid ${currentActivity().layout === 'long' ? 'long' : ''}">${visibleChoices(round).map((choice, index) => `<button type="button" class="spld-s4-choice" data-s4-choice="${choice}" draggable="true" aria-label="選項 ${index + 1}：${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div></section>`; }
   function renderRound() {
     const activity = currentActivity(); const round = currentRound(); const lab = document.querySelector('.spld-s4-lab');
     if (!lab) return;
