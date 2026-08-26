@@ -782,6 +782,15 @@
       function stageFrame(prompt, content, footer = true, feedbackText = '需要時可按「提示」，或再聽一次指令。') {
         return `<div class="prompt-label">一起試一試</div><div class="activity-prompt">${prompt}</div>${content}<div class="feedback" id="gameFeedback" role="status" aria-live="polite" aria-atomic="true">${feedbackText}</div>${footer ? `<div class="stage-footer"><button class="hint-button" id="hintButton" type="button">💡 聽解題提示</button><button class="hint-button" id="repeatButton" type="button">🔊 再聽一次</button></div>` : ''}`;
       }
+      function orderedRoundChoices(round) {
+        const choices = [...(round.choices || [])]; const pattern = activeGame?.answerPositionPattern; const position = pattern?.[roundIndex % pattern.length];
+        if (!Number.isInteger(position) || position < 0 || position >= choices.length) return choices;
+        const answerChoice = choices.find((choice) => choice[1] === round.answer);
+        if (!answerChoice) return choices;
+        const others = choices.filter((choice) => choice[1] !== round.answer); const shown = [];
+        for (let index = 0; index < choices.length; index += 1) shown[index] = index === position ? answerChoice : others.shift();
+        return shown;
+      }
       function renderActivity(id, round) {
         if (id === 'pathway-asd') {
           const strategy = `<aside class="asd-strategy" aria-label="社交策略卡"><span class="asd-strategy-label">社交策略卡</span><strong>${round.strategy}</strong><small>可以先看策略卡，再選擇最合適的回應。</small></aside>`;
@@ -789,7 +798,7 @@
         }
         if (id === 'pathway-id') {
           const guide = `<aside class="id-life-guide" aria-label="生活小步驟卡"><span class="id-life-guide-label">生活小步驟卡</span><strong>先看情境，再選安全、實用和有禮貌的下一步。</strong><small>每次只做一小步；不確定時，可以用清楚句子向可信任的大人求助。</small></aside>`;
-          return stageFrame(`<span class="id-band">${round.band}</span><br>${round.prompt}`, `<article class="scenario-context">${round.context}</article>${guide}<div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${escapeHTML(label)}"><span class="big-emoji">${emoji}</span><span class="caption">${escapeHTML(label)}</span></button>`).join('')}</div>`, true, '先看看藍色「生活小步驟卡」，再選擇下一步。');
+          return stageFrame(`<span class="id-band">${round.band}</span><br>${round.prompt}`, `<article class="scenario-context">${round.context}</article>${guide}<div class="answer-grid">${orderedRoundChoices(round).map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${escapeHTML(label)}"><span class="big-emoji">${emoji}</span><span class="caption">${escapeHTML(label)}</span></button>`).join('')}</div>`, true, '先看看藍色「生活小步驟卡」，再選擇下一步。');
         }
         if (id === 'pathway-gifted') {
           const guide = `<aside class="gifted-guide" aria-label="解難策略卡"><span class="gifted-guide-label">解難策略卡</span><strong>${round.strategy}</strong><small>可先找規律、列出條件或比較證據，再檢查自己的推論。</small></aside>`;

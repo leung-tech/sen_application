@@ -52,6 +52,13 @@
   const later = (fn, wait = 360) => window.setTimeout(fn, state?.reduceMotion ? 60 : wait);
   const stage = () => STAGES[options?.stage] || STAGES.lower;
   const game = () => GAMES[state?.game];
+  const orderedChoices = (item, gameId) => {
+    const choices = [...item.choices]; const pattern = ANSWER_POSITION_PATTERNS[gameId]; const position = pattern?.[state.round % pattern.length];
+    if (!Number.isInteger(position) || position < 0 || position >= choices.length || !choices.includes(item.answer)) return choices;
+    const others = choices.filter((choice) => choice !== item.answer); const shown = [];
+    for (let index = 0; index < choices.length; index += 1) shown[index] = index === position ? item.answer : others.shift();
+    return shown;
+  };
 
   function speak(text) {
     if (!state?.speech || !window.speechSynthesis || !text) return;
@@ -145,7 +152,7 @@
 
   function renderOutfit() {
     const item = roundItem(OUTFIT);
-    shell(GAMES.outfit.title, `窗外${item.weather}。小明要帶甚麼出街？`, `<div class="id8-task"><div class="id8-weather"><span>${item.sky}</span><div><b>窗外：${item.weather}</b><small>請為小明選一樣合適物品。</small></div></div><div class="id8-person"><span>🙂</span><div><b>小明</b><p>請把物品交給我。</p></div></div><div class="id8-choice-grid">${item.choices.map((choice) => `<button type="button" class="id8-choice" data-id8-outfit="${choice}">${choice}</button>`).join('')}</div></div>`, `今日${item.weather}。小明要帶甚麼出街？`);
+    shell(GAMES.outfit.title, `窗外${item.weather}。小明要帶甚麼出街？`, `<div class="id8-task"><div class="id8-weather"><span>${item.sky}</span><div><b>窗外：${item.weather}</b><small>請為小明選一樣合適物品。</small></div></div><div class="id8-person"><span>🙂</span><div><b>小明</b><p>請把物品交給我。</p></div></div><div class="id8-choice-grid">${orderedChoices(item, 'outfit').map((choice) => `<button type="button" class="id8-choice" data-id8-outfit="${choice}">${choice}</button>`).join('')}</div></div>`, `今日${item.weather}。小明要帶甚麼出街？`);
     qa('[data-id8-outfit]').forEach((button) => button.addEventListener('click', () => button.dataset.id8Outfit === item.answer ? correct(`對了，${item.answer}很合適。`, () => advance(renderOutfit)) : gentle(`再看看窗外的${item.weather}圖示。`)));
   }
 
@@ -158,7 +165,7 @@
 
   function renderSigns() {
     const item = roundItem(SIGNS);
-    shell(GAMES.signs.title, item.scene, `<div class="id8-task"><div class="id8-sign-scene"><span>${item.icon}</span><b>${item.scene}</b></div><div class="id8-choice-grid">${item.choices.map((choice) => `<button type="button" class="id8-choice" data-id8-sign="${choice}">${choice}</button>`).join('')}</div></div>`, item.scene);
+    shell(GAMES.signs.title, item.scene, `<div class="id8-task"><div class="id8-sign-scene"><span>${item.icon}</span><b>${item.scene}</b></div><div class="id8-choice-grid">${orderedChoices(item, 'signs').map((choice) => `<button type="button" class="id8-choice" data-id8-sign="${choice}">${choice}</button>`).join('')}</div></div>`, item.scene);
     qa('[data-id8-sign]').forEach((button) => button.addEventListener('click', () => button.dataset.id8Sign === item.answer ? correct('你選擇了安全又合適的做法。', () => advance(renderSigns)) : gentle('再看看大圖示，想想甚麼做法較安全。')));
   }
 
@@ -170,7 +177,7 @@
 
   function renderSchedule() {
     const item = roundItem(SCHEDULE);
-    shell(GAMES.schedule.title, `時鐘顯示 ${item.time}。這個時間通常做甚麼？`, `<div class="id8-task"><div class="id8-clock"><span>${item.sun}</span><b>${item.time}</b><small>現在做甚麼？</small></div><div class="id8-choice-grid">${item.choices.map((choice) => `<button type="button" class="id8-choice" data-id8-schedule="${choice}">${choice}</button>`).join('')}</div></div>`, `時鐘顯示${item.time}。這個時間通常做甚麼？`);
+    shell(GAMES.schedule.title, `時鐘顯示 ${item.time}。這個時間通常做甚麼？`, `<div class="id8-task"><div class="id8-clock"><span>${item.sun}</span><b>${item.time}</b><small>現在做甚麼？</small></div><div class="id8-choice-grid">${orderedChoices(item, 'schedule').map((choice) => `<button type="button" class="id8-choice" data-id8-schedule="${choice}">${choice}</button>`).join('')}</div></div>`, `時鐘顯示${item.time}。這個時間通常做甚麼？`);
     qa('[data-id8-schedule]').forEach((button) => button.addEventListener('click', () => button.dataset.id8Schedule === item.answer ? correct(`對了，${item.time}通常是${item.answer}時間。`, () => advance(renderSchedule)) : gentle(`再看看${item.time}和天空圖示。`)));
   }
 
@@ -184,7 +191,7 @@
 
   function renderEmergency() {
     const item = EMERGENCY[state.round];
-    shell(GAMES.emergency.title, item.scene, `<div class="id8-task"><div class="id8-emergency-scene"><span>${item.icon}</span><b>${item.scene}</b><small>先讓自己留在安全位置，再找可信任成人或職員協助。</small></div><div class="id8-choice-grid">${item.choices.map((choice) => `<button type="button" class="id8-choice" data-id8-emergency="${choice}">${choice}</button>`).join('')}</div></div>`, item.scene);
+    shell(GAMES.emergency.title, item.scene, `<div class="id8-task"><div class="id8-emergency-scene"><span>${item.icon}</span><b>${item.scene}</b><small>先讓自己留在安全位置，再找可信任成人或職員協助。</small></div><div class="id8-choice-grid">${orderedChoices(item, 'emergency').map((choice) => `<button type="button" class="id8-choice" data-id8-emergency="${choice}">${choice}</button>`).join('')}</div></div>`, item.scene);
     qa('[data-id8-emergency]').forEach((button) => button.addEventListener('click', () => button.dataset.id8Emergency === item.answer ? correct('你選擇了安全而清楚的下一步。', () => advance(renderEmergency)) : gentle('先看看哪一個做法能讓自己留在安全位置並找到協助。')));
   }
 

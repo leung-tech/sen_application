@@ -68,6 +68,18 @@
   const stage = () => STAGES[options?.stage] || STAGES.lower;
   const game = () => GAMES[state?.game];
   const later = (fn, wait = 360) => window.setTimeout(fn, state?.reduced ? 80 : wait);
+  const choiceValue = (choice) => typeof choice === 'object' ? choice.value : choice;
+  const orderedChoices = (item, gameId) => {
+    const choices = [...item.choices]; const pattern = ANSWER_POSITION_PATTERNS[gameId]; const position = pattern?.[state.step % pattern.length];
+    if (!Number.isInteger(position) || position < 0 || position >= choices.length || !choices.some((choice) => choiceValue(choice) === item.answer)) return choices;
+    const answer = choices.find((choice) => choiceValue(choice) === item.answer); const others = choices.filter((choice) => choiceValue(choice) !== item.answer); const shown = [];
+    for (let index = 0; index < choices.length; index += 1) shown[index] = index === position ? answer : others.shift();
+    return shown;
+  };
+  const orderedHazardChoices = (item) => {
+    const answer = item.danger ? 'danger' : 'safe'; const position = [1,0,1,0,1,0,1,0][state.step % 8]; const other = answer === 'danger' ? 'safe' : 'danger';
+    return position === 0 ? [answer, other] : [other, answer];
+  };
 
   function speak(text) {
     if (!state?.speech || !('speechSynthesis' in window) || !text) return;
@@ -144,7 +156,7 @@
 
 function renderHazard() {
     const item = HAZARDS[state.step % HAZARDS.length];
-    frame(GAMES.hazard.title, `這是${item.item}。應該可以摸，還是唔好摸？`, `<div class="id24-task"><div class="id24-object ${item.danger ? 'warn' : ''}"><span>${item.icon}</span><b>${item.item}</b>${item.danger ? '<small>看見熱、插頭或轉動物件時，要先停一停。</small>' : '<small>這是一件安全玩具。</small>'}</div><div class="id24-choice"><button data-id24-hazard="safe" type="button">🙂 可以摸</button><button data-id24-hazard="danger" type="button">⚠️ 唔好摸</button></div></div>`, `這是${item.item}。應該可以摸，還是唔好摸？`);
+    frame(GAMES.hazard.title, `這是${item.item}。應該可以摸，還是唔好摸？`, `<div class="id24-task"><div class="id24-object ${item.danger ? 'warn' : ''}"><span>${item.icon}</span><b>${item.item}</b>${item.danger ? '<small>看見熱、插頭或轉動物件時，要先停一停。</small>' : '<small>這是一件安全玩具。</small>'}</div><div class="id24-choice">${orderedHazardChoices(item).map((choice) => `<button data-id24-hazard="${choice}" type="button">${choice === 'safe' ? '🙂 可以摸' : '⚠️ 唔好摸'}</button>`).join('')}</div></div>`, `這是${item.item}。應該可以摸，還是唔好摸？`);
     qa('[data-id24-hazard]').forEach((button) => button.addEventListener('click', () => {
       const isDanger = button.dataset.id24Hazard === 'danger';
       if (isDanger === item.danger) correct(item.danger ? '你看得很清楚。好熱、有電或會轉動的物件，唔好摸，先找大人。' : '對了，這是安全玩具。', () => next(renderHazard));
@@ -162,13 +174,13 @@ function renderUniform() {
 
 function renderOctopus() {
     const item = OCTOPUS[state.step];
-    frame(GAMES.octopus.title, item.prompt, `<div class="id24-task"><div class="id24-object"><span>${item.icon}</span><b>${item.prompt}</b></div><div class="id24-choice">${item.choices.map((choice) => `<button data-id24-octopus="${choice}" type="button">${choice}</button>`).join('')}</div></div>`, item.prompt);
+    frame(GAMES.octopus.title, item.prompt, `<div class="id24-task"><div class="id24-object"><span>${item.icon}</span><b>${item.prompt}</b></div><div class="id24-choice">${orderedChoices(item, 'octopus').map((choice) => `<button data-id24-octopus="${choice}" type="button">${choice}</button>`).join('')}</div></div>`, item.prompt);
     qa('[data-id24-octopus]').forEach((button) => button.addEventListener('click', () => button.dataset.id24Octopus === item.answer ? correct('做得好，這是安全又清楚的下一步。', () => next(renderOctopus)) : gentle('先看圖示和提示，選一個安全的小步。')));
   }
 
 function renderMall() {
     const item = MALL[state.step % MALL.length];
-    frame(GAMES.mall.title, item.prompt, `<div class="id24-task"><div class="id24-mall"><span>🏬</span><b>${item.prompt}</b></div><div class="id24-choice">${item.choices.map((choice) => `<button data-id24-mall="${choice.value}" type="button">${choice.text}</button>`).join('')}</div></div>`, item.prompt);
+    frame(GAMES.mall.title, item.prompt, `<div class="id24-task"><div class="id24-mall"><span>🏬</span><b>${item.prompt}</b></div><div class="id24-choice">${orderedChoices(item, 'mall').map((choice) => `<button data-id24-mall="${choice.value}" type="button">${choice.text}</button>`).join('')}</div></div>`, item.prompt);
     qa('[data-id24-mall]').forEach((button) => button.addEventListener('click', () => button.dataset.id24Mall === item.answer ? correct('對了，這個圖示最合適。', () => next(renderMall)) : gentle('再看一次圖示和小明想去的地方。')));
   }
 
@@ -186,13 +198,13 @@ function renderTea() {
 
 function renderShredder() {
     const item = SHREDDER[state.step];
-    frame(GAMES.shredder.title, item.prompt, `<div class="id24-task"><div class="id24-paper"><span>${item.icon}</span><b>${item.prompt}</b></div><div class="id24-choice">${item.choices.map((choice) => `<button data-id24-shred="${choice}" type="button">${choice}</button>`).join('')}</div></div>`, item.prompt);
+    frame(GAMES.shredder.title, item.prompt, `<div class="id24-task"><div class="id24-paper"><span>${item.icon}</span><b>${item.prompt}</b></div><div class="id24-choice">${orderedChoices(item, 'shredder').map((choice) => `<button data-id24-shred="${choice}" type="button">${choice}</button>`).join('')}</div></div>`, item.prompt);
     qa('[data-id24-shred]').forEach((button) => button.addEventListener('click', () => button.dataset.id24Shred === item.answer ? correct('你完成了安全的工作小步。', () => next(renderShredder)) : gentle('先選一個能保護自己和同事的安全做法。')));
   }
 
 function renderPack() {
     const item = PACK[state.step];
-    frame(GAMES.pack.title, item.prompt, `<div class="id24-task"><div class="id24-pack-target"><span>${item.icon}</span><b>${item.prompt}</b></div><div class="id24-choice">${item.choices.map((choice) => `<button data-id24-pack="${choice}" type="button">${choice}</button>`).join('')}</div></div>`, item.prompt);
+    frame(GAMES.pack.title, item.prompt, `<div class="id24-task"><div class="id24-pack-target"><span>${item.icon}</span><b>${item.prompt}</b></div><div class="id24-choice">${orderedChoices(item, 'pack').map((choice) => `<button data-id24-pack="${choice}" type="button">${choice}</button>`).join('')}</div></div>`, item.prompt);
     qa('[data-id24-pack]').forEach((button) => button.addEventListener('click', () => button.dataset.id24Pack === item.answer ? correct('包裝工作已完成這一個清楚步驟。', () => next(renderPack)) : gentle('先看工作提示，選出最合適的下一步。')));
   }
 
