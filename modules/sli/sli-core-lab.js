@@ -178,7 +178,9 @@
   const qa = (selector) => host ? [...host.querySelectorAll(selector)] : [];
   const wait = (callback, ms = 760) => { const id = window.setTimeout(callback, ms); timers.push(id); return id; };
   const clearTimers = () => { timers.forEach(window.clearTimeout); timers = []; };
-  const shuffle = (items) => { const copy = [...items]; for (let i = copy.length - 1; i > 0; i -= 1) { const j = Math.floor(Math.random() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; } return copy; };
+  const stableSeed = (...parts) => [...parts.join('|')].reduce((seed, char) => ((seed * 31) + char.charCodeAt(0)) >>> 0, 2166136261);
+  const stableShuffle = (items, ...parts) => { const copy = [...items]; let seed = stableSeed(...parts); for (let index = copy.length - 1; index > 0; index -= 1) { seed = ((seed * 1664525) + 1013904223) >>> 0; const swap = seed % (index + 1); [copy[index], copy[swap]] = [copy[swap], copy[index]]; } return copy; };
+  const orderedSimpleChoices = (choices, answer) => { const pattern = activeActivity()?.answerPositionPattern; const answerPosition = pattern?.[state?.index % pattern.length]; if (!Number.isInteger(answerPosition) || answerPosition < 0 || answerPosition >= choices.length || !choices.includes(answer)) return stableShuffle(choices, stage, state?.game, state?.index, 'simple'); const others = choices.filter((choice) => choice !== answer); return choices.map((choice, index) => index === answerPosition ? answer : others.shift()); };
   const stageLabel = () => ({ lower: '初小 · P1–P3', upper: '高小 · P4–P6', junior: '初中 · S1–S3', senior: '高中 · S4–S6' }[stage] || '初小 · P1–P3');
   const activeActivity = () => ACTIVITIES[state?.game];
   const focusable = () => qa('button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])').filter((element) => element.offsetParent !== null);
@@ -308,28 +310,28 @@
   }
 
   function finish() {
-    clearTimers(); stopRecorder(); const activity = activeActivity();
+    clearTimers(); const activity = activeActivity();
     options?.onComplete?.({ label: `${activity.title} · ${stageLabel()}`, mode: `sli-${state.game}`, total: state.rounds.length, correct: state.correct, incorrect: state.incorrect, completedAt: new Date().toLocaleString('zh-HK') });
     shell(`${top('本次言語練習回顧', '你可以休息、重玩較短內容，或選擇另一項活動。結果只供本節課堂回顧，不作比較或診斷。', `完成 · ${stageLabel()}`)}<section class="sli-summary"><div><span>完成回合</span><strong>${state.rounds.length} / ${state.rounds.length}</strong></div><div><span>正確嘗試</span><strong>${state.correct}</strong></div><div><span>努力星</span><strong>${state.stars} / 5</strong></div></section><p class="sli-rule">每一次慢慢聽、提出需要、重聽指示或重新嘗試，都是可被看見的努力。</p><div class="sli-actions"><button id="sliRestart" class="sli-secondary" type="button">↺ 再玩這一項</button><button id="sliMenu" class="sli-primary" type="button">選另一項練習</button></div><div id="sliFeedback" class="sli-feedback" role="status" aria-live="polite" aria-atomic="true">本次練習完成，可以先休息一下。</div>`);
     reward('finish'); q('#sliRestart')?.addEventListener('click', () => renderReady(state.game)); q('#sliMenu')?.addEventListener('click', renderMenu); focusSoon('#sliMenu');
   }
 
-  function choiceMarkup(choices, attribute = 'data-sli-choice', preserveAnswerOrder = false) {
-    const shownChoices = preserveAnswerOrder ? choices : shuffle(choices);
+  function choiceMarkup(choices, attribute = 'data-sli-choice', answer = '') {
+    const shownChoices = answer ? orderedSimpleChoices(choices, answer) : stableShuffle(choices, stage, state?.game, state?.index, 'simple');
     return `<div class="sli-choice-grid">${shownChoices.map((choice) => `<button type="button" class="sli-choice" ${attribute}="${choice}">${choice}</button>`).join('')}</div>`;
   }
 
   function sequenceMarkup(round, selected, name) {
     const labels = round.labels || ['第一步', '第二步', '第三步'];
-    return `<div class="sli-sequence-slots" aria-label="按順序放入語句">${labels.map((label, index) => `<div class="sli-slot ${selected[index] ? 'filled' : ''}" data-sli-slot="${index}" tabindex="0" aria-label="${label}位置，${selected[index] || '尚未放入內容'}"><span>${label}</span><strong>${selected[index] || '？'}</strong></div>`).join('')}</div><div class="sli-piece-bank" aria-label="可選擇的${name}">${shuffle(round.choices).map((piece) => `<button type="button" draggable="true" class="sli-piece ${selected.includes(piece) ? 'used' : ''}" data-sli-piece="${piece}" ${selected.includes(piece) ? 'disabled' : ''}>${piece}</button>`).join('')}</div>`;
+    return `<div class="sli-sequence-slots" aria-label="按順序放入語句">${labels.map((label, index) => `<div class="sli-slot ${selected[index] ? 'filled' : ''}" data-sli-slot="${index}" tabindex="0" aria-label="${label}位置，${selected[index] || '尚未放入內容'}"><span>${label}</span><strong>${selected[index] || '？'}</strong></div>`).join('')}</div><div class="sli-piece-bank" aria-label="可選擇的${name}">${stableShuffle(round.choices, stage, state?.game, state?.index, 'sequence').map((piece) => `<button type="button" draggable="true" class="sli-piece ${selected.includes(piece) ? 'used' : ''}" data-sli-piece="${piece}" ${selected.includes(piece) ? 'disabled' : ''}>${piece}</button>`).join('')}</div>`;
   }
 
   function portalMarkup(round) {
-    return `<div class="sli-portal-item" draggable="true" data-sli-portal-item="${round.name}" aria-label="可拖拉的物件卡：${round.name}"><span aria-hidden="true">${round.item}</span><strong>${round.name}</strong><small>可拖到傳送門，或直接按傳送門。</small></div><p class="sli-rule">把「${round.name}」送到正確類別。可以拖拉物件卡，也可以按傳送門。</p><div class="sli-choice-grid sli-portal-grid">${round.choices.map((choice) => `<button type="button" class="sli-choice sli-portal" data-sli-portal="${choice}">${choice}</button>`).join('')}</div>`;
+    return `<div class="sli-portal-item" draggable="true" data-sli-portal-item="${round.name}" aria-label="可拖拉的物件卡：${round.name}"><span aria-hidden="true">${round.item}</span><strong>${round.name}</strong><small>可拖到傳送門，或直接按傳送門。</small></div><p class="sli-rule">把「${round.name}」送到正確類別。可以拖拉物件卡，也可以按傳送門。</p><div class="sli-choice-grid sli-portal-grid">${orderedSimpleChoices(round.choices, round.answer).map((choice) => `<button type="button" class="sli-choice sli-portal" data-sli-portal="${choice}">${choice}</button>`).join('')}</div>`;
   }
 
   function soundMarkup(round) {
-    return `<div class="sli-magic-island" aria-label="聲音魔法島"><span aria-hidden="true">🏝️</span><div><strong>目標字：${round.target}</strong><small>一起聽「${round.target}」的第一個聲音。</small></div><span class="sli-growth" id="sliGrowth" aria-hidden="true">🌱</span></div><p class="sli-rule">這是聽音和練習的遊戲，不會替學生自動判定發音是否正確。</p>${choiceMarkup(round.choices, 'data-sli-choice', true)}<div class="sli-voice-tools"><strong>不用開啟咪高峰</strong><small>可以只聽、指圖、看句卡或跟教師一起說；本網站不錄音、不上傳，也不分析聲音。</small></div>`;
+    return `<div class="sli-magic-island" aria-label="聲音魔法島"><span aria-hidden="true">🏝️</span><div><strong>目標字：${round.target}</strong><small>一起聽「${round.target}」的第一個聲音。</small></div><span class="sli-growth" id="sliGrowth" aria-hidden="true">🌱</span></div><p class="sli-rule">這是聽音和練習的遊戲，不會替學生自動判定發音是否正確。</p>${choiceMarkup(round.choices, 'data-sli-choice', round.answer)}<div class="sli-voice-tools"><strong>不用開啟咪高峰</strong><small>可以只聽、指圖、看句卡或跟教師一起說；本網站不錄音、不上傳，也不分析聲音。</small></div>`;
   }
 
   function sequenceView(round, label, caption) {
@@ -343,9 +345,9 @@
     else if (state.game === 'portal') body = portalMarkup(round);
     else if (state.game === 'factory') body = sequenceView(round, '句子語塊', round.prompt);
     else if (state.game === 'timeline') body = sequenceView(round, '故事卡', round.story);
-    else if (state.game === 'emotion') body = `<article class="sli-emotion-scene"><span aria-hidden="true">${round.face}</span><p>${round.context}</p><strong>${round.prompt}</strong></article><aside class="sli-teacher-card"><strong>教師引導</strong><p>${round.teacher}</p></aside>${choiceMarkup(round.choices, 'data-sli-choice', true)}`;
+    else if (state.game === 'emotion') body = `<article class="sli-emotion-scene"><span aria-hidden="true">${round.face}</span><p>${round.context}</p><strong>${round.prompt}</strong></article><aside class="sli-teacher-card"><strong>教師引導</strong><p>${round.teacher}</p></aside>${choiceMarkup(round.choices, 'data-sli-choice', round.answer)}`;
     else if (state.game === 'courier') body = sequenceView(round, '指示卡', round.order);
-    else if (state.game === 'subtext') body = `<article class="sli-quote-card"><span>角色說：</span><strong>${round.quote}</strong><p>${round.context}</p><em>${round.prompt}</em></article>${choiceMarkup(round.choices, 'data-sli-choice', true)}`;
+    else if (state.game === 'subtext') body = `<article class="sli-quote-card"><span>角色說：</span><strong>${round.quote}</strong><p>${round.context}</p><em>${round.prompt}</em></article>${choiceMarkup(round.choices, 'data-sli-choice', round.answer)}`;
     else if (state.game === 'debate') body = sequenceView(round, '理據卡', `${round.topic}｜本回合立場：${round.position}`);
     else if (state.game === 'interview') body = sequenceView(round, '面試句卡', round.question);
     else if (state.game === 'resolve') body = sequenceView(round, '應變句卡', round.caseText);

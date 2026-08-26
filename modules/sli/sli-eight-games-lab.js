@@ -158,7 +158,9 @@
   const qa = (selector) => host ? [...host.querySelectorAll(selector)] : [];
   const stageLabel = (value = state?.stage) => ({ lower: '初小 · P1–P3', upper: '高小 · P4–P6', junior: '初中 · S1–S3', senior: '高中 · S4–S6' }[value] || '初小 · P1–P3');
   const active = () => ACTIVITIES[state?.game];
-  const shuffle = (items) => [...items].sort(() => Math.random() - .5);
+  const stableSeed = (...parts) => [...parts.join('|')].reduce((seed, char) => ((seed * 31) + char.charCodeAt(0)) >>> 0, 2166136261);
+  const stableShuffle = (items, ...parts) => { const copy = [...items]; let seed = stableSeed(...parts); for (let index = copy.length - 1; index > 0; index -= 1) { seed = ((seed * 1664525) + 1013904223) >>> 0; const swap = seed % (index + 1); [copy[index], copy[swap]] = [copy[swap], copy[index]]; } return copy; };
+  const orderedChoices = (choices, answer) => { const pattern = active()?.answerPositionPattern; const answerPosition = pattern?.[state?.index % pattern.length]; if (!Number.isInteger(answerPosition) || answerPosition < 0 || answerPosition >= choices.length || !choices.includes(answer)) return stableShuffle(choices, state?.stage, state?.game, state?.index, 'simple'); const others = choices.filter((choice) => choice !== answer); return choices.map((choice, index) => index === answerPosition ? answer : others.shift()); };
   const focusSoon = (selector) => window.requestAnimationFrame(() => q(selector)?.focus());
   const focusable = () => qa('button:not([disabled]),[href],[tabindex]:not([tabindex="-1"])').filter((item) => item.offsetParent !== null);
 
@@ -268,13 +270,13 @@
     focusSoon('#sli8ReadyStart');
   }
 
-  function choiceMarkup(choices, preserveAnswerOrder = false) {
-    const shownChoices = preserveAnswerOrder ? choices : shuffle(choices);
+  function choiceMarkup(choices, answer = '') {
+    const shownChoices = answer ? orderedChoices(choices, answer) : stableShuffle(choices, state?.stage, state?.game, state?.index, 'simple');
     return `<div class="sli8-choices">${shownChoices.map((choice) => `<button type="button" class="sli8-choice" data-sli8-choice="${choice}">${choice}</button>`).join('')}</div>`;
   }
 
   function sequenceMarkup(round) {
-    return `<div class="sli8-slots" aria-label="依序放入句子積木">${round.labels.map((label, index) => `<div class="sli8-slot ${state.selected[index] ? 'filled' : ''}" data-sli8-slot="${index}" tabindex="0" aria-label="${label}，${state.selected[index] || '尚未放入'}"><span>${label}</span><strong>${state.selected[index] || '？'}</strong></div>`).join('')}</div><div class="sli8-pieces" aria-label="可選語句積木">${shuffle(round.choices).map((piece) => `<button type="button" draggable="true" class="sli8-piece ${state.selected.includes(piece) ? 'used' : ''}" data-sli8-piece="${piece}" ${state.selected.includes(piece) ? 'disabled' : ''}>${piece}</button>`).join('')}</div>`;
+    return `<div class="sli8-slots" aria-label="依序放入句子積木">${round.labels.map((label, index) => `<div class="sli8-slot ${state.selected[index] ? 'filled' : ''}" data-sli8-slot="${index}" tabindex="0" aria-label="${label}，${state.selected[index] || '尚未放入'}"><span>${label}</span><strong>${state.selected[index] || '？'}</strong></div>`).join('')}</div><div class="sli8-pieces" aria-label="可選語句積木">${stableShuffle(round.choices, state?.stage, state?.game, state?.index, 'sequence').map((piece) => `<button type="button" draggable="true" class="sli8-piece ${state.selected.includes(piece) ? 'used' : ''}" data-sli8-piece="${piece}" ${state.selected.includes(piece) ? 'disabled' : ''}>${piece}</button>`).join('')}</div>`;
   }
 
   function renderRound() {
@@ -282,21 +284,21 @@
     const round = state.rounds[state.index];
     let play = '';
     if (state.game === 'tone-park') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>目標字：${round.target}</strong><p>聲調線索：${round.contour}</p><button type="button" id="sli8Model">🔊 朗讀目標和選項</button></div></article><p class="sli8-rule">${round.prompt}。請先聽教師或朗讀按鈕；這是聽辨練習，不會自動判定學生讀音或錄音。</p>${choiceMarkup(round.choices, true)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>目標字：${round.target}</strong><p>聲調線索：${round.contour}</p><button type="button" id="sli8Model">🔊 朗讀目標和選項</button></div></article><p class="sli8-rule">${round.prompt}。請先聽教師或朗讀按鈕；這是聽辨練習，不會自動判定學生讀音或錄音。</p>${choiceMarkup(round.choices, round.answer)}`;
     } else if (state.game === 'cause-workshop') {
       play = `<article class="sli8-cause"><span aria-hidden="true">🔗</span><div><strong>原因：${round.cause}</strong><p>結果：${round.result}</p></div></article><p class="sli8-rule">${round.prompt}。可拖拉積木，也可每次點一下積木；不知道時可聽提示或請教師一起做。</p>${sequenceMarkup(round)}`;
     } else if (state.game === 'word-net') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${round.silhouette}</span><div><strong>深海線索庫</strong><p>${round.clues.map((clue, index) => `${index + 1}. ${clue}`).join('　')}</p><button type="button" id="sli8Model">🔊 朗讀三條線索</button></div></article><p class="sli8-rule">${round.prompt}。可以再聽或再看線索；本活動不計反應時間。</p>${choiceMarkup(round.choices, true)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${round.silhouette}</span><div><strong>深海線索庫</strong><p>${round.clues.map((clue, index) => `${index + 1}. ${clue}`).join('　')}</p><button type="button" id="sli8Model">🔊 朗讀三條線索</button></div></article><p class="sli8-rule">${round.prompt}。可以再聽或再看線索；本活動不計反應時間。</p>${choiceMarkup(round.choices, round.answer)}`;
     } else if (state.game === 'pace-route') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>今次訊息：${round.message}</strong><p>可選一種自己覺得舒服的準備方法。</p><button type="button" id="sli8Model">🔊 朗讀短訊息</button></div></article><p class="sli8-rule">${round.prompt}。不需要追求快或完全一樣；可選句卡、教師示範或只聽範例。</p>${choiceMarkup(round.choices, true)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>今次訊息：${round.message}</strong><p>可選一種自己覺得舒服的準備方法。</p><button type="button" id="sli8Model">🔊 朗讀短訊息</button></div></article><p class="sli8-rule">${round.prompt}。不需要追求快或完全一樣；可選句卡、教師示範或只聽範例。</p>${choiceMarkup(round.choices, round.answer)}`;
     } else if (state.game === 'idiom-decoder') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>線索句：${round.phrase}</strong><p>${round.context}</p><button type="button" id="sli8Model">🔊 朗讀句子和情境</button></div></article><p class="sli8-rule">${round.prompt}。可以先看情境，再比較不同意思；這是語言理解練習，不是人格或能力判斷。</p>${choiceMarkup(round.choices, true)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>線索句：${round.phrase}</strong><p>${round.context}</p><button type="button" id="sli8Model">🔊 朗讀句子和情境</button></div></article><p class="sli8-rule">${round.prompt}。可以先看情境，再比較不同意思；這是語言理解練習，不是人格或能力判斷。</p>${choiceMarkup(round.choices, round.answer)}`;
     } else if (state.game === 'repair-station') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>虛構聊天情境</strong><p class="sli8-chat">${round.chat.replace(/\n/g, '<br>')}</p><button type="button" id="sli8Model">🔊 朗讀對話</button></div></article><p class="sli8-rule">${round.prompt}。不同人可以有不同感受；先選一個可澄清或共同處理事情的句子。</p>${choiceMarkup(round.choices, true)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>虛構聊天情境</strong><p class="sli8-chat">${round.chat.replace(/\n/g, '<br>')}</p><button type="button" id="sli8Model">🔊 朗讀對話</button></div></article><p class="sli8-rule">${round.prompt}。不同人可以有不同感受；先選一個可澄清或共同處理事情的句子。</p>${choiceMarkup(round.choices, round.answer)}`;
     } else if (state.game === 'discussion-scaffold') {
       play = `<article class="sli8-cause"><span aria-hidden="true">${activity.icon}</span><div><strong>討論題目：${round.topic}</strong><p>可用句卡，也可先和教師討論自己的版本。</p></div></article><p class="sli8-rule">${round.prompt}。可拖拉或點選句卡；不設倒數，也不需要口頭說話才可完成。</p>${sequenceMarkup(round)}`;
     } else if (state.game === 'voice-use') {
-      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>虛構主持情境</strong><p>${round.situation}</p><button type="button" id="sli8Model">🔊 朗讀情境</button></div></article><p class="sli8-rule">${round.prompt}。這是一般主持準備與溝通提示，不會錄音或評定聲音、音量、音高或健康。</p>${choiceMarkup(round.choices, true)}`;
+      play = `<article class="sli8-tone"><span aria-hidden="true">${activity.icon}</span><div><strong>虛構主持情境</strong><p>${round.situation}</p><button type="button" id="sli8Model">🔊 朗讀情境</button></div></article><p class="sli8-rule">${round.prompt}。這是一般主持準備與溝通提示，不會錄音或評定聲音、音量、音高或健康。</p>${choiceMarkup(round.choices, round.answer)}`;
     }
     shell(`${heading(activity.title, activity.description, `${stageLabel()} · ${state.index + 1} / ${state.rounds.length}`)}${progress()}<section class="sli8-play">${play}</section><div id="sli8Feedback" class="sli8-feedback" role="status" aria-live="polite" aria-atomic="true">${round.hint}</div>`);
     bindRound(round);
@@ -320,7 +322,7 @@
     const expected = round.answer[state.selected.length];
     if (piece !== expected) { state.retry += 1; feedback(`↗ ${round.hint}`, 'try'); return; }
     state.selected.push(piece);
-    if (state.selected.length === round.answer.length) { correct(round.success || '你把內容按清楚次序組合好了。'); return; }
+    if (state.selected.length === round.answer.length) { renderRound(); correct(round.success || '你把內容按清楚次序組合好了。'); return; }
     renderRound();
     feedback(`✓ 已放入「${piece}」。現在慢慢看下一格。`, 'ok');
   }
