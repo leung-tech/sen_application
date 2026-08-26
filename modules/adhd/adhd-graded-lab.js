@@ -12,6 +12,10 @@
     { name: '綠色', hex: '#187e66', key: '3' },
     { name: '黃色', hex: '#9a6900', key: '4' },
   ];
+  const STAGE_SEEDS = { lower: 1847, upper: 2963, junior: 4129, senior: 5381 };
+  const STROOP_POSITIONS = [2, 0, 3, 1, 3, 0, 2, 1, 0, 3, 1, 2, 1, 3, 0, 2];
+  const SWITCH_POSITIONS = [2, 0, 3, 1, 0, 2, 1, 3, 1, 3, 0, 2, 3, 1, 2, 0];
+  const FLANKER_DIRECTIONS = { lower: ['right', 'left'], upper: ['left', 'right'], junior: ['right', 'left'], senior: ['left', 'right'] };
 
   const GAME_INFO = {
     cpt: { icon: '🐱', title: '貓咪捉老鼠 CPT', description: '只在正確前後關係出現時按一下，練習持續留意和停一停。', focus: '持續專注與衝動抑制' },
@@ -67,13 +71,37 @@
     return GRADE[stage] || GRADE.lower;
   }
 
+  function resetDeterministicSeed(game) {
+    const gameSeed = [...game].reduce((total, char) => total + char.charCodeAt(0), 0);
+    state.seed = ((STAGE_SEEDS[stage] || STAGE_SEEDS.lower) + (gameSeed * 97)) >>> 0;
+  }
+
+  function nextDeterministic(max) {
+    state.seed = ((state.seed * 1664525) + 1013904223) >>> 0;
+    return state.seed % max;
+  }
+
   function shuffle(items) {
     const next = [...items];
     for (let i = next.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
+      const j = nextDeterministic(i + 1);
       [next[i], next[j]] = [next[j], next[i]];
     }
     return next;
+  }
+
+  function orderedChoices(choices, answer, answerPosition) {
+    const source = [...choices];
+    const answerIndex = source.indexOf(answer);
+    if (answerIndex < 0 || answerPosition < 0 || answerPosition >= source.length) return source;
+    const output = Array(source.length); output[answerPosition] = answer;
+    let sourceIndex = 0;
+    for (let position = 0; position < output.length; position += 1) {
+      if (position === answerPosition) continue;
+      while (sourceIndex === answerIndex) sourceIndex += 1;
+      output[position] = source[sourceIndex]; sourceIndex += 1;
+    }
+    return output;
   }
 
   function focusable() {
@@ -215,6 +243,7 @@
 
   function createRun(game, total) {
     state = { game, total, index: 0, correct: 0, incorrect: 0, reactionTimes: [], startedAt: Date.now(), locked: false, keyHandler: null, effortStars: 0 };
+    resetDeterministicSeed(game);
   }
 
   function renderReadyScreen(game) {
@@ -295,8 +324,8 @@
     const distractors = ['B', 'C'];
     for (let index = 0; index < total; index += 1) {
       const previous = items.at(-1);
-      if (previous === 'A') items.push(Math.random() < 0.42 ? 'X' : distractors[Math.floor(Math.random() * distractors.length)]);
-      else items.push(Math.random() < 0.32 ? 'A' : ['X', ...distractors][Math.floor(Math.random() * 3)]);
+      if (previous === 'A') items.push(nextDeterministic(100) < 42 ? 'X' : distractors[nextDeterministic(distractors.length)]);
+      else items.push(nextDeterministic(100) < 32 ? 'A' : ['X', ...distractors][nextDeterministic(3)]);
     }
     if (!items.some((item, index) => index && items[index - 1] === 'A' && item === 'X')) items.splice(Math.max(1, Math.floor(total / 2)), 2, 'A', 'X');
     return items.slice(0, total);
@@ -307,8 +336,8 @@
     const n = state.n;
     const source = ['⭐', '🍎', '☁️', '🚗', '🌙', '🐟'];
     const earlier = state.history.length >= n ? state.history.at(-n) : null;
-    const shouldMatch = Boolean(earlier) && Math.random() < 0.42;
-    const symbol = shouldMatch ? earlier : source.filter((item) => item !== earlier)[Math.floor(Math.random() * (source.length - (earlier ? 1 : 0)))];
+    const shouldMatch = Boolean(earlier) && nextDeterministic(100) < 42;
+    const symbol = shouldMatch ? earlier : source.filter((item) => item !== earlier)[nextDeterministic(source.length - (earlier ? 1 : 0))];
     state.expected = Boolean(earlier) && symbol === earlier;
     state.symbol = symbol;
     state.shownAt = Date.now();
@@ -345,11 +374,11 @@
 
   function renderStroop() {
     const settings = grade();
-    const word = COLORS[Math.floor(Math.random() * COLORS.length)];
-    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    const word = COLORS[nextDeterministic(COLORS.length)];
+    const color = COLORS[nextDeterministic(COLORS.length)];
     state.expected = color.name;
     state.shownAt = Date.now();
-    const choices = COLORS.map((item) => `<button class="graded-color-choice" type="button" data-color="${item.name}" style="--choice:${item.hex}"><span>${item.key}</span>${item.name}</button>`).join('');
+    const choices = orderedChoices(COLORS, color, STROOP_POSITIONS[state.index]).map((item) => `<button class="graded-color-choice" type="button" data-color="${item.name}" style="--choice:${item.hex}"><span>${item.key}</span>${item.name}</button>`).join('');
     shell(`${top(GAME_INFO.stroop.title, '不要按字的意思；請按文字真正的顏色。鍵盤可按 1、2、3、4。', `${grade().label} · ${state.index + 1} / ${state.total}`)}${progressMarkup()}<div class="graded-rule">文字寫的是「${word.name}」，但請只看它的<strong>字體顏色</strong>。</div><div class="graded-stimulus stroop" style="color:${color.hex}" aria-label="文字 ${word.name}，字體顏色 ${color.name}">${word.name.replace('色', '')}</div><div class="graded-color-choices">${choices}</div><div id="gradedLabFeedback" class="graded-feedback" role="status" aria-live="polite" aria-atomic="true">慢慢看顏色，不用跟著文字讀。</div>`);
     host.querySelectorAll('[data-color]').forEach((button) => button.addEventListener('click', () => resolveStroop(button.dataset.color)));
     state.keyHandler = (key) => { const selected = COLORS.find((item) => item.key === key); if (selected) resolveStroop(selected.name); };
@@ -396,8 +425,8 @@
 
   function renderFlanker() {
     const settings = grade();
-    const center = Math.random() < .5 ? 'left' : 'right';
-    const conflict = Math.random() < settings.flankerConflict;
+    const center = (FLANKER_DIRECTIONS[stage] || FLANKER_DIRECTIONS.lower)[state.index % 2];
+    const conflict = nextDeterministic(100) < Math.round(settings.flankerConflict * 100);
     const side = conflict ? (center === 'left' ? 'right' : 'left') : center;
     const arrow = { left: '←', right: '→' };
     const pattern = `${arrow[side]}${arrow[side]}${arrow[center]}${arrow[side]}${arrow[side]}`;
@@ -439,11 +468,11 @@
   function renderSwitch() {
     const rules = stage === 'lower' ? ['color', 'shape'] : ['color', 'shape', 'count'];
     const rule = state.rule;
-    const target = cardFor(Math.floor(Math.random() * 9));
+    const target = cardFor(nextDeterministic(9));
     const values = shuffle([...Array(9).keys()]);
     let correctCard = cardFor(values.find((value) => compareCard(target, cardFor(value), rule)) ?? 0);
     const decoys = values.map(cardFor).filter((card) => !compareCard(target, card, rule)).slice(0, 3);
-    const cards = shuffle([correctCard, ...decoys]);
+    const cards = orderedChoices([correctCard, ...decoys], correctCard, SWITCH_POSITIONS[state.index]);
     state.target = target;
     state.expected = cards.findIndex((card) => compareCard(target, card, rule));
     state.shownAt = Date.now();
@@ -478,7 +507,7 @@
   function newCorsiSequence(length) {
     const cells = [];
     while (cells.length < length) {
-      const next = Math.floor(Math.random() * 9);
+      const next = nextDeterministic(9);
       if (cells.at(-1) !== next) cells.push(next);
     }
     return cells;

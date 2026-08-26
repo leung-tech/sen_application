@@ -30,6 +30,10 @@
     { symbol: '★', number: 3, word: '黃', colorName: '紅色', decoy: 7 },
     { symbol: '⬟', number: 7, word: '紅', colorName: '藍色', decoy: 1 },
   ];
+  const STROOP_POSITIONS = [2, 0, 3, 1, 3, 0, 2, 1];
+  const SUSTAIN_POSITIONS = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0];
+  const DUAL_COLOR_POSITIONS = [2, 0, 3, 1, 0, 2];
+  const DUAL_NUMBER_POSITIONS = [1, 0, 1, 0, 1, 0];
 
   let host = null;
   let options = null;
@@ -98,11 +102,25 @@
     document.head.appendChild(style);
   }
 
+  function orderedChoices(choices, answer, answerPosition) {
+    const source = [...choices];
+    const answerIndex = source.indexOf(answer);
+    if (answerIndex < 0 || answerPosition < 0 || answerPosition >= source.length) return source;
+    const output = Array(source.length); output[answerPosition] = answer;
+    let sourceIndex = 0;
+    for (let position = 0; position < output.length; position += 1) {
+      if (position === answerPosition) continue;
+      while (sourceIndex === answerIndex) sourceIndex += 1;
+      output[position] = source[sourceIndex]; sourceIndex += 1;
+    }
+    return output;
+  }
+
   function buildTrials(mode) {
-    if (mode === 'stroop') return stroopSeeds.map(([word, answer]) => ({ type: 'stroop', word, answer, color: COLORS[answer] }));
+    if (mode === 'stroop') return stroopSeeds.map(([word, answer], index) => ({ type: 'stroop', word, answer, color: COLORS[answer], answerPosition: STROOP_POSITIONS[index] }));
     if (mode === 'nogo') return noGoSeeds.map(signal => ({ type: 'nogo', signal, answer: signal === 'go' ? 'press' : 'wait' }));
-    if (mode === 'dual') return dualSeeds.map(item => ({ type: 'dual', ...item }));
-    return sustainSeeds.map(([shape, color]) => ({ type: 'sustain', shape, color, answer: color === '黃色' && shape === '▲' ? 'collect' : 'skip' }));
+    if (mode === 'dual') return dualSeeds.map((item, index) => ({ type: 'dual', ...item, colorPosition: DUAL_COLOR_POSITIONS[index], numberPosition: DUAL_NUMBER_POSITIONS[index] }));
+    return sustainSeeds.map(([shape, color], index) => ({ type: 'sustain', shape, color, answer: color === '黃色' && shape === '▲' ? 'collect' : 'skip', answerPosition: SUSTAIN_POSITIONS[index] }));
   }
 
   function shell(content) {
@@ -136,7 +154,7 @@
     let controls = '';
     if (trial.type === 'stroop') {
       stimulus = `<div class="focus-stroop" style="color:${trial.color}">${trial.word}</div>`;
-      controls = `<div class="focus-choices">${Object.keys(COLORS).map(label => `<button class="focus-choice" type="button" data-answer="${label}" style="border-color:${COLORS[label]}">${label}</button>`).join('')}</div>`;
+      controls = `<div class="focus-choices">${orderedChoices(Object.keys(COLORS), trial.answer, trial.answerPosition).map(label => `<button class="focus-choice" type="button" data-answer="${label}" style="border-color:${COLORS[label]}">${label}</button>`).join('')}</div>`;
     } else if (trial.type === 'nogo') {
       const isGo = trial.signal === 'go';
       stimulus = `<button class="focus-signal ${isGo ? 'go' : 'stop'}" type="button" data-answer="press" aria-label="${isGo ? '綠色，按一下' : '紅色，不用按'}">${isGo ? '按' : '停'}</button>`;
@@ -144,7 +162,7 @@
       if (!isGo) autoTimer = window.setTimeout(() => respond('wait', true), 1100);
     } else {
       stimulus = `<div class="focus-shape" style="color:${COLORS[trial.color]}">${trial.shape}</div>`;
-      controls = `<div class="focus-choices"><button class="focus-choice collect" type="button" data-answer="collect">★ 收集目標</button><button class="focus-choice skip" type="button" data-answer="skip">→ 略過這張</button></div>`;
+      controls = `<div class="focus-choices">${orderedChoices(['collect', 'skip'], trial.answer, trial.answerPosition).map(answer => `<button class="focus-choice ${answer}" type="button" data-answer="${answer}">${answer === 'collect' ? '★ 收集目標' : '→ 略過這張'}</button>`).join('')}</div>`;
     }
     shell(`<div class="focus-lab-top"><div><div class="focus-lab-kicker">${LABELS[state.mode]}</div><h2>專注挑戰</h2><p>${modeIntro}</p></div><button class="focus-lab-close" type="button" aria-label="關閉">×</button></div><div class="focus-status"><span>第 ${state.index + 1} / ${state.trials.length} 題</span><span>已完成 ${state.correct} 題</span></div><div class="focus-progress" role="progressbar" aria-label="專注挑戰進度" aria-valuemin="0" aria-valuemax="${state.trials.length}" aria-valuenow="${state.index}" aria-valuetext="第 ${state.index + 1} / ${state.trials.length} 題"><i style="width:${progress()}%"></i></div><div class="focus-rule">${state.mode === 'sustain' ? (state.index < 9 ? '找「黃色三角形」才按收集。' : '規則保持一樣：仍然只找「黃色三角形」。') : modeIntro}</div><div class="focus-stimulus-wrap">${stimulus}</div>${controls}<div class="focus-feedback" role="status" aria-live="polite" aria-atomic="true"></div>`);
     host.querySelectorAll('[data-answer]').forEach(button => button.addEventListener('click', () => respond(button.dataset.answer)));
@@ -158,11 +176,11 @@
       return;
     }
     if (state.dualPhase === 'classify') {
-      shell(`${base}<div class="focus-rule">第二步：不要按字義；請選文字真正的顏色，同時記住剛才的數字。</div><div class="focus-stimulus-wrap"><div class="focus-stroop" style="color:${COLORS[trial.colorName]}">${trial.word}</div></div><div class="focus-choices">${Object.keys(COLORS).map(label => `<button class="focus-choice" type="button" data-dual-color="${label}" style="border-color:${COLORS[label]}">${label}</button>`).join('')}</div><div class="focus-feedback" role="status" aria-live="polite" aria-atomic="true"></div>`);
+      shell(`${base}<div class="focus-rule">第二步：不要按字義；請選文字真正的顏色，同時記住剛才的數字。</div><div class="focus-stimulus-wrap"><div class="focus-stroop" style="color:${COLORS[trial.colorName]}">${trial.word}</div></div><div class="focus-choices">${orderedChoices(Object.keys(COLORS), trial.colorName, trial.colorPosition).map(label => `<button class="focus-choice" type="button" data-dual-color="${label}" style="border-color:${COLORS[label]}">${label}</button>`).join('')}</div><div class="focus-feedback" role="status" aria-live="polite" aria-atomic="true"></div>`);
       host.querySelectorAll('[data-dual-color]').forEach(button => button.addEventListener('click', () => respondDualColor(button.dataset.dualColor)));
       return;
     }
-    shell(`${base}<div class="focus-rule">第三步：剛才的密碼數字是甚麼？</div><div class="focus-stimulus-wrap"><div class="focus-dual-code"><span>回想剛才的密碼</span><strong>${trial.symbol} ？</strong></div></div><div class="focus-dual-recall">不用急；想一想顏色判斷前出現的數字。</div><div class="focus-choices"><button class="focus-choice" type="button" data-dual-number="${trial.number}">${trial.number}</button><button class="focus-choice" type="button" data-dual-number="${trial.decoy}">${trial.decoy}</button></div><div class="focus-feedback" role="status" aria-live="polite" aria-atomic="true"></div>`);
+    shell(`${base}<div class="focus-rule">第三步：剛才的密碼數字是甚麼？</div><div class="focus-stimulus-wrap"><div class="focus-dual-code"><span>回想剛才的密碼</span><strong>${trial.symbol} ？</strong></div></div><div class="focus-dual-recall">不用急；想一想顏色判斷前出現的數字。</div><div class="focus-choices">${orderedChoices([trial.number, trial.decoy], trial.number, trial.numberPosition).map(number => `<button class="focus-choice" type="button" data-dual-number="${number}">${number}</button>`).join('')}</div><div class="focus-feedback" role="status" aria-live="polite" aria-atomic="true"></div>`);
     host.querySelectorAll('[data-dual-number]').forEach(button => button.addEventListener('click', () => respondDualNumber(Number(button.dataset.dualNumber))));
   }
 
