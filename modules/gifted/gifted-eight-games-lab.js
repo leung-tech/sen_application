@@ -305,17 +305,25 @@
   const roundsFor = (key) => ({ 'flex-castle': castleRounds, 'selective-listening': listeningRounds, 'viewpoint-studio': viewpointRounds, 'rule-sandbox': ruleRounds, 'perspective-toolkit': perspectiveRounds, 'tone-workbench': toneRounds, 'achievement-map': achievementRounds, 'values-sandbox': valuesRounds })[key] || listeningRounds;
   const rounds = () => roundsFor(activeKey);
   const isCastle = () => activeKey === 'flex-castle';
+  const uniqueAnswerPatterns = {
+    'lower:selective-listening': [2, 0, 1, 2, 1, 0, 1, 0],
+    'upper:viewpoint-studio': [1, 2, 0, 1, 0, 2, 0, 1],
+    'upper:rule-sandbox': [2, 0, 1, 2, 1, 0, 2, 0],
+    'junior:perspective-toolkit': [0, 2, 1, 0, 1, 2, 1, 0],
+    'junior:tone-workbench': [1, 0, 2, 1, 0, 2, 0, 1]
+  };
+  const orderedUniqueChoices = (round) => {
+    const choices = [...round.choices];
+    const pattern = uniqueAnswerPatterns[`${activeStage}:${activeKey}`];
+    const position = pattern?.[state.round % pattern.length];
+    if (!Number.isInteger(position) || position < 0 || position >= choices.length) return choices;
+    const others = choices.filter((choice) => choice !== round.answer);
+    return choices.map((choice, index) => index === position ? round.answer : others.shift());
+  };
 
   function activityCards(stage) {
     return (activities[stage] || []).map((item) => {
-      const answerPositionPatterns = {
-        'lower:selective-listening': [2, 0, 1, 2, 1, 0, 1, 0],
-        'upper:viewpoint-studio': [1, 2, 0, 1, 0, 2, 0, 1],
-        'upper:rule-sandbox': [2, 0, 1, 2, 1, 0, 2, 0],
-        'junior:perspective-toolkit': [0, 2, 1, 0, 1, 2, 1, 0],
-        'junior:tone-workbench': [1, 0, 2, 1, 0, 2, 0, 1]
-      };
-      const answerPositionPattern = answerPositionPatterns[`${stage}:${item.key}`];
+      const answerPositionPattern = uniqueAnswerPatterns[`${stage}:${item.key}`];
       const answerPosition = answerPositionPattern
         ? { answerPositionStrategy: 'irregular-balanced', answerPositionPattern }
         : {};
@@ -383,31 +391,31 @@
 
   function renderListening() {
     const current = listeningRounds[state.round];
-    shell.innerHTML = dialog(`${top()}<main class="g8-play"><p class="g8-kicker">選擇性聆聽 · 第 ${state.round + 1} / ${listeningRounds.length} 回合 · ${state.setting || '靜態圖像線索'}</p><h2 class="g8-title" id="g8Title">指揮家的選擇性聆聽台</h2><div class="g8-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="g8-board"><h3>${current.title}</h3><p class="g8-visual" aria-hidden="true">${current.visual}</p><p class="g8-prompt">${current.prompt}</p><div class="g8-choice-grid">${current.choices.map((choice) => `<button type="button" class="g8-choice" data-g8-choice="${choice}">${choice}</button>`).join('')}</div></section>${tools()}<p class="g8-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
+    shell.innerHTML = dialog(`${top()}<main class="g8-play"><p class="g8-kicker">選擇性聆聽 · 第 ${state.round + 1} / ${listeningRounds.length} 回合 · ${state.setting || '靜態圖像線索'}</p><h2 class="g8-title" id="g8Title">指揮家的選擇性聆聽台</h2><div class="g8-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="g8-board"><h3>${current.title}</h3><p class="g8-visual" aria-hidden="true">${current.visual}</p><p class="g8-prompt">${current.prompt}</p><div class="g8-choice-grid">${orderedUniqueChoices(current).map((choice) => `<button type="button" class="g8-choice" data-g8-choice="${choice}">${choice}</button>`).join('')}</div></section>${tools()}<p class="g8-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
     bind(); $$('[data-g8-choice]', shell).forEach((button) => button.addEventListener('click', () => { if (button.dataset.g8Choice === current.answer) { state.correct += 1; state.round += 1; state.round < listeningRounds.length ? renderListening() : finish(); } else { state.retries += 1; status('可以慢慢只看一條線索、按提示或請教師一起看；不需要快。', 'try'); } })); $('[data-g8-choice]', shell).focus();
   }
 
   function renderViewpointStudio() {
     const current = viewpointRounds[state.round];
-    shell.innerHTML = dialog(`${top()}<main class="g8-play"><p class="g8-kicker">多角度推理 · 第 ${state.round + 1} / ${viewpointRounds.length} 回合</p><h2 class="g8-title" id="g8Title">宇宙觀點工作室</h2><div class="g8-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="g8-board"><h3>${current.title}</h3><p>${current.scenario}</p></section><section class="g8-note"><strong>角色資料</strong><br>${current.reports.map((item) => `• ${item}`).join('<br>')}</section><p>以下哪一個下一步問題較能把不同資料連起來？沒有任何角色的表達方式較好或較差。</p><div class="g8-stack">${current.choices.map((choice) => `<button type="button" class="g8-slot" data-g8-view="${choice}">${choice}</button>`).join('')}</div>${tools()}<p class="g8-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
+    shell.innerHTML = dialog(`${top()}<main class="g8-play"><p class="g8-kicker">多角度推理 · 第 ${state.round + 1} / ${viewpointRounds.length} 回合</p><h2 class="g8-title" id="g8Title">宇宙觀點工作室</h2><div class="g8-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="g8-board"><h3>${current.title}</h3><p>${current.scenario}</p></section><section class="g8-note"><strong>角色資料</strong><br>${current.reports.map((item) => `• ${item}`).join('<br>')}</section><p>以下哪一個下一步問題較能把不同資料連起來？沒有任何角色的表達方式較好或較差。</p><div class="g8-stack">${orderedUniqueChoices(current).map((choice) => `<button type="button" class="g8-slot" data-g8-view="${choice}">${choice}</button>`).join('')}</div>${tools()}<p class="g8-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
     bind(); $$('[data-g8-view]', shell).forEach((button) => button.addEventListener('click', () => { if (button.dataset.g8View === current.answer) { state.correct += 1; state.round += 1; state.round < viewpointRounds.length ? renderViewpointStudio() : finish(); } else { state.retries += 1; status('這個選項可能未連結所有資料。可再看角色資料、按提示或請教師一起看。', 'try'); } })); $('[data-g8-view]', shell).focus();
   }
 
   function renderRuleSandbox() {
     const current = ruleRounds[state.round];
-    shell.innerHTML = dialog(`${top()}<main class="g8-play"><p class="g8-kicker">制度設計 · 第 ${state.round + 1} / ${ruleRounds.length} 回合</p><h2 class="g8-title" id="g8Title">規則設計沙盒</h2><div class="g8-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="g8-board"><h3>${current.title}</h3><p>${current.scenario}</p></section><section class="g8-note"><strong>不同需要</strong><br>${current.needs.map((item) => `• ${item}`).join('<br>')}</section><p>哪個草案有可理解的做法，也留下試行與修訂空間？這是比較不同制度設計，不是獎勵服從。</p><div class="g8-stack">${current.choices.map((choice) => `<button type="button" class="g8-slot" data-g8-rule="${choice}">${choice}</button>`).join('')}</div>${tools()}<p class="g8-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
+    shell.innerHTML = dialog(`${top()}<main class="g8-play"><p class="g8-kicker">制度設計 · 第 ${state.round + 1} / ${ruleRounds.length} 回合</p><h2 class="g8-title" id="g8Title">規則設計沙盒</h2><div class="g8-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="g8-board"><h3>${current.title}</h3><p>${current.scenario}</p></section><section class="g8-note"><strong>不同需要</strong><br>${current.needs.map((item) => `• ${item}`).join('<br>')}</section><p>哪個草案有可理解的做法，也留下試行與修訂空間？這是比較不同制度設計，不是獎勵服從。</p><div class="g8-stack">${orderedUniqueChoices(current).map((choice) => `<button type="button" class="g8-slot" data-g8-rule="${choice}">${choice}</button>`).join('')}</div>${tools()}<p class="g8-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
     bind(); $$('[data-g8-rule]', shell).forEach((button) => button.addEventListener('click', () => { if (button.dataset.g8Rule === current.answer) { state.correct += 1; state.round += 1; state.round < ruleRounds.length ? renderRuleSandbox() : finish(); } else { state.retries += 1; status('這項草案可能未回應部分需要，或未留下修訂方法。可再看資料、按提示或和教師討論。', 'try'); } })); $('[data-g8-rule]', shell).focus();
   }
 
   function renderPerspectiveToolkit() {
     const current = perspectiveRounds[state.round];
-    shell.innerHTML = dialog(`${top()}<main class="g8-play"><p class="g8-kicker">情境觀點 · 第 ${state.round + 1} / ${perspectiveRounds.length} 回合</p><h2 class="g8-title" id="g8Title">情境觀點工具箱</h2><div class="g8-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="g8-board"><h3>${current.title}</h3><p>${current.scenario}</p></section><section class="g8-note"><strong>工具箱資料</strong><br>${current.facts.map((item) => `• ${item}`).join('<br>')}</section><p>以下哪一個下一步較能先看資料、保留未知處，並提供可支持的選擇？這是虛構角色，無須分享私人經驗。</p><div class="g8-stack">${current.choices.map((choice) => `<button type="button" class="g8-slot" data-g8-perspective="${choice}">${choice}</button>`).join('')}</div>${tools()}<p class="g8-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
+    shell.innerHTML = dialog(`${top()}<main class="g8-play"><p class="g8-kicker">情境觀點 · 第 ${state.round + 1} / ${perspectiveRounds.length} 回合</p><h2 class="g8-title" id="g8Title">情境觀點工具箱</h2><div class="g8-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="g8-board"><h3>${current.title}</h3><p>${current.scenario}</p></section><section class="g8-note"><strong>工具箱資料</strong><br>${current.facts.map((item) => `• ${item}`).join('<br>')}</section><p>以下哪一個下一步較能先看資料、保留未知處，並提供可支持的選擇？這是虛構角色，無須分享私人經驗。</p><div class="g8-stack">${orderedUniqueChoices(current).map((choice) => `<button type="button" class="g8-slot" data-g8-perspective="${choice}">${choice}</button>`).join('')}</div>${tools()}<p class="g8-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
     bind(); $$('[data-g8-perspective]', shell).forEach((button) => button.addEventListener('click', () => { if (button.dataset.g8Perspective === current.answer) { state.correct += 1; state.round += 1; state.round < perspectiveRounds.length ? renderPerspectiveToolkit() : finish(); } else { state.retries += 1; status('這個做法可能跳過了未知處或未提供支持下一步。可再看資料、按提示或請教師一起看。', 'try'); } })); $('[data-g8-perspective]', shell).focus();
   }
 
   function renderToneWorkbench() {
     const current = toneRounds[state.round];
-    shell.innerHTML = dialog(`${top()}<main class="g8-play"><p class="g8-kicker">修辭改寫 · 第 ${state.round + 1} / ${toneRounds.length} 回合</p><h2 class="g8-title" id="g8Title">說話溫度工作台</h2><div class="g8-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="g8-board"><h3>初稿</h3><p class="g8-prompt">「${current.draft}」</p></section><p>以下哪一句較清楚指出資料、提出可修訂的下一步，並尊重對方？這不是把意見變得模糊，而是讓對話可繼續。</p><div class="g8-stack">${current.choices.map((choice) => `<button type="button" class="g8-slot" data-g8-tone="${choice}">${choice}</button>`).join('')}</div>${tools()}<p class="g8-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
+    shell.innerHTML = dialog(`${top()}<main class="g8-play"><p class="g8-kicker">修辭改寫 · 第 ${state.round + 1} / ${toneRounds.length} 回合</p><h2 class="g8-title" id="g8Title">說話溫度工作台</h2><div class="g8-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="g8-board"><h3>初稿</h3><p class="g8-prompt">「${current.draft}」</p></section><p>以下哪一句較清楚指出資料、提出可修訂的下一步，並尊重對方？這不是把意見變得模糊，而是讓對話可繼續。</p><div class="g8-stack">${orderedUniqueChoices(current).map((choice) => `<button type="button" class="g8-slot" data-g8-tone="${choice}">${choice}</button>`).join('')}</div>${tools()}<p class="g8-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
     bind(); $$('[data-g8-tone]', shell).forEach((button) => button.addEventListener('click', () => { if (button.dataset.g8Tone === current.answer) { state.correct += 1; state.round += 1; state.round < toneRounds.length ? renderToneWorkbench() : finish(); } else { state.retries += 1; status('這句可能含有推論、評價或封閉對話。可再看初稿、按提示或與教師討論其他改寫。', 'try'); } })); $('[data-g8-tone]', shell).focus();
   }
 

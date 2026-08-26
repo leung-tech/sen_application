@@ -78,6 +78,11 @@
 
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const orderWithAnswer = (choices, answer, pattern) => {
+    const answerPosition = pattern[state?.round % pattern.length];
+    const others = choices.filter((choice) => choice !== answer);
+    return choices.map((choice, index) => index === answerPosition ? answer : others.shift());
+  };
 
   function activityCards(stage) {
     return (activities[stage] || []).map((activity) => ({
@@ -146,7 +151,7 @@
   }
   function renderPuzzle() {
     const current = puzzleRounds[state.round];
-    shell.innerHTML = dialogHTML(`${commonTop()}<main class="gifted2e-play"><p class="gifted2e-kicker">彈性解難 · 第 ${state.round + 1} / ${puzzleRounds.length} 回合</p><h2 class="gifted2e-title" id="gifted2eTitle">完美怪獸的彈性拼圖</h2><div class="gifted2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="gifted2e-board"><h3>找出下一塊</h3><p class="gifted2e-prompt">${current.prompt}</p><div class="gifted2e-choice-grid">${current.choices.map((choice) => `<button class="gifted2e-choice" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div></section><div class="gifted2e-help"><button class="gifted2e-secondary" type="button" data-action="hint">💡 看提示</button><button class="gifted2e-secondary" type="button" data-action="read-round">🔊 朗讀這頁</button><button class="gifted2e-quiet" type="button" data-action="pause">先停一停</button><button class="gifted2e-quiet" type="button" data-action="teacher">請教師一起看</button></div><p class="gifted2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
+    shell.innerHTML = dialogHTML(`${commonTop()}<main class="gifted2e-play"><p class="gifted2e-kicker">彈性解難 · 第 ${state.round + 1} / ${puzzleRounds.length} 回合</p><h2 class="gifted2e-title" id="gifted2eTitle">完美怪獸的彈性拼圖</h2><div class="gifted2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="gifted2e-board"><h3>找出下一塊</h3><p class="gifted2e-prompt">${current.prompt}</p><div class="gifted2e-choice-grid">${orderWithAnswer(current.choices, current.answer, [2, 0, 1]).map((choice) => `<button class="gifted2e-choice" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div></section><div class="gifted2e-help"><button class="gifted2e-secondary" type="button" data-action="hint">💡 看提示</button><button class="gifted2e-secondary" type="button" data-action="read-round">🔊 朗讀這頁</button><button class="gifted2e-quiet" type="button" data-action="pause">先停一停</button><button class="gifted2e-quiet" type="button" data-action="teacher">請教師一起看</button></div><p class="gifted2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
     bindShell();
     $$('[data-answer]', shell).forEach((button) => button.addEventListener('click', () => {
       if (button.dataset.answer === current.answer) {
@@ -171,7 +176,7 @@
   }
   function renderSpace() {
     const current = socialRounds[state.round];
-    shell.innerHTML = dialogHTML(`${commonTop()}<main class="gifted2e-play"><p class="gifted2e-kicker">星際推理 · 第 ${state.round + 1} / ${socialRounds.length} 回合</p><h2 class="gifted2e-title" id="gifted2eTitle">星際解碼：社交線索</h2><div class="gifted2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="gifted2e-board"><h3>先破解符號規律</h3><p class="gifted2e-prompt">${current.code}</p><div class="gifted2e-choice-grid">${current.choices.map((choice) => `<button class="gifted2e-choice" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div></section><div class="gifted2e-help"><button class="gifted2e-secondary" type="button" data-action="hint">💡 看提示</button><button class="gifted2e-secondary" type="button" data-action="read-round">🔊 朗讀這頁</button><button class="gifted2e-quiet" type="button" data-action="pause">先停一停</button><button class="gifted2e-quiet" type="button" data-action="teacher">請教師一起看</button></div><p class="gifted2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
+    shell.innerHTML = dialogHTML(`${commonTop()}<main class="gifted2e-play"><p class="gifted2e-kicker">星際推理 · 第 ${state.round + 1} / ${socialRounds.length} 回合</p><h2 class="gifted2e-title" id="gifted2eTitle">星際解碼：社交線索</h2><div class="gifted2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="gifted2e-board"><h3>先破解符號規律</h3><p class="gifted2e-prompt">${current.code}</p><div class="gifted2e-choice-grid">${orderWithAnswer(current.choices, current.answer, [2, 0, 1]).map((choice) => `<button class="gifted2e-choice" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div></section><div class="gifted2e-help"><button class="gifted2e-secondary" type="button" data-action="hint">💡 看提示</button><button class="gifted2e-secondary" type="button" data-action="read-round">🔊 朗讀這頁</button><button class="gifted2e-quiet" type="button" data-action="pause">先停一停</button><button class="gifted2e-quiet" type="button" data-action="teacher">請教師一起看</button></div><p class="gifted2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
     bindShell();
     $$('[data-answer]', shell).forEach((button) => button.addEventListener('click', () => {
       if (button.dataset.answer === current.answer) { state.correct += 1; renderDialogue(current); }
@@ -180,7 +185,7 @@
     $('[data-answer]', shell).focus();
   }
   function renderDialogue(current) {
-    const alternatives = ['我已經知道答案，你快一點說。', '你明明有線索，現在就告訴我。', current.best];
+    const alternatives = orderWithAnswer(['我已經知道答案，你快一點說。', '你明明有線索，現在就告訴我。', current.best], current.best, [1, 2, 0]);
     shell.innerHTML = dialogHTML(`${commonTop()}<main class="gifted2e-play"><p class="gifted2e-kicker">社交線索 · 第 ${state.round + 1} / ${socialRounds.length} 回合</p><h2 class="gifted2e-title" id="gifted2eTitle">下一條線索：先確認需要</h2><div class="gifted2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><article class="gifted2e-npc"><strong>NPC 線索</strong><br>${current.npc}</article><p>哪一句較能中性地確認對方想怎樣繼續？</p><div class="gifted2e-dialogue-grid">${alternatives.map((choice) => `<button class="gifted2e-dialogue" type="button" data-dialogue="${encodeURIComponent(choice)}">${choice}</button>`).join('')}</div><div class="gifted2e-help"><button class="gifted2e-secondary" type="button" data-action="read-round">🔊 朗讀這頁</button><button class="gifted2e-quiet" type="button" data-action="pause">先停一停</button><button class="gifted2e-quiet" type="button" data-action="teacher">請教師一起看</button></div><p class="gifted2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
     bindShell();
     $$('[data-dialogue]', shell).forEach((button) => button.addEventListener('click', () => {

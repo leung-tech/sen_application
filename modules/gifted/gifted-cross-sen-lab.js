@@ -207,6 +207,64 @@
     }
   ];
 
+  quietRounds.push(
+    { title: '種子發芽', prompt: '哪一張觀察卡最能描述種子剛發芽時的改變？', answer: '長出小根和嫩芽', choices: ['葉子立刻變成花', '長出小根和嫩芽', '量杯自己裝滿'], hint: '先看種子由哪一部分開始吸收水分和長大。', visual: '🌰 → 🌱' },
+    { title: '影子長短', prompt: '早上和中午比較影子時，哪一項做法最能幫助觀察？', answer: '在相同位置量影子', choices: ['每次換不同物件', '不看太陽方向', '在相同位置量影子'], hint: '比較時先保持一項條件不變。', visual: '☀️  🧍  ▬' },
+    { title: '磁鐵測試', prompt: '想知道哪一種物件會被磁鐵吸住，先選哪一張測試卡？', answer: '用磁鐵逐件靠近物件', choices: ['把所有物件混在一起', '用磁鐵逐件靠近物件', '先猜完不測試'], hint: '可以一次測一件，再記下觀察。', visual: '🧲 → 🔩' },
+    { title: '紙橋承重', prompt: '比較兩種紙橋時，哪一項資料最值得先記下？', answer: '每座橋能放多少相同積木', choices: ['哪一座顏色最鮮艷', '哪一座先被畫上圖案', '每座橋能放多少相同積木'], hint: '用相同積木比較，會較容易看出承重差異。', visual: '📄 ▱ 🧱' },
+    { title: '水溫變化', prompt: '要安全比較兩杯水的溫度，哪一項下一步最合適？', answer: '用溫度計讀取並記下數字', choices: ['用手長時間碰熱水', '用溫度計讀取並記下數字', '把兩杯水倒在一起'], hint: '先使用合適工具，並把每次讀數記下。', visual: '🌡️ 💧' }
+  );
+  conceptRounds.push(
+    { term: '凝結', read: '凝結', prompt: '把「凝結」連到最相符的圖像關係。', answer: '水氣變成小水點', choices: ['水氣變成小水點', '石頭變成水', '太陽變成雲'], hint: '想想冰凍杯外面的小水點從哪裡來。', visual: '☁️ → 💧' },
+    { term: '光合作用', read: '光合作用', prompt: '把「光合作用」連到最相符的關係鏈。', answer: '植物用光和水製造養分', choices: ['植物用光和水製造養分', '植物把土壤變成金屬', '所有葉子在晚上發光'], hint: '葉子會利用陽光、水和空氣幫自己製造養分。', visual: '☀️ ＋ 💧 → 🌿' },
+    { term: '反射', read: '反射', prompt: '把「反射」連到最相符的光線圖像。', answer: '光照到鏡面後改變方向', choices: ['光照到鏡面後改變方向', '聲音變成石頭', '水永遠向上流'], hint: '看看鏡子怎樣把光線送到另一個方向。', visual: '🔦 ↘ 🪞 ↗' },
+    { term: '浮力', read: '浮力', prompt: '把「浮力」連到最相符的現象。', answer: '水把物件向上托住', choices: ['水把物件向上托住', '所有物件一定下沉', '風令石頭變輕'], hint: '想想木塊放進水裡時，水怎樣支撐它。', visual: '🪵 〰️ 💧' },
+    { term: '摩擦力', read: '摩擦力', prompt: '把「摩擦力」連到最相符的日常例子。', answer: '鞋底幫助走路不易滑倒', choices: ['鞋底幫助走路不易滑倒', '雨傘令太陽變暗', '書本自己翻頁'], hint: '摩擦力可以幫助兩個表面抓緊。', visual: '👟 ⇄ 🛣️' }
+  );
+  caseRounds.push(
+    { title: '共用白板未清理', scenario: '虛構小組完成討論後忘記清理共用白板，下一組需要開始準備。', evidence: ['規則卡：使用後要保留或清理資料。', '處境卡：上一組仍想拍下重點。', '影響卡：下一組需要空白位置開始。'], answer: '先讓上一組快速拍下重點，再一起清出一個可用區域並約定收尾步驟。', choices: ['先讓上一組快速拍下重點，再一起清出一個可用區域並約定收尾步驟。', '直接抹走全部內容，不需要說明。', '讓下一組一直等待。'], hint: '找一個同時保留重要資料和回應下一組需要的做法。' },
+    { title: '借用材料不足', scenario: '虛構創作組發現顏料只剩少量，兩組都在準備展示。', evidence: ['規則卡：共用材料要讓不同組別可使用。', '處境卡：展示時間接近。', '影響卡：兩組都需要完成一個重點部分。'], answer: '先列出各組最需要的材料，再分配小量試用並找替代材料。', choices: ['只讓先拿到的人使用全部顏料。', '先列出各組最需要的材料，再分配小量試用並找替代材料。', '把所有展示取消。'], hint: '可行下一步會回應時間、材料和不同組別的需要。' },
+    { title: '分享檔案權限', scenario: '虛構小組有人看不到共用檔案，報告需要一起修改。', evidence: ['規則卡：檔案權限需由小組確認。', '處境卡：有人正修改重要段落。', '影響卡：看不到檔案的人不能提供回饋。'], answer: '先確認現有版本，再調整權限並約定誰負責合併修改。', choices: ['先確認現有版本，再調整權限並約定誰負責合併修改。', '要求看不到的人自行重做報告。', '直接刪除所有共享設定。'], hint: '想想怎樣同時保留現有工作和讓每人可參與。' },
+    { title: '小組音量不同', scenario: '虛構課室一組正在錄製旁白，另一組要討論資料。', evidence: ['規則卡：使用空間要減少互相干擾。', '處境卡：兩組都有短時間完成需要。', '影響卡：旁邊同學需要聽清錄音內容。'], answer: '先安排短時錄音與討論時段，並用位置標示減少互相干擾。', choices: ['禁止其中一組今天工作。', '不需要協調，讓音量一直增加。', '先安排短時錄音與討論時段，並用位置標示減少互相干擾。'], hint: '可看看時間、位置和不同任務怎樣一起安排。' },
+    { title: '展示順序調整', scenario: '虛構班級發現一組展示需要較多設備時間，原本次序可能令大家等候。', evidence: ['規則卡：展示安排可按需要修訂。', '處境卡：設備只可同時支援一組。', '影響卡：每組都希望有清楚準備時間。'], answer: '先公開設備需要，再一起試排新次序並確認每組的準備時間。', choices: ['只通知一組突然改期。', '先公開設備需要，再一起試排新次序並確認每組的準備時間。', '維持原次序而不理會設備限制。'], hint: '透明資料和可修訂安排可幫助不同組別準備。' }
+  );
+  mapRounds.push(
+    { term: '太陽系', prompt: '把「太陽系」放到最能幫你回想的圖像房間。', answer: '太陽、行星與軌道', choices: ['太陽、行星與軌道', '湯匙、碗與餐桌', '海浪、沙灘與船'], hint: '想想行星怎樣圍繞太陽運行。', visual: '☀️ ○ ○ ○' },
+    { term: '三態變化', prompt: '把「三態變化」放到最能幫你回想的圖像房間。', answer: '冰、水與水氣', choices: ['樹、花與果實', '冰、水與水氣', '車、路與燈'], hint: '可以把同一種水的三種樣子連起來。', visual: '🧊 → 💧 → ♨️' },
+    { term: '地圖比例', prompt: '把「地圖比例」放到最能幫你回想的圖像房間。', answer: '小尺、地圖與實際距離', choices: ['小尺、地圖與實際距離', '鳥巢、羽毛與蛋', '時鐘、日曆與書包'], hint: '比例幫助把圖上的距離連到真實距離。', visual: '🗺️ 1cm = 1km' },
+    { term: '聲音傳播', prompt: '把「聲音傳播」放到最能幫你回想的圖像房間。', answer: '震動、空氣與耳朵', choices: ['鉛筆、紙張與橡皮', '震動、空氣與耳朵', '月亮、星星與雲'], hint: '聲音由震動開始，再經過介質到耳朵。', visual: '〰️ → 👂' },
+    { term: '生態系統', prompt: '把「生態系統」放到最能幫你回想的圖像房間。', answer: '生物、環境與互相影響', choices: ['糖、鹽與杯子', '衣服、鞋子與雨傘', '生物、環境與互相影響'], hint: '不只看一種生物，也看環境和彼此關係。', visual: '🌿 🐛 🐦 ☀️' }
+  );
+  workbenchRounds.push(
+    { title: '小組連結未發出', scenario: '虛構角色朗然尚未收到小組會議連結。', cards: [['事實卡', '目前收件匣沒有會議連結。'], ['可能想法卡', '「我想知道是否仍未發出，或發到另一個位置。」'], ['支持選項卡', '先查看日程，再用清楚問題確認時間和連結。']] },
+    { title: '看不懂新工具', scenario: '虛構角色映琳打開更新後的學習工具，發現按鈕位置改變。', cards: [['事實卡', '工具版面和按鈕位置已改變。'], ['可能想法卡', '「我想先找回最常用的一個功能。」'], ['支持選項卡', '查看更新說明，或請同伴示範一個基本步驟。']] },
+    { title: '回饋訊息很短', scenario: '虛構角色家朗收到回覆：「遲些再談。」', cards: [['事實卡', '對方表示暫時未能詳細討論。'], ['可能想法卡', '「我還不知道甚麼時候可以再確認。」'], ['支持選項卡', '記下重點，稍後用一條清楚問題確認時間。']] },
+    { title: '分工還未決定', scenario: '虛構角色欣怡的小組有很多想法，但尚未分配工作。', cards: [['事實卡', '小組已有多個想法，仍未分工。'], ['可能想法卡', '「我可以先寫下我願意負責的部分。」'], ['支持選項卡', '使用簡短分工表，讓每人先選一項可做的小步。']] },
+    { title: '展示前感到忙亂', scenario: '虛構角色子瑜發現展示前還有幾項小事未完成。', cards: [['事實卡', '展示前仍有幾項工作未勾選。'], ['可能想法卡', '「我想先知道哪一項最需要今天處理。」'], ['支持選項卡', '把工作分成今天、可延後和可請人協助三類。']] }
+  );
+  decoderRounds.push(
+    { title: '分工尚未確定', dialogue: '同學說：「我們先把想做的部分寫出來，之後再一起看。」', clues: ['小組正在開始安排工作。', '「之後再一起看」表示仍可討論。'], possible: ['可能想先整理選項。', '可能希望每人先有機會表達。'], answers: ['我想確認：我先寫下想做的部分，之後再一起分配，可以嗎？', '我未必完全明白；可以先說說現在要列出哪些部分嗎？'], choices: ['你是不是覺得我不會做？', '我想確認：我先寫下想做的部分，之後再一起分配，可以嗎？', '我未必完全明白；可以先說說現在要列出哪些部分嗎？'] },
+    { title: '暫停回覆', dialogue: '同學說：「我想先看完資料，遲些再回你。」', clues: ['對方沒有拒絕討論。', '對方表示需要先看資料。'], possible: ['可能需要閱讀時間。', '可能想在有資料後再回覆。'], answers: ['謝謝你說明；你方便時可否告訴我大約何時再確認？', '我想確認：我可以先整理兩個重點，之後再一起看嗎？'], choices: ['你一定不想幫忙。', '謝謝你說明；你方便時可否告訴我大約何時再確認？', '我想確認：我可以先整理兩個重點，之後再一起看嗎？'] },
+    { title: '建議修改', dialogue: '組員說：「這一段如果再清楚一點，讀者可能較容易跟上。」', clues: ['組員提到的是一段文字。', '對方提出的是可修訂的方向。'], possible: ['可能想改善說明方式。', '可能可用一個例子釐清。'], answers: ['我想確認：你覺得哪一句最需要先加例子？', '可以請你指出一個讀起來不清楚的位置嗎？'], choices: ['你是在說整份作品都不好嗎？', '我想確認：你覺得哪一句最需要先加例子？', '可以請你指出一個讀起來不清楚的位置嗎？'] },
+    { title: '會議快結束', dialogue: '同學說：「今天時間不多，我們先圈出最重要的兩項。」', clues: ['會議時間有限。', '同學提出先做兩項。'], possible: ['可能希望先安排優先次序。', '可能仍可在下次處理其他項目。'], answers: ['我想確認：我們先選兩項，其他項目留到下次一起看嗎？', '我可以先說我覺得最急的一項，再聽大家的想法嗎？'], choices: ['你是在叫大家停止討論嗎？', '我想確認：我們先選兩項，其他項目留到下次一起看嗎？', '我可以先說我覺得最急的一項，再聽大家的想法嗎？'] },
+    { title: '資料來源未清楚', dialogue: '同學說：「這個數字好像需要再核對一下來源。」', clues: ['同學提到的是資料來源。', '語句沒有指責任何人。'], possible: ['可能希望確認資料可靠。', '可能可一起找原始連結。'], answers: ['我想確認：我們可否先找原始來源，再決定怎樣標示？', '你想我先整理目前有的連結，還是一起查一個來源？'], choices: ['你是在說我亂寫嗎？', '我想確認：我們可否先找原始來源，再決定怎樣標示？', '你想我先整理目前有的連結，還是一起查一個來源？'] }
+  );
+  storyRounds.push(
+    { title: '科學模型修訂', scenario: '虛構角色晴朗完成科學模型後，根據試行結果修訂了一個部件。', cards: ['作品證據：晴朗畫出模型改動前後的圖。', '學習過程：晴朗記下測試後想再問的問題。', '支持選項：下次可請同伴先試用一個步驟。'] },
+    { title: '閱讀計劃', scenario: '虛構角色悅行完成一個長篇閱讀計劃，並找到適合自己的筆記方式。', cards: ['作品證據：悅行用圖像和短句整理章節重點。', '學習過程：悅行每週調整一次閱讀小步。', '支持選項：下次可和教師確認哪種提示最有用。'] },
+    { title: '社區訪問草稿', scenario: '虛構角色卓言準備虛構社區訪問，先修訂問題再安排記錄方式。', cards: ['作品證據：卓言把訪問問題分成三個主題。', '學習過程：卓言根據試讀回饋刪減重複問題。', '支持選項：下次可先確認受訪者喜歡文字或圖像記錄。'] },
+    { title: '程式小作品', scenario: '虛構角色若嵐完成一個互動小作品，並為使用者加上清楚提示。', cards: ['作品證據：若嵐加入可見的開始和返回按鈕。', '學習過程：若嵐根據測試調整了一個操作步驟。', '支持選項：下次可請一位使用者說出最容易卡住的位置。'] },
+    { title: '小組展覽回顧', scenario: '虛構角色浩希在展覽後和組員整理哪些合作方式值得保留。', cards: ['作品證據：浩希協助把展覽資料分成清楚區塊。', '學習過程：浩希記下小組如何分工和修訂。', '支持選項：下次可在開始前先約定一個溝通方式。'] }
+  );
+  communityRounds.push(
+    { title: '社區花園', scenario: '虛構社區想把空地改成花園，需要考慮休息、種植、通道和用水。', constraints: ['資源限制：第一期只可完成兩個區域。', '持份者：居民、輪椅使用者、學生與園藝義工。'], plans: [['種植區＋平緩路線', '先安排可使用通道和一小塊種植區。'], ['休息椅＋收集雨水', '先增加休息位置和小型雨水收集。'], ['試行花槽＋觀察表', '先做可移動花槽，再記下不同使用者意見。']], questions: ['哪一區最需要先保持通道暢通？', '誰還需要參與下一輪設計？'] },
+    { title: '夜間巴士站', scenario: '虛構社區希望改善夜間巴士站的照明、等候和資訊。', constraints: ['資源限制：先試行一個月。', '持份者：乘客、附近居民、司機與維修人員。'], plans: [['清楚時刻表＋照明', '先改善資訊和基本照明。'], ['等候座椅＋求助標示', '先增加休息位置和清楚求助提示。'], ['短期觀察＋回饋點', '先在不同時段記下使用情況。']], questions: ['哪個時段最需要先觀察等候情況？', '使用者想以甚麼方式回饋？'] },
+    { title: '共享學習室', scenario: '虛構社區想開放共享學習室，使用者有安靜閱讀、討論和短暫休息的需要。', constraints: ['資源限制：可先劃分兩個使用區。', '持份者：學生、家長、長者與職員。'], plans: [['安靜區＋易讀規則', '先劃出安靜區並放上清楚規則。'], ['討論時段＋預約卡', '先設定討論時段和簡單預約方式。'], ['可移動家具＋試行記錄', '先使用可調整家具並收集使用觀察。']], questions: ['哪一種使用者需要先被問到？', '哪項資料有助下次調整空間？'] },
+    { title: '海岸步道提示', scenario: '虛構海岸步道想讓訪客容易找路，同時減少對小動物的打擾。', constraints: ['資源限制：本期只能安裝少量標示。', '持份者：訪客、保育員、附近學校與居民。'], plans: [['方向標示＋安靜觀察點', '先設方向標示和指定觀察位置。'], ['平緩入口＋保育提示', '先改善入口並加上保育提示。'], ['短期路線測試＋回饋', '先測試兩條路線並收集觀察。']], questions: ['哪一段最容易令訪客迷路？', '怎樣知道觀察點有否減少打擾？'] },
+    { title: '社區工具角', scenario: '虛構社區想建立借用工具角，讓居民修理小物品和學習基本技能。', constraints: ['資源限制：工具數量和開放時段有限。', '持份者：居民、義工、職員與附近住戶。'], plans: [['借用卡＋安全提示', '先建立清楚借還與安全流程。'], ['預約時段＋安靜時間', '先安排使用時段以減少干擾。'], ['少量工具試行＋意見表', '先試行常用工具並收集需要。']], questions: ['哪些工具最適合先提供？', '怎樣讓不同使用者知道安全步驟？'] }
+  );
+  Object.values(activities).flat().forEach((activity) => { activity.tag = activity.tag.replace('3 回合', '8 回合'); });
+
   let shell;
   let trigger;
   let onComplete;
@@ -220,6 +278,20 @@
   const activeActivity = () => Object.values(activities).flat().find((item) => item.key === activeKey);
   const rounds = () => ({ 'quiet-lab': quietRounds, 'concept-blocks': conceptRounds, 'case-workshop': caseRounds, 'memory-map': mapRounds, 'thought-workbench': workbenchRounds, 'social-decoder': decoderRounds, 'story-editor': storyRounds, 'community-sandbox': communityRounds })[activeKey] || quietRounds;
   const isConcept = () => activeKey === 'concept-blocks';
+  const uniqueAnswerPatterns = {
+    'lower:quiet-lab': [2, 0, 1],
+    'lower:concept-blocks': [1, 2, 0],
+    'upper:case-workshop': [0, 2, 1],
+    'upper:memory-map': [2, 1, 0]
+  };
+  const orderedUniqueChoices = (round) => {
+    const choices = [...round.choices];
+    const pattern = uniqueAnswerPatterns[`${activeStage}:${activeKey}`];
+    const position = pattern?.[state.round % pattern.length];
+    if (!Number.isInteger(position) || position < 0 || position >= choices.length) return choices;
+    const others = choices.filter((choice) => choice !== round.answer);
+    return choices.map((choice, index) => index === position ? round.answer : others.shift());
+  };
 
   function activityCards(stage) {
     return (activities[stage] || []).map((item) => ({
@@ -288,7 +360,7 @@
 
   function renderQuietLab() {
     const current = quietRounds[state.round];
-    shell.innerHTML = dialog(`${top()}<main class="cross2e-play"><p class="cross2e-kicker">安靜觀察 · 第 ${state.round + 1} / ${quietRounds.length} 回合 · ${state.setting || '靜音＋靜態提示'}</p><h2 class="cross2e-title" id="cross2eTitle">安靜實驗室：觀察與選擇</h2><div class="cross2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="cross2e-board"><h3>${current.title}</h3><p class="cross2e-visual" aria-hidden="true">${current.visual}</p><p class="cross2e-prompt">${current.prompt}</p><div class="cross2e-choice-grid">${current.choices.map((choice) => `<button class="cross2e-choice" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div></section>${supportButtons()}<p class="cross2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
+    shell.innerHTML = dialog(`${top()}<main class="cross2e-play"><p class="cross2e-kicker">安靜觀察 · 第 ${state.round + 1} / ${quietRounds.length} 回合 · ${state.setting || '靜音＋靜態提示'}</p><h2 class="cross2e-title" id="cross2eTitle">安靜實驗室：觀察與選擇</h2><div class="cross2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="cross2e-board"><h3>${current.title}</h3><p class="cross2e-visual" aria-hidden="true">${current.visual}</p><p class="cross2e-prompt">${current.prompt}</p><div class="cross2e-choice-grid">${orderedUniqueChoices(current).map((choice) => `<button class="cross2e-choice" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div></section>${supportButtons()}<p class="cross2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
     bindShell();
     $$('[data-answer]', shell).forEach((button) => button.addEventListener('click', () => {
       if (button.dataset.answer === current.answer) { state.correct += 1; state.round += 1; state.round < quietRounds.length ? renderQuietLab() : finish(); }
@@ -300,7 +372,7 @@
   function renderConceptBlocks() {
     const current = rounds()[state.round];
     const selected = state.selectedTerm || '';
-    shell.innerHTML = dialog(`${top()}<main class="cross2e-play"><p class="cross2e-kicker">概念表徵 · 第 ${state.round + 1} / ${conceptRounds.length} 回合</p><h2 class="cross2e-title" id="cross2eTitle">概念連結方塊</h2><div class="cross2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="cross2e-board"><h3>把概念卡連到圖像</h3><p class="cross2e-visual" aria-hidden="true">${current.visual}</p><p class="cross2e-prompt">${current.prompt}</p></section><p>可把概念卡拖到圖像區；也可先按概念卡，再按一個圖像區。</p><div class="cross2e-link-layout"><section aria-label="概念卡"><button class="cross2e-source${selected ? ' is-selected' : ''}" type="button" draggable="true" data-term="${current.term}"><strong>🧱 ${current.term}</strong><small>可拖拉或先點選，再選圖像區。</small></button></section><section class="cross2e-zone-grid" aria-label="圖像與關係鏈">${current.choices.map((choice) => `<button class="cross2e-zone" type="button" data-zone="${choice}" data-sen-drop-zone="concept"><strong>${choice}</strong><small>${choice === current.answer ? '一張科學圖像關係卡。' : '另一張可比較的圖像關係卡。'}</small></button>`).join('')}</section></div>${supportButtons()}<p class="cross2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
+    shell.innerHTML = dialog(`${top()}<main class="cross2e-play"><p class="cross2e-kicker">概念表徵 · 第 ${state.round + 1} / ${conceptRounds.length} 回合</p><h2 class="cross2e-title" id="cross2eTitle">概念連結方塊</h2><div class="cross2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="cross2e-board"><h3>把概念卡連到圖像</h3><p class="cross2e-visual" aria-hidden="true">${current.visual}</p><p class="cross2e-prompt">${current.prompt}</p></section><p>可把概念卡拖到圖像區；也可先按概念卡，再按一個圖像區。</p><div class="cross2e-link-layout"><section aria-label="概念卡"><button class="cross2e-source${selected ? ' is-selected' : ''}" type="button" draggable="true" data-term="${current.term}"><strong>🧱 ${current.term}</strong><small>可拖拉或先點選，再選圖像區。</small></button></section><section class="cross2e-zone-grid" aria-label="圖像與關係鏈">${orderedUniqueChoices(current).map((choice) => `<button class="cross2e-zone" type="button" data-zone="${choice}" data-sen-drop-zone="concept"><strong>${choice}</strong><small>${choice === current.answer ? '一張科學圖像關係卡。' : '另一張可比較的圖像關係卡。'}</small></button>`).join('')}</section></div>${supportButtons()}<p class="cross2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
     bindShell();
     let dragging = '';
     const source = $('[data-term]', shell);
@@ -317,7 +389,7 @@
 
   function renderCaseWorkshop() {
     const current = caseRounds[state.round];
-    shell.innerHTML = dialog(`${top()}<main class="cross2e-play"><p class="cross2e-kicker">多角度推理 · 第 ${state.round + 1} / ${caseRounds.length} 回合</p><h2 class="cross2e-title" id="cross2eTitle">多角度案件工作室</h2><div class="cross2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="cross2e-board"><h3>${current.title}</h3><p>${current.scenario}</p></section><section class="cross2e-note"><strong>先查看資料卡</strong><br>${current.evidence.map((item) => `• ${item}`).join('<br>')}</section><p>哪一項下一步較能同時看見規則、處境和受影響的人？不同人可以討論不同原因。</p><div class="cross2e-zone-grid">${current.choices.map((choice) => `<button class="cross2e-zone" type="button" data-case-choice="${choice}">${choice}</button>`).join('')}</div>${supportButtons()}<p class="cross2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
+    shell.innerHTML = dialog(`${top()}<main class="cross2e-play"><p class="cross2e-kicker">多角度推理 · 第 ${state.round + 1} / ${caseRounds.length} 回合</p><h2 class="cross2e-title" id="cross2eTitle">多角度案件工作室</h2><div class="cross2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="cross2e-board"><h3>${current.title}</h3><p>${current.scenario}</p></section><section class="cross2e-note"><strong>先查看資料卡</strong><br>${current.evidence.map((item) => `• ${item}`).join('<br>')}</section><p>哪一項下一步較能同時看見規則、處境和受影響的人？不同人可以討論不同原因。</p><div class="cross2e-zone-grid">${orderedUniqueChoices(current).map((choice) => `<button class="cross2e-zone" type="button" data-case-choice="${choice}">${choice}</button>`).join('')}</div>${supportButtons()}<p class="cross2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
     bindShell();
     $$('[data-case-choice]', shell).forEach((button) => button.addEventListener('click', () => {
       if (button.dataset.caseChoice === current.answer) { state.correct += 1; state.round += 1; state.round < caseRounds.length ? renderCaseWorkshop() : finish(); }
@@ -329,7 +401,7 @@
   function renderMemoryMap() {
     const current = mapRounds[state.round];
     const selected = state.selectedTerm || '';
-    shell.innerHTML = dialog(`${top()}<main class="cross2e-play"><p class="cross2e-kicker">空間記憶 · 第 ${state.round + 1} / ${mapRounds.length} 回合</p><h2 class="cross2e-title" id="cross2eTitle">空間線索記憶地圖</h2><div class="cross2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="cross2e-board"><h3>選一個圖像房間</h3><p class="cross2e-visual" aria-hidden="true">${current.visual}</p><p class="cross2e-prompt">${current.prompt}</p></section><p>可拖拉線索卡到圖像房間；也可先按線索卡，再按一個房間。可使用圖像、首字、色彩、朗讀或自己的紙筆方式記住。</p><div class="cross2e-link-layout"><section aria-label="學習線索卡"><button class="cross2e-source${selected ? ' is-selected' : ''}" type="button" draggable="true" data-term="${current.term}"><strong>🗺️ ${current.term}</strong><small>可拖拉或先點選，再選圖像房間。</small></button></section><section class="cross2e-zone-grid" aria-label="圖像房間">${current.choices.map((choice) => `<button class="cross2e-zone" type="button" data-zone="${choice}" data-sen-drop-zone="memory"><strong>${choice}</strong><small>一個可選的回憶線索位置。</small></button>`).join('')}</section></div>${supportButtons()}<p class="cross2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
+    shell.innerHTML = dialog(`${top()}<main class="cross2e-play"><p class="cross2e-kicker">空間記憶 · 第 ${state.round + 1} / ${mapRounds.length} 回合</p><h2 class="cross2e-title" id="cross2eTitle">空間線索記憶地圖</h2><div class="cross2e-progress" role="progressbar" aria-label="回合進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress()}"><span style="width:${progress()}%"></span></div><section class="cross2e-board"><h3>選一個圖像房間</h3><p class="cross2e-visual" aria-hidden="true">${current.visual}</p><p class="cross2e-prompt">${current.prompt}</p></section><p>可拖拉線索卡到圖像房間；也可先按線索卡，再按一個房間。可使用圖像、首字、色彩、朗讀或自己的紙筆方式記住。</p><div class="cross2e-link-layout"><section aria-label="學習線索卡"><button class="cross2e-source${selected ? ' is-selected' : ''}" type="button" draggable="true" data-term="${current.term}"><strong>🗺️ ${current.term}</strong><small>可拖拉或先點選，再選圖像房間。</small></button></section><section class="cross2e-zone-grid" aria-label="圖像房間">${orderedUniqueChoices(current).map((choice) => `<button class="cross2e-zone" type="button" data-zone="${choice}" data-sen-drop-zone="memory"><strong>${choice}</strong><small>一個可選的回憶線索位置。</small></button>`).join('')}</section></div>${supportButtons()}<p class="cross2e-status" data-role="status" role="status" aria-live="polite" aria-atomic="true"></p></main>`);
     bindShell();
     let dragging = '';
     const source = $('[data-term]', shell);
