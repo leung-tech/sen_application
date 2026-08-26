@@ -196,18 +196,18 @@
       addGeneralExtras(gameLibrary, 'lower');
       Object.entries(stageTasks).forEach(([stage, tasks]) => addGeneralExtras(tasks, stage));
 
-      const spldTraining = { id: 'spld', category: 'cognition', categoryName: '初小 · SpLD 讀寫訓練', tone: 'purple', icon: '字', title: '初小讀寫基礎練習', description: '12 關語音、字形、詞語與短文理解基礎練習', tag: 'P1–P3 · 基礎 12 關', supports: ['1'], rounds: [
+      const spldTraining = { id: 'spld', category: 'cognition', categoryName: '初小 · SpLD 讀寫訓練', tone: 'purple', icon: '字', title: '初小讀寫基礎練習', description: '12 關語音、字形、詞語與短文理解基礎練習', tag: 'P1–P3 · 基礎 12 關', supports: ['1'], answerPositionStrategy: 'irregular-balanced', answerPositionPattern: [1,2,0,1,0,2,1,0,2,0,1,2], rounds: [
         { id: 'P1-SPLD-01', band: 'P1 · 語音覺識', prompt: '哪個字和「花」的第一個聲音一樣？', choices: ['火', '馬', '書'], answer: '火', instruction: '請聽一聽「花」，找出開頭聲音一樣的字。', clue: '慢慢讀：「花」是 faa；「火」是 fo。兩個字開頭都有 f 聲。', success: '答對了！你聽到相同的開頭聲音。' },
         { id: 'P1-SPLD-02', band: 'P1 · 部件辨識', prompt: '「晴」字的左邊是哪個部件？', context: '目標字：<strong>晴</strong>', choices: ['日', '月', '目'], answer: '日', instruction: '請看「晴」字，找出它左邊的部件。', clue: '把「晴」分開看：左邊像太陽，是「日」字旁。', success: '做得好！你找到「晴」的日字旁。' },
-        { id: 'P1-SPLD-03', band: 'P1 · 易混字辨別', prompt: '「週＿＿」應該選哪個字？', context: '句子：星期六和星期日是<strong>週末</strong>。', choices: ['未', '末', '朱'], answer: '末', instruction: '請在「週＿＿」中選出正確的字。', clue: '比較「未」和「末」：末字的上面一橫較短，下面一橫較長。', success: '答對了！「週末」的末字寫得正確。' },
+        { id: 'P1-SPLD-03', band: 'P1 · 易混字辨別', prompt: '「週＿＿」應該選哪個字？', context: '星期六和星期日是一星期最後的兩天。', choices: ['未', '末', '朱'], answer: '末', instruction: '請在「週＿＿」中選出最合適的字。', clue: '比較「未」和「末」：末字的上面一橫較短，下面一橫較長。', success: '答對了！「週末」的末字寫得正確。' },
         { id: 'P2-SPLD-04', band: 'P2 · 組詞與語意', prompt: '我把課本放進書＿＿。', context: '想一想：課本通常放在哪裏？', choices: ['包', '店', '寫'], answer: '包', instruction: '請選出能令句子完整的字。', clue: '把「書」和選項讀出來；能放課本的是「書包」。', success: '很好！你用語意組成了正確詞語。' },
         { id: 'P2-SPLD-05', band: 'P2 · 句子填空', prompt: '把功課＿＿進書包。', context: '選一個最合適的字，令句子通順。', choices: ['放', '房', '方'], answer: '放', instruction: '請讀完整句子，再選出合適的字。', clue: '「放進」表示把物件放到一個地方；不是房間的「房」。', success: '答對了！你用句子的意思選對了字。' },
         { id: 'P2-SPLD-06', band: 'P2 · 詞序判斷', prompt: '哪一句的詞序正確？', context: '找出「誰／在哪裏／做甚麼」都完整的一句。', choices: ['爸爸在廚房煮飯。', '廚房爸爸煮飯在。', '煮飯爸爸在廚房。'], answer: '爸爸在廚房煮飯。', instruction: '請找出讀起來最通順的一句。', clue: '先找「誰」：爸爸；再找「在哪裏」：廚房；最後找「做甚麼」：煮飯。', success: '很好！你辨認到完整句子的詞序。' },
-        { id: 'P3-SPLD-07', band: 'P3 · 字形核對', prompt: '「＿＿天」應該選哪個字？', context: '晴天有太陽；請選出正確的「晴」。', choices: ['晴', '情', '請'], answer: '晴', instruction: '請找出表示好天氣的「晴」字。', clue: '好天氣和太陽有關，所以「晴」有日字旁。', success: '答對了！你用部件線索找到了正確字形。' },
+        { id: 'P3-SPLD-07', band: 'P3 · 字形核對', prompt: '「＿＿天」應該選哪個字？', context: '有陽光、沒有下雨時，是一種好天氣。請根據句意和部件線索選字。', choices: ['晴', '情', '請'], answer: '晴', instruction: '請先看天氣意思，再比較三個字的左邊部件。', clue: '好天氣和太陽有關；留意哪一個選項有日字旁。', success: '答對了！你用部件線索找到了正確字形。' },
         { id: 'P3-SPLD-08', band: 'P3 · 短句理解', prompt: '小婷今天要去哪裏？', context: '小婷今天要去<strong>圖書館</strong>借書。她先帶圖書證。', choices: ['圖書館', '球場', '餐廳'], answer: '圖書館', instruction: '請讀短句，找出小婷要去的地方。', clue: '找「去」字後面的地方名稱：小婷要去圖書館。', success: '做得好！你從短句找到了重要資料。' },
         { id: 'P3-SPLD-09', band: 'P3 · 短文取訊', prompt: '阿樂還差多少張工作紙？', context: '班主任說：明天交<strong>兩張</strong>工作紙。阿樂已完成<strong>一張</strong>。', choices: ['一張', '兩張', '三張'], answer: '一張', instruction: '請讀兩句資料，計算阿樂還差多少張。', clue: '共有兩張，已完成一張；2 減 1 等於 1。', success: '答對了！你從短文找資料再作出判斷。' },
         { id: 'P3-SPLD-10', band: 'P3 · 兩步指令', prompt: '這個指令的第一步是甚麼？', context: '指令：<strong>先寫姓名，再交工作紙。</strong>', choices: ['寫姓名', '交工作紙', '收拾書包'], answer: '寫姓名', instruction: '請聽兩步指令，找出第一個行動。', clue: '留意「先」字後面的行動；先寫姓名，然後才交工作紙。', success: '太好了！你記住並找到了兩步指令的第一步。' },
-        { id: 'P3-SPLD-11', band: 'P3 · 部件提示', prompt: '「請＿＿」應該選哪個字？', context: '老師說：<strong>請安靜排隊。</strong>', choices: ['請', '情', '晴'], answer: '請', instruction: '請選出表示有禮貌要求的「請」字。', clue: '有禮貌地請人做事用「請」；它有言字旁。', success: '答對了！你用部件和句子意思找對了字。' },
+        { id: 'P3-SPLD-11', band: 'P3 · 部件提示', prompt: '「＿＿安靜排隊。」應該選哪個字？', context: '老師用有禮貌的說話，要求同學安靜排隊。', choices: ['請', '情', '晴'], answer: '請', instruction: '請根據句子意思，選出最合適的字。', clue: '有禮貌地要求別人做事時，留意有言字旁的選項。', success: '答對了！你用部件和句子意思找對了字。' },
         { id: 'P3-SPLD-12', band: 'P3 · 重點詞卡', prompt: '小志要帶甚麼去上課？', context: '課堂提示卡：今天美術課，請<strong>帶顏色筆</strong>。', choices: ['顏色筆', '雨傘', '足球'], answer: '顏色筆', instruction: '請讀提示卡，找出要帶的物品。', clue: '先找「帶」字，再圈出它後面的物品名稱。', success: '很好！你從提示卡找到重要物品。' }
       ] };
       const pathwayTraining = [
@@ -501,7 +501,7 @@
       function getSpldReadText(round) { return `讀寫焦點：${round.band}。${round.instruction}。題目：${stripMarkup(round.prompt)}。${round.context ? `資料：${stripMarkup(round.context)}。` : ''}`; }
       function getSpldVisualCue(round) { return `<aside class="spld-visual-cue" aria-label="視覺解題步驟"><span class="spld-visual-label">視覺解題步驟</span><div class="spld-step-row"><span class="spld-step-chip">① 看題目</span><span class="spld-step-chip">② 圈關鍵詞</span><span class="spld-step-chip">③ 慢讀選項</span><span class="spld-step-chip">④ 作出選擇</span></div><div class="spld-keyword-card">本關讀寫焦點：<strong>${round.band}</strong>。先找有粗體或重要意思的詞。</div></aside>`; }
       function getSpldReadingTracker(round) { const text = stripMarkup(round.context || round.prompt); return `<details class="spld-reading-tracker"><summary>▰ 開啟文字閱讀導向條</summary><div class="spld-tracker-lane" aria-hidden="true"><i></i></div><p>${text}</p><small>可把手指、游標或這條色帶放在正在讀的一行附近，慢慢向下移動；這只是自選閱讀支架，不量度視線、速度或能力。</small></details>`; }
-      function readSpldHint(round) { speak(`解題小提示。${round.clue}`, .66); }
+      function readSpldHint(round) { const hint = $('.spld-hint'); if (hint) { hint.classList.add('is-revealed'); hint.innerHTML = `<span class="spld-hint-label">解題小提示</span><strong>${round.clue}</strong><small>已顯示提示；可以慢慢再看一次或再聽一次。</small>`; } speak(`解題小提示。${round.clue}`, .66); }
       function shuffle(items) { const copy = [...items]; for (let i = copy.length - 1; i > 0; i -= 1) { const j = Math.floor(Math.random() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; } return copy; }
       function escapeHTML(value) { return String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#039;', '"': '&quot;' }[char])); }
 
@@ -850,9 +850,10 @@
       function orderedRoundChoices(round) {
         const choices = [...(round.choices || [])]; const pattern = activeGame?.answerPositionPattern; const position = pattern?.[roundIndex % pattern.length];
         if (!Number.isInteger(position) || position < 0 || position >= choices.length) return choices;
-        const answerChoice = choices.find((choice) => choice[1] === round.answer);
+        const choiceValue = (choice) => Array.isArray(choice) ? choice[1] : choice;
+        const answerChoice = choices.find((choice) => choiceValue(choice) === round.answer);
         if (!answerChoice) return choices;
-        const others = choices.filter((choice) => choice[1] !== round.answer); const shown = [];
+        const others = choices.filter((choice) => choiceValue(choice) !== round.answer); const shown = [];
         for (let index = 0; index < choices.length; index += 1) shown[index] = index === position ? answerChoice : others.shift();
         return shown;
       }
@@ -895,8 +896,8 @@
           const tracker = getSpldReadingTracker(round);
           const controls = `<div class="spld-read-controls" aria-label="SpLD 朗讀控制"><button class="spld-read-button" id="spldReadPrompt" type="button">🔊 朗讀題目</button><button class="spld-read-button" id="spldReadHint" type="button">🐢 慢讀提示</button><button class="spld-read-button" id="spldReadChoices" type="button">🔉 朗讀選項</button></div>`;
           const visual = getSpldVisualCue(round);
-          const hint = `<aside class="spld-hint" aria-label="解題小提示"><span class="spld-hint-label">解題小提示</span><strong>${round.clue}</strong><small>提示已經顯示在這裏；需要時可按「慢讀提示」再聽一次。</small></aside>`;
-          return stageFrame(`<span class="spld-band">${round.band}</span><br>${round.prompt}`, `${reading}${tracker}<div class="spld-focus">讀寫焦點：${round.band}</div>${controls}${visual}${hint}<div class="spld-choice-grid">${round.choices.map(choice => `<button class="spld-answer" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div>`, true, '先看紫色視覺步驟，再慢讀關鍵詞和選項。');
+          const hint = `<aside class="spld-hint" aria-label="解題小提示，按慢讀提示後才會顯示內容"><span class="spld-hint-label">解題小提示</span><strong>需要時可按「慢讀提示」。</strong><small>提示預設收起，避免在作答前直接提供答案。</small></aside>`;
+          return stageFrame(`<span class="spld-band">${round.band}</span><br>${round.prompt}`, `${reading}${tracker}<div class="spld-focus">讀寫焦點：${round.band}</div>${controls}${visual}${hint}<div class="spld-choice-grid">${orderedRoundChoices(round).map(choice => `<button class="spld-answer" type="button" data-answer="${choice}">${choice}</button>`).join('')}</div>`, true, '先看紫色視覺步驟，再慢讀關鍵詞和選項。');
         }
         if (id === 'emotion') {
           return stageFrame(`找出和這張一樣的心情：<span class="sr-only">${round.word}</span>`, `<div class="match-target" aria-label="目標表情 ${round.word}">${round.target}</div><div class="answer-grid">${orderedRoundChoices(round).map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${label}"><span class="big-emoji">${emoji}</span><span class="caption">${label}</span></button>`).join('')}</div>`);

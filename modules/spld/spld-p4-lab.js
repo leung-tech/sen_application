@@ -16,7 +16,16 @@
       output.push(selected);
       counts[selected] -= 1;
     }
-    if (output.length >= 3 && output.slice(0, 3).every((position, index) => position === index)) [output[1], output[2]] = [output[2], output[1]];
+    // 避免開首呈現左→中→右的可預測循環；不能直接交換第 2、3 位，
+    // 否則某些 seed 會令第 3、4 關落在同一位置。只採用通過全列無相鄰檢查的重排。
+    if (output.length >= 4 && output.slice(0, 3).every((position, index) => position === index)) {
+      const sourceIndex = output.findIndex((position, index) => index >= 3 && position === 0);
+      if (sourceIndex >= 0) {
+        const candidate = [...output];
+        [candidate[2], candidate[sourceIndex]] = [candidate[sourceIndex], candidate[2]];
+        if (!candidate.some((position, index) => index > 0 && position === candidate[index - 1])) return candidate;
+      }
+    }
     return output;
   }
 
@@ -273,13 +282,20 @@
     window.speechSynthesis.speak(utterance);
   }
 
-  function shuffle(items) {
-    const output = [...items];
-    for (let index = output.length - 1; index > 0; index -= 1) {
-      const swapIndex = Math.floor(Math.random() * (index + 1));
-      [output[index], output[swapIndex]] = [output[swapIndex], output[index]];
-    }
-    return output;
+  // 句法積木和記憶卡維持固定但不按答案排列的卡序；不以 Math.random
+  // 改變同一關畫面，方便學生重試、教師示範及逐關驗收。
+  const SENTENCE_BLOCK_ORDERS = [
+    [1, 2, 0], [2, 0, 1], [1, 0, 2], [2, 1, 0], [1, 2, 0],
+    [2, 0, 1], [1, 0, 2], [2, 1, 0], [1, 2, 0], [2, 0, 1]
+  ];
+  const MEMORY_CARD_ORDERS = [
+    [0, 2, 1, 3], [1, 3, 0, 2], [2, 0, 3, 1], [3, 1, 2, 0], [0, 3, 1, 2],
+    [1, 2, 0, 3], [2, 1, 3, 0], [3, 0, 2, 1], [0, 2, 3, 1], [1, 3, 2, 0]
+  ];
+
+  function orderedCards(items, orders) {
+    const order = orders[roundIndex % orders.length] || items.map((_, index) => index);
+    return order.filter((index) => index < items.length).map((index) => items[index]);
   }
 
   function closeLab() {
@@ -415,10 +431,10 @@
   }
 
   function prepareMemoryCards(round) {
-    memoryCards = shuffle(round.pairs.flatMap((pair, pairIndex) => [
+    memoryCards = orderedCards(round.pairs.flatMap((pair, pairIndex) => [
       { id: `pair-${roundIndex}-${pairIndex}-a`, pairId: pairIndex, word: pair[0] },
       { id: `pair-${roundIndex}-${pairIndex}-b`, pairId: pairIndex, word: pair[1] }
-    ]));
+    ]), MEMORY_CARD_ORDERS);
     flippedCards = [];
     matchedPairs = [];
     memoryPreviewVisible = false;
@@ -685,7 +701,9 @@
     draggedSentenceBlock = '';
     touchSentenceDrag = null;
     suppressTouchSentenceClick = false;
-    blockOptions = activeKey === 'sentence' ? shuffle([currentRound().subject, currentRound().verb, currentRound().object]) : [];
+    blockOptions = activeKey === 'sentence'
+      ? orderedCards([currentRound().subject, currentRound().verb, currentRound().object], SENTENCE_BLOCK_ORDERS)
+      : [];
     if (activeKey === 'memory') prepareMemoryCards(currentRound());
     else { flippedCards = []; matchedPairs = []; memoryCards = []; }
   }

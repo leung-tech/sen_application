@@ -182,13 +182,15 @@
   const currentActivity = () => activities[activeKey];
   const currentRound = () => currentActivity().rounds[roundIndex];
   const wait = (callback, duration = 1000) => window.setTimeout(callback, duration);
-  const shuffle = (items) => {
-    const output = [...items];
-    for (let index = output.length - 1; index > 0; index -= 1) {
-      const swapIndex = Math.floor(Math.random() * (index + 1));
-      [output[index], output[swapIndex]] = [output[swapIndex], output[index]];
-    }
-    return output;
+  // 段落排序卡以固定、非正確次序呈現；同一關不因重開而改變，
+  // 同時保留真正的排序任務，而非把句子按答案順序排好。
+  const PARAGRAPH_SEGMENT_ORDERS = [
+    [1, 2, 0, 3], [2, 0, 3, 1], [1, 3, 0, 2], [2, 1, 0, 3], [1, 2, 0, 3],
+    [2, 0, 1, 3], [1, 3, 2, 0], [2, 1, 0, 3], [1, 2, 0, 3], [2, 0, 1, 3]
+  ];
+  const orderedSegmentCards = (items) => {
+    const order = PARAGRAPH_SEGMENT_ORDERS[roundIndex % PARAGRAPH_SEGMENT_ORDERS.length];
+    return order.filter((index) => index < items.length).map((index) => items[index]);
   };
 
   function updateReadButton() {
@@ -482,7 +484,7 @@
 
   function prepareRoundState() {
     orderedSegments = [];
-    segmentOptions = activeKey === 'paragraph' ? shuffle(currentRound().order) : [];
+    segmentOptions = activeKey === 'paragraph' ? orderedSegmentCards(currentRound().order) : [];
   }
 
   function nextRound() {

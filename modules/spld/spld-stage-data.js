@@ -17,7 +17,7 @@ window.SPLD_STAGE_TASKS = {
       { id: 'P5-SPLD-08', band: 'P5 · 段落主旨', prompt: '這段話最主要提醒甚麼？', context: '明天是戶外活動日。天氣較熱，請穿輕便衣服，並<strong>帶水樽</strong>。', choices: ['帶水樽', '帶玩具', '帶厚外套'], answer: '帶水樽', instruction: '請找出和戶外活動最有關的提醒。', clue: '天氣較熱時，身體最需要補充甚麼？', success: '很好！你找到了段落的主要提醒。' },
       { id: 'P6-SPLD-09', band: 'P6 · 表格資料', prompt: '這本書的歸還日是哪一天？', context: '借書單：書名《校園故事》；借出日 4 月 3 日；<strong>歸還日 4 月 17 日</strong>。', choices: ['4 月 17 日', '4 月 3 日', '5 月 17 日'], answer: '4 月 17 日', instruction: '請在借書單找出歸還日。', clue: '先找到歸還日三個字，再讀它後面的日期。', success: '答對了！你在表格找到正確日期。' },
       { id: 'P6-SPLD-10', band: 'P6 · 三步指令', prompt: '這個指令的第一步是甚麼？', context: '指令：<strong>先寫姓名，放入文件夾，最後交給老師。</strong>', choices: ['寫姓名', '放入文件夾', '交給老師'], answer: '寫姓名', instruction: '請聽三步指令，找出第一個行動。', clue: '留意先字後面的行動；先寫姓名，之後才放入文件夾。', success: '太好了！你找到了三步指令的第一步。' },
-      { id: 'P6-SPLD-11', band: 'P6 · 易混字辨別', prompt: '「＿＿習」應該選哪個字？', context: '老師說：每天<strong>溫習</strong>十分鐘。', choices: ['溫', '穩', '蘊'], answer: '溫', instruction: '請選出可以組成「溫習」的字。', clue: '讀一讀「每天溫習」；這個詞和學習、複習有關。', success: '答對了！你用詞義和字形選對了「溫」。' },
+      { id: 'P6-SPLD-11', band: 'P6 · 易混字辨別', prompt: '「＿＿習」應該選哪個字？', context: '老師建議：每天用十分鐘複習課堂內容。', choices: ['溫', '穩', '蘊'], answer: '溫', instruction: '請根據每天複習課堂內容的意思選字。', clue: '這個詞和學習、複習有關；比較三個選項的字形。', success: '答對了！你用詞義和字形選對了正確字。' },
       { id: 'P6-SPLD-12', band: 'P6 · 圖表重點', prompt: '哪一項要最先完成？', context: '待辦卡：<strong>紅色：明天交回條</strong>；黃色：下星期溫習單；藍色：月底閱讀記錄。', choices: ['紅色：明天交回條', '黃色：下星期溫習單', '藍色：月底閱讀記錄'], answer: '紅色：明天交回條', instruction: '請看顏色和日期，找出最先要做的一項。', clue: '先看最近的日期；明天比下星期和月底早。', success: '很好！你從視覺待辦卡找到了最優先事項。' }
     ]
   },

@@ -8,8 +8,7 @@
     train: [2, 1, 0, 2, 0, 1, 0, 1],
     semantic: [1, 2, 0, 1, 0, 2, 1, 0],
     numberline: [0, 2, 1, 2, 0, 1, 0, 1],
-    sentenceTrain: [2, 0, 1, 0, 2, 1, 0, 1],
-    rhyme: [1, 0, 2, 1, 2, 0, 1, 0]
+    sentenceTrain: [2, 0, 1, 0, 2, 1, 0, 1]
   };
   // 部件拼盤是雙部件任務，以下順序表示每一關「部件列」顯示原資料的哪一項。
   // 它避免兩個正確部件總是佔據最左兩格，並保持每關可重現。
@@ -26,14 +25,14 @@
       focus: '字形結構',
       accent: 'violet',
       rounds: [
-        { target: '河', guide: '左 + 右', prompt: '把「氵」和「可」砌成「河」。', parts: ['氵', '可', '木'], answer: ['氵', '可'], meaning: '河水的「河」有三點水。', hint: '想一想：河水和水有關，所以左邊是三點水。' },
-        { target: '晴', guide: '左 + 右', prompt: '把「日」和「青」砌成「晴」。', parts: ['日', '青', '月'], answer: ['日', '青'], meaning: '晴天的「晴」有日字旁。', hint: '想一想：晴天有太陽，所以左邊是日。' },
-        { target: '媽', guide: '左 + 右', prompt: '把「女」和「馬」砌成「媽」。', parts: ['女', '馬', '木'], answer: ['女', '馬'], meaning: '媽媽的「媽」有女字旁。', hint: '想一想：媽媽是女性家人，所以左邊是女。' },
-        { target: '拍', guide: '左 + 右', prompt: '把「扌」和「白」砌成「拍」。', parts: ['扌', '白', '氵'], answer: ['扌', '白'], meaning: '拍手的「拍」有提手旁。', hint: '想一想：拍手要用手，所以左邊是提手旁。' },
-        { target: '花', guide: '上 + 下', prompt: '把「艹」和「化」砌成「花」。', parts: ['艹', '化', '女'], answer: ['艹', '化'], meaning: '花朵的「花」有草字頭。', hint: '想一想：花是植物，先找上面的草字頭。' },
-        { target: '請', guide: '左 + 右', prompt: '把「訁」和「青」砌成「請」。', parts: ['訁', '青', '日'], answer: ['訁', '青'], meaning: '請說的「請」有言字旁。', hint: '想一想：請人幫忙要說話，所以左邊是言字旁。' },
-        { target: '狗', guide: '左 + 右', prompt: '把「犭」和「句」砌成「狗」。', parts: ['犭', '句', '口'], answer: ['犭', '句'], meaning: '小狗的「狗」有反犬旁。', hint: '想一想：狗是動物，先找反犬旁。' },
-        { target: '姐', guide: '左 + 右', prompt: '把「女」和「且」砌成「姐」。', parts: ['女', '且', '目'], answer: ['女', '且'], meaning: '姐姐的「姐」有女字旁。', hint: '想一想：姐姐是女性家人，所以左邊是女。' }
+        { target: '河', guide: '左 + 右', prompt: '從三個部件中，找出兩個部件來拼成「河」。', parts: ['氵', '可', '木'], answer: ['氵', '可'], meaning: '🌊 看字形結構與日常意思', hint: '想一想：河水和水有關，所以左邊是三點水。' },
+        { target: '晴', guide: '左 + 右', prompt: '從三個部件中，找出兩個部件來拼成「晴」。', parts: ['日', '青', '月'], answer: ['日', '青'], meaning: '☀️ 看字形結構與日常意思', hint: '想一想：晴天有太陽，所以左邊是日。' },
+        { target: '媽', guide: '左 + 右', prompt: '從三個部件中，找出兩個部件來拼成「媽」。', parts: ['女', '馬', '木'], answer: ['女', '馬'], meaning: '👩 看字形結構與日常意思', hint: '想一想：媽媽是女性家人，所以左邊是女。' },
+        { target: '拍', guide: '左 + 右', prompt: '從三個部件中，找出兩個部件來拼成「拍」。', parts: ['扌', '白', '氵'], answer: ['扌', '白'], meaning: '👏 看字形結構與日常意思', hint: '想一想：拍手要用手，所以左邊是提手旁。' },
+        { target: '花', guide: '上 + 下', prompt: '從三個部件中，找出兩個部件來拼成「花」。', parts: ['艹', '化', '女'], answer: ['艹', '化'], meaning: '🌼 看字形結構與日常意思', hint: '想一想：花是植物，先找上面的草字頭。' },
+        { target: '請', guide: '左 + 右', prompt: '從三個部件中，找出兩個部件來拼成「請」。', parts: ['訁', '青', '日'], answer: ['訁', '青'], meaning: '💬 看字形結構與日常意思', hint: '想一想：請人幫忙要說話，所以左邊是言字旁。' },
+        { target: '狗', guide: '左 + 右', prompt: '從三個部件中，找出兩個部件來拼成「狗」。', parts: ['犭', '句', '口'], answer: ['犭', '句'], meaning: '🐶 看字形結構與日常意思', hint: '想一想：狗是動物，先找反犬旁。' },
+        { target: '姐', guide: '左 + 右', prompt: '從三個部件中，找出兩個部件來拼成「姐」。', parts: ['女', '且', '目'], answer: ['女', '且'], meaning: '👧 看字形結構與日常意思', hint: '想一想：姐姐是女性家人，所以左邊是女。' }
       ]
     },
     spotting: {
@@ -69,27 +68,27 @@
     stroke: {
       icon: '✍️', title: '筆劃拼圖', description: '按正確筆順點選筆劃，讓字形慢慢出現。', focus: '筆順與動覺連結', accent: 'blue',
       rounds: [
-        { target: '人', prompt: '按「人」字的筆順，先撇後捺。', steps: ['撇', '捺'], hint: '人字像兩隻腳走路：先由左上向下撇，再由右上向下捺。', meaning: '✍️ 每次只按一筆', success: '你完成了「人」字的筆順。' },
-        { target: '口', prompt: '按「口」字的筆順，先豎，再橫折，最後橫。', steps: ['豎', '橫折', '橫'], hint: '先畫左邊直線，再由上面轉到右邊，最後封好底部。', meaning: '✍️ 每次只按一筆', success: '你完成了「口」字的筆順。' },
-        { target: '木', prompt: '按「木」字的筆順，先橫、豎、撇、捺。', steps: ['橫', '豎', '撇', '捺'], hint: '先做十字，再加左邊撇和右邊捺。', meaning: '✍️ 每次只按一筆', success: '你完成了「木」字的筆順。' },
-        { target: '大', prompt: '按「大」字的筆順，先橫、撇、捺。', steps: ['橫', '撇', '捺'], hint: '先寫中間的一橫，再向左撇、向右捺。', meaning: '✍️ 每次只按一筆', success: '你完成了「大」字的筆順。' },
-        { target: '日', prompt: '按「日」字的筆順，先豎、橫折、橫、橫。', steps: ['豎', '橫折', '橫', '橫'], hint: '先寫左邊直線，再從上面轉到右邊，最後補兩橫。', meaning: '✍️ 每次只按一筆', success: '你完成了「日」字的筆順。' },
-        { target: '土', prompt: '按「土」字的筆順，先橫、豎、橫。', steps: ['橫', '豎', '橫'], hint: '先寫上面短橫，再寫中間豎，最後寫下面長橫。', meaning: '✍️ 每次只按一筆', success: '你完成了「土」字的筆順。' },
-        { target: '山', prompt: '按「山」字的筆順，先豎、豎折、豎。', steps: ['豎', '豎折', '豎'], hint: '先寫中間直線，再寫左邊轉到底部，最後補右邊直線。', meaning: '✍️ 每次只按一筆', success: '你完成了「山」字的筆順。' },
-        { target: '十', prompt: '按「十」字的筆順，先橫後豎。', steps: ['橫', '豎'], hint: '先畫一條橫線，再從中間向下寫一豎。', meaning: '✍️ 每次只按一筆', success: '你完成了「十」字的筆順。' }
+        { target: '人', prompt: '請按「人」字的正確筆順選筆劃。', steps: ['撇', '捺'], hint: '人字像兩隻腳走路：先由左上向下撇，再由右上向下捺。', meaning: '✍️ 每次只按一筆', success: '你完成了「人」字的筆順。' },
+        { target: '口', prompt: '請按「口」字的正確筆順選筆劃。', steps: ['豎', '橫折', '橫'], hint: '先畫左邊直線，再由上面轉到右邊，最後封好底部。', meaning: '✍️ 每次只按一筆', success: '你完成了「口」字的筆順。' },
+        { target: '木', prompt: '請按「木」字的正確筆順選筆劃。', steps: ['橫', '豎', '撇', '捺'], hint: '先做十字，再加左邊撇和右邊捺。', meaning: '✍️ 每次只按一筆', success: '你完成了「木」字的筆順。' },
+        { target: '大', prompt: '請按「大」字的正確筆順選筆劃。', steps: ['橫', '撇', '捺'], hint: '先寫中間的一橫，再向左撇、向右捺。', meaning: '✍️ 每次只按一筆', success: '你完成了「大」字的筆順。' },
+        { target: '日', prompt: '請按「日」字的正確筆順選筆劃。', steps: ['豎', '橫折', '橫', '橫'], hint: '先寫左邊直線，再從上面轉到右邊，最後補兩橫。', meaning: '✍️ 每次只按一筆', success: '你完成了「日」字的筆順。' },
+        { target: '土', prompt: '請按「土」字的正確筆順選筆劃。', steps: ['橫', '豎', '橫'], hint: '先寫上面短橫，再寫中間豎，最後寫下面長橫。', meaning: '✍️ 每次只按一筆', success: '你完成了「土」字的筆順。' },
+        { target: '山', prompt: '請按「山」字的正確筆順選筆劃。', steps: ['豎', '豎折', '豎'], hint: '先寫中間直線，再寫左邊轉到底部，最後補右邊直線。', meaning: '✍️ 每次只按一筆', success: '你完成了「山」字的筆順。' },
+        { target: '十', prompt: '請按「十」字的正確筆順選筆劃。', steps: ['橫', '豎'], hint: '先畫一條橫線，再從中間向下寫一豎。', meaning: '✍️ 每次只按一筆', success: '你完成了「十」字的筆順。' }
       ]
     },
     triple: {
       icon: '🖼️', title: '圖文音三連配對', description: '看圖、聽語音，再選正確的正體字詞。', focus: '形音意多感官連結', accent: 'pink',
       rounds: [
-        { picture: '🍎', audio: '蘋果', prompt: '看紅色水果圖，聽「蘋果」，選出正確字詞。', target: '蘋果', choices: ['蘋果', '平果', '評果'], hint: '圖中是紅色的水果，讀作「蘋果」。', meaning: '🍎 圖像＋語音＋字詞', success: '圖、聲音和「蘋果」連起來了。' },
-        { picture: '📚', audio: '圖書', prompt: '看書本圖，聽「圖書」，選出正確字詞。', target: '圖書', choices: ['圖書', '途書', '圖輸'], hint: '圖書館裡有很多可以閱讀的「圖書」。', meaning: '📚 圖像＋語音＋字詞', success: '圖、聲音和「圖書」連起來了。' },
-        { picture: '☂️', audio: '雨傘', prompt: '看雨傘圖，聽「雨傘」，選出正確字詞。', target: '雨傘', choices: ['雨傘', '雨散', '雨山'], hint: '下雨時用來擋雨的是「雨傘」。', meaning: '☂️ 圖像＋語音＋字詞', success: '圖、聲音和「雨傘」連起來了。' },
-        { picture: '🐶', audio: '小狗', prompt: '看小動物圖，聽「小狗」，選出正確字詞。', target: '小狗', choices: ['小狗', '小句', '小勾'], hint: '圖中有四隻腳、會汪汪叫的小動物是「小狗」。', meaning: '🐶 圖像＋語音＋字詞', success: '圖、聲音和「小狗」連起來了。' },
-        { picture: '☀️', audio: '太陽', prompt: '看發光天空圖，聽「太陽」，選出正確字詞。', target: '太陽', choices: ['太陽', '大陽', '太樣'], hint: '白天在天空發光、帶來光和暖的是「太陽」。', meaning: '☀️ 圖像＋語音＋字詞', success: '圖、聲音和「太陽」連起來了。' },
-        { picture: '🚌', audio: '巴士', prompt: '看交通工具圖，聽「巴士」，選出正確字詞。', target: '巴士', choices: ['巴士', '把士', '巴示'], hint: '可以載很多人上學或出門的交通工具是「巴士」。', meaning: '🚌 圖像＋語音＋字詞', success: '圖、聲音和「巴士」連起來了。' },
-        { picture: '🧸', audio: '玩具', prompt: '看玩樂物品圖，聽「玩具」，選出正確字詞。', target: '玩具', choices: ['玩具', '完具', '玩句'], hint: '可以拿來玩、不是上課文具的物品叫「玩具」。', meaning: '🧸 圖像＋語音＋字詞', success: '圖、聲音和「玩具」連起來了。' },
-        { picture: '🥛', audio: '牛奶', prompt: '看飲品圖，聽「牛奶」，選出正確字詞。', target: '牛奶', choices: ['牛奶', '午奶', '牛乃'], hint: '白色、可以喝的飲品是「牛奶」。', meaning: '🥛 圖像＋語音＋字詞', success: '圖、聲音和「牛奶」連起來了。' }
+        { picture: '🍎', audio: '蘋果', prompt: '看紅色水果圖，按「聽字詞」後選出正確字詞。', target: '蘋果', choices: ['蘋果', '平果', '評果'], hint: '圖中是紅色的水果，讀作「蘋果」。', meaning: '🍎 圖像＋語音＋字詞', success: '圖、聲音和「蘋果」連起來了。' },
+        { picture: '📚', audio: '圖書', prompt: '看書本圖，按「聽字詞」後選出正確字詞。', target: '圖書', choices: ['圖書', '途書', '圖輸'], hint: '圖書館裡有很多可以閱讀的「圖書」。', meaning: '📚 圖像＋語音＋字詞', success: '圖、聲音和「圖書」連起來了。' },
+        { picture: '☂️', audio: '雨傘', prompt: '看雨傘圖，按「聽字詞」後選出正確字詞。', target: '雨傘', choices: ['雨傘', '雨散', '雨山'], hint: '下雨時用來擋雨的是「雨傘」。', meaning: '☂️ 圖像＋語音＋字詞', success: '圖、聲音和「雨傘」連起來了。' },
+        { picture: '🐶', audio: '小狗', prompt: '看小動物圖，按「聽字詞」後選出正確字詞。', target: '小狗', choices: ['小狗', '小句', '小勾'], hint: '圖中有四隻腳、會汪汪叫的小動物是「小狗」。', meaning: '🐶 圖像＋語音＋字詞', success: '圖、聲音和「小狗」連起來了。' },
+        { picture: '☀️', audio: '太陽', prompt: '看發光天空圖，按「聽字詞」後選出正確字詞。', target: '太陽', choices: ['太陽', '大陽', '太樣'], hint: '白天在天空發光、帶來光和暖的是「太陽」。', meaning: '☀️ 圖像＋語音＋字詞', success: '圖、聲音和「太陽」連起來了。' },
+        { picture: '🚌', audio: '巴士', prompt: '看交通工具圖，按「聽字詞」後選出正確字詞。', target: '巴士', choices: ['巴士', '把士', '巴示'], hint: '可以載很多人上學或出門的交通工具是「巴士」。', meaning: '🚌 圖像＋語音＋字詞', success: '圖、聲音和「巴士」連起來了。' },
+        { picture: '🧸', audio: '玩具', prompt: '看玩樂物品圖，按「聽字詞」後選出正確字詞。', target: '玩具', choices: ['玩具', '完具', '玩句'], hint: '可以拿來玩、不是上課文具的物品叫「玩具」。', meaning: '🧸 圖像＋語音＋字詞', success: '圖、聲音和「玩具」連起來了。' },
+        { picture: '🥛', audio: '牛奶', prompt: '看飲品圖，按「聽字詞」後選出正確字詞。', target: '牛奶', choices: ['牛奶', '午奶', '牛乃'], hint: '白色、可以喝的飲品是「牛奶」。', meaning: '🥛 圖像＋語音＋字詞', success: '圖、聲音和「牛奶」連起來了。' }
       ]
     },
     radical: {
@@ -177,17 +176,18 @@
     window.speechSynthesis.speak(utterance);
   }
 
-  function shuffleSteps(steps) {
-    const output = [...steps];
-    for (let index = output.length - 1; index > 0; index -= 1) {
-      const nextIndex = Math.floor(Math.random() * (index + 1));
-      [output[index], output[nextIndex]] = [output[nextIndex], output[index]];
-    }
-    return output;
-  }
+  // 筆順卡不使用隨機洗牌：同一關每次開啟都應顯示相同的非正確順序，
+  // 既方便課堂重試與畫面稽核，也不會把正確筆順直接排出來。
+  const STROKE_OPTION_ORDERS = [
+    [1, 0, 2, 3], [2, 0, 1, 3], [1, 3, 0, 2], [2, 1, 0, 3],
+    [3, 0, 2, 1], [1, 2, 0, 3], [2, 0, 1, 3], [1, 0, 3, 2]
+  ];
 
   function makeStrokeOptions(steps) {
-    return shuffleSteps(steps.map((label, index) => ({ id: `${label}-${index + 1}`, label })));
+    const order = STROKE_OPTION_ORDERS[roundIndex] || [1, 0, 2, 3];
+    return order
+      .filter((index) => index < steps.length)
+      .map((index) => ({ id: `${steps[index]}-${index + 1}`, label: steps[index] }));
   }
 
   function closeLab() {
@@ -254,7 +254,7 @@
 
     if (active === activities.assembly) {
       const slotLabels = round.guide.includes('上') ? ['上面', '下面'] : ['左邊', '右邊'];
-      const placementInstruction = round.guide.includes('上') ? '可把部件拖到上面或下面的位置；也可按一個部件，它會放到合適的位置。' : '可把部件拖到左右位置；也可按一個部件，它會放到合適的位置。';
+      const placementInstruction = round.guide.includes('上') ? '把部件拖到上面或下面的位置；或先按一個部件，系統會放到合適的位置。' : '把部件拖到左右位置；或先按一個部件，系統會放到合適的位置。';
       activityMarkup = `<div class="spld-assembly-guide"><span>目標字</span><strong>${round.target}</strong><small>${round.guide} 結構</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-assembly-slots" aria-label="部件拼盤"><button type="button" class="spld-part-slot" data-slot="0" data-sen-drop-zone="part"><span>${slotLabels[0]}</span><strong>${selectedParts[0] || '？'}</strong></button><span class="spld-plus">＋</span><button type="button" class="spld-part-slot" data-slot="1" data-sen-drop-zone="part"><span>${slotLabels[1]}</span><strong>${selectedParts[1] || '？'}</strong></button></div><p class="spld-lab-instruction">${placementInstruction}</p><div class="spld-part-bank">${displayedAssemblyParts(round).map((part) => `<button type="button" class="spld-part-piece ${selectedParts.includes(part) ? 'used' : ''}" data-part="${part}" draggable="${!selectedParts.includes(part)}" data-sen-drag-source ${selectedParts.includes(part) ? 'disabled' : ''}>${part}</button>`).join('')}</div>`;
     } else if (active === activities.stroke) {
       activityMarkup = `<div class="spld-stroke-target"><span>目標字</span><strong>${round.target}</strong><small>${round.steps.length} 筆</small></div><p class="spld-lab-prompt">${round.prompt}</p><p class="spld-lab-meaning">${round.meaning}</p><div class="spld-stroke-slots">${round.steps.map((_, index) => `<div class="spld-stroke-slot ${selectedStrokes[index] ? 'filled' : ''}"><b>${index + 1}</b><strong>${selectedStrokes[index]?.label || '？'}</strong></div>`).join('')}</div><div class="spld-stroke-options">${strokeOptions.map((step) => { const used = selectedStrokes.some((selected) => selected.id === step.id); return `<button type="button" class="spld-stroke-option ${used ? 'used' : ''}" data-stroke="${step.id}" ${used ? 'disabled' : ''} aria-label="選擇第 ${step.id.split('-').at(-1)} 個「${step.label}」筆劃">${step.label}</button>`; }).join('')}</div>`;
@@ -268,7 +268,7 @@
       activityMarkup = `<div class="spld-spotting-scene"><p>${round.sentence.replace('＿＿', '<strong class="spld-blank">？</strong>')}</p><small>${round.meaning}</small></div><p class="spld-lab-prompt">找出最適合放進空格的字。</p><div class="spld-spotting-choices">${displayedChoices(round).map((choice, index) => `<button type="button" class="spld-spotting-choice" data-choice="${choice}"><span>${index + 1}</span><strong>${choice}</strong></button>`).join('')}</div>`;
     }
 
-    const inner = `<div class="spld-lab-heading compact"><span class="spld-lab-kicker">${active.title} · ${active.focus}</span><h2>${active.icon} ${active.title}</h2><p>${active.description}</p></div>${progress}<div class="spld-lab-play-area">${activityMarkup}</div><div class="spld-lab-feedback" id="spldLabFeedback">慢慢看一看；不知道時可按提示。</div>${tools}`;
+    const inner = `<div class="spld-lab-heading compact"><span class="spld-lab-kicker">${active.title} · ${active.focus}</span><h2>${active.icon} ${active.title}</h2><p>${active.description}</p></div>${progress}<div class="spld-lab-play-area">${activityMarkup}</div><div class="spld-lab-feedback" id="spldLabFeedback">慢慢看一看；需要時按提示。</div>${tools}`;
     const dialog = document.querySelector('.spld-p1-lab');
     dialog.innerHTML = `<button class="spld-lab-close" type="button" aria-label="關閉初小讀寫實驗室">×</button>${inner}`;
     bindRound(round);
