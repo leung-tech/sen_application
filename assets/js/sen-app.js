@@ -800,6 +800,10 @@
           const guide = `<aside class="id-life-guide" aria-label="生活小步驟卡"><span class="id-life-guide-label">生活小步驟卡</span><strong>先看情境，再選安全、實用和有禮貌的下一步。</strong><small>每次只做一小步；不確定時，可以用清楚句子向可信任的大人求助。</small></aside>`;
           return stageFrame(`<span class="id-band">${round.band}</span><br>${round.prompt}`, `<article class="scenario-context">${round.context}</article>${guide}<div class="answer-grid">${orderedRoundChoices(round).map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${escapeHTML(label)}"><span class="big-emoji">${emoji}</span><span class="caption">${escapeHTML(label)}</span></button>`).join('')}</div>`, true, '先看看藍色「生活小步驟卡」，再選擇下一步。');
         }
+        if (id === 'pathway-mi') {
+          const guide = `<aside class="id-life-guide" aria-label="需要與求助提示卡"><span class="id-life-guide-label">需要與求助提示卡</span><strong>先看情境，再選一張能清楚表達需要或求助的卡。</strong><small>不確定時，可以暫停並向身旁可信任的成人求助。</small></aside>`;
+          return stageFrame(round.prompt, `<article class="scenario-context">${round.context}</article>${guide}<div class="answer-grid">${orderedRoundChoices(round).map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${escapeHTML(label)}"><span class="big-emoji">${emoji}</span><span class="caption">${escapeHTML(label)}</span></button>`).join('')}</div>`, true, '先看看提示卡，再選一張能清楚表達需要的卡。');
+        }
         if (id === 'pathway-gifted') {
           const guide = `<aside class="gifted-guide" aria-label="解難策略卡"><span class="gifted-guide-label">解難策略卡</span><strong>${round.strategy}</strong><small>可先找規律、列出條件或比較證據，再檢查自己的推論。</small></aside>`;
           return stageFrame(`<span class="gifted-band">${round.band}</span><br>${round.prompt}`, `<article class="scenario-context">${round.context}</article>${guide}<div class="answer-grid">${round.choices.map(([emoji, label]) => `<button class="answer-card" type="button" data-answer="${escapeHTML(label)}"><span class="big-emoji">${emoji}</span><span class="caption">${escapeHTML(label)}</span></button>`).join('')}</div>`, true, '先看看紫色「解難策略卡」，再選擇最合條件的答案。');

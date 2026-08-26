@@ -210,8 +210,8 @@
     }); bindToolbar();
   }
   function renderBubble() {
-    shell(base(active.title, `<div><button class="ebdmi-bubble" type="button" data-bubble>我現在有一個<br>擔心想法</button><h2 class="ebdmi-task-title">按泡泡，讓想法飄遠一點</h2><p class="ebdmi-task-copy">這不是要趕走想法，只是練習先看見它，然後選一個支持。</p><div class="ebdmi-choice-grid"><button class="ebdmi-choice" type="button" data-support-choice>🛟 告訴成人</button><button class="ebdmi-choice" type="button" data-support-choice>🌬️ 慢慢呼吸</button></div></div>`));
-    by('[data-bubble]', overlay).addEventListener('click', (event) => { event.currentTarget.classList.add('float'); progress(50); announce('泡泡正慢慢飄遠。現在可選一張支持卡。'); });
+    shell(base(active.title, `<div><button class="ebdmi-bubble" type="button" data-bubble>我現在有一個<br>擔心想法</button><h2 class="ebdmi-task-title">按泡泡，讓想法飄遠一點</h2><p class="ebdmi-task-copy">這不是要趕走想法，只是練習先看見它，然後選一個支持。</p><div class="ebdmi-choice-grid"><button class="ebdmi-choice" type="button" data-support-choice disabled>🛟 告訴成人</button><button class="ebdmi-choice" type="button" data-support-choice disabled>🌬️ 慢慢呼吸</button></div></div>`));
+    by('[data-bubble]', overlay).addEventListener('click', (event) => { event.currentTarget.classList.add('float'); event.currentTarget.disabled = true; [...overlay.querySelectorAll('[data-support-choice]')].forEach((button) => { button.disabled = false; }); progress(50); announce('泡泡正慢慢飄遠。現在可選一張支持卡。'); });
     [...overlay.querySelectorAll('[data-support-choice]')].forEach((button) => button.addEventListener('click', (event) => { event.currentTarget.classList.add('selected'); complete(`你選了「${event.currentTarget.textContent.trim()}」作為下一步。`); })); bindToolbar();
   }
   function renderSafe() {
